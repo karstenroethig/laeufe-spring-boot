@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+	                    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+	<property name="now" value="getDate()" dbms="mssql"/>
+	<property name="now" value="now()" dbms="postgresql,h2"/>
+
+	<!-- ===================== -->
+	<!-- insert some test data -->
+	<!-- ===================== -->
+	<changeSet id="1" author="roethig">
+
+		<!-- ================= -->
+		<!-- Table "Organizer" -->
+		<!-- ================= -->
+		<insert tableName="Organizer">
+			<column name="name" value="Tough Mudder"></column>
+			<column name="description" value="Hier könnte eine Beschreibung stehen."></column>
+			<column name="archived" value="false"></column>
+		</insert>
+		<insert tableName="Organizer">
+			<column name="name" value="Spartan Race"></column>
+			<column name="description" value="Hier könnte eine Beschreibung stehen."></column>
+			<column name="archived" value="false"></column>
+		</insert>
+		<insert tableName="Organizer">
+			<column name="name" value="Survival Run"></column>
+			<column name="description" value="Hier könnte eine Beschreibung stehen."></column>
+			<column name="archived" value="true"></column>
+		</insert>
+
+	</changeSet>
+
+</databaseChangeLog>

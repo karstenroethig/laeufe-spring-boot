@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head></head>
+<body>
+
+	<nav class="navbar navbar-default navbar-pf" role="navigation">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse-1">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" th:href="@{/}">
+				<img th:src="@{'/webjars/patternfly/'+#{application.dependency.patternfly}+'/dist/img/brand.svg'}"/>
+			</a>
+		</div>
+		<div class="collapse navbar-collapse navbar-collapse-1">
+			<ul class="nav navbar-nav navbar-utility">
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+						<span class="pficon pficon-user"></span>
+						Karsten Röthig <b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+							<a href="#" th:text="#{utility.user.manageAccount}">Manage Account</a>
+						</li>
+						<li>
+							<a th:href="@{/admin/server-info}" th:text="#{utility.serverInfo}">Server Info</a>
+						</li>
+						<li class="divider"></li>
+						<li>
+							<a href="#" th:text="#{utility.user.signOut}">Sign Out</a>
+						</li>
+					</ul>
+				</li>
+			</ul>
+			<ul class="nav navbar-nav navbar-primary">
+				<li th:class="${#strings.equals(menu,'event')} ? active">
+					<a th:href="@{/event/list}" th:text="#{event.label.plural}">Events</a>
+				</li>
+				<li th:class="${#strings.equals(menu,'map')} ? active">
+					<a href="map.html" th:text="#{map.label}">Map</a>
+				</li>
+				<li th:class="${#strings.equals(menu,'organizer')} ? active">
+					<a th:href="@{/organizer/list}" th:text="#{organizer.label.plural}">Race Organizers</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+
+</body>
+</html>

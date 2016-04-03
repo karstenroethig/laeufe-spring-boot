@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<!--[if IE 9]><html class="ie9"><![endif]-->
+<!--[if gt IE 9]><!-->
+<html>
+<!--<![endif]-->
+
+	<head>
+
+		<title layout:title-pattern="$DECORATOR_TITLE - $CONTENT_TITLE" th:text="#{application.name}"></title>
+		
+		<meta charset="UTF-8"/>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	    
+	    <link rel="shortcut icon" th:href="@{/images/favicon.ico}"/>
+
+		<link th:replace="fragments/style"/>
+
+	</head>
+	
+	<body>
+
+		<div th:replace="fragments/header"></div>
+	
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-sm-12 col-md-12">
+					<div layout:fragment="breadcrumb">&nbsp;</div>
+					<div th:replace="fragments/messages"></div>
+					<div layout:fragment="content"></div>
+				</div>
+			</div>
+		</div>
+
+		<div th:replace="fragments/js"></div>
+
+	</body>
+</html>

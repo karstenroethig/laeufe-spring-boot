@@ -1,0 +1,58 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout">
+<head>
+	<title th:text="#{organizer.label.plural}+' - '+#{organizer.edit.label}"></title>
+</head>
+<body th:with="menu='config'">
+
+	<div layout:fragment="breadcrumb">
+		<ol class="breadcrumb">
+			<li>
+				<a th:href="@{/organizer/list}" th:text="#{organizer.label.plural}"></a>
+			</li>
+			<li th:text="#{organizer.edit.label}"></li>
+		</ol>
+		<h1 th:text="#{organizer.edit.label}"></h1>
+	</div>
+
+	<div layout:fragment="content">
+		
+		<form class="form-horizontal" th:object="${organizer}" th:action="@{/organizer/update}" action="#" method="post">
+			<input type="hidden" th:field="*{id}"/>
+			<div class="form-group" th:classappend="${#fields.hasErrors('name')} ? has-error">
+				<label class="col-md-2 control-label" th:text="#{organizer.name.label}"></label>
+				<div class="col-md-10">
+					<input type="text" th:field="*{name}" class="form-control">
+					<small class="help-block" th:if="${#fields.hasErrors('name')}" th:each="err : ${#fields.errors('name')}" th:text="${err}"></small>
+				</div>
+			</div>
+			<div class="form-group" th:classappend="${#fields.hasErrors('description')} ? has-error">
+				<label class="col-md-2 control-label" th:text="#{organizer.description.label}"></label>
+				<div class="col-md-10">
+					<textarea rows="5" th:field="*{description}" class="form-control"></textarea>
+					<small class="help-block" th:if="${#fields.hasErrors('description')}" th:each="err : ${#fields.errors('description')}" th:text="${err}"></small>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-md-2 control-label" th:text="#{default.archived.label}"></label>
+				<div class="col-md-10">
+					<div class="checkbox">
+						<label>
+							<input type="checkbox" th:field="*{archived}">
+							<span th:text="#{default.archived.checkbox.label(#{organizer.label})}"></span>
+						</label>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-md-10 col-md-offset-2">
+					<input type="submit" class="btn btn-primary" th:value="#{default.button.save.label}">
+					<a th:href="@{/organizer/list}" class="btn btn-default" th:text="#{default.button.cancel.label}"></a>
+				</div>
+			</div>
+		</form>
+
+	</div>
+
+</body>
+</html>

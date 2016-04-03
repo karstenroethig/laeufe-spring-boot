@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+	                    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+	<property name="type.id" value="decimal(18,0)" dbms="mssql,h2"/>
+	<property name="type.id" value="bigserial" dbms="postgresql"/>
+
+	<property name="type.idRef" value="decimal(18,0)" dbms="mssql,h2"/>
+	<property name="type.idRef" value="bigint" dbms="postgresql"/>
+
+	<!-- ================================= -->
+	<!-- allgemeine übergreifende Tabellen -->
+	<!-- ================================= -->
+	<changeSet id="1" author="roethig">
+
+		<!-- ================= -->
+		<!-- Table "Organizer" -->
+		<!-- ================= -->
+		<createTable tableName="Organizer">
+			<column name="id" type="${type.id}" autoIncrement="true">
+				<constraints primaryKey="true" nullable="false"/>
+			</column>
+			<column name="name" type="varchar(255)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="description" type="varchar(1024)">
+				<constraints nullable="true"/>
+			</column>
+			<column name="archived" type="boolean">
+				<constraints nullable="false"/>
+			</column>
+		</createTable>
+		
+		<addUniqueConstraint tableName="Organizer" columnNames="name" constraintName="unique_organizer_name"/>
+
+	</changeSet>
+
+</databaseChangeLog>
