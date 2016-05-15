@@ -56,13 +56,13 @@
 								<span class="fa fa-long-arrow-right"></span>
 								<strong th:text="${event.distance}">[distance]</strong> km
 							</div>
-							<div class="list-view-pf-additional-info-item">
+							<div class="list-view-pf-additional-info-item" th:if="${!#strings.isEmpty(event.racetime)}">
 								<span class="fa fa-clock-o"></span>
-								<strong>02:10:00</strong>
+								<strong th:text="${event.racetime}">[racetime]</strong>
 							</div>
-							<div class="list-view-pf-additional-info-item">
+							<div class="list-view-pf-additional-info-item" th:if="${!#strings.isEmpty(event.costs)}">
 								<span class="fa fa-money"></span>
-								<strong>123,12</strong> &euro;
+								<strong th:text="${event.costs}">[costs]</strong> &euro;
 							</div>
 						</div>
 					</div>

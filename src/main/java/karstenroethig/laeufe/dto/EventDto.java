@@ -47,6 +47,10 @@ public class EventDto {
 		)
 	private String distance;
 	
+	private String racetime;
+	
+	private String costs;
+	
 	@NotNull
 	private EventStatusEnum status;
 }

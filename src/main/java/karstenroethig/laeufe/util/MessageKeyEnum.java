@@ -33,6 +33,34 @@ public enum MessageKeyEnum {
     ORGANIZER_DELETE_ERROR( "organizer.delete.error" ),
 
     /* ********************
+    * Country.
+    * ********************
+    */
+    /** "Country > Hinzufügen": Eingaben nicht valide. */
+    COUNTRY_SAVE_INVALID( "country.save.invalid" ),
+
+    /** "Country > Hinzufügen": Erfolgreich gespeichert. */
+    COUNTRY_SAVE_SUCCESS( "country.save.success" ),
+
+    /** "Country > Hinzufügen": Unerwarteter Fehler ist aufgetreten. */
+    COUNTRY_SAVE_ERROR( "country.save.error" ),
+
+    /** "Country > Bearbeiten": Eingaben nicht vailde. */
+    COUNTRY_UPDATE_INVALID( "country.update.invalid" ),
+
+    /** "Country > Bearbeiten": Erfolgreich gespeichert. */
+    COUNTRY_UPDATE_SUCCESS( "country.update.success" ),
+
+    /** "Country > Bearbeiten": Unerwarteter Fehler ist aufgetreten. */
+    COUNTRY_UPDATE_ERROR( "country.update.error" ),
+
+    /** "Country > Löschen": Erfolgreich gelöscht. */
+    COUNTRY_DELETE_SUCCESS( "country.delete.success" ),
+
+    /** "Country > Löschen": Unerwarteter Fehler ist aufgetreten. */
+    COUNTRY_DELETE_ERROR( "country.delete.error" ),
+
+    /* ********************
     * Event.
     * ********************
     */

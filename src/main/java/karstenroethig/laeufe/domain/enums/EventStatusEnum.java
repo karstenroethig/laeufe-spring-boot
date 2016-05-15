@@ -2,6 +2,14 @@ package karstenroethig.laeufe.domain.enums;
 
 public enum EventStatusEnum {
 
+	/*
+	 * event status depends on race status
+	 * - planed: default and if there are no races
+	 * - registered: if there is at least one race with status registered
+	 * - completed: if there is at least one race with status completed
+	 * - failed: only if all races have status failed
+	 */
+	
 	PLANED( 0, "fa fa-calendar" ),
 	REGISTERED( 1, "fa fa-calendar-check-o" ),
 	COMPLETED( 2, "pficon pficon-ok" ),

@@ -1,47 +1,40 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout">
 <head>
-	<title th:text="#{organizer.label.plural}+' - '+#{organizer.add.label}"></title>
+	<title th:text="#{country.label.plural}+' - '+#{country.add.label}"></title>
 </head>
-<body th:with="menu='admin',submenu='organizer'">
+<body th:with="menu='admin',submenu='country'">
 
 	<div layout:fragment="breadcrumb">
 		<ol class="breadcrumb">
 			<li>
-				<a th:href="@{/organizer/list}" th:text="#{organizer.label.plural}">Race Organizers</a>
+				<a th:href="@{/country/list}" th:text="#{country.label.plural}">Countries</a>
 			</li>
 			<li class="active">
-				<strong th:text="#{organizer.add.label}">Add</strong>
+				<strong th:text="#{country.add.label}">Add</strong>
 			</li>
 		</ol>
-		<h1 th:text="#{organizer.add.label}">Add Race Organizer</h1>
+		<h1 th:text="#{country.add.label}">Add Country</h1>
 	</div>
 
 	<div layout:fragment="content">
 					
-		<form class="form-horizontal" th:object="${organizer}" th:action="@{/organizer/save}" action="#" method="post">
+		<form class="form-horizontal" th:object="${country}" th:action="@{/country/save}" action="#" method="post">
 			<input type="hidden" th:field="*{archived}"/>
 			<div class="form-group" th:classappend="${#fields.hasErrors('name')} ? has-error">
 				<label class="col-md-2 control-label">
 					<span class="required">*</span>
-					<span th:text="#{organizer.name.label}">Name</span>
+					<span th:text="#{country.name.label}">Name</span>
 				</label>
 				<div class="col-md-10">
 					<input type="text" th:field="*{name}" class="form-control">
 					<small class="help-block" th:if="${#fields.hasErrors('name')}" th:each="err : ${#fields.errors('name')}" th:text="${err}">validation error</small>
 				</div>
 			</div>
-			<div class="form-group" th:classappend="${#fields.hasErrors('description')} ? has-error">
-				<label class="col-md-2 control-label" th:text="#{organizer.description.label}">Description</label>
-				<div class="col-md-10">
-					<textarea rows="5" th:field="*{description}" class="form-control"></textarea>
-					<small class="help-block" th:if="${#fields.hasErrors('description')}" th:each="err : ${#fields.errors('description')}" th:text="${err}">validation error</small>
-				</div>
-			</div>
 			<div class="form-group">
 				<div class="col-md-10 col-md-offset-2">
 					<input type="submit" class="btn btn-primary" th:value="#{default.button.save.label}">
-					<a th:href="@{/organizer/list}" class="btn btn-default" th:text="#{default.button.cancel.label}">Cancel</a>
+					<a th:href="@{/country/list}" class="btn btn-default" th:text="#{default.button.cancel.label}">Cancel</a>
 				</div>
 			</div>
 		</form>

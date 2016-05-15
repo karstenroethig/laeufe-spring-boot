@@ -116,6 +116,8 @@ public class EventServiceImpl implements EventService {
         event.setEndDate( eventDto.getEventPeriod().getEndDate() );
         event.setLocation( eventDto.getLocation() );
         event.setDistance( eventDto.getDistance() );
+        event.setRacetime( eventDto.getRacetime() );
+        event.setCosts( eventDto.getCosts() );
         event.setStatusEnum( eventDto.getStatus() );
 
         return event;
@@ -136,6 +138,8 @@ public class EventServiceImpl implements EventService {
         eventDto.getEventPeriod().setEndDate( event.getEndDate() );
         eventDto.setLocation( event.getLocation() );
         eventDto.setDistance( event.getDistance() );
+        eventDto.setRacetime( event.getRacetime() );
+        eventDto.setCosts( event.getCosts() );
         eventDto.setStatus( event.getStatusEnum() );
 
         return eventDto;

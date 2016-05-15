@@ -32,7 +32,7 @@
 		<webjars-bootstrap.version>3.3.5</webjars-bootstrap.version>
 		<webjars-jquery.version>2.1.4</webjars-jquery.version>
 		<webjars-patternfly.version>3.3.2</webjars-patternfly.version>
-		<webjars-bootstrap-datepicker.version>1.4.0</webjars-bootstrap-datepicker.version>
+		<webjars-bootstrap-datepicker.version>1.6.1</webjars-bootstrap-datepicker.version>
 		<webjars-bootstrap-switch.version>3.3.2</webjars-bootstrap-switch.version>
 	</properties>
 

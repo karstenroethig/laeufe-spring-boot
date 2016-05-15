@@ -24,6 +24,9 @@
 					</a>
 					<ul class="dropdown-menu">
 						<li>
+							<a th:href="@{/user/account-info}" th:text="#{utility.user.accountInfo.label}">Account Info</a>
+						</li>
+						<li>
 							<a href="#" th:text="#{utility.user.manageAccount}">Manage Account</a>
 						</li>
 						<li>
@@ -49,8 +52,8 @@
 				<li th:class="${#strings.equals(menu,'map')} ? active">
 					<a href="map.html" th:text="#{map.label}">Map</a>
 				</li>
-				<li th:class="${#strings.equals(menu,'organizer')} ? active">
-					<a th:href="@{/organizer/list}" th:text="#{organizer.label.plural}">Race Organizers</a>
+				<li th:class="${#strings.equals(menu,'admin')} ? active">
+					<a th:href="@{/organizer/list}" th:text="#{utility.admin.label}">Administration</a>
 				</li>
 			</ul>
 		</div>

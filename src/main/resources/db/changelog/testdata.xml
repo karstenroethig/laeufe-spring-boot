@@ -33,6 +33,26 @@
 			<column name="archived" value="true"></column>
 		</insert>
 
+		<!-- =============== -->
+		<!-- Table "Country" -->
+		<!-- =============== -->
+		<insert tableName="Country">
+			<column name="name" value="Deutschland"></column>
+			<column name="archived" value="false"></column>
+		</insert>
+		<insert tableName="Country">
+			<column name="name" value="Tschechien"></column>
+			<column name="archived" value="true"></column>
+		</insert>
+		<insert tableName="Country">
+			<column name="name" value="Niederlande"></column>
+			<column name="archived" value="false"></column>
+		</insert>
+		<insert tableName="Country">
+			<column name="name" value="Schottland"></column>
+			<column name="archived" value="false"></column>
+		</insert>
+
 		<!-- ============= -->
 		<!-- Table "Event" -->
 		<!-- ============= -->
@@ -43,6 +63,8 @@
 			<column name="end_date" value="2013-07-14"></column>
 			<column name="location" value="Fursten Forest, Fürstenau"></column>
 			<column name="distance" value="18+"></column>
+			<column name="racetime" value="02:10:00"></column>
+			<column name="costs" value="123,45"></column>
 			<column name="status" value="2"></column>
 		</insert>
 		<insert tableName="Event">
@@ -51,6 +73,7 @@
 			<column name="start_date" value="2014-12-06"></column>
 			<column name="location" value="Festwiese Röntgenstraße, Rudolstadt"></column>
 			<column name="distance" value="24"></column>
+			<column name="costs" value="65,00"></column>
 			<column name="status" value="3"></column>
 		</insert>
 		<insert tableName="Event">
@@ -59,6 +82,7 @@
 			<column name="start_date" value="2016-06-18"></column>
 			<column name="location" value="Offroad Park Mammut, Stadtoldendorf/Niedersachsen"></column>
 			<column name="distance" value="18+"></column>
+			<column name="costs" value="89,90"></column>
 			<column name="status" value="1"></column>
 		</insert>
 		<insert tableName="Event">

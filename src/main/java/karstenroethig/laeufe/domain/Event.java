@@ -77,6 +77,10 @@ public class Event {
 	)
 	private String distance;
 	
+	private String racetime;
+	
+	private String costs;
+	
 	@Column( nullable = false )
 	private Integer status;
 	

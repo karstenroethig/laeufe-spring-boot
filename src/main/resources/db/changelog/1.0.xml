@@ -34,6 +34,23 @@
 		
 		<addUniqueConstraint tableName="Organizer" columnNames="name" constraintName="unique_organizer_name"/>
 
+		<!-- =============== -->
+		<!-- Table "Country" -->
+		<!-- =============== -->
+		<createTable tableName="Country">
+			<column name="id" type="${type.id}" autoIncrement="true">
+				<constraints primaryKey="true" nullable="false"/>
+			</column>
+			<column name="name" type="varchar(255)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="archived" type="boolean">
+				<constraints nullable="false"/>
+			</column>
+		</createTable>
+		
+		<addUniqueConstraint tableName="Country" columnNames="name" constraintName="unique_country_name"/>
+
 		<!-- ============= -->
 		<!-- Table "Event" -->
 		<!-- ============= -->
@@ -58,6 +75,12 @@
 			</column>
 			<column name="distance" type="varchar(255)">
 				<constraints nullable="false"/>
+			</column>
+			<column name="racetime" type="varchar(255)">
+				<constraints nullable="true"/>
+			</column>
+			<column name="costs" type="varchar(255)">
+				<constraints nullable="true"/>
 			</column>
 			<column name="status" type="int">
 				<constraints nullable="false"/>

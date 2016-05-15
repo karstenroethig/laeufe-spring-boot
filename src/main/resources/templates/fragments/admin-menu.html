@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head></head>
+<body>
+
+	<div class="nav-category">
+		<h2 th:text="#{utility.admin.basicData.label}">Basic Data</h2>
+		<ul class="nav nav-pills nav-stacked">
+			<li th:class="${#strings.equals(submenu,'organizer')} ? active">
+				<a th:href="@{/organizer/list}" th:text="#{organizer.label.plural}">Race Organizers</a>
+			</li>
+			<li th:class="${#strings.equals(submenu,'country')} ? active">
+				<a th:href="@{/country/list}" th:text="#{country.label.plural}">Countries</a>
+			</li>
+		</ul>
+	</div>
+	<div class="nav-category">
+		<h2 th:text="#{utility.admin.systemAdmin.label}">System Administration</h2>
+		<ul class="nav nav-pills nav-stacked">
+			<li th:class="${#strings.equals(submenu,'server-info')} ? active">
+				<a th:href="@{/admin/server-info}" th:text="#{utility.serverInfo.label}">Server Info</a>
+			</li>
+		</ul>
+	</div>
+
+</body>
+</html>

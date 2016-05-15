@@ -1,6 +1,7 @@
 package karstenroethig.laeufe.dto;
 
 
+import karstenroethig.laeufe.domain.Country;
 import karstenroethig.laeufe.domain.Organizer;
 
 import org.apache.commons.lang3.StringUtils;
@@ -43,5 +44,38 @@ public class DtoTransformer {
         organizerDto.setArchived( organizer.getArchived() );
 
         return organizerDto;
+    }
+
+	/*
+	 * =======
+	 * Country
+	 * =======
+	 */
+	
+    public static Country merge( Country country, CountryDto countryDto ) {
+
+        if( ( country == null ) || ( countryDto == null ) ) {
+            return null;
+        }
+
+        country.setName( countryDto.getName() );
+        country.setArchived( countryDto.getArchived() );
+
+        return country;
+    }
+
+    public static CountryDto transform( Country country ) {
+
+        if( country == null ) {
+            return null;
+        }
+
+        CountryDto countryDto = new CountryDto();
+
+        countryDto.setId( country.getId() );
+        countryDto.setName( country.getName() );
+        countryDto.setArchived( country.getArchived() );
+
+        return countryDto;
     }
 }
