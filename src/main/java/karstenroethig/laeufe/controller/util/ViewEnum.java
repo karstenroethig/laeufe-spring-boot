@@ -9,6 +9,11 @@ public enum ViewEnum {
     ORGANIZER_EDIT( ControllerEnum.organizer, ActionEnum.edit ),
     ORGANIZER_LIST( ControllerEnum.organizer, ActionEnum.list ),
     
+    EVENT_CREATE( ControllerEnum.event, ActionEnum.create ),
+    EVENT_SHOW( ControllerEnum.event, ActionEnum.show ),
+    EVENT_EDIT( ControllerEnum.event, ActionEnum.edit ),
+    EVENT_LIST( ControllerEnum.event, ActionEnum.list ),
+    
     ADMIN_SERVER_INFO( ControllerEnum.admin, "server-info" );
 
     private static final String VIEW_SUBDIRECTORY = "views";
@@ -16,7 +21,7 @@ public enum ViewEnum {
     private String viewName = StringUtils.EMPTY;
 
     private enum ControllerEnum {
-        admin, organizer;
+        admin, event, organizer;
     }
 
     private enum ActionEnum {

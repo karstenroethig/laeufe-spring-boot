@@ -5,14 +5,18 @@ h1 i {
 	margin-left: 10px;
 }
 
-.clickable {
-	cursor: pointer;
-}
-
 table {
 	margin-top: 20px;
 }
 
 form {
 	margin-top: 20px;
+}
+
+.clickable {
+	cursor: pointer;
+}
+
+.required {
+	color: #F00;
 }

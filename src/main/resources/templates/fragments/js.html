@@ -6,5 +6,15 @@
 <!-- Bootstrap -->
 <script th:src="@{'/webjars/bootstrap/'+#{application.dependency.bootstrap}+'/js/bootstrap.min.js'}"></script>
 
+<!-- Bootstrap Datepicker -->
+<script th:src="@{'/webjars/bootstrap-datepicker/'+#{application.dependency.bootstrap-datepicker}+'/js/bootstrap-datepicker.min.js'}"></script>
+<script th:src="@{'/webjars/bootstrap-datepicker/'+#{application.dependency.bootstrap-datepicker}+'/locales/bootstrap-datepicker.de.min.js'}"></script>
+
+<!-- Bootstrap Switch -->
+<script th:src="@{'/webjars/bootstrap-switch/'+#{application.dependency.bootstrap-switch}+'/js/bootstrap-switch.min.js'}"></script>
+
 <!-- Patternfly -->
-<script th:src="@{/webjars/patternfly/'+#{application.dependency.patternfly}+'/dist/js/patternfly.min.js'}"></script>
+<script th:src="@{'/webjars/patternfly/'+#{application.dependency.patternfly}+'/dist/js/patternfly.min.js'}"></script>
+
+<!-- App JavaScript -->
+<script th:src="@{/js/laeufe.js}"></script>

@@ -12,9 +12,6 @@
 	<property name="type.idRef" value="decimal(18,0)" dbms="mssql,h2"/>
 	<property name="type.idRef" value="bigint" dbms="postgresql"/>
 
-	<!-- ================================= -->
-	<!-- allgemeine übergreifende Tabellen -->
-	<!-- ================================= -->
 	<changeSet id="1" author="roethig">
 
 		<!-- ================= -->
@@ -36,6 +33,36 @@
 		</createTable>
 		
 		<addUniqueConstraint tableName="Organizer" columnNames="name" constraintName="unique_organizer_name"/>
+
+		<!-- ============= -->
+		<!-- Table "Event" -->
+		<!-- ============= -->
+		<createTable tableName="Event">
+			<column name="id" type="${type.id}" autoIncrement="true">
+				<constraints primaryKey="true" nullable="false"/>
+			</column>
+			<column name="organizer_id" type="${type.idRef}">
+				<constraints nullable="false"/>
+			</column>
+			<column name="name" type="varchar(255)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="start_date" type="datetime">
+				<constraints nullable="false"/>
+			</column>
+			<column name="end_date" type="datetime">
+				<constraints nullable="true"/>
+			</column>
+			<column name="location" type="varchar(1024)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="distance" type="varchar(255)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="status" type="int">
+				<constraints nullable="false"/>
+			</column>
+		</createTable>
 
 	</changeSet>
 

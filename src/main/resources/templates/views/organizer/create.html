@@ -8,11 +8,13 @@
 	<div layout:fragment="breadcrumb">
 		<ol class="breadcrumb">
 			<li>
-				<a th:href="@{/organizer/list}" th:text="#{organizer.label.plural}"></a>
+				<a th:href="@{/organizer/list}" th:text="#{organizer.label.plural}">Race Organizers</a>
 			</li>
-			<li th:text="#{organizer.add.label}"></li>
+			<li class="active">
+				<strong th:text="#{organizer.add.label}">Add</strong>
+			</li>
 		</ol>
-		<h1 th:text="#{organizer.add.label}"></h1>
+		<h1 th:text="#{organizer.add.label}">Add Race Organizer</h1>
 	</div>
 
 	<div layout:fragment="content">
@@ -20,23 +22,26 @@
 		<form class="form-horizontal" th:object="${organizer}" th:action="@{/organizer/save}" action="#" method="post">
 			<input type="hidden" th:field="*{archived}"/>
 			<div class="form-group" th:classappend="${#fields.hasErrors('name')} ? has-error">
-				<label class="col-md-2 control-label" th:text="#{organizer.name.label}"></label>
+				<label class="col-md-2 control-label">
+					<span class="required">*</span>
+					<span th:text="#{organizer.name.label}">Name</span>
+				</label>
 				<div class="col-md-10">
 					<input type="text" th:field="*{name}" class="form-control">
-					<small class="help-block" th:if="${#fields.hasErrors('name')}" th:each="err : ${#fields.errors('name')}" th:text="${err}"></small>
+					<small class="help-block" th:if="${#fields.hasErrors('name')}" th:each="err : ${#fields.errors('name')}" th:text="${err}">validation error</small>
 				</div>
 			</div>
 			<div class="form-group" th:classappend="${#fields.hasErrors('description')} ? has-error">
-				<label class="col-md-2 control-label" th:text="#{organizer.description.label}"></label>
+				<label class="col-md-2 control-label" th:text="#{organizer.description.label}">Description</label>
 				<div class="col-md-10">
 					<textarea rows="5" th:field="*{description}" class="form-control"></textarea>
-					<small class="help-block" th:if="${#fields.hasErrors('description')}" th:each="err : ${#fields.errors('description')}" th:text="${err}"></small>
+					<small class="help-block" th:if="${#fields.hasErrors('description')}" th:each="err : ${#fields.errors('description')}" th:text="${err}">validation error</small>
 				</div>
 			</div>
 			<div class="form-group">
 				<div class="col-md-10 col-md-offset-2">
 					<input type="submit" class="btn btn-primary" th:value="#{default.button.save.label}">
-					<a th:href="@{/organizer/list}" class="btn btn-default" th:text="#{default.button.cancel.label}"></a>
+					<a th:href="@{/organizer/list}" class="btn btn-default" th:text="#{default.button.cancel.label}">Cancel</a>
 				</div>
 			</div>
 		</form>

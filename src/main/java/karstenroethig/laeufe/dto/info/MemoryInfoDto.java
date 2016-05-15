@@ -7,11 +7,8 @@ import lombok.Setter;
 @Setter
 public class MemoryInfoDto {
 
-	private long total;
 	private String totalFormated;
-	private long used;
 	private String usedFormated;
-	private long free;
 	private long freePercentage;
 	private String freeFormated;
 }

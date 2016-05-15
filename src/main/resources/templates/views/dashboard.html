@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<!--[if IE 9]><html class="ie9"><![endif]-->
+<!--[if gt IE 9]><!-->
+<html>
+<!--<![endif]-->
+
+	<head>
+
+		<title th:text="#{application.name} + ' - ' + #{dashboard.label}"></title>
+		
+		<meta charset="UTF-8"/>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	    
+	    <link rel="shortcut icon" th:href="@{/images/favicon.ico}"/>
+
+		<link th:replace="fragments/style"/>
+
+		<div th:replace="fragments/js"></div>
+		
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery.matchHeight/0.6.0/jquery.matchHeight-min.js"></script>
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/c3/0.4.10/c3.min.js"></script>
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/d3/3.5.0/d3.min.js"></script>
+
+	</head>
+	
+	<body class="cards-pf" th:with="menu='dashboard'">
+
+		<div th:replace="fragments/header"></div>
+
+		<div class="container-fluid container-cards-pf">
+
+			<div class="row row-cards-pf">
+				<div class="col-xs-6 col-sm-4 col-md-2">
+					<div class="card-pf card-pf-accented card-pf-aggregate-status">
+						<h2 class="card-pf-title">
+							<a href="#"><span class="fa fa-shield"></span><span class="card-pf-aggregate-status-count">53</span> L&auml;ufe</a>
+						</h2>
+						<div class="card-pf-body">
+							<p class="card-pf-aggregate-status-notifications">
+								<span class="card-pf-aggregate-status-notification"><a href="#"><span class="pficon pficon-ok"></span>50</a></span>
+								<span class="card-pf-aggregate-status-notification"><a href="#"><span class="pficon pficon-error-circle-o"></span>3</a></span>
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-6 col-sm-4 col-md-2">
+					<div class="card-pf card-pf-accented card-pf-aggregate-status">
+						<h2 class="card-pf-title">
+							<a href="#"><span class="fa fa-shield"></span> L&auml;ngster Lauf</a>
+						</h2>
+						<div class="card-pf-body">
+							<p class="card-pf-aggregate-status-notifications">
+								<span class="card-pf-aggregate-status-notification">42 km</span>
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-6 col-sm-4 col-md-2">
+					<div class="card-pf card-pf-accented card-pf-aggregate-status">
+						<h2 class="card-pf-title">
+							<a href="#"><span class="fa fa-shield"></span> Gesamte Distanz</a>
+						</h2>
+						<div class="card-pf-body">
+							<p class="card-pf-aggregate-status-notifications">
+								<span class="card-pf-aggregate-status-notification">1.045 km</span>
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-6 col-sm-4 col-md-2">
+					<div class="card-pf card-pf-accented card-pf-aggregate-status">
+						<h2 class="card-pf-title">
+							<a href="#"><span class="fa fa-shield"></span> Anzahl L&auml;nder</a>
+						</h2>
+						<div class="card-pf-body">
+							<p class="card-pf-aggregate-status-notifications">
+								<a href="#"><span class="card-pf-aggregate-status-notification">6</span></a>
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-6 col-sm-4 col-md-2">
+					<div class="card-pf card-pf-accented card-pf-aggregate-status">
+						<h2 class="card-pf-title">
+							<a href="#"><span class="fa fa-shield"></span><span class="card-pf-aggregate-status-count">6</span> Dolar Sit</a>
+						</h2>
+						<div class="card-pf-body">
+							<p class="card-pf-aggregate-status-notifications">
+								<a href="#"><span class="card-pf-aggregate-status-notification"><span class="pficon pficon-error-circle-o"></span>1</span></a>
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-6 col-sm-4 col-md-2">
+					<div class="card-pf card-pf-accented card-pf-aggregate-status">
+						<h2 class="card-pf-title">
+							<a href="#"><span class="fa fa-shield"></span><span class="card-pf-aggregate-status-count">199</span> Consectetur</a>
+						</h2>
+						<div class="card-pf-body">
+							<p class="card-pf-aggregate-status-notifications">
+								<a href="#"><span class="card-pf-aggregate-status-notification"><span class="pficon pficon-error-circle-o"></span>1</span></a>
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row row-cards-pf">
+				<div class="col-xs-12 col-sm-6 col-md-6">
+					<div class="card-pf">
+						<h2 class="card-pf-title">Upcoming Events</h2>
+						<div class="card-pf-body">
+							<table class="table">
+								<tbody>
+									<tr>
+										<th>Status</th>
+										<th>Location Data</th>
+										<th>Hosts</th>
+									</tr>
+									<tr>
+										<td>
+											<span class="label label-success">Registered</span>
+										</td>
+										<td>
+											<strong>Cross de luxe 2016</strong>
+											<br/>
+											16.07.2016 08:30, Markkleeberger See, Markkleeberg
+										</td>
+										<td>
+											<span class="label label-default">11</span>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<span class="label label-success">Registered</span>
+										</td>
+										<td>
+											<strong>Tough Mudder 2016 - Hizenhain</strong>
+											<br/>
+											16.07.2016 08:30, Markkleeberger See, Markkleeberg
+										</td>
+										<td>
+											<span class="label label-default">11</span>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<span class="label label-default">Planed</span>
+										</td>
+										<td>
+											<strong>Cross de luxe 2016</strong>
+											<br/>
+											16.07.2016 08:30, Markkleeberger See, Markkleeberg
+										</td>
+										<td>
+											<span class="label label-default">3</span>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-6 col-md-6">
+					<div class="card-pf card-pf-utilization">
+						<h2 class="card-pf-title">Race Organizers</h2>
+						<div class="card-pf-body">
+							<div id="donut-set-of-values-to-a-whole"></div>
+							<script>
+								var c3ChartDefaults = $().c3ChartDefaults();
+								
+								var donutData = {
+										type : 'donut',
+										colors: {
+											'7-Seen-Wanderung': $.pfPaletteColors.lightGreen,
+											'Ammelhainer Schlosslauf': $.pfPaletteColors.purple,
+											'CROSS DE LUXE': $.pfPaletteColors.green,
+											'Firmenlauf Leipzig': Math.floor(Math.random()*16777215).toString(16),
+											'Fishermans Friend StrongmanRun': $.pfPaletteColors.purple,
+											'Fockeberglauf': $.pfPaletteColors.red,
+											'Getting Tough': $.pfPaletteColors.gold,
+											'Halbmarathon Leipzig': $.pfPaletteColors.lightBlue,
+											'Mud Masters': $.pfPaletteColors.gold,
+											'Spartan Race': $.pfPaletteColors.red,
+											'Survival Run': 'white',
+											'Tough Mudder': $.pfPaletteColors.orange,
+											'Thougest': $.pfPaletteColors.green,
+											'Wildsau Dirt Race': $.pfPaletteColors.cyan,
+											'Xletix': $.pfPaletteColors.black
+										},
+										columns: [
+											//['7-Seen-Wanderung', 1],
+											//['Ammelhainer Schlosslauf', 2],
+											['CROSS DE LUXE', 6],
+											//['Firmenlauf Leipzig', 6],
+											//['Fishermans Friend StrongmanRun', 2],
+											['Fockeberglauf', 2],
+											//['Getting Tough', 2],
+											//['Halbmarathon Leipzig', 1],
+											['Mud Masters', 1],
+											['Spartan Race', 7],
+											//['Survival Run', 1],
+											['Tough Mudder', 16],
+											//['Toughest', 1],
+											//['Wildsau Dirt Run', 1],
+											['Xletix', 4]
+										],
+										onclick: function (d, i) { console.log("onclick", d, i); },
+										onmouseover: function (d, i) { console.log("onmouseover", d, i); },
+										onmouseout: function (d, i) { console.log("onmouseout", d, i); }
+									};
+								
+								var donutChartBottomConfig = c3ChartDefaults.getDefaultDonutConfig();
+
+								donutChartBottomConfig.bindto = '#donut-set-of-values-to-a-whole';
+								donutChartBottomConfig.tooltip = {show: true};
+								donutChartBottomConfig.data = donutData;
+								donutChartBottomConfig.legend = {
+										show: true,
+										position: 'right'
+									};
+								donutChartBottomConfig.size = {
+										width: 271,
+										height: 191
+									};
+								donutChartBottomConfig.tooltip = {
+										contents: $().pfDonutTooltipContents
+									};
+								
+								var donutChartBottomLegend = c3.generate(donutChartBottomConfig);
+
+								$().pfSetDonutChartTitle("#donut-set-of-values-to-a-whole", "53", "Races");
+							</script>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+
+	</body>
+</html>

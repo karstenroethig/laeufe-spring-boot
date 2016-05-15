@@ -7,14 +7,21 @@ import karstenroethig.laeufe.dto.info.MemoryInfoDto;
 import karstenroethig.laeufe.dto.info.ServerInfoDto;
 import karstenroethig.laeufe.dto.info.SystemInfoDto;
 import karstenroethig.laeufe.service.ServerInfoService;
+import karstenroethig.laeufe.util.MessageKeyEnum;
 
 import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
+import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Service;
 
 @Service
 public class ServerInfoServiceImpl implements ServerInfoService, ApplicationContextAware {
+	
+	@Autowired
+	private MessageSource messageSource;
 	
 	private ApplicationContext applicationContext;
 
@@ -26,17 +33,21 @@ public class ServerInfoServiceImpl implements ServerInfoService, ApplicationCont
 	@Override
 	public ServerInfoDto getInfo() {
 		
-		long serverStartupTime = applicationContext.getStartupDate();
-		
 		/*
 		 * collect system infos
 		 */
 		SystemInfoDto systemInfo = new SystemInfoDto();
 		
-		systemInfo.setVersion( "1.0.0" ); // TODO tatsächliche Version ermitteln
+		String version = messageSource.getMessage(
+				MessageKeyEnum.APPLICATION_VERSION.getKey(),
+				null, LocaleContextHolder.getLocale() );
+		
+		long serverStartupTime = applicationContext.getStartupDate();
+		long uptimeMilis = System.currentTimeMillis() - serverStartupTime;
+		
+		systemInfo.setVersion( version );
 		systemInfo.setServerTime( new Date().toString() );
-		systemInfo.setUptimeMillis( System.currentTimeMillis() - serverStartupTime );
-		systemInfo.setUptime( formatUptime( systemInfo.getUptimeMillis() ) );
+		systemInfo.setUptime( formatUptime( uptimeMilis ) );
 		systemInfo.setJavaVersion( System.getProperty( "java.version" ) );
 		systemInfo.setJavaVendor( System.getProperty( "java.vendor" ) );
 		systemInfo.setJavaVm( System.getProperty( "java.vm.name" ) );
@@ -61,13 +72,14 @@ public class ServerInfoServiceImpl implements ServerInfoService, ApplicationCont
 		MemoryInfoDto memoryInfo = new MemoryInfoDto();
 		Runtime runtime = Runtime.getRuntime();
 		
-		memoryInfo.setTotal( runtime.maxMemory() );
-		memoryInfo.setTotalFormated( formatMemory( memoryInfo.getTotal() ) );
-		memoryInfo.setUsed( runtime.totalMemory() - runtime.freeMemory() );
-		memoryInfo.setUsedFormated( formatMemory( memoryInfo.getUsed() ) );
-		memoryInfo.setFree( memoryInfo.getTotal() - memoryInfo.getUsed() );
-		memoryInfo.setFreeFormated( formatMemory( memoryInfo.getFree() ) );
-		memoryInfo.setFreePercentage( memoryInfo.getFree() * 100 / memoryInfo.getTotal() );
+		long totalMemory = runtime.maxMemory();
+		long freeMemory = runtime.freeMemory();
+		long usedMemory = totalMemory - freeMemory;
+		
+		memoryInfo.setTotalFormated( formatMemory( totalMemory ) );
+		memoryInfo.setUsedFormated( formatMemory( usedMemory ) );
+		memoryInfo.setFreeFormated( formatMemory( freeMemory ) );
+		memoryInfo.setFreePercentage( freeMemory * 100 / totalMemory );
 		
 		/*
 		 * put system info and memory info to server info

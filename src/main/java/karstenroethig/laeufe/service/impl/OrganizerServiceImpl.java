@@ -40,11 +40,13 @@ public class OrganizerServiceImpl implements OrganizerService {
     @Override
     public OrganizerDto saveOrganizer( OrganizerDto organizerDto ) throws OrganizerAlreadyExistsException {
 
-    	// TODO code me!
-        if( StringUtils.equals( organizerDto.getName(), "err" ) ) {
-            throw new OrganizerAlreadyExistsException();
-        }
-
+    	List<Organizer> existingOrganizers = organizerRepository.findByNameIgnoreCase(
+    			StringUtils.trim( organizerDto.getName() ) );
+    	
+    	if( existingOrganizers != null && existingOrganizers.isEmpty() == false ) {
+    		throw new OrganizerAlreadyExistsException();
+    	}
+    	
         Organizer organizer = new Organizer();
 
         organizer = DtoTransformer.merge( organizer, organizerDto );
@@ -69,10 +71,13 @@ public class OrganizerServiceImpl implements OrganizerService {
     @Override
     public OrganizerDto editOrganizer( OrganizerDto organizerDto ) throws OrganizerAlreadyExistsException {
 
-    	// TODO code me!
-        if( StringUtils.equals( organizerDto.getName(), "err" ) ) {
-            throw new OrganizerAlreadyExistsException();
-        }
+    	List<Organizer> existingOrganizers = organizerRepository.findByNameIgnoreCase(
+    			StringUtils.trim( organizerDto.getName() ) );
+    	
+    	if( existingOrganizers != null && existingOrganizers.isEmpty() == false
+    			&& existingOrganizers.get( 0 ).getId().equals( organizerDto.getId() ) == false ) {
+    		throw new OrganizerAlreadyExistsException();
+    	}
 
         Organizer organizer = organizerRepository.findOne( organizerDto.getId() );
 
@@ -82,32 +87,44 @@ public class OrganizerServiceImpl implements OrganizerService {
     }
 
     @Override
-    public List<OrganizerDto> getAllOrganizers() {
-
-        Iterable<Organizer> itr = organizerRepository.findAll();
-
-        List<OrganizerDto> organizers = new ArrayList<OrganizerDto>();
-
-        itr.forEach( new Consumer<Organizer>() {
-                @Override
-                public void accept( Organizer organizer ) {
-                	organizers.add( DtoTransformer.transform( organizer ) );
-                }
-            } );
-
-        // TODO there has to be a better way for sorting
-        Collections.sort( organizers, new Comparator<OrganizerDto>() {
-                @Override
-                public int compare( OrganizerDto o1, OrganizerDto o2 ) {
-                    return o1.getName().compareTo( o2.getName() );
-                }
-            } );
-
-        return organizers;
-    }
-
-    @Override
     public OrganizerDto findOrganizer( Long organizerId ) {
         return DtoTransformer.transform( organizerRepository.findOne( organizerId ) );
+    }
+    
+    @Override
+    public List<OrganizerDto> getAllOrganizers() {
+    	return transformOrganizers( organizerRepository.findAll() );
+    }
+    
+    @Override
+    public List<OrganizerDto> getAllArchivedOrganizers() {
+    	return transformOrganizers( organizerRepository.findByArchived( true ) );
+    }
+    
+    @Override
+    public List<OrganizerDto> getAllUnarchivedOrganizers() {
+    	return transformOrganizers( organizerRepository.findByArchived( false ) );
+    }
+    
+    private List<OrganizerDto> transformOrganizers( Iterable<Organizer> organizers ) {
+    	
+    	List<OrganizerDto> transformedOrganizers = new ArrayList<OrganizerDto>();
+    	
+    	organizers.forEach( new Consumer<Organizer>() {
+    		@Override
+    		public void accept( Organizer organizer ) {
+    			transformedOrganizers.add( DtoTransformer.transform( organizer ) );
+    		}
+    	} );
+    	
+    	// TODO there has to be a better way for sorting
+    	Collections.sort( transformedOrganizers, new Comparator<OrganizerDto>() {
+            @Override
+            public int compare( OrganizerDto o1, OrganizerDto o2 ) {
+                return o1.getName().compareTo( o2.getName() );
+            }
+        });
+    	
+    	return transformedOrganizers;
     }
 }

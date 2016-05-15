@@ -27,7 +27,7 @@
 							<a href="#" th:text="#{utility.user.manageAccount}">Manage Account</a>
 						</li>
 						<li>
-							<a th:href="@{/admin/server-info}" th:text="#{utility.serverInfo}">Server Info</a>
+							<a th:href="@{/admin/server-info}" th:text="#{utility.serverInfo.label}">Server Info</a>
 						</li>
 						<li class="divider"></li>
 						<li>
@@ -37,8 +37,14 @@
 				</li>
 			</ul>
 			<ul class="nav navbar-nav navbar-primary">
+				<li th:class="${#strings.equals(menu,'dashboard')} ? active">
+					<a th:href="@{/dashboard}" th:text="#{dashboard.label}">Dashboard</a>
+				</li>
 				<li th:class="${#strings.equals(menu,'event')} ? active">
 					<a th:href="@{/event/list}" th:text="#{event.label.plural}">Events</a>
+				</li>
+				<li th:class="${#strings.equals(menu,'calendar')} ? active">
+					<a href="calendar.html" th:text="#{calendar.label}">Calendar</a>
 				</li>
 				<li th:class="${#strings.equals(menu,'map')} ? active">
 					<a href="map.html" th:text="#{map.label}">Map</a>

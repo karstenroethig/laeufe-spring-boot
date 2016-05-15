@@ -1,0 +1,96 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout">
+<head>
+	<title th:text="#{event.label.plural}"></title>
+</head>
+<body th:with="menu='event'">
+
+	<div layout:fragment="breadcrumb">
+		<h1 th:text="#{event.label.plural}">Events</h1>
+	</div>
+
+	<div layout:fragment="content">
+
+		<div class="container-fluid" style="margin-bottom: 20px;">
+			<div class="pull-right">
+				<a th:href="@{/event/create}" class="btn btn-default" th:text="#{default.button.create.label}">Create</a>
+			</div>
+		</div>
+		
+		<div class="blank-slate-pf" th:if="${#lists.isEmpty(allEvents)}">
+			<h1 th:text="#{default.table.empty.text}">Data can not be found.</h1>
+		</div>
+		
+		<div class="list-group list-view-pf" th:if="${!#lists.isEmpty(allEvents)}">
+			<div th:each="event : ${allEvents}" class="list-group-item list-view-pf-stacked">
+				<div class="list-view-pf-actions">
+					<a th:href="@{/event/show/{id}(id=${event.id})}" th:text="#{default.button.show.label}" class="btn btn-default">Show</a>
+					<div class="dropdown pull-right dropdown-kebab-pf">
+						<button class="btn btn-link dropdown-toggle" type="button" id="dropdownKebabRight1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+							<span class="fa fa-ellipsis-v"></span>
+						</button>
+						<ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebabRight1">
+							<li>
+								<a th:href="@{/event/edit/{id}(id=${event.id})}" th:text="#{default.button.edit.label}">Edit</a>
+							</li>
+							<li>
+								<a href="" th:text="#{default.button.delete.label}" data-toggle="modal" data-target="#deleteModal" th:attr="data-id=${event.id}">Delete</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="list-view-pf-main-info">
+					<div class="list-view-pf-left">
+						<span th:class="${event.status.icon+' list-view-pf-icon-lg'}" th:title="${#messages.msg('event.status.'+event.status.name()+'.label')}"></span>
+					</div>
+					<div class="list-view-pf-body">
+						<div class="list-view-pf-description">
+							<div class="list-group-item-heading">
+								<span th:text="${event.name}">[name]</span>
+								<small th:text="${T(karstenroethig.laeufe.controller.formatter.DateRangeFormatter).format(event.eventPeriod, #messages.msg('default.dateFormat'))}">[startDate]-[endDate]</small>
+							</div>
+							<div class="list-group-item-text" th:text="${event.location}">[location]</div>
+						</div>
+						<div class="list-view-pf-additional-info">
+							<div class="list-view-pf-additional-info-item">
+								<span class="fa fa-long-arrow-right"></span>
+								<strong th:text="${event.distance}">[distance]</strong> km
+							</div>
+							<div class="list-view-pf-additional-info-item">
+								<span class="fa fa-clock-o"></span>
+								<strong>02:10:00</strong>
+							</div>
+							<div class="list-view-pf-additional-info-item">
+								<span class="fa fa-money"></span>
+								<strong>123,12</strong> &euro;
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+							<span class="pficon pficon-close"></span>
+						</button>
+						<h4 class="modal-title" id="deleteModalLabel" th:text="#{event.deletePopup.title}">Delete event</h4>
+					</div>
+					<div class="modal-body">
+						<span th:text="#{event.deletePopup.question}">Do you really want to delete this event?</span>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal" th:text="#{default.button.cancel.label}">Cancel</button>
+						<a href="" th:attr="data-href-template=@{/event/delete/{id}}" class="btn btn-danger" th:text="#{default.button.delete.label}">Delete</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+</body>
+</html>

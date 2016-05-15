@@ -1,0 +1,25 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout">
+<head>
+	<title th:text="#{event.label.plural}+' - '+${event.name}"></title>
+</head>
+<body th:with="menu='event'">
+
+	<div layout:fragment="breadcrumb">
+		<ol class="breadcrumb">
+			<li>
+				<a th:href="@{/event/list}" th:text="#{event.label.plural}">Events</a>
+			</li>
+			<li class="active" th:text="${event.name}">[name]</li>
+		</ol>
+		<h1 th:text="${event.name}">[name]</h1>
+	</div>
+
+	<div layout:fragment="content">
+		
+		<span>TODO</span>
+
+	</div>
+
+</body>
+</html>

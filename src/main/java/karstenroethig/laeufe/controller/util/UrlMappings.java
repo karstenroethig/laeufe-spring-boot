@@ -5,8 +5,10 @@ public class UrlMappings {
     private static final String REDIRECT_PREFIX = "redirect:";
 
     public static final String HOME = "/";
+    public static final String DASHBOARD = "/dashboard";
 
     public static final String CONTROLLER_ORGANIZER = "/organizer";
+    public static final String CONTROLLER_EVENT = "/event";
     public static final String CONTROLLER_ADMIN = "/admin";
 
     public static final String ACTION_LIST = "/list";

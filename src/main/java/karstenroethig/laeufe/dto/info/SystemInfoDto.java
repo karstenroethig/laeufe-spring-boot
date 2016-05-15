@@ -10,7 +10,6 @@ public class SystemInfoDto {
 	private String version;
 	private String serverTime;
 	private String uptime;
-	private long uptimeMillis;
 	private String javaVersion;
 	private String javaVendor;
 	private String javaVm;

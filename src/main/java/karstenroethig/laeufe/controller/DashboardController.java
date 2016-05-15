@@ -11,13 +11,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @ComponentScan
 @Controller
-public class HomeController {
+public class DashboardController {
 
 	@RequestMapping(
-		value = UrlMappings.HOME,
+		value = { UrlMappings.HOME, UrlMappings.DASHBOARD },
 		method = RequestMethod.GET
 	)
-	public String home( Model model ) {
-		return UrlMappings.redirect( UrlMappings.CONTROLLER_ORGANIZER, UrlMappings.ACTION_LIST );
+	public String dashborad( Model model ) {
+		return "views/dashboard";
 	}
 }

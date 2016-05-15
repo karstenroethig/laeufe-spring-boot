@@ -1,0 +1,108 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout">
+<head>
+	<title th:text="#{event.label.plural}+' - '+#{event.add.label}"></title>
+</head>
+<body th:with="menu='event'">
+
+	<div layout:fragment="breadcrumb">
+		<ol class="breadcrumb">
+			<li>
+				<a th:href="@{/event/list}" th:text="#{event.label.plural}">Events</a>
+			</li>
+			<li class="active">
+				<strong th:text="#{event.add.label}">Add</strong>
+			</li>
+		</ol>
+		<h1 th:text="#{event.add.label}">Add Event</h1>
+	</div>
+
+	<div layout:fragment="content">
+					
+		<form class="form-horizontal" th:object="${event}" th:action="@{/event/save}" action="#" method="post">
+			<div class="form-group" th:classappend="${#fields.hasErrors('organizer')} ? has-error">
+				<label class="col-md-2 control-label">
+					<span class="required">*</span>
+					<span th:text="#{organizer.label}">Race Organizer</span>
+				</label>
+				<div class="col-md-10">
+					<select th:field="*{organizer}" class="form-control">
+						<option th:each="org : ${allUnarchivedOrganizers}" th:value="${{org}}" th:text="${org.name}"></option>
+					</select>
+					<small class="help-block" th:if="${#fields.hasErrors('organizer')}" th:each="err : ${#fields.errors('organizer')}" th:text="${err}">validation error</small>
+				</div>
+			</div>
+			<div class="form-group" th:classappend="${#fields.hasErrors('name')} ? has-error">
+				<label class="col-md-2 control-label">
+					<span class="required">*</span>
+					<span th:text="#{event.name.label}">Name</span>
+				</label>
+				<div class="col-md-10">
+					<input type="text" th:field="*{name}" class="form-control">
+					<small class="help-block" th:if="${#fields.hasErrors('name')}" th:each="err : ${#fields.errors('name')}" th:text="${err}">validation error</small>
+				</div>
+			</div>
+			<div class="form-group" th:classappend="${#fields.hasErrors('eventPeriod') || #fields.hasErrors('eventPeriod.startDate') || #fields.hasErrors('eventPeriod.endDate')} ? has-error">
+				<label class="col-md-2 control-label">
+					<span class="required">*</span>
+					<span th:text="#{event.eventPeriod.label}">Event Period</span>
+				</label>
+				<div class="col-md-5">
+					<div class="input-group date">
+						<input type="text" th:field="*{eventPeriod.startDate}" class="form-control bootstrap-datepicker" readonly><span class="input-group-addon"><span class="fa fa-calendar"></span></span>
+					</div>
+					<small class="help-block" th:if="${#fields.hasErrors('eventPeriod.startDate')}" th:each="err : ${#fields.errors('eventPeriod.startDate')}" th:text="${err}"></small>
+					<small class="help-block" th:if="${#fields.hasErrors('eventPeriod')}" th:each="err : ${#fields.errors('eventPeriod')}" th:text="${err}"></small>
+				</div>
+				<div class="col-md-5">
+					<div class="input-group date">
+						<input type="text" th:field="*{eventPeriod.endDate}" class="form-control bootstrap-datepicker" readonly><span class="input-group-addon"><span class="fa fa-calendar"></span></span>
+					</div>
+					<small class="help-block" th:if="${#fields.hasErrors('eventPeriod.endDate')}" th:each="err : ${#fields.errors('eventPeriod.endDate')}" th:text="${err}"></small>
+				</div>
+			</div>
+			<div class="form-group" th:classappend="${#fields.hasErrors('location')} ? has-error">
+				<label class="col-md-2 control-label">
+					<span class="required">*</span>
+					<span th:text="#{event.location.label}">Location</span>
+				</label>
+				<div class="col-md-10">
+					<input type="text" th:field="*{location}" class="form-control">
+					<small class="help-block" th:if="${#fields.hasErrors('location')}" th:each="err : ${#fields.errors('location')}" th:text="${err}">validation error</small>
+				</div>
+			</div>
+			<div class="form-group" th:classappend="${#fields.hasErrors('distance')} ? has-error">
+				<label class="col-md-2 control-label">
+					<span class="required">*</span>
+					<span th:text="#{event.distance.label}">Distance</span>
+				</label>
+				<div class="col-md-10">
+					<input type="text" th:field="*{distance}" class="form-control">
+					<small class="help-block" th:if="${#fields.hasErrors('distance')}" th:each="err : ${#fields.errors('distance')}" th:text="${err}">validation error</small>
+				</div>
+			</div>
+			<div class="form-group" th:classappend="${#fields.hasErrors('status')} ? has-error">
+				<label class="col-md-2 control-label">
+					<span class="required">*</span>
+					<span th:text="#{event.status.label}">Status</span>
+				</label>
+				<div class="col-md-10">
+					<select th:field="*{status}" class="form-control">
+						<option th:each="sta : ${T(karstenroethig.laeufe.domain.enums.EventStatusEnum).values()}"
+							th:value="${sta}" th:text="${#messages.msg('event.status.'+sta.name()+'.label')}"></option>
+					</select>
+					<small class="help-block" th:if="${#fields.hasErrors('status')}" th:each="err : ${#fields.errors('status')}" th:text="${err}"></small>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-md-10 col-md-offset-2">
+					<input type="submit" class="btn btn-primary" th:value="#{default.button.save.label}">
+					<a th:href="@{/event/list}" class="btn btn-default" th:text="#{default.button.cancel.label}">Cancel</a>
+				</div>
+			</div>
+		</form>
+
+	</div>
+
+</body>
+</html>

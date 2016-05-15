@@ -19,4 +19,8 @@ public interface OrganizerService {
     public OrganizerDto findOrganizer( Long organizerId );
 
     public Collection<OrganizerDto> getAllOrganizers();
+    
+    public Collection<OrganizerDto> getAllArchivedOrganizers();
+    
+    public Collection<OrganizerDto> getAllUnarchivedOrganizers();
 }
