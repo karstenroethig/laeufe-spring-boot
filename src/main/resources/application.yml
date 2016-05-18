@@ -3,6 +3,9 @@
 #  - options: https://github.com/spring-projects/spring-boot/blob/master/spring-boot-docs/src/main/asciidoc/appendix-application-properties.adoc
 #
 
+server:
+    port: 4080
+
 spring:
 
     jpa:
