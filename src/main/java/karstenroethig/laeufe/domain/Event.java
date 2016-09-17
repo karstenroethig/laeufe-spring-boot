@@ -1,28 +1,31 @@
 package karstenroethig.laeufe.domain;
 
-import karstenroethig.laeufe.domain.enums.EventStatusEnum;
-
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
-
 import java.math.BigDecimal;
-
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 import javax.persistence.UniqueConstraint;
+
+import karstenroethig.laeufe.domain.enums.EventStatusEnum;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 
 @NoArgsConstructor
@@ -50,6 +53,12 @@ public class Event {
 	@JoinColumn( name = "organizer_id" )
 	@ManyToOne( optional = false )
 	private Organizer organizer;
+	
+	@OneToMany(
+		fetch = FetchType.LAZY,
+		cascade = CascadeType.ALL
+	)
+	private List<Race> races = new ArrayList<Race>();
 	
 	@Column(
 		length = 255,
@@ -93,17 +102,31 @@ public class Event {
 	private BigDecimal locationLongitude;
 	
 	@Column(
-		length = 255,
+		length = 25,
 		nullable = false
 	)
 	private String distance;
 	
+	@Column( length = 25 )
 	private String racetime;
 	
+	@Column( length = 25 )
 	private String costs;
 	
 	@Column( nullable = false )
 	private Integer status;
+	
+	public void addRace( Race race ) {
+		race.setEvent( this );
+		
+		races.add( race );
+	}
+	
+	public boolean removeRace( Race race ) {
+		race.setEvent( null );
+		
+		return races.remove( race );
+	}
 	
 	@Transient
 	public EventStatusEnum getStatusEnum() {

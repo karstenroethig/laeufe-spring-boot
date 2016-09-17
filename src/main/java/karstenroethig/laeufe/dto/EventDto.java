@@ -62,12 +62,14 @@ public class EventDto {
 	@NotNull
 	@Size(
 		min = 1,
-		max = 255
+		max = 25
 	)
 	private String distance;
 	
+	@Size( max = 25 )
 	private String racetime;
 	
+	@Size( max = 25 )
 	private String costs;
 	
 	@NotNull

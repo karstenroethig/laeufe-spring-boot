@@ -82,13 +82,46 @@
 			<column name="location_longitude" type="decimal(9,6)">
 				<constraints nullable="true"/>
 			</column>
-			<column name="distance" type="varchar(255)">
+			<column name="distance" type="varchar(25)">
 				<constraints nullable="false"/>
 			</column>
-			<column name="racetime" type="varchar(255)">
+			<column name="racetime" type="varchar(25)">
 				<constraints nullable="true"/>
 			</column>
-			<column name="costs" type="varchar(255)">
+			<column name="costs" type="varchar(25)">
+				<constraints nullable="true"/>
+			</column>
+			<column name="status" type="int">
+				<constraints nullable="false"/>
+			</column>
+		</createTable>
+
+		<!-- ============ -->
+		<!-- Table "Race" -->
+		<!-- ============ -->
+		<createTable tableName="Race">
+			<column name="id" type="${type.id}" autoIncrement="true">
+				<constraints primaryKey="true" nullable="false"/>
+			</column>
+			<column name="event_id" type="${type.idRef}">
+				<constraints nullable="false"/>
+			</column>
+			<column name="start_number" type="varchar(25)">
+				<constraints nullable="true"/>
+			</column>
+			<column name="start_time" type="datetime">
+				<constraints nullable="true"/>
+			</column>
+			<column name="distance" type="varchar(25)">
+				<constraints nullable="true"/>
+			</column>
+			<column name="racetime" type="varchar(25)">
+				<constraints nullable="true"/>
+			</column>
+			<column name="team" type="varchar(255)">
+				<constraints nullable="true"/>
+			</column>
+			<column name="note" type="varchar(1024)">
 				<constraints nullable="true"/>
 			</column>
 			<column name="status" type="int">
