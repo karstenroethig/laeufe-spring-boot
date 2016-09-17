@@ -69,16 +69,6 @@
 					<small class="help-block" th:if="${#fields.hasErrors('eventPeriod.endDate')}" th:each="err : ${#fields.errors('eventPeriod.endDate')}" th:text="${err}"></small>
 				</div>
 			</div>
-			<div class="form-group" th:classappend="${#fields.hasErrors('location')} ? has-error">
-				<label class="col-md-2 control-label">
-					<span class="required">*</span>
-					<span th:text="#{event.location.label}">Location</span>
-				</label>
-				<div class="col-md-10">
-					<input type="text" th:field="*{location}" class="form-control">
-					<small class="help-block" th:if="${#fields.hasErrors('location')}" th:each="err : ${#fields.errors('location')}" th:text="${err}">validation error</small>
-				</div>
-			</div>
 			<div class="form-group" th:classappend="${#fields.hasErrors('distance')} ? has-error">
 				<label class="col-md-2 control-label">
 					<span class="required">*</span>
@@ -87,20 +77,6 @@
 				<div class="col-md-10">
 					<input type="text" th:field="*{distance}" class="form-control">
 					<small class="help-block" th:if="${#fields.hasErrors('distance')}" th:each="err : ${#fields.errors('distance')}" th:text="${err}">validation error</small>
-				</div>
-			</div>
-			<div class="form-group" th:classappend="${#fields.hasErrors('racetime')} ? has-error">
-				<label class="col-md-2 control-label" th:text="#{event.racetime.label}">Race Time</label>
-				<div class="col-md-10">
-					<input type="text" th:field="*{racetime}" class="form-control">
-					<small class="help-block" th:if="${#fields.hasErrors('racetime')}" th:each="err : ${#fields.errors('racetime')}" th:text="${err}">validation error</small>
-				</div>
-			</div>
-			<div class="form-group" th:classappend="${#fields.hasErrors('costs')} ? has-error">
-				<label class="col-md-2 control-label" th:text="#{event.distance.label}">Costs</label>
-				<div class="col-md-10">
-					<input type="text" th:field="*{costs}" class="form-control">
-					<small class="help-block" th:if="${#fields.hasErrors('costs')}" th:each="err : ${#fields.errors('costs')}" th:text="${err}">validation error</small>
 				</div>
 			</div>
 			<div class="form-group" th:classappend="${#fields.hasErrors('status')} ? has-error">
@@ -114,6 +90,63 @@
 							th:value="${sta}" th:text="${#messages.msg('event.status.'+sta.name()+'.label')}"></option>
 					</select>
 					<small class="help-block" th:if="${#fields.hasErrors('status')}" th:each="err : ${#fields.errors('status')}" th:text="${err}"></small>
+				</div>
+			</div>
+			<fieldset>
+				<legend th:text="#{event.location.label}">Location</legend>
+				<div class="form-group" th:classappend="${#fields.hasErrors('locationName')} ? has-error">
+					<label class="col-md-2 control-label">
+						<span class="required">*</span>
+						<span th:text="#{event.locationName.label}">Name</span>
+					</label>
+					<div class="col-md-10">
+						<input type="text" th:field="*{locationName}" class="form-control">
+						<small class="help-block" th:if="${#fields.hasErrors('locationName')}" th:each="err : ${#fields.errors('locationName')}" th:text="${err}">validation error</small>
+					</div>
+				</div>
+				<div class="form-group" th:classappend="${#fields.hasErrors('locationCountry')} ? has-error">
+					<label class="col-md-2 control-label">
+						<span class="required">*</span>
+						<span th:text="#{country.label}">Country</span>
+					</label>
+					<div class="col-md-10">
+						<select th:field="*{locationCountry}" class="form-control">
+							<option th:each="cou : ${allUnarchivedCountries}" th:value="${{cou}}" th:text="${cou.name}"></option>
+							<optgroup th:label="#{country.archived.label}">
+								<option th:each="cou : ${allArchivedCountries}" th:value="${{cou}}" th:text="${cou.name}"></option>
+							</optgroup>
+						</select>
+						<small class="help-block" th:if="${#fields.hasErrors('locationCountry')}" th:each="err : ${#fields.errors('locationCountry')}" th:text="${err}">validation error</small>
+					</div>
+				</div>
+				<div class="form-group" th:classappend="${#fields.hasErrors('locationLatitude') || #fields.hasErrors('locationLongitude')} ? has-error">
+					<label class="col-md-2 control-label">
+						<span th:text="#{event.locationLatitude.label}">Latitude</span>
+						/
+						<span th:text="#{event.locationLongitude.label}">Longitude</span>
+					</label>
+					<div class="col-md-5">
+						<input type="text" th:field="*{locationLatitude}" class="form-control">
+						<small class="help-block" th:if="${#fields.hasErrors('locationLatitude')}" th:each="err : ${#fields.errors('locationLatitude')}" th:text="${err}">validation error</small>
+					</div>
+					<div class="col-md-5">
+						<input type="text" th:field="*{locationLongitude}" class="form-control">
+						<small class="help-block" th:if="${#fields.hasErrors('locationLongitude')}" th:each="err : ${#fields.errors('locationLongitude')}" th:text="${err}">validation error</small>
+					</div>
+				</div>
+			</fieldset>
+			<div class="form-group" th:classappend="${#fields.hasErrors('racetime')} ? has-error">
+				<label class="col-md-2 control-label" th:text="#{event.racetime.label}">Race Time</label>
+				<div class="col-md-10">
+					<input type="text" th:field="*{racetime}" class="form-control">
+					<small class="help-block" th:if="${#fields.hasErrors('racetime')}" th:each="err : ${#fields.errors('racetime')}" th:text="${err}">validation error</small>
+				</div>
+			</div>
+			<div class="form-group" th:classappend="${#fields.hasErrors('costs')} ? has-error">
+				<label class="col-md-2 control-label" th:text="#{event.costs.label}">Costs</label>
+				<div class="col-md-10">
+					<input type="text" th:field="*{costs}" class="form-control">
+					<small class="help-block" th:if="${#fields.hasErrors('costs')}" th:each="err : ${#fields.errors('costs')}" th:text="${err}">validation error</small>
 				</div>
 			</div>
 			<div class="form-group">

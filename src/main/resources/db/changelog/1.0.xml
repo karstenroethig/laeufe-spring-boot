@@ -70,8 +70,17 @@
 			<column name="end_date" type="datetime">
 				<constraints nullable="true"/>
 			</column>
-			<column name="location" type="varchar(1024)">
+			<column name="location_name" type="varchar(1024)">
 				<constraints nullable="false"/>
+			</column>
+			<column name="location_country_id" type="${type.idRef}">
+				<constraints nullable="false"/>
+			</column>
+			<column name="location_latitude" type="decimal(9,6)">
+				<constraints nullable="true"/>
+			</column>
+			<column name="location_longitude" type="decimal(9,6)">
+				<constraints nullable="true"/>
 			</column>
 			<column name="distance" type="varchar(255)">
 				<constraints nullable="false"/>

@@ -49,7 +49,10 @@
 								<span th:text="${event.name}">[name]</span>
 								<small th:text="${T(karstenroethig.laeufe.controller.formatter.DateRangeFormatter).format(event.eventPeriod, #messages.msg('default.dateFormat'))}">[startDate]-[endDate]</small>
 							</div>
-							<div class="list-group-item-text" th:text="${event.location}">[location]</div>
+							<div class="list-group-item-text">
+								<span th:text="${event.locationName}">[locationName]</span>,
+								<span th:text="${event.locationCountry.name}">[locationCountry]</span>
+							</div>
 						</div>
 						<div class="list-view-pf-additional-info">
 							<div class="list-view-pf-additional-info-item">

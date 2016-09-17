@@ -1,5 +1,20 @@
 package karstenroethig.laeufe.service.impl;
 
+import karstenroethig.laeufe.domain.Event;
+
+import karstenroethig.laeufe.dto.DtoTransformer;
+import karstenroethig.laeufe.dto.EventDto;
+
+import karstenroethig.laeufe.repository.CountryRepository;
+import karstenroethig.laeufe.repository.EventRepository;
+import karstenroethig.laeufe.repository.OrganizerRepository;
+
+import karstenroethig.laeufe.service.EventService;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import org.springframework.stereotype.Service;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -7,16 +22,6 @@ import java.util.List;
 import java.util.function.Consumer;
 
 import javax.transaction.Transactional;
-
-import karstenroethig.laeufe.domain.Event;
-import karstenroethig.laeufe.dto.DtoTransformer;
-import karstenroethig.laeufe.dto.EventDto;
-import karstenroethig.laeufe.repository.EventRepository;
-import karstenroethig.laeufe.repository.OrganizerRepository;
-import karstenroethig.laeufe.service.EventService;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 
 @Service
@@ -29,6 +34,9 @@ public class EventServiceImpl implements EventService {
     @Autowired
     protected OrganizerRepository organizerRepository;
 
+    @Autowired
+    protected CountryRepository countryRepository;
+
     @Override
     public EventDto newEvent() {
 
@@ -39,7 +47,7 @@ public class EventServiceImpl implements EventService {
 
     @Override
     public EventDto saveEvent( EventDto eventDto ) {
-    	
+
         Event event = new Event();
 
         event = merge( event, eventDto );
@@ -53,7 +61,7 @@ public class EventServiceImpl implements EventService {
         Event temp = eventRepository.findOne( eventId );
 
         if( temp != null ) {
-        	eventRepository.delete( temp );
+            eventRepository.delete( temp );
 
             return true;
         }
@@ -81,7 +89,7 @@ public class EventServiceImpl implements EventService {
         itr.forEach( new Consumer<Event>() {
                 @Override
                 public void accept( Event event ) {
-                	events.add( transform( event ) );
+                    events.add( transform( event ) );
                 }
             } );
 
@@ -100,21 +108,28 @@ public class EventServiceImpl implements EventService {
     public EventDto findEvent( Long eventId ) {
         return transform( eventRepository.findOne( eventId ) );
     }
-        
+
     private Event merge( Event event, EventDto eventDto ) {
 
         if( ( event == null ) || ( eventDto == null ) ) {
             return null;
         }
-        
+
         if( eventDto.getOrganizer() != null ) {
-        	event.setOrganizer( organizerRepository.findOne( eventDto.getOrganizer().getId() ) );
+            event.setOrganizer( organizerRepository.findOne( eventDto.getOrganizer().getId() ) );
         }
-        
+
         event.setName( eventDto.getName() );
         event.setStartDate( eventDto.getEventPeriod().getStartDate() );
         event.setEndDate( eventDto.getEventPeriod().getEndDate() );
-        event.setLocation( eventDto.getLocation() );
+        event.setLocationName( eventDto.getLocationName() );
+
+        if( eventDto.getLocationCountry() != null ) {
+            event.setLocationCountry( countryRepository.findOne( eventDto.getLocationCountry().getId() ) );
+        }
+
+        event.setLocationLatitude( eventDto.getLocationLatitude() );
+        event.setLocationLongitude( eventDto.getLocationLongitude() );
         event.setDistance( eventDto.getDistance() );
         event.setRacetime( eventDto.getRacetime() );
         event.setCosts( eventDto.getCosts() );
@@ -136,7 +151,10 @@ public class EventServiceImpl implements EventService {
         eventDto.setName( event.getName() );
         eventDto.getEventPeriod().setStartDate( event.getStartDate() );
         eventDto.getEventPeriod().setEndDate( event.getEndDate() );
-        eventDto.setLocation( event.getLocation() );
+        eventDto.setLocationName( event.getLocationName() );
+        eventDto.setLocationCountry( DtoTransformer.transform( event.getLocationCountry() ) );
+        eventDto.setLocationLatitude( event.getLocationLatitude() );
+        eventDto.setLocationLongitude( event.getLocationLongitude() );
         eventDto.setDistance( event.getDistance() );
         eventDto.setRacetime( event.getRacetime() );
         eventDto.setCosts( event.getCosts() );

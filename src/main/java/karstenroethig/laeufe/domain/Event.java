@@ -1,5 +1,14 @@
 package karstenroethig.laeufe.domain;
 
+import karstenroethig.laeufe.domain.enums.EventStatusEnum;
+
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+import java.math.BigDecimal;
+
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -15,12 +24,6 @@ import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 import javax.persistence.UniqueConstraint;
 
-import karstenroethig.laeufe.domain.enums.EventStatusEnum;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
-
 
 @NoArgsConstructor
 @Getter
@@ -29,9 +32,9 @@ import lombok.ToString;
 
 @Entity
 @Table(
-    uniqueConstraints = {
-        @UniqueConstraint( columnNames = { "id" } )
-    }
+	uniqueConstraints = {
+		@UniqueConstraint( columnNames = { "id" } )
+	}
 )
 public class Event {
 	
@@ -69,7 +72,25 @@ public class Event {
 		length = 1024,
 		nullable = false
 	)
-	private String location;
+	private String locationName;
+	
+	@JoinColumn( name = "location_country_id" )
+	@ManyToOne( optional = false )
+	private Country locationCountry;
+	
+	@Column(
+		name = "location_latitude",
+		precision = 9,
+		scale = 6
+	)
+	private BigDecimal locationLatitude;
+	
+	@Column(
+		name = "location_longitude",
+		precision = 9,
+		scale = 6
+	)
+	private BigDecimal locationLongitude;
 	
 	@Column(
 		length = 255,

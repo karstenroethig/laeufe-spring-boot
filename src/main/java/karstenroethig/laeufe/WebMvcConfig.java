@@ -1,10 +1,13 @@
 package karstenroethig.laeufe;
 
+import karstenroethig.laeufe.controller.formatter.CountryFormatter;
 import karstenroethig.laeufe.controller.formatter.OrganizerFormatter;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
 import org.springframework.format.FormatterRegistry;
+
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
@@ -18,6 +21,7 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
     @Override
     public void addFormatters( FormatterRegistry formatterRegistry ) {
         formatterRegistry.addFormatter( new OrganizerFormatter() );
+        formatterRegistry.addFormatter( new CountryFormatter() );
     }
 
     @Bean

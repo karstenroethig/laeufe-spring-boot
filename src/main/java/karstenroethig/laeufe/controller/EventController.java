@@ -1,31 +1,42 @@
 package karstenroethig.laeufe.controller;
 
-import java.io.IOException;
-
-import javax.servlet.http.HttpServletResponse;
-import javax.validation.Valid;
-
 import karstenroethig.laeufe.controller.exceptions.NotFoundException;
 import karstenroethig.laeufe.controller.util.UrlMappings;
 import karstenroethig.laeufe.controller.util.ViewEnum;
+
 import karstenroethig.laeufe.dto.EventDto;
+
+import karstenroethig.laeufe.service.CountryService;
 import karstenroethig.laeufe.service.EventService;
 import karstenroethig.laeufe.service.OrganizerService;
+
 import karstenroethig.laeufe.util.MessageKeyEnum;
 import karstenroethig.laeufe.util.Messages;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.context.annotation.ComponentScan;
+
 import org.springframework.http.HttpStatus;
+
 import org.springframework.stereotype.Controller;
+
 import org.springframework.ui.Model;
+
 import org.springframework.validation.BindingResult;
+
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.io.IOException;
+
+import javax.servlet.http.HttpServletResponse;
+
+import javax.validation.Valid;
 
 
 @ComponentScan
@@ -35,9 +46,12 @@ public class EventController {
 
     @Autowired
     EventService eventService;
-    
+
     @Autowired
     OrganizerService organizerService;
+
+    @Autowired
+    CountryService countryService;
 
     @RequestMapping(
         value = UrlMappings.ACTION_LIST,
@@ -58,6 +72,7 @@ public class EventController {
 
         model.addAttribute( "event", eventService.newEvent() );
         model.addAttribute( "allUnarchivedOrganizers", organizerService.getAllUnarchivedOrganizers() );
+        model.addAttribute( "allUnarchivedCountries", countryService.getAllUnarchivedCountries() );
 
         return ViewEnum.EVENT_CREATE.getViewName();
     }
@@ -94,6 +109,8 @@ public class EventController {
         model.addAttribute( "event", event );
         model.addAttribute( "allUnarchivedOrganizers", organizerService.getAllUnarchivedOrganizers() );
         model.addAttribute( "allArchivedOrganizers", organizerService.getAllArchivedOrganizers() );
+        model.addAttribute( "allUnarchivedCountries", countryService.getAllUnarchivedCountries() );
+        model.addAttribute( "allArchivedCountries", countryService.getAllArchivedCountries() );
 
         return ViewEnum.EVENT_EDIT.getViewName();
     }
@@ -135,6 +152,7 @@ public class EventController {
                 Messages.createWithError( MessageKeyEnum.EVENT_SAVE_INVALID ) );
 
             model.addAttribute( "allUnarchivedOrganizers", organizerService.getAllUnarchivedOrganizers() );
+            model.addAttribute( "allUnarchivedCountries", countryService.getAllUnarchivedCountries() );
 
             return ViewEnum.EVENT_CREATE.getViewName();
         }
@@ -149,6 +167,7 @@ public class EventController {
         model.addAttribute( Messages.ATTRIBUTE_NAME, Messages.createWithError( MessageKeyEnum.EVENT_SAVE_ERROR ) );
 
         model.addAttribute( "allUnarchivedOrganizers", organizerService.getAllUnarchivedOrganizers() );
+        model.addAttribute( "allUnarchivedCountries", countryService.getAllUnarchivedCountries() );
 
         return ViewEnum.EVENT_CREATE.getViewName();
     }
@@ -167,6 +186,8 @@ public class EventController {
 
             model.addAttribute( "allUnarchivedOrganizers", organizerService.getAllUnarchivedOrganizers() );
             model.addAttribute( "allArchivedOrganizers", organizerService.getAllArchivedOrganizers() );
+            model.addAttribute( "allUnarchivedCountries", countryService.getAllUnarchivedCountries() );
+            model.addAttribute( "allArchivedCountries", countryService.getAllArchivedCountries() );
 
             return ViewEnum.EVENT_EDIT.getViewName();
         }
@@ -182,6 +203,8 @@ public class EventController {
 
         model.addAttribute( "allUnarchivedOrganizers", organizerService.getAllUnarchivedOrganizers() );
         model.addAttribute( "allArchivedOrganizers", organizerService.getAllArchivedOrganizers() );
+        model.addAttribute( "allUnarchivedCountries", countryService.getAllUnarchivedCountries() );
+        model.addAttribute( "allArchivedCountries", countryService.getAllArchivedCountries() );
 
         return ViewEnum.EVENT_EDIT.getViewName();
     }

@@ -61,7 +61,8 @@
 			<column name="name" value="Tough Mudder - Nordwestdeutschland"></column>
 			<column name="start_date" value="2013-07-13"></column>
 			<column name="end_date" value="2013-07-14"></column>
-			<column name="location" value="Fursten Forest, Fürstenau"></column>
+			<column name="location_name" value="Fursten Forest, Fürstenau"></column>
+			<column name="location_country_id" value="1"></column>
 			<column name="distance" value="18+"></column>
 			<column name="racetime" value="02:10:00"></column>
 			<column name="costs" value="123,45"></column>
@@ -71,7 +72,8 @@
 			<column name="organizer_id" value="1"></column>
 			<column name="name" value="Getting Tough - The Race III"></column>
 			<column name="start_date" value="2014-12-06"></column>
-			<column name="location" value="Festwiese Röntgenstraße, Rudolstadt"></column>
+			<column name="location_name" value="Festwiese Röntgenstraße, Rudolstadt"></column>
+			<column name="location_country_id" value="1"></column>
 			<column name="distance" value="24"></column>
 			<column name="costs" value="65,00"></column>
 			<column name="status" value="3"></column>
@@ -80,7 +82,8 @@
 			<column name="organizer_id" value="1"></column>
 			<column name="name" value="XLETIX Challenge - Mitten in Deutschland"></column>
 			<column name="start_date" value="2016-06-18"></column>
-			<column name="location" value="Offroad Park Mammut, Stadtoldendorf/Niedersachsen"></column>
+			<column name="location_name" value="Offroad Park Mammut, Stadtoldendorf/Niedersachsen"></column>
+			<column name="location_country_id" value="1"></column>
 			<column name="distance" value="18+"></column>
 			<column name="costs" value="89,90"></column>
 			<column name="status" value="1"></column>
@@ -89,7 +92,10 @@
 			<column name="organizer_id" value="1"></column>
 			<column name="name" value="51. Fockeberglauf"></column>
 			<column name="start_date" value="2016-11-05"></column>
-			<column name="location" value="Fockeberg, Leipzig"></column>
+			<column name="location_name" value="Fockeberg, Leipzig"></column>
+			<column name="location_country_id" value="1"></column>
+			<column name="location_latitude" value="51.34631"></column>
+			<column name="location_longitude" value="12.35065"></column>
 			<column name="distance" value="6 x 2"></column>
 			<column name="status" value="0"></column>
 		</insert>
