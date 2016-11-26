@@ -56,7 +56,8 @@ public class Event {
 	
 	@OneToMany(
 		fetch = FetchType.LAZY,
-		cascade = CascadeType.ALL
+		cascade = CascadeType.ALL,
+		mappedBy = "event"
 	)
 	private List<Race> races = new ArrayList<Race>();
 	

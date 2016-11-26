@@ -22,134 +22,141 @@
 		
 		<p>
 			<span th:text="${T(karstenroethig.laeufe.controller.formatter.DateRangeFormatter).format(event.eventPeriod, #messages.msg('default.dateFormat'))}">[startDate]-[endDate]</span>,
-			<span th:text="" th:text="${event.locationName}">[locationName]</span>,
-			<span th:text="" th:text="${event.locationCountry.name}">[locationCountry]</span>
+			<span th:text="${event.locationName}">[locationName]</span>,
+			<span th:text="${event.locationCountry.name}">[locationCountry]</span>
 		</p>
 
-		<legend>L&auml;ufe</legend>
-		<table class="table table-bordered">
-			<thead>
-				<tr>
-					<th>Startnummer</th>
-					<th class="text-right">Startzeit</th>
-					<th class="text-right">Distanz</th>
-					<th class="text-right">Zeit</th>
-					<th>Team</th>
-					<th>Notiz</th>
-				<tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>49822</td>
-					<td class="text-right">30.05.2015 08:20</td>
-					<td class="text-right">18,01 km</td>
-					<td class="text-right">02:13:15</td>
-					<td>Beavis & Mudhead</td>
-					<td>3. aus erster Startwelle</td>
-				</tr>
-				<tr>
-					<td>30707</td>
-					<td class="text-right">31.05.2015 09:00</td>
-					<td class="text-right">17,92 km</td>
-					<td class="text-right">02:08:16</td>
-					<td>Beavis & Mudhead</td>
-					<td>&nbsp;</td>
-				</tr>
-			</tbody>
-		</table>
+		<fieldset>
+			<legend>L&auml;ufe</legend>
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th>Startnummer</th>
+						<th class="text-right">Startzeit</th>
+						<th class="text-right">Distanz</th>
+						<th class="text-right">Zeit</th>
+						<th>Team</th>
+						<th>Notiz</th>
+					<tr>
+				</thead>
+				<tbody>
+					<tr th:if="${#lists.isEmpty(event.races)}">
+						<td colspan="6" align="center" th:text="#{default.table.empty.text}">Data can not be found.</td>
+					</tr>
+					<tr th:each="race : ${event.races}">
+						<td th:text="${race.startNumber}">[startNumber]</td>
+						<td class="text-right" th:text="${#dates.format(race.startTime, #messages.msg('default.startTimeFormat'))}">[startTime]</td>
+						<td class="text-right">
+							<span th:if="${race.distance!=null}">
+								<span th:text="${#numbers.formatDecimal(race.distance,1, 'POINT', 3, 'COMMA')}">[distance]</span> km
+							</span>
+						</td>
+						<td class="text-right" th:text="${race.racetime}">[racetime]</td>
+						<td th:text="${race.team}">[team]</td>
+						<td th:text="${race.note}">[note]</td>
+					</tr>
+				</tbody>
+			</table>
+		</fieldset>
 
-		<legend>Kosten</legend>
-		<table class="table table-bordered">
-			<thead>
-				<tr>
-					<th>Bezeichnung</th>
-					<th class="text-right">Betrag (GBP)</th>
-					<th class="text-right">Betrag (&euro;)</th>
-				<tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>Teinahmegebühr über European Season Pass 2015</td>
-					<td class="text-right">0,00</td>
-					<td class="text-right">0,00</td>
-				</tr>
-				<tr>
-					<td>General Parking Pass (Saturday)</td>
-					<td class="text-right">11,48</td>
-					<td class="text-right">17,52</td>
-				</tr>
-				<tr>
-					<td>General Parking Pass (Sunday)</td>
-					<td class="text-right">11,48</td>
-					<td class="text-right">17,52</td>
-				</tr>
-				<tr>
-					<td>Bag Drop (Saturday)</td>
-					<td class="text-right">3,00</td>
-					<td class="text-right">4,09</td>
-				</tr>
-				<tr>
-					<td>Bag Drop (Sunday)</td>
-					<td class="text-right">3,00</td>
-					<td class="text-right">4,09</td>
-				</tr>
-				<tr>
-					<td><strong>Gesamt</strong></td>
-					<td class="text-right"><strong>28,96</strong></td>
-					<td class="text-right"><strong>43,22</strong></td>
-				</tr>
-			</tbody>
-		</table>
-		
-		<legend>Hindernisse</legend>
-		<ul>
-			<li>Bale Bonds <small>(über Strohballen klettern)</small></li>
-			<li>Skid Marked <small>(Climb over a tall angled wall with tires on the back)</small></li>
-			<li>Shawshanked <small>(crawl through a narrow tube and drop into a pool of water)</small></li>
-			<li>Birth Canal <small>(Crawl under a plastic liner, filled with water)</small></li>
-			<li>Creek Crusade #1 <small>(knietiefen Fluss durchqueren)</small></li>
-			<li>Creek Crusade #2 <small>(knietiefen Fluss durchqueren)</small></li>
-			<li>Island Hopping</li>
-			<li>Devil's Beard <small>(unter einem Netz durchkriechen)</small></li>
-			<li>Balls To The Wall</li>
-			<li>Artic Enema 2.0 <small>(Plunge into icy water)</small></li>
-			<li>Mud Mile #1</li>
-			<li>Hero Carry</li>
-			<li>Killa Gorilla <small>(querfeldein, viel Gestrüpp, viel Holz)</small></li>
-			<li>Hero Walls</li>
-			<li>The Liberator <small>(Climb over an angled wall using pegs)</small></li>
-			<li>Mud Mile #2</li>
-			<li>Tyre Carry <small>(einen Autoreifen tragen)</small></li>
-			<li>King of the Swingers <small>(Rope swing into water off of a raised platform)</small></li>
-			<li>Kiss of Mud 2.0 <small>(Crawl under barbed wire)</small></li>
-			<li>Funky Monkey 2.0 <small>(Monkey bar crossing)</small></li>
-			<li>Cry Baby <small>(Crawl through a smoke-filled chamber)</small></li>
-			<li>Everest 2.0 <small>(Greased up 1/4 pipe)</small></li>
-			<li>Dead Ringer</li>
-			<li>Electroshock Therapy</li>
-		</ul>
-		
-		<legend>Zeitungsartikel</legend>
+		<fieldset>
+			<legend>Kosten</legend>
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th>Bezeichnung</th>
+						<th class="text-right">Betrag (GBP)</th>
+						<th class="text-right">Betrag (&euro;)</th>
+					<tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Teinahmegebühr über European Season Pass 2015</td>
+						<td class="text-right">0,00</td>
+						<td class="text-right">0,00</td>
+					</tr>
+					<tr>
+						<td>General Parking Pass (Saturday)</td>
+						<td class="text-right">11,48</td>
+						<td class="text-right">17,52</td>
+					</tr>
+					<tr>
+						<td>General Parking Pass (Sunday)</td>
+						<td class="text-right">11,48</td>
+						<td class="text-right">17,52</td>
+					</tr>
+					<tr>
+						<td>Bag Drop (Saturday)</td>
+						<td class="text-right">3,00</td>
+						<td class="text-right">4,09</td>
+					</tr>
+					<tr>
+						<td>Bag Drop (Sunday)</td>
+						<td class="text-right">3,00</td>
+						<td class="text-right">4,09</td>
+					</tr>
+					<tr>
+						<td><strong>Gesamt</strong></td>
+						<td class="text-right"><strong>28,96</strong></td>
+						<td class="text-right"><strong>43,22</strong></td>
+					</tr>
+				</tbody>
+			</table>
+		</fieldset>
 
-		<h2>Riesengaudi beim Cross de Luxe am Markkleeberger See <small>Sonntag, 27. September 2015 (LVZ-Online >> Region >> Markkleeberg)</small></h2>
-		<p class="lead">Die Teamnamen sind Programm: Wenn Dreckspatzen, Abrissbirnen, Seitenstecher, gestiefelte Muskelkater, Schlammlappen oder die 50 Shades of Matsch antreten, ist der Startschuss zum Cross de Luxe gefallen.</p>
-		<p>2000 unerschrockene Abenteurer stellten sich am Sonnabend 25 spektakulären Hindernissen am Markkleeberger See.</p>
-		<p>Vor sechs Jahren lockten die Sportfreunde Neuseenland mit ihrem ultimativen Geländelauf 300 Starter, heute sind es 2000 und es könnten noch mindestens Tausend mehr sein. Das Limit war schon im Juli erreicht, 100 Nachrücker auf der Warteliste hatten Glück. Die Parkplatzkapazitäten seien das Hauptproblem, so Henrik Wahlstadt, Chef der Sportfreunde. Die Strecke könnte sicher noch einige Teilnehmer mehr vertragen, die sich weder vor den Stromstößen im "Electric Garden" noch vor "Vollwaschgängen" , steilen Kletterpartien oder rasanten Abgängen fürchten.</p>
-		<b>Zwischenüberschrift</b>
-		<p>Die Mammut-Aufgabe wird dank 90 freiwilliger Helfer mit Bravour gemeistert. Pünktlich zum Startschuss von Oberbürgermeister Karsten Schütze, der die erste von vier Staffeln über acht und 16 Kilometer auf den Weg schickte, hat es aufgehört zu regnen. Optimale Bedingungen nicht nur für ambitionierte Ausdauersportler, um den Mix aus Matsch, Schweiß und Partystimmung, Ehrgeiz, Spaß und Teamgeist zu genießen.</p>
-		<p>"Die sehen ja alle gleich aus", hört man immer wieder perplex von Familien und Fans, die ihre Lieben auf der Strecke oder im Ziel kaum erkennen. Aus dem letzten Schlammbad von Kopf bis Fuß krabbeln furchterregende Gestalten. "Ist das Männlein oder Weiblein?" frotzelt Moderator Roman Knoblauch. Das sühnt er auf dem Fuße, bei keinem anderen Job muss er so oft die Kleider wechseln, wird selten von so vielen Männern geherzt und geküsst.</p>
-		<p>"Schwarz macht schlank und man sieht den Dreck nicht so", ulken Claudia, Annika, Jacqueline und Susanne. Die "Crazy Chicks" stehen in Diensten der Bundespolizei und sind "Wiederholungstäter." Ihr Plan: "Wir schieben uns gegenseitig die Berge rauf und laufen Hand in Hand ins Ziel." Respekt haben sie vor dem Horn mit 25 Prozent Steigung, aber hoch kommen sie auf jeden Fall. "Es gibt genügend Männerhände, die schieben", wissen die knackigen jungen Damen vom letzten Jahr.</p>
-		<p>Strahlen unter dem Dreck bei denjenigen, die das Ziel erreicht haben. "Das ist alles super organisiert, der Team-Spirit ist atemberaubend, unterwegs hilft jeder jedem", schwärmt Lukas Breitbarth, "durch den Schlamm zu robben macht den meisten Spaß. Da werden Kindheitserinnerungen wach." Freundin Michelle Brecht schmeißt die Waschmaschine danach gerne an: "Er hat ja nicht seine besten Sachen an und ich bin schon stolz auf ihn." Die Finisher sind sich einig: "Nächstes Jahr wieder, das macht richtig Spaß."</p>
-		
-		<h2>Matsch Olé! <small>Mittwoch, 30. September 2015 (Laufszene-Sachsen.de (erstellt von ORG Crossdeluxe))</small></h2>
-		<p class="lead">Cross-Wochenende begeistert mit Schlamm, Schmerz und Schweiß 2.000 Sportler aus ganz Deutschland.</p>
-		<p>Der Sparkassen CrossDeLuxe ließ Sportlerherzen am vergangenen Wochenende höher schlagen, als diese sich bei frischen Temperaturen 25 natürlichen und künstlichen Hindernissen entlang des Markkleeberger Sees stellten.</p>
-		<p>2010 mit 329 Teilnehmern, von dem Verein Sportfreunde Neuseenland aus der Taufe gehoben, entwickelte sich der Sparkassen-CrossDeLuxe zunehmend vom Insider zu einer deutschlandweit bekannten Großveranstaltung (2011: 507 T., 2012: 1065 T., 2013: 1.700, 2014: 2.000) und geht heutzutage als absoluter Publikumsliebling unter den Hindernisläufen seiner Art in die Laufkalender ein.</p>
-		<p>Die sechste Auflage des Sparkassen-CrossDeLuxe hatte es in sich: mittels Staffelstarts (4 x 500 Teilnehmer) nahmen 2.000 Sportler teil. Nicht einer der Finisher kam trocken, geschweige denn sauber ins Ziel. Am Ende des Tages standen die Sieger dann fest:</p>
-		<p>Nicole Moritz (TEAM Brothers and Sisters) gewann mit 1:57:55 h auf der 16 km Strecke. Bei den Herren war Maik Willbrandt (TEAM ERDINGER alkoholfrei) mit 1:29:12 h der Schnellste. Bei den Damen querte Lydia Kummich (SC DHfk Leipzig) nach 8 km mit einer Zeit von 0:55:11 h als Erste den Zielbogen. Nach nur 0:45:30 h kam Jens Oswald (Sparkassen Challenge) als Sieger ins Ziel.</p>
-		<p>Neben glücklichen Teilnehmern resümierte auch Henrik Wahlstadt, Vereinsvorsitzender, mit Zufriedenheit: "Der 6. Sparkassen CrossDeLuxe war ein voller Erfolg und ist und bleibt einfach einmalig in ganz Deutschland. Es ist überwältigend, die Begeisterung von fast 2.000 Sportlern zu teilen. Es freut uns, dass neben einigen Blessuren nichts Schlimmeres passiert ist. Wir sind jetzt schon wahnsinnig heiß auf 2016, dann natürlich mit altbewährten aber auch neuen Hindernissen."</p>
-		<p>Der Verein Sportfreunde Neuseenland e.V. bedankt sich bei allen Partnern, Sponsoren, Feuerwehren und den 100 Helfern, ohne die ein solches Event nicht möglich wäre.</p>
-		<p>Schon jetzt lohnt es sich, den Termin für kommendes Jahr zu notieren, denn das Starterfeld ist wieder auf 2.000 Teilnehmer limitiert. Als Teil der Sparkassen-Challenge findet der 7. Sparkassen-CrossDeLuxe am 24.09.2016 statt. Die Anmeldeportale öffnen traditionell am 01.01.2016.</p>
+		<fieldset>
+			<legend>Hindernisse</legend>
+			<ul>
+				<li>Bale Bonds <small>(über Strohballen klettern)</small></li>
+				<li>Skid Marked <small>(Climb over a tall angled wall with tires on the back)</small></li>
+				<li>Shawshanked <small>(crawl through a narrow tube and drop into a pool of water)</small></li>
+				<li>Birth Canal <small>(Crawl under a plastic liner, filled with water)</small></li>
+				<li>Creek Crusade #1 <small>(knietiefen Fluss durchqueren)</small></li>
+				<li>Creek Crusade #2 <small>(knietiefen Fluss durchqueren)</small></li>
+				<li>Island Hopping</li>
+				<li>Devil's Beard <small>(unter einem Netz durchkriechen)</small></li>
+				<li>Balls To The Wall</li>
+				<li>Artic Enema 2.0 <small>(Plunge into icy water)</small></li>
+				<li>Mud Mile #1</li>
+				<li>Hero Carry</li>
+				<li>Killa Gorilla <small>(querfeldein, viel Gestrüpp, viel Holz)</small></li>
+				<li>Hero Walls</li>
+				<li>The Liberator <small>(Climb over an angled wall using pegs)</small></li>
+				<li>Mud Mile #2</li>
+				<li>Tyre Carry <small>(einen Autoreifen tragen)</small></li>
+				<li>King of the Swingers <small>(Rope swing into water off of a raised platform)</small></li>
+				<li>Kiss of Mud 2.0 <small>(Crawl under barbed wire)</small></li>
+				<li>Funky Monkey 2.0 <small>(Monkey bar crossing)</small></li>
+				<li>Cry Baby <small>(Crawl through a smoke-filled chamber)</small></li>
+				<li>Everest 2.0 <small>(Greased up 1/4 pipe)</small></li>
+				<li>Dead Ringer</li>
+				<li>Electroshock Therapy</li>
+			</ul>
+		</fieldset>
+
+		<fieldset>
+			<legend>Zeitungsartikel</legend>
+
+			<h2>Riesengaudi beim Cross de Luxe am Markkleeberger See <small>Sonntag, 27. September 2015 (LVZ-Online >> Region >> Markkleeberg)</small></h2>
+			<p class="lead">Die Teamnamen sind Programm: Wenn Dreckspatzen, Abrissbirnen, Seitenstecher, gestiefelte Muskelkater, Schlammlappen oder die 50 Shades of Matsch antreten, ist der Startschuss zum Cross de Luxe gefallen.</p>
+			<p>2000 unerschrockene Abenteurer stellten sich am Sonnabend 25 spektakulären Hindernissen am Markkleeberger See.</p>
+			<p>Vor sechs Jahren lockten die Sportfreunde Neuseenland mit ihrem ultimativen Geländelauf 300 Starter, heute sind es 2000 und es könnten noch mindestens Tausend mehr sein. Das Limit war schon im Juli erreicht, 100 Nachrücker auf der Warteliste hatten Glück. Die Parkplatzkapazitäten seien das Hauptproblem, so Henrik Wahlstadt, Chef der Sportfreunde. Die Strecke könnte sicher noch einige Teilnehmer mehr vertragen, die sich weder vor den Stromstößen im "Electric Garden" noch vor "Vollwaschgängen" , steilen Kletterpartien oder rasanten Abgängen fürchten.</p>
+			<b>Zwischenüberschrift</b>
+			<p>Die Mammut-Aufgabe wird dank 90 freiwilliger Helfer mit Bravour gemeistert. Pünktlich zum Startschuss von Oberbürgermeister Karsten Schütze, der die erste von vier Staffeln über acht und 16 Kilometer auf den Weg schickte, hat es aufgehört zu regnen. Optimale Bedingungen nicht nur für ambitionierte Ausdauersportler, um den Mix aus Matsch, Schweiß und Partystimmung, Ehrgeiz, Spaß und Teamgeist zu genießen.</p>
+			<p>"Die sehen ja alle gleich aus", hört man immer wieder perplex von Familien und Fans, die ihre Lieben auf der Strecke oder im Ziel kaum erkennen. Aus dem letzten Schlammbad von Kopf bis Fuß krabbeln furchterregende Gestalten. "Ist das Männlein oder Weiblein?" frotzelt Moderator Roman Knoblauch. Das sühnt er auf dem Fuße, bei keinem anderen Job muss er so oft die Kleider wechseln, wird selten von so vielen Männern geherzt und geküsst.</p>
+			<p>"Schwarz macht schlank und man sieht den Dreck nicht so", ulken Claudia, Annika, Jacqueline und Susanne. Die "Crazy Chicks" stehen in Diensten der Bundespolizei und sind "Wiederholungstäter." Ihr Plan: "Wir schieben uns gegenseitig die Berge rauf und laufen Hand in Hand ins Ziel." Respekt haben sie vor dem Horn mit 25 Prozent Steigung, aber hoch kommen sie auf jeden Fall. "Es gibt genügend Männerhände, die schieben", wissen die knackigen jungen Damen vom letzten Jahr.</p>
+			<p>Strahlen unter dem Dreck bei denjenigen, die das Ziel erreicht haben. "Das ist alles super organisiert, der Team-Spirit ist atemberaubend, unterwegs hilft jeder jedem", schwärmt Lukas Breitbarth, "durch den Schlamm zu robben macht den meisten Spaß. Da werden Kindheitserinnerungen wach." Freundin Michelle Brecht schmeißt die Waschmaschine danach gerne an: "Er hat ja nicht seine besten Sachen an und ich bin schon stolz auf ihn." Die Finisher sind sich einig: "Nächstes Jahr wieder, das macht richtig Spaß."</p>
+
+			<h2>Matsch Olé! <small>Mittwoch, 30. September 2015 (Laufszene-Sachsen.de (erstellt von ORG Crossdeluxe))</small></h2>
+			<p class="lead">Cross-Wochenende begeistert mit Schlamm, Schmerz und Schweiß 2.000 Sportler aus ganz Deutschland.</p>
+			<p>Der Sparkassen CrossDeLuxe ließ Sportlerherzen am vergangenen Wochenende höher schlagen, als diese sich bei frischen Temperaturen 25 natürlichen und künstlichen Hindernissen entlang des Markkleeberger Sees stellten.</p>
+			<p>2010 mit 329 Teilnehmern, von dem Verein Sportfreunde Neuseenland aus der Taufe gehoben, entwickelte sich der Sparkassen-CrossDeLuxe zunehmend vom Insider zu einer deutschlandweit bekannten Großveranstaltung (2011: 507 T., 2012: 1065 T., 2013: 1.700, 2014: 2.000) und geht heutzutage als absoluter Publikumsliebling unter den Hindernisläufen seiner Art in die Laufkalender ein.</p>
+			<p>Die sechste Auflage des Sparkassen-CrossDeLuxe hatte es in sich: mittels Staffelstarts (4 x 500 Teilnehmer) nahmen 2.000 Sportler teil. Nicht einer der Finisher kam trocken, geschweige denn sauber ins Ziel. Am Ende des Tages standen die Sieger dann fest:</p>
+			<p>Nicole Moritz (TEAM Brothers and Sisters) gewann mit 1:57:55 h auf der 16 km Strecke. Bei den Herren war Maik Willbrandt (TEAM ERDINGER alkoholfrei) mit 1:29:12 h der Schnellste. Bei den Damen querte Lydia Kummich (SC DHfk Leipzig) nach 8 km mit einer Zeit von 0:55:11 h als Erste den Zielbogen. Nach nur 0:45:30 h kam Jens Oswald (Sparkassen Challenge) als Sieger ins Ziel.</p>
+			<p>Neben glücklichen Teilnehmern resümierte auch Henrik Wahlstadt, Vereinsvorsitzender, mit Zufriedenheit: "Der 6. Sparkassen CrossDeLuxe war ein voller Erfolg und ist und bleibt einfach einmalig in ganz Deutschland. Es ist überwältigend, die Begeisterung von fast 2.000 Sportlern zu teilen. Es freut uns, dass neben einigen Blessuren nichts Schlimmeres passiert ist. Wir sind jetzt schon wahnsinnig heiß auf 2016, dann natürlich mit altbewährten aber auch neuen Hindernissen."</p>
+			<p>Der Verein Sportfreunde Neuseenland e.V. bedankt sich bei allen Partnern, Sponsoren, Feuerwehren und den 100 Helfern, ohne die ein solches Event nicht möglich wäre.</p>
+			<p>Schon jetzt lohnt es sich, den Termin für kommendes Jahr zu notieren, denn das Starterfeld ist wieder auf 2.000 Teilnehmer limitiert. Als Teil der Sparkassen-Challenge findet der 7. Sparkassen-CrossDeLuxe am 24.09.2016 statt. Die Anmeldeportale öffnen traditionell am 01.01.2016.</p>
+		</fieldset>
 
 	</div>
 

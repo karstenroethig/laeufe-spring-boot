@@ -34,12 +34,19 @@
 				<div class="col-xs-6 col-sm-4 col-md-2">
 					<div class="card-pf card-pf-accented card-pf-aggregate-status">
 						<h2 class="card-pf-title">
-							<a href="#"><span class="fa fa-trophy"></span><span class="card-pf-aggregate-status-count">53</span> L&auml;ufe</a>
+							<a href="#">
+								<span class="fa fa-trophy"></span>
+								<span class="card-pf-aggregate-status-count" th:text="${stats.totalRaces}">[totalRaces]</span> L&auml;ufe
+							</a>
 						</h2>
 						<div class="card-pf-body">
 							<p class="card-pf-aggregate-status-notifications">
-								<span class="card-pf-aggregate-status-notification"><a href="#"><span class="pficon pficon-ok"></span>50</a></span>
-								<span class="card-pf-aggregate-status-notification"><a href="#"><span class="pficon pficon-error-circle-o"></span>3</a></span>
+								<span class="card-pf-aggregate-status-notification">
+									<a href="#"><span class="pficon pficon-ok"></span><span th:text="${stats.totalRacesSuccess}">[totalRacesSuccess]</span></a>
+								</span>
+								<span class="card-pf-aggregate-status-notification">
+									<a href="#"><span class="pficon pficon-error-circle-o"></span><span th:text="${stats.totalRacesFailed}">[totalRacesFailed]</span></a>
+								</span>
 							</p>
 						</div>
 					</div>
@@ -51,7 +58,9 @@
 						</h2>
 						<div class="card-pf-body">
 							<p class="card-pf-aggregate-status-notifications">
-								<span class="card-pf-aggregate-status-notification">42 km</span>
+								<span class="card-pf-aggregate-status-notification">
+									<span th:text="${#numbers.formatInteger(stats.longestDistance,1, 'POINT')}">[longestDistance]</span> km
+								</span>
 							</p>
 						</div>
 					</div>
@@ -63,7 +72,9 @@
 						</h2>
 						<div class="card-pf-body">
 							<p class="card-pf-aggregate-status-notifications">
-								<span class="card-pf-aggregate-status-notification">1.045 km</span>
+								<span class="card-pf-aggregate-status-notification">
+									<span th:text="${#numbers.formatInteger(stats.totalDistance,1, 'POINT')}">[totalDistance]</span> km
+								</span>
 							</p>
 						</div>
 					</div>
@@ -75,7 +86,7 @@
 						</h2>
 						<div class="card-pf-body">
 							<p class="card-pf-aggregate-status-notifications">
-								<a href="#"><span class="card-pf-aggregate-status-notification">6</span></a>
+								<a href="#"><span class="card-pf-aggregate-status-notification" th:text="${stats.totalCountries}">[totalCountries]</span></a>
 							</p>
 						</div>
 					</div>
@@ -83,11 +94,11 @@
 				<div class="col-xs-6 col-sm-4 col-md-2">
 					<div class="card-pf card-pf-accented card-pf-aggregate-status">
 						<h2 class="card-pf-title">
-							<a href="#"><span class="fa fa-shield"></span><span class="card-pf-aggregate-status-count">6</span> Dolar Sit</a>
+							<a href="#"><span class="fa fa-bolt"></span> Tough Mudder</a>
 						</h2>
 						<div class="card-pf-body">
 							<p class="card-pf-aggregate-status-notifications">
-								<a href="#"><span class="card-pf-aggregate-status-notification"><span class="pficon pficon-error-circle-o"></span>1</span></a>
+								<a href="#"><span class="card-pf-aggregate-status-notification" th:text="${stats.totalRacesToughMudder}">[totalRacesToughMudder]</span></a>
 							</p>
 						</div>
 					</div>
@@ -95,11 +106,11 @@
 				<div class="col-xs-6 col-sm-4 col-md-2">
 					<div class="card-pf card-pf-accented card-pf-aggregate-status">
 						<h2 class="card-pf-title">
-							<a href="#"><span class="fa fa-shield"></span><span class="card-pf-aggregate-status-count">199</span> Consectetur</a>
+							<a href="#"><span class="fa fa-bolt"></span> XLETIX Challenge</a>
 						</h2>
 						<div class="card-pf-body">
 							<p class="card-pf-aggregate-status-notifications">
-								<a href="#"><span class="card-pf-aggregate-status-notification"><span class="pficon pficon-error-circle-o"></span>1</span></a>
+								<a href="#"><span class="card-pf-aggregate-status-notification" th:text="${stats.totalRacesXletix}">[totalRacesXletix]</span></a>
 							</p>
 						</div>
 					</div>
@@ -109,52 +120,31 @@
 			<div class="row row-cards-pf">
 				<div class="col-xs-12 col-sm-6 col-md-6">
 					<div class="card-pf">
-						<h2 class="card-pf-title">Upcoming Events</h2>
+						<h2 class="card-pf-title">Kommende Events</h2>
 						<div class="card-pf-body">
 							<table class="table">
 								<tbody>
 									<tr>
 										<th>Status</th>
-										<th>Location Data</th>
-										<th>Hosts</th>
+										<th>Veranstaltung</th>
+										<th>Tage</th>
 									</tr>
-									<tr>
-										<td>
-											<span class="label label-success">Registered</span>
-										</td>
-										<td>
-											<strong>Cross de luxe 2016</strong>
-											<br/>
-											16.07.2016 08:30, Markkleeberger See, Markkleeberg
-										</td>
-										<td>
-											<span class="label label-default">11</span>
-										</td>
+									<tr th:if="${#lists.isEmpty(stats.upcomingEvents)}">
+										<td colspan="3" align="center" th:text="#{default.table.empty.text}">Data can not be found.</td>
 									</tr>
-									<tr>
+									<tr th:each="event : ${stats.upcomingEvents}">
 										<td>
-											<span class="label label-success">Registered</span>
+											<span th:class="${event.status.label}" th:text="${#messages.msg('event.status.'+event.status.name()+'.label')}">[status]</span>
 										</td>
 										<td>
-											<strong>Tough Mudder 2016 - Hizenhain</strong>
+											<strong th:text="${event.name}">[name]</strong>
 											<br/>
-											16.07.2016 08:30, Markkleeberger See, Markkleeberg
+											<span th:text="${T(karstenroethig.laeufe.controller.formatter.DateRangeFormatter).format(event.eventPeriod, #messages.msg('default.dateFormat'))}">[startDate]-[endDate]</span>,
+											<span th:text="${event.locationName}">[locationName]</span>,
+											<span th:text="${event.locationCountry.name}">[locationCountry]</span>
 										</td>
 										<td>
-											<span class="label label-default">11</span>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<span class="label label-default">Planed</span>
-										</td>
-										<td>
-											<strong>Cross de luxe 2016</strong>
-											<br/>
-											16.07.2016 08:30, Markkleeberger See, Markkleeberg
-										</td>
-										<td>
-											<span class="label label-default">3</span>
+											<span class="label label-default" th:text="${event.remainingDays}">[remainingDays]</span>
 										</td>
 									</tr>
 								</tbody>
@@ -164,7 +154,7 @@
 				</div>
 				<div class="col-xs-12 col-sm-6 col-md-6">
 					<div class="card-pf card-pf-utilization">
-						<h2 class="card-pf-title">Race Organizers</h2>
+						<h2 class="card-pf-title">Beliebte Veranstalter</h2>
 						<div class="card-pf-body">
 							<div id="donut-set-of-values-to-a-whole"></div>
 							<script>
@@ -230,7 +220,7 @@
 								
 								var donutChartBottomLegend = c3.generate(donutChartBottomConfig);
 
-								$().pfSetDonutChartTitle("#donut-set-of-values-to-a-whole", "53", "Races");
+								$().pfSetDonutChartTitle("#donut-set-of-values-to-a-whole", "54", "Races");
 							</script>
 						</div>
 					</div>

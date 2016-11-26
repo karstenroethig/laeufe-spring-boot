@@ -12,7 +12,6 @@ public class UrlMappings {
     public static final String CONTROLLER_COUNTRY = "/country";
     public static final String CONTROLLER_EVENT = "/event";
     public static final String CONTROLLER_ADMIN = "/admin";
-    public static final String CONTROLLER_USER = "/user";
 
     public static final String ACTION_LIST = "/list";
     public static final String ACTION_SHOW = "/show/{id}";

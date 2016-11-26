@@ -55,11 +55,11 @@ public class Race {
 	private String startNumber;
 	
 	@Column( name = "start_time" )
-	@Temporal( TemporalType.DATE )
+	@Temporal( TemporalType.TIMESTAMP )
 	private Date startTime;
-	
-	@Column( length = 25 )
-	private String distance;
+
+	/** Distance of the race in meters. */
+	private Integer distance;
 	
 	@Column( length = 25 )
 	private String racetime;

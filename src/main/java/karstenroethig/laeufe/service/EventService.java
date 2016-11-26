@@ -2,20 +2,24 @@ package karstenroethig.laeufe.service;
 
 import java.util.Collection;
 
-import karstenroethig.laeufe.dto.EventDto;
+import karstenroethig.laeufe.dto.EventFullDto;
+import karstenroethig.laeufe.dto.EventListDto;
+import karstenroethig.laeufe.dto.info.DashboardInfoDto;
 
 
 public interface EventService {
 	
-	public EventDto newEvent();
+	public EventFullDto newEvent();
 
-    public EventDto saveEvent( EventDto eventDto );
+    public EventFullDto saveEvent( EventFullDto eventDto );
 
     public Boolean deleteEvent( Long eventId );
 
-    public EventDto editEvent( EventDto eventDto );
+    public EventFullDto editEvent( EventFullDto eventDto );
 
-    public EventDto findEvent( Long eventId );
+    public EventFullDto findEvent( Long eventId );
 
-    public Collection<EventDto> getAllEvents();
+    public Collection<EventListDto> getAllEvents();
+
+    public DashboardInfoDto createDashboradStatistics();
 }

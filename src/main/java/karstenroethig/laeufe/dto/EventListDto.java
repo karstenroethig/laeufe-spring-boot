@@ -19,7 +19,7 @@ import javax.validation.constraints.Size;
 @Getter
 @Setter
 @ToString
-public class EventDto {
+public class EventListDto {
 	
 	private Long id;
 	
@@ -74,4 +74,6 @@ public class EventDto {
 	
 	@NotNull
 	private EventStatusEnum status;
+	
+	private long remainingDays;
 }

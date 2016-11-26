@@ -1,30 +1,16 @@
 package karstenroethig.laeufe.controller;
 
-import karstenroethig.laeufe.controller.exceptions.NotFoundException;
-import karstenroethig.laeufe.controller.util.UrlMappings;
-import karstenroethig.laeufe.controller.util.ViewEnum;
+import java.io.IOException;
 
-import karstenroethig.laeufe.dto.EventDto;
-
-import karstenroethig.laeufe.service.CountryService;
-import karstenroethig.laeufe.service.EventService;
-import karstenroethig.laeufe.service.OrganizerService;
-
-import karstenroethig.laeufe.util.MessageKeyEnum;
-import karstenroethig.laeufe.util.Messages;
+import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.context.annotation.ComponentScan;
-
 import org.springframework.http.HttpStatus;
-
 import org.springframework.stereotype.Controller;
-
 import org.springframework.ui.Model;
-
 import org.springframework.validation.BindingResult;
-
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,11 +18,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.io.IOException;
-
-import javax.servlet.http.HttpServletResponse;
-
-import javax.validation.Valid;
+import karstenroethig.laeufe.controller.exceptions.NotFoundException;
+import karstenroethig.laeufe.controller.util.UrlMappings;
+import karstenroethig.laeufe.controller.util.ViewEnum;
+import karstenroethig.laeufe.dto.EventFullDto;
+import karstenroethig.laeufe.service.CountryService;
+import karstenroethig.laeufe.service.EventService;
+import karstenroethig.laeufe.service.OrganizerService;
+import karstenroethig.laeufe.util.MessageKeyEnum;
+import karstenroethig.laeufe.util.Messages;
 
 
 @ComponentScan
@@ -83,7 +73,7 @@ public class EventController {
     )
     public String show( @PathVariable( "id" ) Long eventId, Model model ) {
 
-        EventDto event = eventService.findEvent( eventId );
+        EventFullDto event = eventService.findEvent( eventId );
 
         if( event == null ) {
             throw new NotFoundException( String.valueOf( eventId ) );
@@ -100,7 +90,7 @@ public class EventController {
     )
     public String edit( @PathVariable( "id" ) Long eventId, Model model ) {
 
-        EventDto event = eventService.findEvent( eventId );
+        EventFullDto event = eventService.findEvent( eventId );
 
         if( event == null ) {
             throw new NotFoundException( String.valueOf( eventId ) );
@@ -122,7 +112,7 @@ public class EventController {
     public String delete( @PathVariable( "id" ) Long eventId, final RedirectAttributes redirectAttributes,
         Model model ) {
 
-        EventDto event = eventService.findEvent( eventId );
+        EventFullDto event = eventService.findEvent( eventId );
 
         if( event == null ) {
             throw new NotFoundException( String.valueOf( eventId ) );
@@ -143,7 +133,7 @@ public class EventController {
         value = UrlMappings.ACTION_SAVE,
         method = RequestMethod.POST
     )
-    public String save( @ModelAttribute( "event" ) @Valid EventDto event, BindingResult bindingResult,
+    public String save( @ModelAttribute( "event" ) @Valid EventFullDto event, BindingResult bindingResult,
     		final RedirectAttributes redirectAttributes, Model model ) {
 
         if( bindingResult.hasErrors() ) {
@@ -176,7 +166,7 @@ public class EventController {
         value = UrlMappings.ACTION_UPDATE,
         method = RequestMethod.POST
     )
-    public String update( @ModelAttribute( "event" ) @Valid EventDto event, BindingResult bindingResult,
+    public String update( @ModelAttribute( "event" ) @Valid EventFullDto event, BindingResult bindingResult,
     		final RedirectAttributes redirectAttributes, Model model ) {
 
         if( bindingResult.hasErrors() ) {

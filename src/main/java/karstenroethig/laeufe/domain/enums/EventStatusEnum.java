@@ -10,17 +10,19 @@ public enum EventStatusEnum {
 	 * - failed: only if all races have status failed
 	 */
 	
-	PLANED( 0, "fa fa-calendar" ),
-	REGISTERED( 1, "fa fa-calendar-check-o" ),
-	COMPLETED( 2, "pficon pficon-ok" ),
-	FAILED( 3, "pficon pficon-error-circle-o" );
+	PLANED( 0, "fa fa-calendar", "label label-default" ),
+	REGISTERED( 1, "fa fa-calendar-check-o", "label label-success" ),
+	COMPLETED( 2, "pficon pficon-ok", "label label-success" ),
+	FAILED( 3, "pficon pficon-error-circle-o", "label label-danger" );
 	
 	private int key;
 	private String icon;
+	private String label;
 	
-	private EventStatusEnum( int key, String icon ) {
+	private EventStatusEnum( int key, String icon, String label ) {
 		this.key = key;
 		this.icon = icon;
+		this.label = label;
 	}
 	
 	public int getKey() {
@@ -29,6 +31,10 @@ public enum EventStatusEnum {
 	
 	public String getIcon() {
 		return icon;
+	}
+	
+	public String getLabel() {
+		return label;
 	}
 	
 	public static EventStatusEnum getStatusForKey( Integer key ) {
