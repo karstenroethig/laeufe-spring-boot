@@ -4,10 +4,8 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -324,18 +322,10 @@ public class EventServiceImpl implements EventService {
 		return stats;
 	}
 	
-	private static long calcRemainingDays( Date startDate ) {
+	private static long calcRemainingDays( LocalDate startDate ) {
 		
 		if( startDate != null ) {
-			
-			Calendar cal = Calendar.getInstance();
-			cal.setTime( startDate );
-			LocalDate startDateLocal = LocalDate.of(
-					cal.get( Calendar.YEAR ),
-					cal.get( Calendar.MONTH ) + 1,
-					cal.get( Calendar.DAY_OF_MONTH ) );
-			
-			return ChronoUnit.DAYS.between( LocalDate.now(), startDateLocal );
+			return ChronoUnit.DAYS.between( LocalDate.now(), startDate );
 		}
 		
 		return 0;

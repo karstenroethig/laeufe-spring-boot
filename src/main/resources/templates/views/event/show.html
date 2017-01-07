@@ -45,7 +45,7 @@
 					</tr>
 					<tr th:each="race : ${event.races}">
 						<td th:text="${race.startNumber}">[startNumber]</td>
-						<td class="text-right" th:text="${#dates.format(race.startTime, #messages.msg('default.startTimeFormat'))}">[startTime]</td>
+						<td class="text-right" th:text="${#temporals.format(race.startTime, #messages.msg('default.startTimeFormat'))}">[startTime]</td>
 						<td class="text-right">
 							<span th:if="${race.distance!=null}">
 								<span th:text="${#numbers.formatDecimal(race.distance,1, 'POINT', 3, 'COMMA')}">[distance]</span> km

@@ -1,6 +1,6 @@
 package karstenroethig.laeufe.domain;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,10 +10,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 import javax.persistence.UniqueConstraint;
+
+import org.hibernate.annotations.Type;
 
 import karstenroethig.laeufe.domain.enums.RaceStatusEnum;
 import lombok.Getter;
@@ -55,8 +55,8 @@ public class Race {
 	private String startNumber;
 	
 	@Column( name = "start_time" )
-	@Temporal( TemporalType.TIMESTAMP )
-	private Date startTime;
+	@Type( type = "org.hibernate.type.LocalDateTimeType" )
+	private LocalDateTime startTime;
 
 	/** Distance of the race in meters. */
 	private Integer distance;

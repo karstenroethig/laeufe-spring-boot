@@ -1,8 +1,8 @@
 package karstenroethig.laeufe.domain;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -16,10 +16,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 import javax.persistence.UniqueConstraint;
+
+import org.hibernate.annotations.Type;
 
 import karstenroethig.laeufe.domain.enums.EventStatusEnum;
 import lombok.Getter;
@@ -71,12 +71,12 @@ public class Event {
 		name = "start_date",
 		nullable = false
 	)
-	@Temporal( TemporalType.DATE )
-	private Date startDate;
+	@Type( type = "org.hibernate.type.LocalDateType" )
+	private LocalDate startDate;
 	
 	@Column( name = "end_date" )
-	@Temporal( TemporalType.DATE )
-	private Date endDate;
+	@Type( type = "org.hibernate.type.LocalDateType" )
+	private LocalDate endDate;
 	
 	@Column(
 		length = 1024,

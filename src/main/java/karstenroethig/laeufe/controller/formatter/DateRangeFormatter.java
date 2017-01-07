@@ -1,18 +1,17 @@
 package karstenroethig.laeufe.controller.formatter;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
 
-import karstenroethig.laeufe.dto.DateRange;
-
 import org.apache.commons.lang3.StringUtils;
+
+import karstenroethig.laeufe.dto.DateRange;
 
 
 public class DateRangeFormatter {
 	
-	private static Map<String, DateFormat> dateFormatCache = new HashMap<String, DateFormat>();
+	private static Map<String, DateTimeFormatter> dateFormatterCache = new HashMap<>();
 	
 	public static String format( DateRange dateRange, String dateFormatPattern ) {
 		
@@ -20,13 +19,13 @@ public class DateRangeFormatter {
 			return StringUtils.EMPTY;
 		}
 		
-		DateFormat dateFormat;
+		DateTimeFormatter dateFormatter;
 		
-		if( dateFormatCache.containsKey( dateFormatPattern ) ) {
-			dateFormat = dateFormatCache.get( dateFormatPattern );
+		if( dateFormatterCache.containsKey( dateFormatPattern ) ) {
+			dateFormatter = dateFormatterCache.get( dateFormatPattern );
 		} else {
-			dateFormat = new SimpleDateFormat( dateFormatPattern );
-			dateFormatCache.put( dateFormatPattern, dateFormat );
+			dateFormatter = DateTimeFormatter.ofPattern( dateFormatPattern );
+			dateFormatterCache.put( dateFormatPattern, dateFormatter );
 		}
 		
 		StringBuffer result = new StringBuffer();
@@ -34,12 +33,12 @@ public class DateRangeFormatter {
 		if( dateRange.getStartDate() == null ) {
 			result.append( "?" );
 		} else {
-			result.append( dateFormat.format( dateRange.getStartDate() ) );
+			result.append( dateRange.getStartDate().format( dateFormatter ) );
 		}
 
 		if( dateRange.getEndDate() != null ) {
 			result.append( "-" );
-			result.append( dateFormat.format( dateRange.getEndDate() ) );
+			result.append( dateRange.getEndDate().format( dateFormatter ) );
 		}
 		
 		return result.toString();

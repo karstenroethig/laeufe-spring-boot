@@ -1,7 +1,7 @@
 package karstenroethig.laeufe.dto;
 
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -24,7 +24,7 @@ public class RaceDto {
 	@Size( max = 25 )
 	private String startNumber;
 	
-	private Date startTime;
+	private LocalDateTime startTime;
 	
 	private BigDecimal distance;
 	

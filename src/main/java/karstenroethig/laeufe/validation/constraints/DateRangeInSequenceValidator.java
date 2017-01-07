@@ -19,6 +19,6 @@ public class DateRangeInSequenceValidator implements ConstraintValidator<DateRan
 			return true;
 		}
 		
-		return value.getStartDate().before( value.getEndDate() );
+		return value.getStartDate().isBefore( value.getEndDate() );
 	}
 }
