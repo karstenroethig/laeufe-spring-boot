@@ -8,8 +8,8 @@ import org.springframework.data.repository.CrudRepository;
 
 
 public interface OrganizerRepository extends CrudRepository<Organizer, Long> {
-	
-	List<Organizer> findByNameIgnoreCase( String name );
-	
-	List<Organizer> findByArchived( boolean archived );
+
+    List<Organizer> findByNameIgnoreCase( String name );
+
+    List<Organizer> findByArchived( boolean archived );
 }

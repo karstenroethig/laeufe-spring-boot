@@ -8,8 +8,8 @@ import org.springframework.data.repository.CrudRepository;
 
 
 public interface CountryRepository extends CrudRepository<Country, Long> {
-	
-	List<Country> findByNameIgnoreCase( String name );
-	
-	List<Country> findByArchived( boolean archived );
+
+    List<Country> findByNameIgnoreCase( String name );
+
+    List<Country> findByArchived( boolean archived );
 }

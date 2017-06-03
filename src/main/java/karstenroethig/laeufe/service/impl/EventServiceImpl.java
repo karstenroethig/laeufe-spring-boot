@@ -5,12 +5,12 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
-import java.util.function.Consumer;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 import javax.transaction.Transactional;
 
@@ -37,8 +37,8 @@ import karstenroethig.laeufe.service.EventService;
 @Service
 @Transactional
 public class EventServiceImpl implements EventService {
-	
-	private static final BigDecimal DISTANCE_DIVISOR = new BigDecimal( 1000 );
+
+    private static final BigDecimal DISTANCE_DIVISOR = new BigDecimal( 1000 );
 
     @Autowired
     protected EventRepository eventRepository;
@@ -94,24 +94,11 @@ public class EventServiceImpl implements EventService {
     @Override
     public List<EventListDto> getAllEvents() {
 
-        Iterable<Event> itr = eventRepository.findAll();
-
-        List<EventListDto> events = new ArrayList<EventListDto>();
-
-        itr.forEach( new Consumer<Event>() {
-                @Override
-                public void accept( Event event ) {
-                    events.add( transformList( event ) );
-                }
-            } );
-
-        // TODO there has to be a better way for sorting
-        Collections.sort( events, new Comparator<EventListDto>() {
-                @Override
-                public int compare( EventListDto o1, EventListDto o2 ) {
-                    return -1 * o1.getEventPeriod().getStartDate().compareTo( o2.getEventPeriod().getStartDate() );
-                }
-            } );
+        List<EventListDto> events = StreamSupport
+            .stream( eventRepository.findAll().spliterator(), false )
+            .map( ( event ) -> transformList( event ) )
+            .sorted( ( e1, e2 ) -> -1 * e1.getEventPeriod().getStartDate().compareTo( e2.getEventPeriod().getStartDate() ) )
+            .collect( Collectors.toList() );
 
         return events;
     }
@@ -198,136 +185,129 @@ public class EventServiceImpl implements EventService {
         eventDto.setCosts( event.getCosts() );
         eventDto.setStatus( event.getStatusEnum() );
         eventDto.setRemainingDays( calcRemainingDays( event.getStartDate() ) );
-        
+
         List<Race> races = event.getRaces();
-        
+
         if( races != null && races.isEmpty() == false ) {
-        	
-        	for( Race race : races ) {
-        		eventDto.addRace( transform( race ) );
-        	}
+
+            for( Race race : races ) {
+                eventDto.addRace( transform( race ) );
+            }
         }
 
         return eventDto;
     }
-    
+
     private RaceDto transform( Race race ) {
-    	
-    	if( race == null ) {
-    		return null;
-    	}
-    	
-    	RaceDto raceDto = new RaceDto();
-    	
-    	raceDto.setId( race.getId() );
-    	raceDto.setStartNumber( race.getStartNumber() );
-    	raceDto.setStartTime( race.getStartTime() );
-    	
-    	if( race.getDistance() != null ) {
-    		raceDto.setDistance( new BigDecimal( race.getDistance() ).divide( DISTANCE_DIVISOR ) );
-    	}
-    	
-    	raceDto.setRacetime( race.getRacetime() );
-    	raceDto.setTeam( race.getTeam() );
-    	raceDto.setNote( race.getNote() );
-    	raceDto.setStatus( race.getStatusEnum() );
-    	
-    	return raceDto;
+
+        if( race == null ) {
+            return null;
+        }
+
+        RaceDto raceDto = new RaceDto();
+
+        raceDto.setId( race.getId() );
+        raceDto.setStartNumber( race.getStartNumber() );
+        raceDto.setStartTime( race.getStartTime() );
+
+        if( race.getDistance() != null ) {
+            raceDto.setDistance( new BigDecimal( race.getDistance() ).divide( DISTANCE_DIVISOR ) );
+        }
+
+        raceDto.setRacetime( race.getRacetime() );
+        raceDto.setTeam( race.getTeam() );
+        raceDto.setNote( race.getNote() );
+        raceDto.setStatus( race.getStatusEnum() );
+
+        return raceDto;
     }
-    
+
     @Override
-	public DashboardInfoDto createDashboradStatistics() {
-		
-		int totalRaces = 0;
-		int totalRacesSuccess = 0;
-		int totalRacesFailed = 0;
-		int totalRacesToughMudder = 0;
-		int totalRacesXletix = 0;
-		Set<Country> countries = new HashSet<>();
-		int longestDistance = 0;
-		int totalDistance = 0;
-		
-		List<EventListDto> upcomingEvents = new ArrayList<>();
-		
-		Iterator<Event> itr = eventRepository.findAll().iterator();
-		
-		while( itr.hasNext() ) {
+    public DashboardInfoDto createDashboradStatistics() {
 
-			Event event = itr.next();
-			EventStatusEnum eventStatus = event.getStatusEnum();
-			
-			if( eventStatus == EventStatusEnum.PLANED || eventStatus == EventStatusEnum.REGISTERED ) {
-				upcomingEvents.add( transformList( event ) );
-			}
+        int totalRaces = 0;
+        int totalRacesSuccess = 0;
+        int totalRacesFailed = 0;
+        int totalRacesToughMudder = 0;
+        int totalRacesXletix = 0;
+        Set<Country> countries = new HashSet<>();
+        int longestDistance = 0;
+        int totalDistance = 0;
 
-			for( Race race : event.getRaces() ) {
-				
-				RaceStatusEnum raceStatus = race.getStatusEnum();
-				
-				if( raceStatus != RaceStatusEnum.COMPLETED && raceStatus != RaceStatusEnum.FAILED ) {
-					continue;
-				}
-				
-				totalRaces++;
-				
-				int raceDistance = ( race.getDistance() != null ? race.getDistance() : 0 );
-				
-				if( raceDistance > longestDistance ) {
-					longestDistance = raceDistance;
-				}
-				
-				totalDistance += raceDistance;
-				
-				if( raceStatus == RaceStatusEnum.COMPLETED ) {
-					
-					totalRacesSuccess++;
-					
-					String organizerName = event.getOrganizer().getName();
-					
-					if( StringUtils.equals( organizerName, "Tough Mudder" ) ) {
-						totalRacesToughMudder++;
-					}else if( StringUtils.equals( organizerName, "XLETIX Challenge" ) ) {
-						totalRacesXletix++;
-					}
-					
-					countries.add( event.getLocationCountry() );
+        List<EventListDto> upcomingEvents = new ArrayList<>();
 
-				} else if( raceStatus == RaceStatusEnum.FAILED ) {
-					totalRacesFailed++;
-				}
-			}
-		}
-		
+        Iterator<Event> itr = eventRepository.findAll().iterator();
 
-		// TODO there has to be a better way for sorting
-		Collections.sort( upcomingEvents, new Comparator<EventListDto>() {
-			@Override
-			public int compare( EventListDto o1, EventListDto o2 ) {
-				return 1 * o1.getEventPeriod().getStartDate().compareTo( o2.getEventPeriod().getStartDate() );
-			}
-		} );
-		
-		DashboardInfoDto stats = new DashboardInfoDto();
-		
-		stats.setTotalRaces( totalRaces );
-		stats.setTotalRacesSuccess( totalRacesSuccess );
-		stats.setTotalRacesFailed( totalRacesFailed );
-		stats.setTotalRacesToughMudder( totalRacesToughMudder );
-		stats.setTotalRacesXletix( totalRacesXletix );
-		stats.setTotalCountries( countries.size() );
-		stats.setLongestDistance( new BigDecimal( longestDistance ).divide( DISTANCE_DIVISOR ) );
-		stats.setTotalDistance( new BigDecimal( totalDistance ).divide( DISTANCE_DIVISOR ) );
-		stats.setUpcomingEvents( upcomingEvents );
-		
-		return stats;
-	}
-	
-	private static long calcRemainingDays( LocalDate startDate ) {
-		
-		if( startDate != null ) {
-			return ChronoUnit.DAYS.between( LocalDate.now(), startDate );
-		}
-		
-		return 0;
-	}
+        while( itr.hasNext() ) {
+
+            Event event = itr.next();
+            EventStatusEnum eventStatus = event.getStatusEnum();
+
+            if( eventStatus == EventStatusEnum.PLANED || eventStatus == EventStatusEnum.REGISTERED ) {
+                upcomingEvents.add( transformList( event ) );
+            }
+
+            for( Race race : event.getRaces() ) {
+
+                RaceStatusEnum raceStatus = race.getStatusEnum();
+
+                if( raceStatus != RaceStatusEnum.COMPLETED && raceStatus != RaceStatusEnum.FAILED ) {
+                    continue;
+                }
+
+                totalRaces++;
+
+                int raceDistance = ( race.getDistance() != null ? race.getDistance() : 0 );
+
+                if( raceDistance > longestDistance ) {
+                    longestDistance = raceDistance;
+                }
+
+                totalDistance += raceDistance;
+
+                if( raceStatus == RaceStatusEnum.COMPLETED ) {
+
+                    totalRacesSuccess++;
+
+                    String organizerName = event.getOrganizer().getName();
+
+                    if( StringUtils.equals( organizerName, "Tough Mudder" ) ) {
+                        totalRacesToughMudder++;
+                    } else if( StringUtils.equals( organizerName, "XLETIX Challenge" ) ) {
+                        totalRacesXletix++;
+                    }
+
+                    countries.add( event.getLocationCountry() );
+
+                } else if( raceStatus == RaceStatusEnum.FAILED ) {
+                    totalRacesFailed++;
+                }
+            }
+        }
+
+        Collections.sort( upcomingEvents, ( e1, e2 ) -> 1 * e1.getEventPeriod().getStartDate().compareTo( e2.getEventPeriod().getStartDate() ) );
+
+        DashboardInfoDto stats = new DashboardInfoDto();
+
+        stats.setTotalRaces( totalRaces );
+        stats.setTotalRacesSuccess( totalRacesSuccess );
+        stats.setTotalRacesFailed( totalRacesFailed );
+        stats.setTotalRacesToughMudder( totalRacesToughMudder );
+        stats.setTotalRacesXletix( totalRacesXletix );
+        stats.setTotalCountries( countries.size() );
+        stats.setLongestDistance( new BigDecimal( longestDistance ).divide( DISTANCE_DIVISOR ) );
+        stats.setTotalDistance( new BigDecimal( totalDistance ).divide( DISTANCE_DIVISOR ) );
+        stats.setUpcomingEvents( upcomingEvents );
+
+        return stats;
+    }
+
+    private static long calcRemainingDays( LocalDate startDate ) {
+
+        if( startDate != null ) {
+            return ChronoUnit.DAYS.between( LocalDate.now(), startDate );
+        }
+
+        return 0;
+    }
 }
