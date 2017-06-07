@@ -1,5 +1,6 @@
 package karstenroethig.laeufe.service.impl;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -117,7 +118,7 @@ public class OrganizerServiceImpl implements OrganizerService {
 
         List<OrganizerDto> transformedOrganizers = organizersStream
             .map( DtoTransformer::transform )
-            .sorted( ( o1, o2 ) -> o1.getName().compareTo( o2.getName() ) )
+            .sorted( Comparator.comparing( OrganizerDto::getName ) )
             .collect( Collectors.toList() );
 
         return transformedOrganizers;

@@ -1,5 +1,6 @@
 package karstenroethig.laeufe.service.impl;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -117,7 +118,7 @@ public class CategoryServiceImpl implements CategoryService {
 
         List<CategoryDto> transformedCategories = categorysStream
             .map( DtoTransformer::transform )
-            .sorted( ( c1, c2 ) -> c1.getName().compareTo( c2.getName() ) )
+            .sorted( Comparator.comparing( CategoryDto::getName ) )
             .collect( Collectors.toList() );
 
         return transformedCategories;

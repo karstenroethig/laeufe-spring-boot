@@ -18,12 +18,17 @@ import lombok.ToString;
 @ToString
 
 @DateRangeInSequence
-public class DateRange {
-	
-	@DateTimeFormat( pattern = "dd.MM.yyyy" )
-	@NotNull
-	private LocalDate startDate;
-	
-	@DateTimeFormat( pattern = "dd.MM.yyyy" )
-	private LocalDate endDate;
+public class DateRange implements Comparable<DateRange> {
+
+    @DateTimeFormat( pattern = "dd.MM.yyyy" )
+    @NotNull
+    private LocalDate startDate;
+
+    @DateTimeFormat( pattern = "dd.MM.yyyy" )
+    private LocalDate endDate;
+
+    @Override
+    public int compareTo( DateRange other ) {
+        return this.getStartDate().compareTo( other.getStartDate() );
+    }
 }

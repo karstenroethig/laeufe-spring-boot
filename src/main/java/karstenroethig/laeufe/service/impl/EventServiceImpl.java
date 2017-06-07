@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -101,7 +102,7 @@ public class EventServiceImpl implements EventService {
         List<EventListDto> events = StreamSupport
             .stream( eventRepository.findAll().spliterator(), false )
             .map( ( event ) -> transformList( event ) )
-            .sorted( ( e1, e2 ) -> -1 * e1.getEventPeriod().getStartDate().compareTo( e2.getEventPeriod().getStartDate() ) )
+            .sorted( Comparator.comparing( EventListDto::getEventPeriod ).reversed() )
             .collect( Collectors.toList() );
 
         return events;
@@ -290,7 +291,7 @@ public class EventServiceImpl implements EventService {
             }
         }
 
-        Collections.sort( upcomingEvents, ( e1, e2 ) -> 1 * e1.getEventPeriod().getStartDate().compareTo( e2.getEventPeriod().getStartDate() ) );
+        Collections.sort( upcomingEvents, Comparator.comparing( EventListDto::getEventPeriod ) );
 
         DashboardInfoDto stats = new DashboardInfoDto();
 
