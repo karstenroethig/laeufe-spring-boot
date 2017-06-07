@@ -48,6 +48,26 @@
 		
 		<addUniqueConstraint tableName="Country" columnNames="name" constraintName="unique_country_name"/>
 
+		<!-- ================ -->
+		<!-- Table "Category" -->
+		<!-- ================ -->
+		<createTable tableName="Category">
+			<column name="id" type="${type.id}" autoIncrement="true">
+				<constraints primaryKey="true" nullable="false"/>
+			</column>
+			<column name="name" type="varchar(255)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="description" type="varchar(1024)">
+				<constraints nullable="true"/>
+			</column>
+			<column name="archived" type="boolean">
+				<constraints nullable="false"/>
+			</column>
+		</createTable>
+		
+		<addUniqueConstraint tableName="Category" columnNames="name" constraintName="unique_category_name"/>
+
 		<!-- ============= -->
 		<!-- Table "Event" -->
 		<!-- ============= -->
@@ -101,6 +121,9 @@
 				<constraints primaryKey="true" nullable="false"/>
 			</column>
 			<column name="event_id" type="${type.idRef}">
+				<constraints nullable="false"/>
+			</column>
+			<column name="category_id" type="${type.idRef}">
 				<constraints nullable="false"/>
 			</column>
 			<column name="start_number" type="varchar(25)">

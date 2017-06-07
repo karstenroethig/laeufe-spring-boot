@@ -28,6 +28,7 @@ import karstenroethig.laeufe.dto.EventFullDto;
 import karstenroethig.laeufe.dto.EventListDto;
 import karstenroethig.laeufe.dto.RaceDto;
 import karstenroethig.laeufe.dto.info.DashboardInfoDto;
+import karstenroethig.laeufe.repository.CategoryRepository;
 import karstenroethig.laeufe.repository.CountryRepository;
 import karstenroethig.laeufe.repository.EventRepository;
 import karstenroethig.laeufe.repository.OrganizerRepository;
@@ -48,6 +49,9 @@ public class EventServiceImpl implements EventService {
 
     @Autowired
     protected CountryRepository countryRepository;
+    
+    @Autowired
+    protected CategoryRepository categoryRepository;
 
     @Override
     public EventFullDto newEvent() {
@@ -207,6 +211,7 @@ public class EventServiceImpl implements EventService {
         RaceDto raceDto = new RaceDto();
 
         raceDto.setId( race.getId() );
+        raceDto.setCategory( DtoTransformer.transform( race.getCategory() ) );
         raceDto.setStartNumber( race.getStartNumber() );
         raceDto.setStartTime( race.getStartTime() );
 

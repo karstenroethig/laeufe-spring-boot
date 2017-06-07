@@ -1,22 +1,23 @@
 package karstenroethig.laeufe.dto;
 
 
+import org.apache.commons.lang3.StringUtils;
+
+import karstenroethig.laeufe.domain.Category;
 import karstenroethig.laeufe.domain.Country;
 import karstenroethig.laeufe.domain.Organizer;
 
-import org.apache.commons.lang3.StringUtils;
-
 
 public class DtoTransformer {
-	
-	private DtoTransformer() {}
 
-	/*
-	 * =========
-	 * Organizer
-	 * =========
-	 */
-	
+    private DtoTransformer() {}
+
+    /*
+     * =========
+     * Organizer
+     * =========
+     */
+
     public static Organizer merge( Organizer organizer, OrganizerDto organizerDto ) {
 
         if( ( organizer == null ) || ( organizerDto == null ) ) {
@@ -46,12 +47,12 @@ public class DtoTransformer {
         return organizerDto;
     }
 
-	/*
-	 * =======
-	 * Country
-	 * =======
-	 */
-	
+    /*
+     * =======
+     * Country
+     * =======
+     */
+
     public static Country merge( Country country, CountryDto countryDto ) {
 
         if( ( country == null ) || ( countryDto == null ) ) {
@@ -77,5 +78,40 @@ public class DtoTransformer {
         countryDto.setArchived( country.getArchived() );
 
         return countryDto;
+    }
+
+    /*
+     * ========
+     * Category
+     * ========
+     */
+
+    public static Category merge( Category category, CategoryDto categoryDto ) {
+
+        if( ( category == null ) || ( categoryDto == null ) ) {
+            return null;
+        }
+
+        category.setName( categoryDto.getName() );
+        category.setDescription( categoryDto.getDescription() );
+        category.setArchived( categoryDto.getArchived() );
+
+        return category;
+    }
+
+    public static CategoryDto transform( Category category ) {
+
+        if( category == null ) {
+            return null;
+        }
+
+        CategoryDto categoryDto = new CategoryDto();
+
+        categoryDto.setId( category.getId() );
+        categoryDto.setName( category.getName() );
+        categoryDto.setDescription( category.getDescription() );
+        categoryDto.setArchived( category.getArchived() );
+
+        return categoryDto;
     }
 }

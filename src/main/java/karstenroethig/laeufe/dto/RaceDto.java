@@ -18,25 +18,28 @@ import lombok.ToString;
 @Setter
 @ToString
 public class RaceDto {
-	
-	private Long id;
-	
-	@Size( max = 25 )
-	private String startNumber;
-	
-	private LocalDateTime startTime;
-	
-	private BigDecimal distance;
-	
-	@Size( max = 25 )
-	private String racetime;
-	
-	@Size( max = 255 )
-	private String team;
-	
-	@Size( max = 1024 )
-	private String note;
-	
-	@NotNull
-	private RaceStatusEnum status;
+
+    private Long id;
+
+    @NotNull
+    private CategoryDto category;
+
+    @Size( max = 25 )
+    private String startNumber;
+
+    private LocalDateTime startTime;
+
+    private BigDecimal distance;
+
+    @Size( max = 25 )
+    private String racetime;
+
+    @Size( max = 255 )
+    private String team;
+
+    @Size( max = 1024 )
+    private String note;
+
+    @NotNull
+    private RaceStatusEnum status;
 }

@@ -30,6 +30,11 @@
 	<property name="organizer-wildsau" value="Wildsau Dirt Run"/>
 	<property name="organizer-xletix" value="XLETIX Challenge"/>
 
+	<property name="category-strassenlauf" value="Straßenlauf"/>
+	<property name="category-crosslauf" value="Cross-Lauf"/>
+	<property name="category-hindernislauf" value="Hindernislauf"/>
+	<property name="category-wanderung" value="Wanderung"/>
+
 	<property name="country-belgium" value="Belgien"/>
 	<property name="country-denmark" value="Dänemark"/>
 	<property name="country-germany" value="Deutschland"/>
@@ -115,6 +120,15 @@
 			separator=";">
 		</loadData>
 
+		<!-- ================ -->
+		<!-- Table "Category" -->
+		<!-- ================ -->
+		<loadData
+			tableName="Category"
+			file="db/data/categories.csv"
+			separator=";">
+		</loadData>
+
 		<!-- =============== -->
 		<!-- Table "Country" -->
 		<!-- =============== -->
@@ -140,6 +154,7 @@
 		</insert>
 		<insert tableName="Race">
 			<column name="event_id" valueNumeric="select id from Event where name = '${2010-firmenlauf-leipzig}'"/>
+			<column name="category_id" valueNumeric="select id from Category where name = '${category-strassenlauf}'"/>
 			<column name="start_time" valueDate="2010-06-09T19:00:00"/>
 			<column name="distance" value="5000"/>
 			<column name="racetime" value="00:22:53"/>
@@ -162,6 +177,7 @@
 		</insert>
 		<insert tableName="Race">
 			<column name="event_id" valueNumeric="select id from Event where name = '${2011-firmenlauf-leipzig}'"/>
+			<column name="category_id" valueNumeric="select id from Category where name = '${category-strassenlauf}'"/>
 			<column name="start_time" valueDate="2011-06-07T19:00:00"/>
 			<column name="distance" value="5200"/>
 			<column name="racetime" value="00:24:07"/>
@@ -184,6 +200,7 @@
 		</insert>
 		<insert tableName="Race">
 			<column name="event_id" valueNumeric="select id from Event where name = '${2012-firmenlauf-leipzig}'"/>
+			<column name="category_id" valueNumeric="select id from Category where name = '${category-strassenlauf}'"/>
 			<column name="start_time" valueDate="2012-06-20T19:30:00"/>
 			<column name="distance" value="5000"/>
 			<column name="racetime" value="ca. 00:20:00"/>
@@ -204,6 +221,7 @@
 		</insert>
 		<insert tableName="Race">
 			<column name="event_id" valueNumeric="select id from Event where name = '${2012-cross-de-luxe}'"/>
+			<column name="category_id" valueNumeric="select id from Category where name = '${category-hindernislauf}'"/>
 			<column name="start_number" value="2"/>
 			<column name="start_time" valueDate="2012-09-30T12:00:00"/>
 			<column name="distance" value="16000"/>
@@ -227,6 +245,7 @@
 		</insert>
 		<insert tableName="Race">
 			<column name="event_id" valueNumeric="select id from Event where name = '${2013-firmenlauf-leipzig}'"/>
+			<column name="category_id" valueNumeric="select id from Category where name = '${category-strassenlauf}'"/>
 			<column name="start_number" value="5439"/>
 			<column name="start_time" valueDate="2013-07-10T19:00:00"/>
 			<column name="distance" value="4800"/>
@@ -249,6 +268,7 @@
 		</insert>
 		<insert tableName="Race">
 			<column name="event_id" valueNumeric="select id from Event where name = '${2013-tough-mudder-nordwestdeutschland}'"/>
+			<column name="category_id" valueNumeric="select id from Category where name = '${category-hindernislauf}'"/>
 			<column name="start_number" value="2750"/>
 			<column name="start_time" valueDate="2013-07-13T12:00:00"/>
 			<column name="distance" value="18000"/>
@@ -269,6 +289,7 @@
 		</insert>
 		<insert tableName="Race">
 			<column name="event_id" valueNumeric="select id from Event where name = '${2013-cross-de-luxe}'"/>
+			<column name="category_id" valueNumeric="select id from Category where name = '${category-hindernislauf}'"/>
 			<column name="start_number" value="7"/>
 			<column name="start_time" valueDate="2013-09-28T12:00:00"/>
 			<column name="distance" value="17300"/>
@@ -289,6 +310,7 @@
 		</insert>
 		<insert tableName="Race">
 			<column name="event_id" valueNumeric="select id from Event where name = '${2013-tough-mudder-berlin-brandenburg}'"/>
+			<column name="category_id" valueNumeric="select id from Category where name = '${category-hindernislauf}'"/>
 			<column name="start_number" value="3834"/>
 			<column name="start_time" valueDate="2013-10-19T12:40:00"/>
 			<column name="distance" value="18000"/>
@@ -313,6 +335,7 @@
 		</insert>
 		<insert tableName="Race">
 			<column name="event_id" valueNumeric="select id from Event where name = '${2014-spartan-race-sprint-muenchen}'"/>
+			<column name="category_id" valueNumeric="select id from Category where name = '${category-hindernislauf}'"/>
 			<column name="start_number" value="4203"/>
 			<column name="start_time" valueDate="2014-04-12T10:45:00"/>
 			<column name="distance" value="8000"/>
@@ -335,6 +358,7 @@
 		</insert>
 		<insert tableName="Race">
 			<column name="event_id" valueNumeric="select id from Event where name = '${2014-fishermans-friend-strongmanrun-nuerburgring-where}'"/>
+			<column name="category_id" valueNumeric="select id from Category where name = '${category-hindernislauf}'"/>
 			<column name="start_number" value="1610"/>
 			<column name="start_time" valueDate="2014-05-10T13:00:00"/>
 			<column name="distance" value="24000"/>
@@ -355,6 +379,7 @@
 		</insert>
 		<insert tableName="Race">
 			<column name="event_id" valueNumeric="select id from Event where name = '${2014-firmenlauf-leipzig}'"/>
+			<column name="category_id" valueNumeric="select id from Category where name = '${category-strassenlauf}'"/>
 			<column name="start_number" value="5887"/>
 			<column name="start_time" valueDate="2014-06-04T19:00:00"/>
 			<column name="distance" value="4800"/>
@@ -376,10 +401,11 @@
 		</insert>
 		<insert tableName="Race">
 			<column name="event_id" valueNumeric="select id from Event where name = '${2014-ammelshainer-schlosslauf}'"/>
+			<column name="category_id" valueNumeric="select id from Category where name = '${category-strassenlauf}'"/>
 			<column name="start_number" value="85"/>
 			<column name="start_time" valueDate="2014-06-20T19:00:00"/>
 			<column name="distance" value="8500"/>
-			<column name="racetime" value="00:36:19:"/>
+			<column name="racetime" value="00:36:19"/>
 			<column name="status" value="2"/>
 		</insert>
 
@@ -396,6 +422,7 @@
 		</insert>
 		<insert tableName="Race">
 			<column name="event_id" valueNumeric="select id from Event where name = '${2014-spartan-race-super-koeln}'"/>
+			<column name="category_id" valueNumeric="select id from Category where name = '${category-hindernislauf}'"/>
 			<column name="start_number" value="13633"/>
 			<column name="start_time" valueDate="2014-06-28T10:30:00"/>
 			<column name="distance" value="13000"/>
@@ -418,6 +445,7 @@
 		</insert>
 		<insert tableName="Race">
 			<column name="event_id" valueNumeric="select id from Event where name = '${2014-tough-mudder-berlin-brandenburg}' and start_date = '2014-07-26'"/>
+			<column name="category_id" valueNumeric="select id from Category where name = '${category-hindernislauf}'"/>
 			<column name="start_number" value="5134"/>
 			<column name="start_time" valueDate="2014-07-27T11:20:00"/>
 			<column name="distance" value="18000"/>
@@ -440,6 +468,7 @@
 		</insert>
 		<insert tableName="Race">
 			<column name="event_id" valueNumeric="select id from Event where name = '${2014-tough-mudder-rhein-main}'"/>
+			<column name="category_id" valueNumeric="select id from Category where name = '${category-hindernislauf}'"/>
 			<column name="start_number" value="8868"/>
 			<column name="start_time" valueDate="2014-08-10T10:00:00"/>
 			<column name="distance" value="18000"/>
@@ -462,6 +491,7 @@
 		</insert>
 		<insert tableName="Race">
 			<column name="event_id" valueNumeric="select id from Event where name = '${2014-survival-run}'"/>
+			<column name="category_id" valueNumeric="select id from Category where name = '${category-hindernislauf}'"/>
 			<column name="start_number" value="2900"/>
 			<column name="start_time" valueDate="2014-09-13T13:00:00"/>
 			<column name="distance" value="16000"/>
@@ -483,6 +513,7 @@
 		</insert>
 		<insert tableName="Race">
 			<column name="event_id" valueNumeric="select id from Event where name = '${2014-cross-de-luxe}'"/>
+			<column name="category_id" valueNumeric="select id from Category where name = '${category-hindernislauf}'"/>
 			<column name="start_number" value="5422"/>
 			<column name="start_time" valueDate="2014-09-27T12:00:00"/>
 			<column name="distance" value="16000"/>
@@ -504,6 +535,7 @@
 		</insert>
 		<insert tableName="Race">
 			<column name="event_id" valueNumeric="select id from Event where name = '${2014-spartan-race-beast-south-london}'"/>
+			<column name="category_id" valueNumeric="select id from Category where name = '${category-hindernislauf}'"/>
 			<column name="start_number" value="1718"/>
 			<column name="start_time" valueDate="2014-10-11T11:30:00"/>
 			<column name="distance" value="25000"/>
@@ -525,6 +557,7 @@
 		</insert>
 		<insert tableName="Race">
 			<column name="event_id" valueNumeric="select id from Event where name = '${2014-fockeberglauf}'"/>
+			<column name="category_id" valueNumeric="select id from Category where name = '${category-crosslauf}'"/>
 			<column name="start_number" value="807"/>
 			<column name="start_time" valueDate="2014-11-01T10:00:00"/>
 			<column name="distance" value="12000"/>
@@ -544,6 +577,7 @@
 		</insert>
 		<insert tableName="Race">
 			<column name="event_id" valueNumeric="select id from Event where name = '${2014-getting-tough-race}'"/>
+			<column name="category_id" valueNumeric="select id from Category where name = '${category-hindernislauf}'"/>
 			<column name="start_number" value="1315"/>
 			<column name="start_time" valueDate="2014-12-06T10:30:00"/>
 			<column name="distance" value="22000"/>
@@ -568,6 +602,7 @@
 		</insert>
 		<insert tableName="Race">
 			<column name="event_id" valueNumeric="select id from Event where name = '${2015-tough-mudder-london-west}'"/>
+			<column name="category_id" valueNumeric="select id from Category where name = '${category-hindernislauf}'"/>
 			<column name="start_number" value="1057"/>
 			<column name="start_time" valueDate="2015-05-02T09:00:00"/>
 			<column name="distance" value="18350"/>
@@ -589,6 +624,7 @@
 		</insert>
 		<insert tableName="Race">
 			<column name="event_id" valueNumeric="select id from Event where name = '${2015-tough-mudder-nrw}'"/>
+			<column name="category_id" valueNumeric="select id from Category where name = '${category-hindernislauf}'"/>
 			<column name="start_number" value="29025"/>
 			<column name="start_time" valueDate="2015-05-23T08:00:00"/>
 			<column name="distance" value="15420"/>
@@ -611,6 +647,7 @@
 		</insert>
 		<insert tableName="Race">
 			<column name="event_id" valueNumeric="select id from Event where name = '${2015-tough-mudder-midlands}'"/>
+			<column name="category_id" valueNumeric="select id from Category where name = '${category-hindernislauf}'"/>
 			<column name="start_number" value="49822"/>
 			<column name="start_time" valueDate="2015-05-30T08:20:00"/>
 			<column name="distance" value="18010"/>
@@ -619,6 +656,7 @@
 		</insert>
 		<insert tableName="Race">
 			<column name="event_id" valueNumeric="select id from Event where name = '${2015-tough-mudder-midlands}'"/>
+			<column name="category_id" valueNumeric="select id from Category where name = '${category-hindernislauf}'"/>
 			<column name="start_number" value="30707"/>
 			<column name="start_time" valueDate="2015-05-31T09:00:00"/>
 			<column name="distance" value="17920"/>
@@ -639,6 +677,7 @@
 		</insert>
 		<insert tableName="Race">
 			<column name="event_id" valueNumeric="select id from Event where name = '${2015-firmenlauf-leipzig}'"/>
+			<column name="category_id" valueNumeric="select id from Category where name = '${category-strassenlauf}'"/>
 			<column name="start_number" value="7323"/>
 			<column name="start_time" valueDate="2015-06-03T19:00:00"/>
 			<column name="distance" value="5000"/>
@@ -662,6 +701,7 @@
 		</insert>
 		<insert tableName="Race">
 			<column name="event_id" valueNumeric="select id from Event where name = '${2015-tough-mudder-scotland}'"/>
+			<column name="category_id" valueNumeric="select id from Category where name = '${category-hindernislauf}'"/>
 			<column name="start_number" value="44621"/>
 			<column name="start_time" valueDate="2015-06-20T08:00:00"/>
 			<column name="distance" value="17380"/>
@@ -671,6 +711,7 @@
 		</insert>
 		<insert tableName="Race">
 			<column name="event_id" valueNumeric="select id from Event where name = '${2015-tough-mudder-scotland}'"/>
+			<column name="category_id" valueNumeric="select id from Category where name = '${category-hindernislauf}'"/>
 			<column name="start_number" value="32124"/>
 			<column name="start_time" valueDate="2015-06-21T19:00:00"/>
 			<column name="distance" value="17380"/>
@@ -691,6 +732,7 @@
 		</insert>
 		<insert tableName="Race">
 			<column name="event_id" valueNumeric="select id from Event where name = '${2015-ammelshainer-schlosslauf}'"/>
+			<column name="category_id" valueNumeric="select id from Category where name = '${category-strassenlauf}'"/>
 			<column name="start_time" valueDate="2015-06-26T19:00:00"/>
 			<column name="note" value="Nicht teilgenommen wegen Krankheit im Schottland-Urlaub"/>
 			<column name="status" value="3"/>
@@ -710,6 +752,7 @@
 		</insert>
 		<insert tableName="Race">
 			<column name="event_id" valueNumeric="select id from Event where name = '${2015-tough-mudder-norddeutschland}'"/>
+			<column name="category_id" valueNumeric="select id from Category where name = '${category-hindernislauf}'"/>
 			<column name="start_number" value="1703"/>
 			<column name="start_time" valueDate="2015-07-11T08:00:00"/>
 			<column name="distance" value="16000"/>
@@ -718,6 +761,7 @@
 		</insert>
 		<insert tableName="Race">
 			<column name="event_id" valueNumeric="select id from Event where name = '${2015-tough-mudder-norddeutschland}'"/>
+			<column name="category_id" valueNumeric="select id from Category where name = '${category-hindernislauf}'"/>
 			<column name="start_number" value="9607"/>
 			<column name="start_time" valueDate="2015-07-12T09:00:00"/>
 			<column name="distance" value="16000"/>
@@ -738,6 +782,7 @@
 		</insert>
 		<insert tableName="Race">
 			<column name="event_id" valueNumeric="select id from Event where name = '${2015-fishermans-friend-strongmanrun-ferropolis-where}'"/>
+			<column name="category_id" valueNumeric="select id from Category where name = '${category-hindernislauf}'"/>
 			<column name="start_number" value="1312"/>
 			<column name="start_time" valueDate="2015-08-15T22:00:00"/>
 			<column name="distance" value="18400"/>
@@ -759,6 +804,7 @@
 		</insert>
 		<insert tableName="Race">
 			<column name="event_id" valueNumeric="select id from Event where name = '${2015-wildsau-salzburg}'"/>
+			<column name="category_id" valueNumeric="select id from Category where name = '${category-hindernislauf}'"/>
 			<column name="start_number" value="162"/>
 			<column name="start_time" valueDate="2015-09-05T12:45:00"/>
 			<column name="distance" value="23800"/>
@@ -780,6 +826,7 @@
 		</insert>
 		<insert tableName="Race">
 			<column name="event_id" valueNumeric="select id from Event where name = '${2015-tough-mudder-sueddeutschland}'"/>
+			<column name="category_id" valueNumeric="select id from Category where name = '${category-hindernislauf}'"/>
 			<column name="start_number" value="22090"/>
 			<column name="start_time" valueDate="2015-09-12T10:00:00"/>
 			<column name="distance" value="18000"/>
@@ -789,6 +836,7 @@
 		</insert>
 		<insert tableName="Race">
 			<column name="event_id" valueNumeric="select id from Event where name = '${2015-tough-mudder-sueddeutschland}'"/>
+			<column name="category_id" valueNumeric="select id from Category where name = '${category-hindernislauf}'"/>
 			<column name="start_number" value="37323"/>
 			<column name="start_time" valueDate="2015-09-13T10:00:00"/>
 			<column name="distance" value="18000"/>
@@ -810,6 +858,7 @@
 		</insert>
 		<insert tableName="Race">
 			<column name="event_id" valueNumeric="select id from Event where name = '${2015-cross-de-luxe}'"/>
+			<column name="category_id" valueNumeric="select id from Category where name = '${category-hindernislauf}'"/>
 			<column name="start_number" value="5366"/>
 			<column name="start_time" valueDate="2015-09-26T12:00:00"/>
 			<column name="distance" value="16000"/>
@@ -831,6 +880,7 @@
 		</insert>
 		<insert tableName="Race">
 			<column name="event_id" valueNumeric="select id from Event where name = '${2015-spartan-race-beast-kouty}'"/>
+			<column name="category_id" valueNumeric="select id from Category where name = '${category-hindernislauf}'"/>
 			<column name="start_number" value="7281"/>
 			<column name="start_time" valueDate="2015-10-11T09:30:00"/>
 			<column name="distance" value="25000"/>
@@ -852,6 +902,7 @@
 		</insert>
 		<insert tableName="Race">
 			<column name="event_id" valueNumeric="select id from Event where name = '${2015-xletix-berlin-city}'"/>
+			<column name="category_id" valueNumeric="select id from Category where name = '${category-hindernislauf}'"/>
 			<column name="start_number" value="44056"/>
 			<column name="start_time" valueDate="2015-10-17T11:00:00"/>
 			<column name="distance" value="12000"/>
@@ -874,6 +925,7 @@
 		</insert>
 		<insert tableName="Race">
 			<column name="event_id" valueNumeric="select id from Event where name = '${2015-fockeberglauf}'"/>
+			<column name="category_id" valueNumeric="select id from Category where name = '${category-crosslauf}'"/>
 			<column name="start_number" value="189"/>
 			<column name="start_time" valueDate="2015-11-07T10:00:00"/>
 			<column name="distance" value="12000"/>
@@ -893,6 +945,7 @@
 		</insert>
 		<insert tableName="Race">
 			<column name="event_id" valueNumeric="select id from Event where name = '${2015-getting-tough-race}'"/>
+			<column name="category_id" valueNumeric="select id from Category where name = '${category-hindernislauf}'"/>
 			<column name="start_number" value="1972"/>
 			<column name="start_time" valueDate="2015-12-05T10:00:00"/>
 			<column name="distance" value="22000"/>
@@ -917,6 +970,7 @@
 		</insert>
 		<insert tableName="Race">
 			<column name="event_id" valueNumeric="select id from Event where name = '${2016-mud-masters-haarlemmermeer}'"/>
+			<column name="category_id" valueNumeric="select id from Category where name = '${category-hindernislauf}'"/>
 			<column name="start_number" value="14057"/>
 			<column name="start_time" valueDate="2016-03-05T09:30:00"/>
 			<column name="distance" value="42000"/>
@@ -938,6 +992,7 @@
 		</insert>
 		<insert tableName="Race">
 			<column name="event_id" valueNumeric="select id from Event where name = '${2016-spartan-race-sprint-muenchen}' and start_date = '2016-04-16'"/>
+			<column name="category_id" valueNumeric="select id from Category where name = '${category-hindernislauf}'"/>
 			<column name="start_number" value="33464"/>
 			<column name="start_time" valueDate="2016-04-16T09:30:00"/>
 			<column name="distance" value="8000"/>
@@ -959,6 +1014,7 @@
 		</insert>
 		<insert tableName="Race">
 			<column name="event_id" valueNumeric="select id from Event where name = '${2016-7-seen-wanderung}'"/>
+			<column name="category_id" valueNumeric="select id from Category where name = '${category-wanderung}'"/>
 			<column name="start_time" valueDate="2016-05-06T18:00:00"/>
 			<column name="note" value="Nicht gestartet wegen Verletzung"/>
 			<column name="status" value="3"/>
@@ -977,6 +1033,7 @@
 		</insert>
 		<insert tableName="Race">
 			<column name="event_id" valueNumeric="select id from Event where name = '${2016-xletix-berlin}'"/>
+			<column name="category_id" valueNumeric="select id from Category where name = '${category-hindernislauf}'"/>
 			<column name="start_number" value=""/>
 			<column name="start_time" valueDate="2016-05-21T10:00:00"/>
 			<column name="note" value="Nicht gestartet wegen Verletzung"/>
@@ -995,6 +1052,7 @@
 		</insert>
 		<insert tableName="Race">
 			<column name="event_id" valueNumeric="select id from Event where name = '${2016-spartan-race-super-kouty}'"/>
+			<column name="category_id" valueNumeric="select id from Category where name = '${category-hindernislauf}'"/>
 			<column name="start_time" valueDate="2016-05-28T10:00:00"/>
 			<column name="note" value="Nicht gestartet wegen Verletzung"/>
 			<column name="status" value="3"/>
@@ -1012,6 +1070,7 @@
 		</insert>
 		<insert tableName="Race">
 			<column name="event_id" valueNumeric="select id from Event where name = '${2016-xletix-mitten-in-deutschland}' and start_date = '2016-06-18'"/>
+			<column name="category_id" valueNumeric="select id from Category where name = '${category-hindernislauf}'"/>
 			<column name="start_time" valueDate="2016-06-18T10:00:00"/>
 			<column name="note" value="Nicht gestartet wegen Verletzung"/>
 			<column name="status" value="3"/>
@@ -1030,12 +1089,14 @@
 		</insert>
 		<insert tableName="Race">
 			<column name="event_id" valueNumeric="select id from Event where name = '${2016-tough-mudder-norddeutschland}' and start_date = '2016-07-16'"/>
+			<column name="category_id" valueNumeric="select id from Category where name = '${category-hindernislauf}'"/>
 			<column name="start_time" valueDate="2016-07-16T09:00:00"/>
 			<column name="note" value="Nicht gestartet wegen Verletzung"/>
 			<column name="status" value="3"/>
 		</insert>
 		<insert tableName="Race">
 			<column name="event_id" valueNumeric="select id from Event where name = '${2016-tough-mudder-norddeutschland}' and start_date = '2016-07-16'"/>
+			<column name="category_id" valueNumeric="select id from Category where name = '${category-hindernislauf}'"/>
 			<column name="start_time" valueDate="2016-07-17T09:00:00"/>
 			<column name="note" value="Nicht gestartet wegen Verletzung"/>
 			<column name="status" value="3"/>
@@ -1054,6 +1115,7 @@
 		</insert>
 		<insert tableName="Race">
 			<column name="event_id" valueNumeric="select id from Event where name = '${2016-xletix-sueddeutschland}'"/>
+			<column name="category_id" valueNumeric="select id from Category where name = '${category-hindernislauf}'"/>
 			<column name="start_number" value="87050"/>
 			<column name="start_time" valueDate="2016-08-13T10:00:00"/>
 			<column name="distance" value="18000"/>
@@ -1075,6 +1137,7 @@
 		</insert>
 		<insert tableName="Race">
 			<column name="event_id" valueNumeric="select id from Event where name = '${2016-spartan-race-beast-tirol}'"/>
+			<column name="category_id" valueNumeric="select id from Category where name = '${category-hindernislauf}'"/>
 			<column name="start_number" value=""/>
 			<column name="start_time" valueDate="2016-09-10T09:15:00"/>
 			<column name="distance" value="25000"/>
@@ -1097,6 +1160,7 @@
 		</insert>
 		<insert tableName="Race">
 			<column name="event_id" valueNumeric="select id from Event where name = '${2016-cross-de-luxe}'"/>
+			<column name="category_id" valueNumeric="select id from Category where name = '${category-hindernislauf}'"/>
 			<column name="start_number" value="1569"/>
 			<column name="start_time" valueDate="2016-09-24T13:00:00"/>
 			<column name="distance" value="16000"/>
@@ -1106,6 +1170,7 @@
 		</insert>
 		<insert tableName="Race">
 			<column name="event_id" valueNumeric="select id from Event where name = '${2016-cross-de-luxe}'"/>
+			<column name="category_id" valueNumeric="select id from Category where name = '${category-hindernislauf}'"/>
 			<column name="start_number" value="6623"/>
 			<column name="start_time" valueDate="2016-09-25T13:30:00"/>
 			<column name="distance" value="8000"/>
@@ -1128,6 +1193,7 @@
 		</insert>
 		<insert tableName="Race">
 			<column name="event_id" valueNumeric="select id from Event where name = '${2016-toughest-copenhagen}'"/>
+			<column name="category_id" valueNumeric="select id from Category where name = '${category-hindernislauf}'"/>
 			<column name="start_number" value="232"/>
 			<column name="start_time" valueDate="2016-10-01T11:00:00"/>
 			<column name="distance" value="8000"/>
@@ -1149,6 +1215,7 @@
 		</insert>
 		<insert tableName="Race">
 			<column name="event_id" valueNumeric="select id from Event where name = '${2016-halbmarathon-leipzig}'"/>
+			<column name="category_id" valueNumeric="select id from Category where name = '${category-strassenlauf}'"/>
 			<column name="start_number" value="2264"/>
 			<column name="start_time" valueDate="2016-10-09T10:00:00"/>
 			<column name="distance" value="21098"/>
@@ -1170,6 +1237,7 @@
 		</insert>
 		<insert tableName="Race">
 			<column name="event_id" valueNumeric="select id from Event where name = '${2016-king-of-cross}'"/>
+			<column name="category_id" valueNumeric="select id from Category where name = '${category-crosslauf}'"/>
 			<column name="start_number" value="1562"/>
 			<column name="start_time" valueDate="2016-10-30T11:00:00"/>
 			<column name="distance" value="16000"/>
@@ -1193,6 +1261,7 @@
 		</insert>
 		<insert tableName="Race">
 			<column name="event_id" valueNumeric="select id from Event where name = '${2017-neuseen-trailrun}'"/>
+			<column name="category_id" valueNumeric="select id from Category where name = '${category-crosslauf}'"/>
 			<column name="start_number" value="1011"/>
 			<column name="start_time" valueDate="2017-04-01T11:00:00"/>
 			<column name="distance" value="15600"/>
@@ -1213,6 +1282,7 @@
 		</insert>
 		<insert tableName="Race">
 			<column name="event_id" valueNumeric="select id from Event where name = '${2017-spartan-race-sprint-muenchen}' and start_date = '2017-04-08'"/>
+			<column name="category_id" valueNumeric="select id from Category where name = '${category-hindernislauf}'"/>
 			<column name="start_number" value="44019"/>
 			<column name="start_time" valueDate="2017-04-08T10:00:00"/>
 			<column name="distance" value="8000"/>
@@ -1234,6 +1304,7 @@
 		</insert>
 		<insert tableName="Race">
 			<column name="event_id" valueNumeric="select id from Event where name = '${2017-toughest-malmoe}'"/>
+			<column name="category_id" valueNumeric="select id from Category where name = '${category-hindernislauf}'"/>
 			<column name="start_number" value="3092"/>
 			<column name="start_time" valueDate="2017-06-05T12:55:00"/>
 			<column name="distance" value="8000"/>
@@ -1255,6 +1326,7 @@
 		</insert>
 		<insert tableName="Race">
 			<column name="event_id" valueNumeric="select id from Event where name = '${2017-xletix-berlin}' and start_date = '2017-05-26'"/>
+			<column name="category_id" valueNumeric="select id from Category where name = '${category-hindernislauf}'"/>
 			<column name="start_number" value="75006"/>
 			<column name="start_time" valueDate="2017-05-27T10:20:00"/>
 			<column name="distance" value="20000"/>
@@ -1264,6 +1336,7 @@
 		</insert>
 		<insert tableName="Race">
 			<column name="event_id" valueNumeric="select id from Event where name = '${2017-xletix-berlin}' and start_date = '2017-05-26'"/>
+			<column name="category_id" valueNumeric="select id from Category where name = '${category-hindernislauf}'"/>
 			<column name="start_number" value="38118"/>
 			<column name="start_time" valueDate="2017-05-28T10:20:00"/>
 			<column name="distance" value="14000"/>
@@ -1284,6 +1357,7 @@
 		</insert>
 		<insert tableName="Race">
 			<column name="event_id" valueNumeric="select id from Event where name = '${2017-tough-mudder-norddeutschland}' and start_date = '2017-07-15'"/>
+			<column name="category_id" valueNumeric="select id from Category where name = '${category-hindernislauf}'"/>
 			<column name="start_time" valueDate="2017-07-15T06:00:00"/>
 			<column name="status" value="1"/>
 		</insert>
@@ -1311,6 +1385,7 @@
 		</insert>
 		<insert tableName="Race">
 			<column name="event_id" valueNumeric="select id from Event where name = '${2017-tough-mudder-berlin-brandenburg}' and start_date = '2017-09-09'"/>
+			<column name="category_id" valueNumeric="select id from Category where name = '${category-hindernislauf}'"/>
 			<column name="start_time" valueDate="2017-09-09T06:00:00"/>
 			<column name="status" value="1"/>
 		</insert>
@@ -1328,6 +1403,7 @@
 		</insert>
 		<insert tableName="Race">
 			<column name="event_id" valueNumeric="select id from Event where name = '${2017-cross-de-luxe}'"/>
+			<column name="category_id" valueNumeric="select id from Category where name = '${category-hindernislauf}'"/>
 			<column name="start_time" valueDate="2017-09-23T06:00:00"/>
 			<column name="status" value="1"/>
 		</insert>

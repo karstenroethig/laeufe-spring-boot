@@ -31,6 +31,7 @@
 			<table class="table table-bordered">
 				<thead>
 					<tr>
+						<th>Kategorie</th>
 						<th>Startnummer</th>
 						<th class="text-right">Startzeit</th>
 						<th class="text-right">Distanz</th>
@@ -41,9 +42,10 @@
 				</thead>
 				<tbody>
 					<tr th:if="${#lists.isEmpty(event.races)}">
-						<td colspan="6" align="center" th:text="#{default.table.empty.text}">Data can not be found.</td>
+						<td colspan="7" align="center" th:text="#{default.table.empty.text}">Data can not be found.</td>
 					</tr>
 					<tr th:each="race : ${event.races}">
+						<td th:text="${race.category.name}">[category]</td>
 						<td th:text="${race.startNumber}">[startNumber]</td>
 						<td class="text-right" th:text="${#temporals.format(race.startTime, #messages.msg('default.startTimeFormat'))}">[startTime]</td>
 						<td class="text-right">

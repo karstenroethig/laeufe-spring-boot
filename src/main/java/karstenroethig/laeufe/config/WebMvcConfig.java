@@ -9,6 +9,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
+import karstenroethig.laeufe.controller.formatter.CategoryFormatter;
 import karstenroethig.laeufe.controller.formatter.CountryFormatter;
 import karstenroethig.laeufe.controller.formatter.OrganizerFormatter;
 
@@ -20,6 +21,7 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
     public void addFormatters( FormatterRegistry formatterRegistry ) {
         formatterRegistry.addFormatter( new OrganizerFormatter() );
         formatterRegistry.addFormatter( new CountryFormatter() );
+        formatterRegistry.addFormatter( new CategoryFormatter() );
     }
 
     @Bean

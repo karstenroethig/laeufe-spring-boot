@@ -9,6 +9,9 @@
 			<li th:class="${#strings.equals(submenu,'organizer')} ? active">
 				<a th:href="@{/organizer/list}" th:text="#{organizer.label.plural}">Race Organizers</a>
 			</li>
+			<li th:class="${#strings.equals(submenu,'category')} ? active">
+				<a th:href="@{/category/list}" th:text="#{category.label.plural}">Categories</a>
+			</li>
 			<li th:class="${#strings.equals(submenu,'country')} ? active">
 				<a th:href="@{/country/list}" th:text="#{country.label.plural}">Countries</a>
 			</li>

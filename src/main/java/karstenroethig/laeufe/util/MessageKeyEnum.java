@@ -59,6 +59,34 @@ public enum MessageKeyEnum {
 
     /** "Country > Löschen": Unerwarteter Fehler ist aufgetreten. */
     COUNTRY_DELETE_ERROR( "country.delete.error" ),
+    
+    /* ********************
+     * Category.
+     * ********************
+     */
+    /** "Category > Hinzufügen": Eingaben nicht valide. */
+    CATEGORY_SAVE_INVALID( "category.save.invalid" ),
+    
+    /** "Category > Hinzufügen": Erfolgreich gespeichert. */
+    CATEGORY_SAVE_SUCCESS( "category.save.success" ),
+    
+    /** "Category > Hinzufügen": Unerwarteter Fehler ist aufgetreten. */
+    CATEGORY_SAVE_ERROR( "category.save.error" ),
+    
+    /** "Category > Bearbeiten": Eingaben nicht vailde. */
+    CATEGORY_UPDATE_INVALID( "category.update.invalid" ),
+    
+    /** "Category > Bearbeiten": Erfolgreich gespeichert. */
+    CATEGORY_UPDATE_SUCCESS( "category.update.success" ),
+    
+    /** "Category > Bearbeiten": Unerwarteter Fehler ist aufgetreten. */
+    CATEGORY_UPDATE_ERROR( "category.update.error" ),
+    
+    /** "Category > Löschen": Erfolgreich gelöscht. */
+    CATEGORY_DELETE_SUCCESS( "category.delete.success" ),
+    
+    /** "Category > Löschen": Unerwarteter Fehler ist aufgetreten. */
+    CATEGORY_DELETE_ERROR( "category.delete.error" ),
 
     /* ********************
     * Event.

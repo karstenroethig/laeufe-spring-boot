@@ -10,6 +10,7 @@ public class UrlMappings {
 
     public static final String CONTROLLER_ORGANIZER = "/organizer";
     public static final String CONTROLLER_COUNTRY = "/country";
+    public static final String CONTROLLER_CATEGORY = "/category";
     public static final String CONTROLLER_EVENT = "/event";
     public static final String CONTROLLER_ADMIN = "/admin";
 

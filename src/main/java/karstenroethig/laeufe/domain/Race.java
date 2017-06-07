@@ -34,56 +34,60 @@ import lombok.ToString;
     }
 )
 public class Race {
-	
-	@Column(
-		length = 18,
-		nullable = false,
-		unique = true
-	)
-	@GeneratedValue( strategy = GenerationType.IDENTITY )
-	@Id
-	private Long id;
-	
-	@JoinColumn( name = "event_id" )
-	@ManyToOne( optional = false )
-	private Event event;
-	
-	@Column(
-		length = 25,
-		name = "start_number"
-	)
-	private String startNumber;
-	
-	@Column( name = "start_time" )
-	@Type( type = "org.hibernate.type.LocalDateTimeType" )
-	private LocalDateTime startTime;
 
-	/** Distance of the race in meters. */
-	private Integer distance;
-	
-	@Column( length = 25 )
-	private String racetime;
+    @Column(
+        length = 18,
+        nullable = false,
+        unique = true
+    )
+    @GeneratedValue( strategy = GenerationType.IDENTITY )
+    @Id
+    private Long id;
 
-	@Column( length = 255 )
-	private String team;
+    @JoinColumn( name = "event_id" )
+    @ManyToOne( optional = false )
+    private Event event;
 
-	@Column( length = 1024 )
-	private String note;
-	
-	@Column( nullable = false )
-	private Integer status;
-	
-	@Transient
-	public RaceStatusEnum getStatusEnum() {
-		return RaceStatusEnum.getStatusForKey( status );
-	}
-	
-	public void setStatusEnum( RaceStatusEnum raceStatusEnum ) {
-		
-		if( raceStatusEnum != null ) {
-			setStatus( raceStatusEnum.getKey() );
-		} else {
-			setStatus( null );
-		}
-	}
+    @JoinColumn( name = "category_id" )
+    @ManyToOne( optional = false )
+    private Category category;
+
+    @Column(
+        length = 25,
+        name = "start_number"
+    )
+    private String startNumber;
+
+    @Column( name = "start_time" )
+    @Type( type = "org.hibernate.type.LocalDateTimeType" )
+    private LocalDateTime startTime;
+
+    /** Distance of the race in meters. */
+    private Integer distance;
+
+    @Column( length = 25 )
+    private String racetime;
+
+    @Column( length = 255 )
+    private String team;
+
+    @Column( length = 1024 )
+    private String note;
+
+    @Column( nullable = false )
+    private Integer status;
+
+    @Transient
+    public RaceStatusEnum getStatusEnum() {
+        return RaceStatusEnum.getStatusForKey( status );
+    }
+
+    public void setStatusEnum( RaceStatusEnum raceStatusEnum ) {
+
+        if( raceStatusEnum != null ) {
+            setStatus( raceStatusEnum.getKey() );
+        } else {
+            setStatus( null );
+        }
+    }
 }
