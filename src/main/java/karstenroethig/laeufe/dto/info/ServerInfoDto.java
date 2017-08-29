@@ -5,8 +5,8 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class ServerInfoDto {
-
+public class ServerInfoDto
+{
 	private SystemInfoDto systemInfo;
 	private MemoryInfoDto memoryInfo;
 }

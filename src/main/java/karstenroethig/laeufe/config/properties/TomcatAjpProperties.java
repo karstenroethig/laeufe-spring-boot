@@ -8,8 +8,8 @@ import lombok.Setter;
 @ConfigurationProperties( prefix = "tomcat.ajp", ignoreUnknownFields = false )
 @Getter
 @Setter
-public class TomcatAjpProperties {
-
-    private boolean enabled = false;
-    private int port = 8009;
+public class TomcatAjpProperties
+{
+	private boolean enabled = false;
+	private int port = 8009;
 }

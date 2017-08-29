@@ -3,120 +3,111 @@ package karstenroethig.laeufe.util;
 import java.util.ArrayList;
 import java.util.List;
 
+import lombok.Getter;
 
-public class Messages {
+@Getter
+public class Messages
+{
+	public static final String ATTRIBUTE_NAME = "messages";
 
-    public static final String ATTRIBUTE_NAME = "messages";
+	private List<Message> errors = null;
+	private List<Message> warnings = null;
+	private List<Message> infos = null;
+	private List<Message> successes = null;
 
-    private List<Message> errors = null;
+	public static Messages createWithError( MessageKeyEnum messageKeyEnum, Object... params )
+	{
+		Messages messages = new Messages();
 
-    private List<Message> warnings = null;
+		messages.addError( messageKeyEnum, params );
 
-    private List<Message> infos = null;
+		return messages;
+	}
 
-    private List<Message> successes = null;
+	public static Messages createWithWarning( MessageKeyEnum messageKeyEnum, Object... params )
+	{
+		Messages messages = new Messages();
 
-    public static Messages createWithError( MessageKeyEnum messageKeyEnum, Object... params ) {
+		messages.addWarning( messageKeyEnum, params );
 
-        Messages messages = new Messages();
+		return messages;
+	}
 
-        messages.addError( messageKeyEnum, params );
+	public static Messages createWithInfo( MessageKeyEnum messageKeyEnum, Object... params )
+	{
+		Messages messages = new Messages();
 
-        return messages;
-    }
+		messages.addInfo( messageKeyEnum, params );
 
-    public static Messages createWithWarning( MessageKeyEnum messageKeyEnum, Object... params ) {
+		return messages;
+	}
 
-        Messages messages = new Messages();
+	public static Messages createWithSuccess( MessageKeyEnum messageKeyEnum, Object... params )
+	{
+		Messages messages = new Messages();
 
-        messages.addWarning( messageKeyEnum, params );
+		messages.addSuccess( messageKeyEnum, params );
 
-        return messages;
-    }
+		return messages;
+	}
 
-    public static Messages createWithInfo( MessageKeyEnum messageKeyEnum, Object... params ) {
+	public void addError( MessageKeyEnum messageKeyEnum, Object... params )
+	{
+		if ( errors == null )
+		{
+			errors = new ArrayList<Message>();
+		}
 
-        Messages messages = new Messages();
+		errors.add( new Message( messageKeyEnum.getKey(), params ) );
+	}
 
-        messages.addInfo( messageKeyEnum, params );
+	public void addWarning( MessageKeyEnum messageKeyEnum, Object... params )
+	{
+		if ( warnings == null )
+		{
+			warnings = new ArrayList<Message>();
+		}
 
-        return messages;
-    }
+		warnings.add( new Message( messageKeyEnum.getKey(), params ) );
+	}
 
-    public static Messages createWithSuccess( MessageKeyEnum messageKeyEnum, Object... params ) {
+	public void addInfo( MessageKeyEnum messageKeyEnum, Object... params )
+	{
+		if ( infos == null )
+		{
+			infos = new ArrayList<Message>();
+		}
 
-        Messages messages = new Messages();
+		infos.add( new Message( messageKeyEnum.getKey(), params ) );
+	}
 
-        messages.addSuccess( messageKeyEnum, params );
+	public void addSuccess( MessageKeyEnum messageKeyEnum, Object... params )
+	{
+		if ( successes == null )
+		{
+			successes = new ArrayList<Message>();
+		}
 
-        return messages;
-    }
+		successes.add( new Message( messageKeyEnum.getKey(), params ) );
+	}
 
-    public void addError( MessageKeyEnum messageKeyEnum, Object... params ) {
+	public boolean hasErrors()
+	{
+		return ( errors != null ) && ( errors.isEmpty() == false );
+	}
 
-        if( errors == null ) {
-            errors = new ArrayList<Message>();
-        }
+	public boolean hasWarnings()
+	{
+		return ( warnings != null ) && ( warnings.isEmpty() == false );
+	}
 
-        errors.add( new Message( messageKeyEnum.getKey(), params ) );
-    }
+	public boolean hasInfos()
+	{
+		return ( infos != null ) && ( infos.isEmpty() == false );
+	}
 
-    public void addWarning( MessageKeyEnum messageKeyEnum, Object... params ) {
-
-        if( warnings == null ) {
-            warnings = new ArrayList<Message>();
-        }
-
-        warnings.add( new Message( messageKeyEnum.getKey(), params ) );
-    }
-
-    public void addInfo( MessageKeyEnum messageKeyEnum, Object... params ) {
-
-        if( infos == null ) {
-            infos = new ArrayList<Message>();
-        }
-
-        infos.add( new Message( messageKeyEnum.getKey(), params ) );
-    }
-
-    public void addSuccess( MessageKeyEnum messageKeyEnum, Object... params ) {
-
-        if( successes == null ) {
-            successes = new ArrayList<Message>();
-        }
-
-        successes.add( new Message( messageKeyEnum.getKey(), params ) );
-    }
-
-    public boolean hasErrors() {
-        return ( errors != null ) && ( errors.isEmpty() == false );
-    }
-
-    public boolean hasWarnings() {
-        return ( warnings != null ) && ( warnings.isEmpty() == false );
-    }
-
-    public boolean hasInfos() {
-        return ( infos != null ) && ( infos.isEmpty() == false );
-    }
-
-    public boolean hasSuccesses() {
-        return ( successes != null ) && ( successes.isEmpty() == false );
-    }
-
-    public List<Message> getErrors() {
-        return errors;
-    }
-
-    public List<Message> getWarnings() {
-        return warnings;
-    }
-
-    public List<Message> getInfos() {
-        return infos;
-    }
-
-    public List<Message> getSuccesses() {
-        return successes;
-    }
+	public boolean hasSuccesses()
+	{
+		return ( successes != null ) && ( successes.isEmpty() == false );
+	}
 }

@@ -13,34 +13,37 @@ import karstenroethig.laeufe.controller.formatter.CategoryFormatter;
 import karstenroethig.laeufe.controller.formatter.CountryFormatter;
 import karstenroethig.laeufe.controller.formatter.OrganizerFormatter;
 
-
 @Configuration
-public class WebMvcConfig extends WebMvcConfigurerAdapter {
+public class WebMvcConfig extends WebMvcConfigurerAdapter
+{
+	@Override
+	public void addFormatters( FormatterRegistry formatterRegistry )
+	{
+		formatterRegistry.addFormatter( new OrganizerFormatter() );
+		formatterRegistry.addFormatter( new CountryFormatter() );
+		formatterRegistry.addFormatter( new CategoryFormatter() );
+	}
 
-    @Override
-    public void addFormatters( FormatterRegistry formatterRegistry ) {
-        formatterRegistry.addFormatter( new OrganizerFormatter() );
-        formatterRegistry.addFormatter( new CountryFormatter() );
-        formatterRegistry.addFormatter( new CategoryFormatter() );
-    }
+	@Bean
+	public LocaleResolver localeResolver()
+	{
+		SessionLocaleResolver slr = new SessionLocaleResolver();
 
-    @Bean
-    public LocaleResolver localeResolver() {
-        SessionLocaleResolver slr = new SessionLocaleResolver();
+		return slr;
+	}
 
-        return slr;
-    }
+	@Bean
+	public LocaleChangeInterceptor localeChangeInterceptor()
+	{
+		LocaleChangeInterceptor lci = new LocaleChangeInterceptor();
+		lci.setParamName( "lang" );
 
-    @Bean
-    public LocaleChangeInterceptor localeChangeInterceptor() {
-        LocaleChangeInterceptor lci = new LocaleChangeInterceptor();
-        lci.setParamName( "lang" );
+		return lci;
+	}
 
-        return lci;
-    }
-
-    @Override
-    public void addInterceptors( InterceptorRegistry registry ) {
-        registry.addInterceptor( localeChangeInterceptor() );
-    }
+	@Override
+	public void addInterceptors( InterceptorRegistry registry )
+	{
+		registry.addInterceptor( localeChangeInterceptor() );
+	}
 }

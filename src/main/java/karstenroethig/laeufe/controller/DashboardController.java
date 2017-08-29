@@ -10,11 +10,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-
 @ComponentScan
 @Controller
-public class DashboardController {
-
+public class DashboardController
+{
 	@Autowired
 	EventService eventService;
 
@@ -22,8 +21,8 @@ public class DashboardController {
 		value = { UrlMappings.HOME, UrlMappings.DASHBOARD },
 		method = RequestMethod.GET
 	)
-	public String dashborad( Model model ) {
-		
+	public String dashborad( Model model )
+	{
 		model.addAttribute( "stats", eventService.createDashboradStatistics() );
 		
 		return "views/dashboard";

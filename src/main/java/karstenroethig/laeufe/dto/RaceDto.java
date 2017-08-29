@@ -12,34 +12,33 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-
 @NoArgsConstructor
 @Getter
 @Setter
 @ToString
-public class RaceDto {
+public class RaceDto
+{
+	private Long id;
 
-    private Long id;
+	@NotNull
+	private CategoryDto category;
 
-    @NotNull
-    private CategoryDto category;
+	@Size( max = 25 )
+	private String startNumber;
 
-    @Size( max = 25 )
-    private String startNumber;
+	private LocalDateTime startTime;
 
-    private LocalDateTime startTime;
+	private BigDecimal distance;
 
-    private BigDecimal distance;
+	@Size( max = 25 )
+	private String racetime;
 
-    @Size( max = 25 )
-    private String racetime;
+	@Size( max = 255 )
+	private String team;
 
-    @Size( max = 255 )
-    private String team;
+	@Size( max = 1024 )
+	private String note;
 
-    @Size( max = 1024 )
-    private String note;
-
-    @NotNull
-    private RaceStatusEnum status;
+	@NotNull
+	private RaceStatusEnum status;
 }

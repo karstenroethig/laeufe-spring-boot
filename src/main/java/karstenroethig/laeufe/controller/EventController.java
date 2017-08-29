@@ -28,180 +28,184 @@ import karstenroethig.laeufe.service.OrganizerService;
 import karstenroethig.laeufe.util.MessageKeyEnum;
 import karstenroethig.laeufe.util.Messages;
 
-
 @ComponentScan
 @Controller
 @RequestMapping( UrlMappings.CONTROLLER_EVENT )
-public class EventController {
+public class EventController
+{
+	@Autowired
+	EventService eventService;
 
-    @Autowired
-    EventService eventService;
+	@Autowired
+	OrganizerService organizerService;
 
-    @Autowired
-    OrganizerService organizerService;
+	@Autowired
+	CountryService countryService;
 
-    @Autowired
-    CountryService countryService;
+	@RequestMapping(
+		value = UrlMappings.ACTION_LIST,
+		method = RequestMethod.GET
+	)
+	public String list( Model model )
+	{
+		model.addAttribute( "allEvents", eventService.getAllEvents() );
 
-    @RequestMapping(
-        value = UrlMappings.ACTION_LIST,
-        method = RequestMethod.GET
-    )
-    public String list( Model model ) {
+		return ViewEnum.EVENT_LIST.getViewName();
+	}
 
-        model.addAttribute( "allEvents", eventService.getAllEvents() );
+	@RequestMapping(
+		value = UrlMappings.ACTION_CREATE,
+		method = RequestMethod.GET
+	)
+	public String create( Model model )
+	{
+		model.addAttribute( "event", eventService.newEvent() );
+		model.addAttribute( "allUnarchivedOrganizers", organizerService.getAllUnarchivedOrganizers() );
+		model.addAttribute( "allUnarchivedCountries", countryService.getAllUnarchivedCountries() );
 
-        return ViewEnum.EVENT_LIST.getViewName();
-    }
+		return ViewEnum.EVENT_CREATE.getViewName();
+	}
 
-    @RequestMapping(
-        value = UrlMappings.ACTION_CREATE,
-        method = RequestMethod.GET
-    )
-    public String create( Model model ) {
+	@RequestMapping(
+		value = UrlMappings.ACTION_SHOW,
+		method = RequestMethod.GET
+	)
+	public String show( @PathVariable( "id" ) Long eventId, Model model )
+	{
+		EventFullDto event = eventService.findEvent( eventId );
 
-        model.addAttribute( "event", eventService.newEvent() );
-        model.addAttribute( "allUnarchivedOrganizers", organizerService.getAllUnarchivedOrganizers() );
-        model.addAttribute( "allUnarchivedCountries", countryService.getAllUnarchivedCountries() );
+		if ( event == null )
+		{
+			throw new NotFoundException( String.valueOf( eventId ) );
+		}
 
-        return ViewEnum.EVENT_CREATE.getViewName();
-    }
+		model.addAttribute( "event", event );
 
-    @RequestMapping(
-        value = UrlMappings.ACTION_SHOW,
-        method = RequestMethod.GET
-    )
-    public String show( @PathVariable( "id" ) Long eventId, Model model ) {
+		return ViewEnum.EVENT_SHOW.getViewName();
+	}
 
-        EventFullDto event = eventService.findEvent( eventId );
+	@RequestMapping(
+		value = UrlMappings.ACTION_EDIT,
+		method = RequestMethod.GET
+	)
+	public String edit( @PathVariable( "id" ) Long eventId, Model model )
+	{
+		EventFullDto event = eventService.findEvent( eventId );
 
-        if( event == null ) {
-            throw new NotFoundException( String.valueOf( eventId ) );
-        }
+		if ( event == null )
+		{
+			throw new NotFoundException( String.valueOf( eventId ) );
+		}
 
-        model.addAttribute( "event", event );
+		model.addAttribute( "event", event );
+		model.addAttribute( "allUnarchivedOrganizers", organizerService.getAllUnarchivedOrganizers() );
+		model.addAttribute( "allArchivedOrganizers", organizerService.getAllArchivedOrganizers() );
+		model.addAttribute( "allUnarchivedCountries", countryService.getAllUnarchivedCountries() );
+		model.addAttribute( "allArchivedCountries", countryService.getAllArchivedCountries() );
 
-        return ViewEnum.EVENT_SHOW.getViewName();
-    }
+		return ViewEnum.EVENT_EDIT.getViewName();
+	}
 
-    @RequestMapping(
-        value = UrlMappings.ACTION_EDIT,
-        method = RequestMethod.GET
-    )
-    public String edit( @PathVariable( "id" ) Long eventId, Model model ) {
+	@RequestMapping(
+		value = UrlMappings.ACTION_DELETE,
+		method = RequestMethod.GET
+	)
+	public String delete( @PathVariable( "id" ) Long eventId, final RedirectAttributes redirectAttributes, Model model )
+	{
+		EventFullDto event = eventService.findEvent( eventId );
 
-        EventFullDto event = eventService.findEvent( eventId );
+		if ( event == null )
+		{
+			throw new NotFoundException( String.valueOf( eventId ) );
+		}
 
-        if( event == null ) {
-            throw new NotFoundException( String.valueOf( eventId ) );
-        }
+		if ( eventService.deleteEvent( eventId ) )
+		{
+			redirectAttributes.addFlashAttribute( Messages.ATTRIBUTE_NAME,
+				Messages.createWithSuccess( MessageKeyEnum.EVENT_DELETE_SUCCESS, event.getName() ) );
+		}
+		else
+		{
+			redirectAttributes.addFlashAttribute( Messages.ATTRIBUTE_NAME,
+				Messages.createWithError( MessageKeyEnum.EVENT_DELETE_ERROR, event.getName() ) );
+		}
 
-        model.addAttribute( "event", event );
-        model.addAttribute( "allUnarchivedOrganizers", organizerService.getAllUnarchivedOrganizers() );
-        model.addAttribute( "allArchivedOrganizers", organizerService.getAllArchivedOrganizers() );
-        model.addAttribute( "allUnarchivedCountries", countryService.getAllUnarchivedCountries() );
-        model.addAttribute( "allArchivedCountries", countryService.getAllArchivedCountries() );
+		return UrlMappings.redirect( UrlMappings.CONTROLLER_EVENT, UrlMappings.ACTION_LIST );
+	}
 
-        return ViewEnum.EVENT_EDIT.getViewName();
-    }
+	@RequestMapping(
+		value = UrlMappings.ACTION_SAVE,
+		method = RequestMethod.POST
+	)
+	public String save( @ModelAttribute( "event" ) @Valid EventFullDto event, BindingResult bindingResult,
+		final RedirectAttributes redirectAttributes, Model model )
+	{
+		if ( bindingResult.hasErrors() )
+		{
+			model.addAttribute( Messages.ATTRIBUTE_NAME, Messages.createWithError( MessageKeyEnum.EVENT_SAVE_INVALID ) );
 
-    @RequestMapping(
-        value = UrlMappings.ACTION_DELETE,
-        method = RequestMethod.GET
-    )
-    public String delete( @PathVariable( "id" ) Long eventId, final RedirectAttributes redirectAttributes,
-        Model model ) {
+			model.addAttribute( "allUnarchivedOrganizers", organizerService.getAllUnarchivedOrganizers() );
+			model.addAttribute( "allUnarchivedCountries", countryService.getAllUnarchivedCountries() );
 
-        EventFullDto event = eventService.findEvent( eventId );
+			return ViewEnum.EVENT_CREATE.getViewName();
+		}
 
-        if( event == null ) {
-            throw new NotFoundException( String.valueOf( eventId ) );
-        }
+		if ( eventService.saveEvent( event ) != null )
+		{
+			redirectAttributes.addFlashAttribute( Messages.ATTRIBUTE_NAME,
+				Messages.createWithSuccess( MessageKeyEnum.EVENT_SAVE_SUCCESS, event.getName() ) );
 
-        if( eventService.deleteEvent( eventId ) ) {
-            redirectAttributes.addFlashAttribute( Messages.ATTRIBUTE_NAME,
-                Messages.createWithSuccess( MessageKeyEnum.EVENT_DELETE_SUCCESS, event.getName() ) );
-        } else {
-            redirectAttributes.addFlashAttribute( Messages.ATTRIBUTE_NAME,
-                Messages.createWithError( MessageKeyEnum.EVENT_DELETE_ERROR, event.getName() ) );
-        }
+			return UrlMappings.redirect( UrlMappings.CONTROLLER_EVENT, UrlMappings.ACTION_LIST );
+		}
 
-        return UrlMappings.redirect( UrlMappings.CONTROLLER_EVENT, UrlMappings.ACTION_LIST );
-    }
+		model.addAttribute( Messages.ATTRIBUTE_NAME, Messages.createWithError( MessageKeyEnum.EVENT_SAVE_ERROR ) );
 
-    @RequestMapping(
-        value = UrlMappings.ACTION_SAVE,
-        method = RequestMethod.POST
-    )
-    public String save( @ModelAttribute( "event" ) @Valid EventFullDto event, BindingResult bindingResult,
-    		final RedirectAttributes redirectAttributes, Model model ) {
+		model.addAttribute( "allUnarchivedOrganizers", organizerService.getAllUnarchivedOrganizers() );
+		model.addAttribute( "allUnarchivedCountries", countryService.getAllUnarchivedCountries() );
 
-        if( bindingResult.hasErrors() ) {
+		return ViewEnum.EVENT_CREATE.getViewName();
+	}
 
-            model.addAttribute( Messages.ATTRIBUTE_NAME,
-                Messages.createWithError( MessageKeyEnum.EVENT_SAVE_INVALID ) );
+	@RequestMapping(
+		value = UrlMappings.ACTION_UPDATE,
+		method = RequestMethod.POST
+	)
+	public String update( @ModelAttribute( "event" ) @Valid EventFullDto event, BindingResult bindingResult,
+		final RedirectAttributes redirectAttributes, Model model )
+	{
+		if ( bindingResult.hasErrors() )
+		{
+			model.addAttribute( Messages.ATTRIBUTE_NAME, Messages.createWithError( MessageKeyEnum.EVENT_UPDATE_INVALID ) );
 
-            model.addAttribute( "allUnarchivedOrganizers", organizerService.getAllUnarchivedOrganizers() );
-            model.addAttribute( "allUnarchivedCountries", countryService.getAllUnarchivedCountries() );
+			model.addAttribute( "allUnarchivedOrganizers", organizerService.getAllUnarchivedOrganizers() );
+			model.addAttribute( "allArchivedOrganizers", organizerService.getAllArchivedOrganizers() );
+			model.addAttribute( "allUnarchivedCountries", countryService.getAllUnarchivedCountries() );
+			model.addAttribute( "allArchivedCountries", countryService.getAllArchivedCountries() );
 
-            return ViewEnum.EVENT_CREATE.getViewName();
-        }
+			return ViewEnum.EVENT_EDIT.getViewName();
+		}
 
-        if( eventService.saveEvent( event ) != null ) {
-            redirectAttributes.addFlashAttribute( Messages.ATTRIBUTE_NAME,
-                Messages.createWithSuccess( MessageKeyEnum.EVENT_SAVE_SUCCESS, event.getName() ) );
+		if ( eventService.editEvent( event ) != null )
+		{
+			redirectAttributes.addFlashAttribute( Messages.ATTRIBUTE_NAME,
+				Messages.createWithSuccess( MessageKeyEnum.EVENT_UPDATE_SUCCESS, event.getName() ) );
 
-            return UrlMappings.redirect( UrlMappings.CONTROLLER_EVENT, UrlMappings.ACTION_LIST );
-        }
+			return UrlMappings.redirect( UrlMappings.CONTROLLER_EVENT, UrlMappings.ACTION_LIST );
+		}
 
-        model.addAttribute( Messages.ATTRIBUTE_NAME, Messages.createWithError( MessageKeyEnum.EVENT_SAVE_ERROR ) );
+		model.addAttribute( Messages.ATTRIBUTE_NAME, Messages.createWithError( MessageKeyEnum.EVENT_UPDATE_ERROR ) );
 
-        model.addAttribute( "allUnarchivedOrganizers", organizerService.getAllUnarchivedOrganizers() );
-        model.addAttribute( "allUnarchivedCountries", countryService.getAllUnarchivedCountries() );
+		model.addAttribute( "allUnarchivedOrganizers", organizerService.getAllUnarchivedOrganizers() );
+		model.addAttribute( "allArchivedOrganizers", organizerService.getAllArchivedOrganizers() );
+		model.addAttribute( "allUnarchivedCountries", countryService.getAllUnarchivedCountries() );
+		model.addAttribute( "allArchivedCountries", countryService.getAllArchivedCountries() );
 
-        return ViewEnum.EVENT_CREATE.getViewName();
-    }
+		return ViewEnum.EVENT_EDIT.getViewName();
+	}
 
-    @RequestMapping(
-        value = UrlMappings.ACTION_UPDATE,
-        method = RequestMethod.POST
-    )
-    public String update( @ModelAttribute( "event" ) @Valid EventFullDto event, BindingResult bindingResult,
-    		final RedirectAttributes redirectAttributes, Model model ) {
-
-        if( bindingResult.hasErrors() ) {
-
-            model.addAttribute( Messages.ATTRIBUTE_NAME,
-                Messages.createWithError( MessageKeyEnum.EVENT_UPDATE_INVALID ) );
-
-            model.addAttribute( "allUnarchivedOrganizers", organizerService.getAllUnarchivedOrganizers() );
-            model.addAttribute( "allArchivedOrganizers", organizerService.getAllArchivedOrganizers() );
-            model.addAttribute( "allUnarchivedCountries", countryService.getAllUnarchivedCountries() );
-            model.addAttribute( "allArchivedCountries", countryService.getAllArchivedCountries() );
-
-            return ViewEnum.EVENT_EDIT.getViewName();
-        }
-
-        if( eventService.editEvent( event ) != null ) {
-            redirectAttributes.addFlashAttribute( Messages.ATTRIBUTE_NAME,
-                Messages.createWithSuccess( MessageKeyEnum.EVENT_UPDATE_SUCCESS, event.getName() ) );
-
-            return UrlMappings.redirect( UrlMappings.CONTROLLER_EVENT, UrlMappings.ACTION_LIST );
-        }
-
-        model.addAttribute( Messages.ATTRIBUTE_NAME, Messages.createWithError( MessageKeyEnum.EVENT_UPDATE_ERROR ) );
-
-        model.addAttribute( "allUnarchivedOrganizers", organizerService.getAllUnarchivedOrganizers() );
-        model.addAttribute( "allArchivedOrganizers", organizerService.getAllArchivedOrganizers() );
-        model.addAttribute( "allUnarchivedCountries", countryService.getAllUnarchivedCountries() );
-        model.addAttribute( "allArchivedCountries", countryService.getAllArchivedCountries() );
-
-        return ViewEnum.EVENT_EDIT.getViewName();
-    }
-
-    @ExceptionHandler( NotFoundException.class )
-    void handleNotFoundException( HttpServletResponse response, NotFoundException ex ) throws IOException {
-        response.sendError( HttpStatus.NOT_FOUND.value(),
-            String.format( "Event %s does not exist.", ex.getMessage() ) );
-    }
+	@ExceptionHandler( NotFoundException.class )
+	void handleNotFoundException( HttpServletResponse response, NotFoundException ex ) throws IOException
+	{
+		response.sendError( HttpStatus.NOT_FOUND.value(), String.format( "Event %s does not exist.", ex.getMessage() ) );
+	}
 }

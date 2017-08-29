@@ -19,108 +19,116 @@ import karstenroethig.laeufe.repository.CategoryRepository;
 import karstenroethig.laeufe.service.CategoryService;
 import karstenroethig.laeufe.service.exceptions.CategoryAlreadyExistsException;
 
-
 @Service
 @Transactional
-public class CategoryServiceImpl implements CategoryService {
+public class CategoryServiceImpl implements CategoryService
+{
+	@Autowired
+	protected CategoryRepository categoryRepository;
 
-    @Autowired
-    protected CategoryRepository categoryRepository;
+	@Override
+	public CategoryDto newCategory()
+	{
+		CategoryDto categoryDto = new CategoryDto();
 
-    @Override
-    public CategoryDto newCategory() {
+		categoryDto.setArchived( Boolean.FALSE );
 
-        CategoryDto categoryDto = new CategoryDto();
+		return categoryDto;
+	}
 
-        categoryDto.setArchived( Boolean.FALSE );
+	@Override
+	public CategoryDto saveCategory( CategoryDto categoryDto ) throws CategoryAlreadyExistsException
+	{
+		List<Category> existingCategories = categoryRepository.findByNameIgnoreCase(
+			StringUtils.trim( categoryDto.getName() ) );
 
-        return categoryDto;
-    }
+		if ( existingCategories != null && existingCategories.isEmpty() == false )
+		{
+			throw new CategoryAlreadyExistsException();
+		}
 
-    @Override
-    public CategoryDto saveCategory( CategoryDto categoryDto ) throws CategoryAlreadyExistsException {
+		Category category = new Category();
 
-        List<Category> existingCategories = categoryRepository.findByNameIgnoreCase(
-                StringUtils.trim( categoryDto.getName() ) );
+		category = DtoTransformer.merge( category, categoryDto );
 
-        if( existingCategories != null && existingCategories.isEmpty() == false ) {
-            throw new CategoryAlreadyExistsException();
-        }
+		return DtoTransformer.transform( categoryRepository.save( category ) );
+	}
 
-        Category category = new Category();
+	@Override
+	public Boolean deleteCategory( Long categoryId )
+	{
+		Category temp = categoryRepository.findOne( categoryId );
 
-        category = DtoTransformer.merge( category, categoryDto );
+		if ( temp != null )
+		{
+			categoryRepository.delete( temp );
 
-        return DtoTransformer.transform( categoryRepository.save( category ) );
-    }
+			return true;
+		}
 
-    @Override
-    public Boolean deleteCategory( Long categoryId ) {
+		return false;
+	}
 
-        Category temp = categoryRepository.findOne( categoryId );
+	@Override
+	public CategoryDto editCategory( CategoryDto categoryDto ) throws CategoryAlreadyExistsException
+	{
+		List<Category> existingCategories = categoryRepository.findByNameIgnoreCase(
+			StringUtils.trim( categoryDto.getName() ) );
 
-        if( temp != null ) {
-            categoryRepository.delete( temp );
+		if ( existingCategories != null && existingCategories.isEmpty() == false
+			&& existingCategories.get( 0 ).getId().equals( categoryDto.getId() ) == false )
+		{
+			throw new CategoryAlreadyExistsException();
+		}
 
-            return true;
-        }
+		Category category = categoryRepository.findOne( categoryDto.getId() );
 
-        return false;
-    }
+		category = DtoTransformer.merge( category, categoryDto );
 
-    @Override
-    public CategoryDto editCategory( CategoryDto categoryDto ) throws CategoryAlreadyExistsException {
+		return DtoTransformer.transform( categoryRepository.save( category ) );
+	}
 
-        List<Category> existingCategories = categoryRepository.findByNameIgnoreCase(
-                StringUtils.trim( categoryDto.getName() ) );
+	@Override
+	public CategoryDto findCategory( Long categoryId )
+	{
+		return DtoTransformer.transform( categoryRepository.findOne( categoryId ) );
+	}
 
-        if( existingCategories != null && existingCategories.isEmpty() == false
-                && existingCategories.get( 0 ).getId().equals( categoryDto.getId() ) == false ) {
-            throw new CategoryAlreadyExistsException();
-        }
+	@Override
+	public List<CategoryDto> getAllCategories()
+	{
+		return transformCategories( categoryRepository.findAll() );
+	}
 
-        Category category = categoryRepository.findOne( categoryDto.getId() );
+	@Override
+	public List<CategoryDto> getAllArchivedCategories()
+	{
+		return transformCategories( categoryRepository.findByArchived( true ) );
+	}
 
-        category = DtoTransformer.merge( category, categoryDto );
+	@Override
+	public List<CategoryDto> getAllUnarchivedCategories()
+	{
+		return transformCategories( categoryRepository.findByArchived( false ) );
+	}
 
-        return DtoTransformer.transform( categoryRepository.save( category ) );
-    }
+	private List<CategoryDto> transformCategories( List<Category> categorys )
+	{
+		return transformCategories( categorys.stream() );
+	}
 
-    @Override
-    public CategoryDto findCategory( Long categoryId ) {
-        return DtoTransformer.transform( categoryRepository.findOne( categoryId ) );
-    }
+	private List<CategoryDto> transformCategories( Iterable<Category> categorys )
+	{
+		return transformCategories( StreamSupport.stream( categorys.spliterator(), false ) );
+	}
 
-    @Override
-    public List<CategoryDto> getAllCategories() {
-        return transformCategories( categoryRepository.findAll() );
-    }
+	private List<CategoryDto> transformCategories( Stream<Category> categorysStream )
+	{
+		List<CategoryDto> transformedCategories = categorysStream
+			.map( DtoTransformer::transform )
+			.sorted( Comparator.comparing( CategoryDto::getName ) )
+			.collect( Collectors.toList() );
 
-    @Override
-    public List<CategoryDto> getAllArchivedCategories() {
-        return transformCategories( categoryRepository.findByArchived( true ) );
-    }
-
-    @Override
-    public List<CategoryDto> getAllUnarchivedCategories() {
-        return transformCategories( categoryRepository.findByArchived( false ) );
-    }
-
-    private List<CategoryDto> transformCategories( List<Category> categorys ) {
-        return transformCategories( categorys.stream() );
-    }
-
-    private List<CategoryDto> transformCategories( Iterable<Category> categorys ) {
-        return transformCategories( StreamSupport.stream( categorys.spliterator(), false ) );
-    }
-
-    private List<CategoryDto> transformCategories( Stream<Category> categorysStream ) {
-
-        List<CategoryDto> transformedCategories = categorysStream
-            .map( DtoTransformer::transform )
-            .sorted( Comparator.comparing( CategoryDto::getName ) )
-            .collect( Collectors.toList() );
-
-        return transformedCategories;
-    }
+		return transformedCategories;
+	}
 }

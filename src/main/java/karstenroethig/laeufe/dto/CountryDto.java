@@ -8,22 +8,21 @@ import lombok.ToString;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-
 @NoArgsConstructor
 @Getter
 @Setter
 @ToString
-public class CountryDto {
+public class CountryDto
+{
+	private Long id;
 
-    private Long id;
+	@NotNull
+	@Size(
+		min = 1,
+		max = 255
+	)
+	private String name;
 
-    @NotNull
-    @Size(
-        min = 1,
-        max = 255
-    )
-    private String name;
-
-    @NotNull
-    private Boolean archived;
+	@NotNull
+	private Boolean archived;
 }

@@ -21,7 +21,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-
 @NoArgsConstructor
 @Getter
 @Setter
@@ -29,65 +28,69 @@ import lombok.ToString;
 
 @Entity
 @Table(
-    uniqueConstraints = {
-        @UniqueConstraint( columnNames = { "id" } )
-    }
+	uniqueConstraints = {
+		@UniqueConstraint( columnNames = { "id" } )
+	}
 )
-public class Race {
+public class Race
+{
+	@Column(
+		length = 18,
+		nullable = false,
+		unique = true
+	)
+	@GeneratedValue( strategy = GenerationType.IDENTITY )
+	@Id
+	private Long id;
 
-    @Column(
-        length = 18,
-        nullable = false,
-        unique = true
-    )
-    @GeneratedValue( strategy = GenerationType.IDENTITY )
-    @Id
-    private Long id;
+	@JoinColumn( name = "event_id" )
+	@ManyToOne( optional = false )
+	private Event event;
 
-    @JoinColumn( name = "event_id" )
-    @ManyToOne( optional = false )
-    private Event event;
+	@JoinColumn( name = "category_id" )
+	@ManyToOne( optional = false )
+	private Category category;
 
-    @JoinColumn( name = "category_id" )
-    @ManyToOne( optional = false )
-    private Category category;
+	@Column(
+		length = 25,
+		name = "start_number"
+	)
+	private String startNumber;
 
-    @Column(
-        length = 25,
-        name = "start_number"
-    )
-    private String startNumber;
+	@Column( name = "start_time" )
+	@Type( type = "org.hibernate.type.LocalDateTimeType" )
+	private LocalDateTime startTime;
 
-    @Column( name = "start_time" )
-    @Type( type = "org.hibernate.type.LocalDateTimeType" )
-    private LocalDateTime startTime;
+	/** Distance of the race in meters. */
+	private Integer distance;
 
-    /** Distance of the race in meters. */
-    private Integer distance;
+	@Column( length = 25 )
+	private String racetime;
 
-    @Column( length = 25 )
-    private String racetime;
+	@Column( length = 255 )
+	private String team;
 
-    @Column( length = 255 )
-    private String team;
+	@Column( length = 1024 )
+	private String note;
 
-    @Column( length = 1024 )
-    private String note;
+	@Column( nullable = false )
+	private Integer status;
 
-    @Column( nullable = false )
-    private Integer status;
+	@Transient
+	public RaceStatusEnum getStatusEnum()
+	{
+		return RaceStatusEnum.getStatusForKey( status );
+	}
 
-    @Transient
-    public RaceStatusEnum getStatusEnum() {
-        return RaceStatusEnum.getStatusForKey( status );
-    }
-
-    public void setStatusEnum( RaceStatusEnum raceStatusEnum ) {
-
-        if( raceStatusEnum != null ) {
-            setStatus( raceStatusEnum.getKey() );
-        } else {
-            setStatus( null );
-        }
-    }
+	public void setStatusEnum( RaceStatusEnum raceStatusEnum )
+	{
+		if ( raceStatusEnum != null )
+		{
+			setStatus( raceStatusEnum.getKey() );
+		}
+		else
+		{
+			setStatus( null );
+		}
+	}
 }

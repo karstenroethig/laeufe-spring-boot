@@ -13,7 +13,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
-
 @NoArgsConstructor
 @Getter
 @Setter
@@ -21,28 +20,28 @@ import javax.persistence.UniqueConstraint;
 
 @Entity
 @Table(
-    uniqueConstraints = {
-        @UniqueConstraint( columnNames = {"id" } ),
-        @UniqueConstraint( columnNames = {"name" } )
-    }
+	uniqueConstraints = {
+		@UniqueConstraint( columnNames = {"id" } ),
+		@UniqueConstraint( columnNames = {"name" } )
+	}
 )
-public class Country {
+public class Country
+{
+	@Column(
+		length = 18,
+		nullable = false,
+		unique = true
+	)
+	@GeneratedValue( strategy = GenerationType.IDENTITY )
+	@Id
+	private Long id;
 
-    @Column(
-        length = 18,
-        nullable = false,
-        unique = true
-    )
-    @GeneratedValue( strategy = GenerationType.IDENTITY )
-    @Id
-    private Long id;
+	@Column(
+		length = 255,
+		nullable = false
+	)
+	private String name;
 
-    @Column(
-        length = 255,
-        nullable = false
-    )
-    private String name;
-
-    @Column( nullable = false )
-    private Boolean archived;
+	@Column( nullable = false )
+	private Boolean archived;
 }

@@ -11,8 +11,8 @@ import javax.validation.Payload;
 @Constraint( validatedBy = { DateRangeInSequenceValidator.class } )
 @Retention( RetentionPolicy.RUNTIME )
 @Target( { ElementType.TYPE } )
-public @interface DateRangeInSequence {
-	
+public @interface DateRangeInSequence
+{
 	String message() default "{validator.dateRange.notInSequence}";
 	Class<?>[] groups() default {};
 	Class<? extends Payload>[] payload() default {};

@@ -14,66 +14,65 @@ import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-
 @NoArgsConstructor
 @Getter
 @Setter
 @ToString
-public class EventListDto {
+public class EventListDto
+{
+	private Long id;
 
-    private Long id;
+	@NotNull
+	private OrganizerDto organizer;
 
-    @NotNull
-    private OrganizerDto organizer;
+	@NotNull
+	@Size(
+		min = 1,
+		max = 255
+	)
+	private String name;
 
-    @NotNull
-    @Size(
-        min = 1,
-        max = 255
-    )
-    private String name;
+	@NotNull
+	@Valid
+	private DateRange eventPeriod = new DateRange();
 
-    @NotNull
-    @Valid
-    private DateRange eventPeriod = new DateRange();
+	@NotNull
+	@Size(
+		min = 1,
+		max = 1024
+	)
+	private String locationName;
 
-    @NotNull
-    @Size(
-        min = 1,
-        max = 1024
-    )
-    private String locationName;
+	@NotNull
+	private CountryDto locationCountry;
 
-    @NotNull
-    private CountryDto locationCountry;
+	@Digits(
+		integer = 9,
+		fraction = 6
+	)
+	private BigDecimal locationLatitude;
 
-    @Digits(
-        integer = 9,
-        fraction = 6
-    )
-    private BigDecimal locationLatitude;
+	@Digits(
+		integer = 9,
+		fraction = 6
+	)
+	private BigDecimal locationLongitude;
 
-    @Digits(
-        integer = 9,
-        fraction = 6
-    )
-    private BigDecimal locationLongitude;
+	@NotNull
+	@Size(
+		min = 1,
+		max = 25
+	)
+	private String distance;
 
-    @NotNull
-    @Size(
-        min = 1,
-        max = 25
-    )
-    private String distance;
+	@Size( max = 25 )
+	private String racetime;
 
-    @Size( max = 25 )
-    private String racetime;
+	@Size( max = 25 )
+	private String costs;
 
-    @Size( max = 25 )
-    private String costs;
+	@NotNull
+	private EventStatusEnum status;
 
-    @NotNull
-    private EventStatusEnum status;
-
-    private long remainingDays;
+	private long remainingDays;
 }

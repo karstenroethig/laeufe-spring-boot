@@ -1,7 +1,10 @@
 package karstenroethig.laeufe.domain.enums;
 
-public enum EventStatusEnum {
+import lombok.Getter;
 
+@Getter
+public enum EventStatusEnum
+{
 	/*
 	 * event status depends on race status
 	 * - planed: default and if there are no races
@@ -9,47 +12,38 @@ public enum EventStatusEnum {
 	 * - completed: if there is at least one race with status completed
 	 * - failed: only if all races have status failed
 	 */
-	
+
 	PLANED( 0, "fa fa-calendar", "label label-default" ),
 	REGISTERED( 1, "fa fa-calendar-check-o", "label label-success" ),
 	COMPLETED( 2, "pficon pficon-ok", "label label-success" ),
 	FAILED( 3, "pficon pficon-error-circle-o", "label label-danger" );
-	
+
 	private int key;
 	private String icon;
 	private String label;
-	
-	private EventStatusEnum( int key, String icon, String label ) {
+
+	private EventStatusEnum( int key, String icon, String label )
+	{
 		this.key = key;
 		this.icon = icon;
 		this.label = label;
 	}
-	
-	public int getKey() {
-		return key;
-	}
-	
-	public String getIcon() {
-		return icon;
-	}
-	
-	public String getLabel() {
-		return label;
-	}
-	
-	public static EventStatusEnum getStatusForKey( Integer key ) {
-		
-		if( key == null ) {
+
+	public static EventStatusEnum getStatusForKey( Integer key )
+	{
+		if ( key == null )
+		{
 			return null;
 		}
-		
-		for( EventStatusEnum status : values() ) {
-			
-			if( key.equals( status.getKey() ) ) {
+
+		for ( EventStatusEnum status : values() )
+		{
+			if ( key.equals( status.getKey() ) )
+			{
 				return status;
 			}
 		}
-		
+
 		return null;
 	}
 }

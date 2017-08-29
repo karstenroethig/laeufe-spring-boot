@@ -6,20 +6,19 @@ import karstenroethig.laeufe.dto.EventFullDto;
 import karstenroethig.laeufe.dto.EventListDto;
 import karstenroethig.laeufe.dto.info.DashboardInfoDto;
 
-
-public interface EventService {
-	
+public interface EventService
+{
 	public EventFullDto newEvent();
 
-    public EventFullDto saveEvent( EventFullDto eventDto );
+	public EventFullDto saveEvent( EventFullDto eventDto );
 
-    public Boolean deleteEvent( Long eventId );
+	public Boolean deleteEvent( Long eventId );
 
-    public EventFullDto editEvent( EventFullDto eventDto );
+	public EventFullDto editEvent( EventFullDto eventDto );
 
-    public EventFullDto findEvent( Long eventId );
+	public EventFullDto findEvent( Long eventId );
 
-    public Collection<EventListDto> getAllEvents();
+	public Collection<EventListDto> getAllEvents();
 
-    public DashboardInfoDto createDashboradStatistics();
+	public DashboardInfoDto createDashboradStatistics();
 }

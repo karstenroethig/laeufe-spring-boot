@@ -5,8 +5,8 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class SystemInfoDto {
-
+public class SystemInfoDto
+{
 	private String version;
 	private String serverTime;
 	private String uptime;

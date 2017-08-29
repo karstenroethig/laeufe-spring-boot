@@ -5,8 +5,8 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class MemoryInfoDto {
-
+public class MemoryInfoDto
+{
 	private String totalFormated;
 	private String usedFormated;
 	private long freePercentage;

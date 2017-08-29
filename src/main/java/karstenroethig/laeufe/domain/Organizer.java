@@ -13,7 +13,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
-
 @NoArgsConstructor
 @Getter
 @Setter
@@ -26,29 +25,29 @@ import javax.persistence.UniqueConstraint;
         @UniqueConstraint( columnNames = {"name" } )
     }
 )
-public class Organizer {
+public class Organizer
+{
+	@Column(
+		length = 18,
+		nullable = false,
+		unique = true
+	)
+	@GeneratedValue( strategy = GenerationType.IDENTITY )
+	@Id
+	private Long id;
 
-    @Column(
-        length = 18,
-        nullable = false,
-        unique = true
-    )
-    @GeneratedValue( strategy = GenerationType.IDENTITY )
-    @Id
-    private Long id;
+	@Column(
+		length = 255,
+		nullable = false
+	)
+	private String name;
 
-    @Column(
-        length = 255,
-        nullable = false
-    )
-    private String name;
+	@Column(
+		length = 1024,
+		nullable = true
+	)
+	private String description;
 
-    @Column(
-        length = 1024,
-        nullable = true
-    )
-    private String description;
-
-    @Column( nullable = false )
-    private Boolean archived;
+	@Column( nullable = false )
+	private Boolean archived;
 }

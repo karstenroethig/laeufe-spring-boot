@@ -8,30 +8,31 @@ import karstenroethig.laeufe.dto.CountryDto;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.format.Formatter;
 
+public class CountryFormatter implements Formatter<CountryDto>
+{
+	@Override
+	public String print( CountryDto country, Locale locale )
+	{
+		if ( ( country == null ) || ( country.getId() == null ) )
+		{
+			return StringUtils.EMPTY;
+		}
 
-public class CountryFormatter implements Formatter<CountryDto> {
+		return country.getId().toString();
+	}
 
-    @Override
-    public String print( CountryDto country, Locale locale ) {
+	@Override
+	public CountryDto parse( String id, Locale locale ) throws ParseException
+	{
+		if ( StringUtils.isBlank( id ) && ( StringUtils.isNumeric( id ) == false ) )
+		{
+			return null;
+		}
 
-        if( ( country == null ) || ( country.getId() == null ) ) {
-            return StringUtils.EMPTY;
-        }
+		CountryDto country = new CountryDto();
 
-        return country.getId().toString();
-    }
+		country.setId( Long.parseLong( id ) );
 
-    @Override
-    public CountryDto parse( String id, Locale locale ) throws ParseException {
-
-        if( StringUtils.isBlank( id ) && ( StringUtils.isNumeric( id ) == false ) ) {
-            return null;
-        }
-
-        CountryDto country = new CountryDto();
-
-        country.setId( Long.parseLong( id ) );
-
-        return country;
-    }
+		return country;
+	}
 }

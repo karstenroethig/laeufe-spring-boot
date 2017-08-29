@@ -27,157 +27,159 @@ import karstenroethig.laeufe.service.exceptions.CategoryAlreadyExistsException;
 import karstenroethig.laeufe.util.MessageKeyEnum;
 import karstenroethig.laeufe.util.Messages;
 
-
 @ComponentScan
 @Controller
 @RequestMapping( UrlMappings.CONTROLLER_CATEGORY )
-public class CategoryController {
+public class CategoryController
+{
+	@Autowired
+	CategoryService categoryService;
 
-    @Autowired
-    CategoryService categoryService;
+	@RequestMapping(
+		value = UrlMappings.ACTION_LIST,
+		method = RequestMethod.GET
+	)
+	public String list( Model model )
+	{
+		model.addAttribute( "allCategories", categoryService.getAllCategories() );
 
-    @RequestMapping(
-        value = UrlMappings.ACTION_LIST,
-        method = RequestMethod.GET
-    )
-    public String list( Model model ) {
+		return ViewEnum.CATEGORY_LIST.getViewName();
+	}
 
-        model.addAttribute( "allCategories", categoryService.getAllCategories() );
+	@RequestMapping(
+		value = UrlMappings.ACTION_CREATE,
+		method = RequestMethod.GET
+	)
+	public String create( Model model )
+	{
+		model.addAttribute( "category", categoryService.newCategory() );
 
-        return ViewEnum.CATEGORY_LIST.getViewName();
-    }
+		return ViewEnum.CATEGORY_CREATE.getViewName();
+	}
 
-    @RequestMapping(
-        value = UrlMappings.ACTION_CREATE,
-        method = RequestMethod.GET
-    )
-    public String create( Model model ) {
+	@RequestMapping(
+		value = UrlMappings.ACTION_EDIT,
+		method = RequestMethod.GET
+	)
+	public String edit( @PathVariable( "id" ) Long categoryId, Model model )
+	{
+		CategoryDto category = categoryService.findCategory( categoryId );
 
-        model.addAttribute( "category", categoryService.newCategory() );
+		if ( category == null )
+		{
+			throw new NotFoundException( String.valueOf( categoryId ) );
+		}
 
-        return ViewEnum.CATEGORY_CREATE.getViewName();
-    }
+		model.addAttribute( "category", category );
 
-    @RequestMapping(
-        value = UrlMappings.ACTION_EDIT,
-        method = RequestMethod.GET
-    )
-    public String edit( @PathVariable( "id" ) Long categoryId, Model model ) {
+		return ViewEnum.CATEGORY_EDIT.getViewName();
+	}
 
-        CategoryDto category = categoryService.findCategory( categoryId );
+	@RequestMapping(
+		value = UrlMappings.ACTION_DELETE,
+		method = RequestMethod.GET
+	)
+	public String delete( @PathVariable( "id" ) Long categoryId, final RedirectAttributes redirectAttributes, Model model )
+	{
+		CategoryDto category = categoryService.findCategory( categoryId );
 
-        if( category == null ) {
-            throw new NotFoundException( String.valueOf( categoryId ) );
-        }
+		if ( category == null )
+		{
+			throw new NotFoundException( String.valueOf( categoryId ) );
+		}
 
-        model.addAttribute( "category", category );
+		if ( categoryService.deleteCategory( categoryId ) )
+		{
+			redirectAttributes.addFlashAttribute( Messages.ATTRIBUTE_NAME,
+				Messages.createWithSuccess( MessageKeyEnum.CATEGORY_DELETE_SUCCESS, category.getName() ) );
+		}
+		else
+		{
+			redirectAttributes.addFlashAttribute( Messages.ATTRIBUTE_NAME,
+				Messages.createWithError( MessageKeyEnum.CATEGORY_DELETE_ERROR, category.getName() ) );
+		}
 
-        return ViewEnum.CATEGORY_EDIT.getViewName();
-    }
+		return UrlMappings.redirect( UrlMappings.CONTROLLER_CATEGORY, UrlMappings.ACTION_LIST );
+	}
 
-    @RequestMapping(
-        value = UrlMappings.ACTION_DELETE,
-        method = RequestMethod.GET
-    )
-    public String delete( @PathVariable( "id" ) Long categoryId, final RedirectAttributes redirectAttributes,
-        Model model ) {
+	@RequestMapping(
+		value = UrlMappings.ACTION_SAVE,
+		method = RequestMethod.POST
+	)
+	public String save( @ModelAttribute( "category" ) @Valid CategoryDto category, BindingResult bindingResult,
+		final RedirectAttributes redirectAttributes, Model model )
+	{
+		if ( bindingResult.hasErrors() )
+		{
+			model.addAttribute( Messages.ATTRIBUTE_NAME, Messages.createWithError( MessageKeyEnum.CATEGORY_SAVE_INVALID ) );
 
-        CategoryDto category = categoryService.findCategory( categoryId );
+			return ViewEnum.CATEGORY_CREATE.getViewName();
+		}
 
-        if( category == null ) {
-            throw new NotFoundException( String.valueOf( categoryId ) );
-        }
+		try
+		{
+			if ( categoryService.saveCategory( category ) != null )
+			{
+				redirectAttributes.addFlashAttribute( Messages.ATTRIBUTE_NAME,
+					Messages.createWithSuccess( MessageKeyEnum.CATEGORY_SAVE_SUCCESS, category.getName() ) );
 
-        if( categoryService.deleteCategory( categoryId ) ) {
-            redirectAttributes.addFlashAttribute( Messages.ATTRIBUTE_NAME,
-                Messages.createWithSuccess( MessageKeyEnum.CATEGORY_DELETE_SUCCESS, category.getName() ) );
-        } else {
-            redirectAttributes.addFlashAttribute( Messages.ATTRIBUTE_NAME,
-                Messages.createWithError( MessageKeyEnum.CATEGORY_DELETE_ERROR, category.getName() ) );
-        }
+				return UrlMappings.redirect( UrlMappings.CONTROLLER_CATEGORY, UrlMappings.ACTION_LIST );
+			}
+		}
+		catch ( CategoryAlreadyExistsException ex )
+		{
+			bindingResult.rejectValue( "name", "category.error.exists" );
 
-        return UrlMappings.redirect( UrlMappings.CONTROLLER_CATEGORY, UrlMappings.ACTION_LIST );
-    }
+			model.addAttribute( Messages.ATTRIBUTE_NAME, Messages.createWithError( MessageKeyEnum.CATEGORY_SAVE_INVALID ) );
 
-    @RequestMapping(
-        value = UrlMappings.ACTION_SAVE,
-        method = RequestMethod.POST
-    )
-    public String save( @ModelAttribute( "category" ) @Valid CategoryDto category, BindingResult bindingResult,
-    		final RedirectAttributes redirectAttributes, Model model ) {
+			return ViewEnum.CATEGORY_CREATE.getViewName();
+		}
 
-        if( bindingResult.hasErrors() ) {
+		model.addAttribute( Messages.ATTRIBUTE_NAME, Messages.createWithError( MessageKeyEnum.CATEGORY_SAVE_ERROR ) );
 
-            model.addAttribute( Messages.ATTRIBUTE_NAME,
-                Messages.createWithError( MessageKeyEnum.CATEGORY_SAVE_INVALID ) );
+		return ViewEnum.CATEGORY_CREATE.getViewName();
+	}
 
-            return ViewEnum.CATEGORY_CREATE.getViewName();
-        }
+	@RequestMapping(
+		value = UrlMappings.ACTION_UPDATE,
+		method = RequestMethod.POST
+	)
+	public String update( @ModelAttribute( "category" ) @Valid CategoryDto category, BindingResult bindingResult,
+		final RedirectAttributes redirectAttributes, Model model )
+	{
+		if ( bindingResult.hasErrors() )
+		{
+			model.addAttribute( Messages.ATTRIBUTE_NAME, Messages.createWithError( MessageKeyEnum.CATEGORY_UPDATE_INVALID ) );
 
-        try {
+			return ViewEnum.CATEGORY_EDIT.getViewName();
+		}
 
-            if( categoryService.saveCategory( category ) != null ) {
-                redirectAttributes.addFlashAttribute( Messages.ATTRIBUTE_NAME,
-                    Messages.createWithSuccess( MessageKeyEnum.CATEGORY_SAVE_SUCCESS, category.getName() ) );
+		try
+		{
+			if ( categoryService.editCategory( category ) != null )
+			{
+				redirectAttributes.addFlashAttribute( Messages.ATTRIBUTE_NAME,
+					Messages.createWithSuccess( MessageKeyEnum.CATEGORY_UPDATE_SUCCESS, category.getName() ) );
 
-                return UrlMappings.redirect( UrlMappings.CONTROLLER_CATEGORY, UrlMappings.ACTION_LIST );
-            }
-        } catch( CategoryAlreadyExistsException ex ) {
+				return UrlMappings.redirect( UrlMappings.CONTROLLER_CATEGORY, UrlMappings.ACTION_LIST );
+			}
+		}
+		catch ( CategoryAlreadyExistsException ex )
+		{
+			bindingResult.rejectValue( "name", "category.error.exists" );
 
-            bindingResult.rejectValue( "name", "category.error.exists" );
+			model.addAttribute( Messages.ATTRIBUTE_NAME, Messages.createWithError( MessageKeyEnum.CATEGORY_UPDATE_INVALID ) );
 
-            model.addAttribute( Messages.ATTRIBUTE_NAME,
-                Messages.createWithError( MessageKeyEnum.CATEGORY_SAVE_INVALID ) );
+			return ViewEnum.CATEGORY_EDIT.getViewName();
+		}
 
-            return ViewEnum.CATEGORY_CREATE.getViewName();
-        }
+		model.addAttribute( Messages.ATTRIBUTE_NAME, Messages.createWithError( MessageKeyEnum.CATEGORY_UPDATE_ERROR ) );
 
-        model.addAttribute( Messages.ATTRIBUTE_NAME, Messages.createWithError( MessageKeyEnum.CATEGORY_SAVE_ERROR ) );
+		return ViewEnum.CATEGORY_EDIT.getViewName();
+	}
 
-        return ViewEnum.CATEGORY_CREATE.getViewName();
-    }
-
-    @RequestMapping(
-        value = UrlMappings.ACTION_UPDATE,
-        method = RequestMethod.POST
-    )
-    public String update( @ModelAttribute( "category" ) @Valid CategoryDto category, BindingResult bindingResult,
-    		final RedirectAttributes redirectAttributes, Model model ) {
-
-        if( bindingResult.hasErrors() ) {
-
-            model.addAttribute( Messages.ATTRIBUTE_NAME,
-                Messages.createWithError( MessageKeyEnum.CATEGORY_UPDATE_INVALID ) );
-
-            return ViewEnum.CATEGORY_EDIT.getViewName();
-        }
-
-        try {
-
-            if( categoryService.editCategory( category ) != null ) {
-                redirectAttributes.addFlashAttribute( Messages.ATTRIBUTE_NAME,
-                    Messages.createWithSuccess( MessageKeyEnum.CATEGORY_UPDATE_SUCCESS, category.getName() ) );
-
-                return UrlMappings.redirect( UrlMappings.CONTROLLER_CATEGORY, UrlMappings.ACTION_LIST );
-            }
-        } catch( CategoryAlreadyExistsException ex ) {
-
-            bindingResult.rejectValue( "name", "category.error.exists" );
-
-            model.addAttribute( Messages.ATTRIBUTE_NAME,
-                Messages.createWithError( MessageKeyEnum.CATEGORY_UPDATE_INVALID ) );
-
-            return ViewEnum.CATEGORY_EDIT.getViewName();
-        }
-
-        model.addAttribute( Messages.ATTRIBUTE_NAME, Messages.createWithError( MessageKeyEnum.CATEGORY_UPDATE_ERROR ) );
-
-        return ViewEnum.CATEGORY_EDIT.getViewName();
-    }
-
-    @ExceptionHandler( NotFoundException.class )
-    void handleNotFoundException( HttpServletResponse response, NotFoundException ex ) throws IOException {
-        response.sendError( HttpStatus.NOT_FOUND.value(),
-            String.format( "Category %s does not exist.", ex.getMessage() ) );
-    }
+	@ExceptionHandler( NotFoundException.class )
+	void handleNotFoundException( HttpServletResponse response, NotFoundException ex ) throws IOException {
+		response.sendError( HttpStatus.NOT_FOUND.value(), String.format( "Category %s does not exist.", ex.getMessage() ) );
+	}
 }

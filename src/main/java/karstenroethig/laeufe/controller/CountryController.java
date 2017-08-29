@@ -27,157 +27,159 @@ import karstenroethig.laeufe.service.exceptions.CountryAlreadyExistsException;
 import karstenroethig.laeufe.util.MessageKeyEnum;
 import karstenroethig.laeufe.util.Messages;
 
-
 @ComponentScan
 @Controller
 @RequestMapping( UrlMappings.CONTROLLER_COUNTRY )
-public class CountryController {
+public class CountryController
+{
+	@Autowired
+	CountryService countryService;
 
-    @Autowired
-    CountryService countryService;
+	@RequestMapping(
+		value = UrlMappings.ACTION_LIST,
+		method = RequestMethod.GET
+	)
+	public String list( Model model )
+	{
+		model.addAttribute( "allCountries", countryService.getAllCountries() );
 
-    @RequestMapping(
-        value = UrlMappings.ACTION_LIST,
-        method = RequestMethod.GET
-    )
-    public String list( Model model ) {
+		return ViewEnum.COUNTRY_LIST.getViewName();
+	}
 
-        model.addAttribute( "allCountries", countryService.getAllCountries() );
+	@RequestMapping(
+		value = UrlMappings.ACTION_CREATE,
+		method = RequestMethod.GET
+	)
+	public String create( Model model )
+	{
+		model.addAttribute( "country", countryService.newCountry() );
 
-        return ViewEnum.COUNTRY_LIST.getViewName();
-    }
+		return ViewEnum.COUNTRY_CREATE.getViewName();
+	}
 
-    @RequestMapping(
-        value = UrlMappings.ACTION_CREATE,
-        method = RequestMethod.GET
-    )
-    public String create( Model model ) {
+	@RequestMapping(
+		value = UrlMappings.ACTION_EDIT,
+		method = RequestMethod.GET
+	)
+	public String edit( @PathVariable( "id" ) Long countryId, Model model )
+	{
+		CountryDto country = countryService.findCountry( countryId );
 
-        model.addAttribute( "country", countryService.newCountry() );
+		if ( country == null )
+		{
+			throw new NotFoundException( String.valueOf( countryId ) );
+		}
 
-        return ViewEnum.COUNTRY_CREATE.getViewName();
-    }
+		model.addAttribute( "country", country );
 
-    @RequestMapping(
-        value = UrlMappings.ACTION_EDIT,
-        method = RequestMethod.GET
-    )
-    public String edit( @PathVariable( "id" ) Long countryId, Model model ) {
+		return ViewEnum.COUNTRY_EDIT.getViewName();
+	}
 
-        CountryDto country = countryService.findCountry( countryId );
+	@RequestMapping(
+		value = UrlMappings.ACTION_DELETE,
+		method = RequestMethod.GET
+	)
+	public String delete( @PathVariable( "id" ) Long countryId, final RedirectAttributes redirectAttributes, Model model )
+	{
+		CountryDto country = countryService.findCountry( countryId );
 
-        if( country == null ) {
-            throw new NotFoundException( String.valueOf( countryId ) );
-        }
+		if ( country == null )
+		{
+			throw new NotFoundException( String.valueOf( countryId ) );
+		}
 
-        model.addAttribute( "country", country );
+		if ( countryService.deleteCountry( countryId ) )
+		{
+			redirectAttributes.addFlashAttribute( Messages.ATTRIBUTE_NAME,
+				Messages.createWithSuccess( MessageKeyEnum.COUNTRY_DELETE_SUCCESS, country.getName() ) );
+		}
+		else
+		{
+			redirectAttributes.addFlashAttribute( Messages.ATTRIBUTE_NAME,
+				Messages.createWithError( MessageKeyEnum.COUNTRY_DELETE_ERROR, country.getName() ) );
+		}
 
-        return ViewEnum.COUNTRY_EDIT.getViewName();
-    }
+		return UrlMappings.redirect( UrlMappings.CONTROLLER_COUNTRY, UrlMappings.ACTION_LIST );
+	}
 
-    @RequestMapping(
-        value = UrlMappings.ACTION_DELETE,
-        method = RequestMethod.GET
-    )
-    public String delete( @PathVariable( "id" ) Long countryId, final RedirectAttributes redirectAttributes,
-        Model model ) {
+	@RequestMapping(
+		value = UrlMappings.ACTION_SAVE,
+		method = RequestMethod.POST
+	)
+	public String save( @ModelAttribute( "country" ) @Valid CountryDto country, BindingResult bindingResult,
+		final RedirectAttributes redirectAttributes, Model model )
+	{
+		if ( bindingResult.hasErrors() )
+		{
+			model.addAttribute( Messages.ATTRIBUTE_NAME, Messages.createWithError( MessageKeyEnum.COUNTRY_SAVE_INVALID ) );
 
-        CountryDto country = countryService.findCountry( countryId );
+			return ViewEnum.COUNTRY_CREATE.getViewName();
+		}
 
-        if( country == null ) {
-            throw new NotFoundException( String.valueOf( countryId ) );
-        }
+		try
+		{
+			if ( countryService.saveCountry( country ) != null )
+			{
+				redirectAttributes.addFlashAttribute( Messages.ATTRIBUTE_NAME,
+					Messages.createWithSuccess( MessageKeyEnum.COUNTRY_SAVE_SUCCESS, country.getName() ) );
 
-        if( countryService.deleteCountry( countryId ) ) {
-            redirectAttributes.addFlashAttribute( Messages.ATTRIBUTE_NAME,
-                Messages.createWithSuccess( MessageKeyEnum.COUNTRY_DELETE_SUCCESS, country.getName() ) );
-        } else {
-            redirectAttributes.addFlashAttribute( Messages.ATTRIBUTE_NAME,
-                Messages.createWithError( MessageKeyEnum.COUNTRY_DELETE_ERROR, country.getName() ) );
-        }
+				return UrlMappings.redirect( UrlMappings.CONTROLLER_COUNTRY, UrlMappings.ACTION_LIST );
+			}
+		}
+		catch ( CountryAlreadyExistsException ex )
+		{
+			bindingResult.rejectValue( "name", "country.error.exists" );
 
-        return UrlMappings.redirect( UrlMappings.CONTROLLER_COUNTRY, UrlMappings.ACTION_LIST );
-    }
+			model.addAttribute( Messages.ATTRIBUTE_NAME, Messages.createWithError( MessageKeyEnum.COUNTRY_SAVE_INVALID ) );
 
-    @RequestMapping(
-        value = UrlMappings.ACTION_SAVE,
-        method = RequestMethod.POST
-    )
-    public String save( @ModelAttribute( "country" ) @Valid CountryDto country, BindingResult bindingResult,
-    		final RedirectAttributes redirectAttributes, Model model ) {
+			return ViewEnum.COUNTRY_CREATE.getViewName();
+		}
 
-        if( bindingResult.hasErrors() ) {
+		model.addAttribute( Messages.ATTRIBUTE_NAME, Messages.createWithError( MessageKeyEnum.COUNTRY_SAVE_ERROR ) );
 
-            model.addAttribute( Messages.ATTRIBUTE_NAME,
-                Messages.createWithError( MessageKeyEnum.COUNTRY_SAVE_INVALID ) );
+		return ViewEnum.COUNTRY_CREATE.getViewName();
+	}
 
-            return ViewEnum.COUNTRY_CREATE.getViewName();
-        }
+	@RequestMapping(
+		value = UrlMappings.ACTION_UPDATE,
+		method = RequestMethod.POST
+	)
+	public String update( @ModelAttribute( "country" ) @Valid CountryDto country, BindingResult bindingResult,
+		final RedirectAttributes redirectAttributes, Model model )
+	{
+		if ( bindingResult.hasErrors() )
+		{
+			model.addAttribute( Messages.ATTRIBUTE_NAME, Messages.createWithError( MessageKeyEnum.COUNTRY_UPDATE_INVALID ) );
 
-        try {
+			return ViewEnum.COUNTRY_EDIT.getViewName();
+		}
 
-            if( countryService.saveCountry( country ) != null ) {
-                redirectAttributes.addFlashAttribute( Messages.ATTRIBUTE_NAME,
-                    Messages.createWithSuccess( MessageKeyEnum.COUNTRY_SAVE_SUCCESS, country.getName() ) );
+		try
+		{
+			if ( countryService.editCountry( country ) != null )
+			{
+				redirectAttributes.addFlashAttribute( Messages.ATTRIBUTE_NAME,
+					Messages.createWithSuccess( MessageKeyEnum.COUNTRY_UPDATE_SUCCESS, country.getName() ) );
 
-                return UrlMappings.redirect( UrlMappings.CONTROLLER_COUNTRY, UrlMappings.ACTION_LIST );
-            }
-        } catch( CountryAlreadyExistsException ex ) {
+				return UrlMappings.redirect( UrlMappings.CONTROLLER_COUNTRY, UrlMappings.ACTION_LIST );
+			}
+		}
+		catch ( CountryAlreadyExistsException ex )
+		{
+			bindingResult.rejectValue( "name", "country.error.exists" );
 
-            bindingResult.rejectValue( "name", "country.error.exists" );
+			model.addAttribute( Messages.ATTRIBUTE_NAME, Messages.createWithError( MessageKeyEnum.COUNTRY_UPDATE_INVALID ) );
 
-            model.addAttribute( Messages.ATTRIBUTE_NAME,
-                Messages.createWithError( MessageKeyEnum.COUNTRY_SAVE_INVALID ) );
+			return ViewEnum.COUNTRY_EDIT.getViewName();
+		}
 
-            return ViewEnum.COUNTRY_CREATE.getViewName();
-        }
+		model.addAttribute( Messages.ATTRIBUTE_NAME, Messages.createWithError( MessageKeyEnum.COUNTRY_UPDATE_ERROR ) );
 
-        model.addAttribute( Messages.ATTRIBUTE_NAME, Messages.createWithError( MessageKeyEnum.COUNTRY_SAVE_ERROR ) );
+		return ViewEnum.COUNTRY_EDIT.getViewName();
+	}
 
-        return ViewEnum.COUNTRY_CREATE.getViewName();
-    }
-
-    @RequestMapping(
-        value = UrlMappings.ACTION_UPDATE,
-        method = RequestMethod.POST
-    )
-    public String update( @ModelAttribute( "country" ) @Valid CountryDto country, BindingResult bindingResult,
-    		final RedirectAttributes redirectAttributes, Model model ) {
-
-        if( bindingResult.hasErrors() ) {
-
-            model.addAttribute( Messages.ATTRIBUTE_NAME,
-                Messages.createWithError( MessageKeyEnum.COUNTRY_UPDATE_INVALID ) );
-
-            return ViewEnum.COUNTRY_EDIT.getViewName();
-        }
-
-        try {
-
-            if( countryService.editCountry( country ) != null ) {
-                redirectAttributes.addFlashAttribute( Messages.ATTRIBUTE_NAME,
-                    Messages.createWithSuccess( MessageKeyEnum.COUNTRY_UPDATE_SUCCESS, country.getName() ) );
-
-                return UrlMappings.redirect( UrlMappings.CONTROLLER_COUNTRY, UrlMappings.ACTION_LIST );
-            }
-        } catch( CountryAlreadyExistsException ex ) {
-
-            bindingResult.rejectValue( "name", "country.error.exists" );
-
-            model.addAttribute( Messages.ATTRIBUTE_NAME,
-                Messages.createWithError( MessageKeyEnum.COUNTRY_UPDATE_INVALID ) );
-
-            return ViewEnum.COUNTRY_EDIT.getViewName();
-        }
-
-        model.addAttribute( Messages.ATTRIBUTE_NAME, Messages.createWithError( MessageKeyEnum.COUNTRY_UPDATE_ERROR ) );
-
-        return ViewEnum.COUNTRY_EDIT.getViewName();
-    }
-
-    @ExceptionHandler( NotFoundException.class )
-    void handleNotFoundException( HttpServletResponse response, NotFoundException ex ) throws IOException {
-        response.sendError( HttpStatus.NOT_FOUND.value(),
-            String.format( "Country %s does not exist.", ex.getMessage() ) );
-    }
+	@ExceptionHandler( NotFoundException.class )
+	void handleNotFoundException( HttpServletResponse response, NotFoundException ex ) throws IOException {
+		response.sendError( HttpStatus.NOT_FOUND.value(), String.format( "Country %s does not exist.", ex.getMessage() ) );
+	}
 }

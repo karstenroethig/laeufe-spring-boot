@@ -8,10 +8,10 @@ import lombok.RequiredArgsConstructor;
 @Getter
 @RequiredArgsConstructor
 @AllArgsConstructor
-public class Message {
-
+public class Message
+{
 	@NonNull
-    private String key;
+	private String key;
 
-    private Object[] params = null;
+	private Object[] params = null;
 }

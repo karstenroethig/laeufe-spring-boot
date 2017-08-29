@@ -8,30 +8,31 @@ import java.util.Locale;
 
 import karstenroethig.laeufe.dto.OrganizerDto;
 
+public class OrganizerFormatter implements Formatter<OrganizerDto>
+{
+	@Override
+	public String print( OrganizerDto organizer, Locale locale )
+	{
+		if ( ( organizer == null ) || ( organizer.getId() == null ) )
+		{
+			return StringUtils.EMPTY;
+		}
 
-public class OrganizerFormatter implements Formatter<OrganizerDto> {
+		return organizer.getId().toString();
+	}
 
-    @Override
-    public String print( OrganizerDto organizer, Locale locale ) {
+	@Override
+	public OrganizerDto parse( String id, Locale locale ) throws ParseException
+	{
+		if ( StringUtils.isBlank( id ) && ( StringUtils.isNumeric( id ) == false ) )
+		{
+			return null;
+		}
 
-        if( ( organizer == null ) || ( organizer.getId() == null ) ) {
-            return StringUtils.EMPTY;
-        }
+		OrganizerDto organizer = new OrganizerDto();
 
-        return organizer.getId().toString();
-    }
+		organizer.setId( Long.parseLong( id ) );
 
-    @Override
-    public OrganizerDto parse( String id, Locale locale ) throws ParseException {
-
-        if( StringUtils.isBlank( id ) && ( StringUtils.isNumeric( id ) == false ) ) {
-            return null;
-        }
-
-        OrganizerDto organizer = new OrganizerDto();
-
-        organizer.setId( Long.parseLong( id ) );
-
-        return organizer;
-    }
+		return organizer;
+	}
 }

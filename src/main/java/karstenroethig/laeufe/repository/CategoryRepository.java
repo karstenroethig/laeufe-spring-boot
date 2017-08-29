@@ -6,10 +6,9 @@ import org.springframework.data.repository.CrudRepository;
 
 import karstenroethig.laeufe.domain.Category;
 
+public interface CategoryRepository extends CrudRepository<Category, Long>
+{
+	List<Category> findByNameIgnoreCase( String name );
 
-public interface CategoryRepository extends CrudRepository<Category, Long> {
-
-    List<Category> findByNameIgnoreCase( String name );
-
-    List<Category> findByArchived( boolean archived );
+	List<Category> findByArchived( boolean archived );
 }

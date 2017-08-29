@@ -1,117 +1,121 @@
 package karstenroethig.laeufe.dto;
 
-
 import org.apache.commons.lang3.StringUtils;
 
 import karstenroethig.laeufe.domain.Category;
 import karstenroethig.laeufe.domain.Country;
 import karstenroethig.laeufe.domain.Organizer;
 
+public class DtoTransformer
+{
+	private DtoTransformer() {}
 
-public class DtoTransformer {
+	/*
+	 * =========
+	 * Organizer
+	 * =========
+	 */
 
-    private DtoTransformer() {}
+	public static Organizer merge( Organizer organizer, OrganizerDto organizerDto )
+	{
+		if ( ( organizer == null ) || ( organizerDto == null ) )
+		{
+			return null;
+		}
 
-    /*
-     * =========
-     * Organizer
-     * =========
-     */
+		organizer.setName( organizerDto.getName() );
+		organizer.setDescription( StringUtils.trimToNull( organizerDto.getDescription() ) );
+		organizer.setArchived( organizerDto.getArchived() );
 
-    public static Organizer merge( Organizer organizer, OrganizerDto organizerDto ) {
+		return organizer;
+	}
 
-        if( ( organizer == null ) || ( organizerDto == null ) ) {
-            return null;
-        }
+	public static OrganizerDto transform( Organizer organizer )
+	{
+		if ( organizer == null )
+		{
+			return null;
+		}
 
-        organizer.setName( organizerDto.getName() );
-        organizer.setDescription( StringUtils.trimToNull( organizerDto.getDescription() ) );
-        organizer.setArchived( organizerDto.getArchived() );
+		OrganizerDto organizerDto = new OrganizerDto();
 
-        return organizer;
-    }
+		organizerDto.setId( organizer.getId() );
+		organizerDto.setName( organizer.getName() );
+		organizerDto.setDescription( StringUtils.trimToNull( organizer.getDescription() ) );
+		organizerDto.setArchived( organizer.getArchived() );
 
-    public static OrganizerDto transform( Organizer organizer ) {
+		return organizerDto;
+	}
 
-        if( organizer == null ) {
-            return null;
-        }
+	/*
+	 * =======
+	 * Country
+	 * =======
+	 */
 
-        OrganizerDto organizerDto = new OrganizerDto();
+	public static Country merge( Country country, CountryDto countryDto )
+	{
+		if ( ( country == null ) || ( countryDto == null ) )
+		{
+			return null;
+		}
 
-        organizerDto.setId( organizer.getId() );
-        organizerDto.setName( organizer.getName() );
-        organizerDto.setDescription( StringUtils.trimToNull( organizer.getDescription() ) );
-        organizerDto.setArchived( organizer.getArchived() );
+		country.setName( countryDto.getName() );
+		country.setArchived( countryDto.getArchived() );
 
-        return organizerDto;
-    }
+		return country;
+	}
 
-    /*
-     * =======
-     * Country
-     * =======
-     */
+	public static CountryDto transform( Country country )
+	{
+		if ( country == null )
+		{
+			return null;
+		}
 
-    public static Country merge( Country country, CountryDto countryDto ) {
+		CountryDto countryDto = new CountryDto();
 
-        if( ( country == null ) || ( countryDto == null ) ) {
-            return null;
-        }
+		countryDto.setId( country.getId() );
+		countryDto.setName( country.getName() );
+		countryDto.setArchived( country.getArchived() );
 
-        country.setName( countryDto.getName() );
-        country.setArchived( countryDto.getArchived() );
+		return countryDto;
+	}
 
-        return country;
-    }
+	/*
+	 * ========
+	 * Category
+	 * ========
+	 */
 
-    public static CountryDto transform( Country country ) {
+	public static Category merge( Category category, CategoryDto categoryDto )
+	{
+		if ( ( category == null ) || ( categoryDto == null ) )
+		{
+			return null;
+		}
 
-        if( country == null ) {
-            return null;
-        }
+		category.setName( categoryDto.getName() );
+		category.setDescription( categoryDto.getDescription() );
+		category.setArchived( categoryDto.getArchived() );
 
-        CountryDto countryDto = new CountryDto();
+		return category;
+	}
 
-        countryDto.setId( country.getId() );
-        countryDto.setName( country.getName() );
-        countryDto.setArchived( country.getArchived() );
+	public static CategoryDto transform( Category category )
+	{
+		if ( category == null )
+		{
+			return null;
+		}
 
-        return countryDto;
-    }
+		CategoryDto categoryDto = new CategoryDto();
 
-    /*
-     * ========
-     * Category
-     * ========
-     */
+		categoryDto.setId( category.getId() );
+		categoryDto.setName( category.getName() );
+		categoryDto.setDescription( category.getDescription() );
+		categoryDto.setArchived( category.getArchived() );
 
-    public static Category merge( Category category, CategoryDto categoryDto ) {
-
-        if( ( category == null ) || ( categoryDto == null ) ) {
-            return null;
-        }
-
-        category.setName( categoryDto.getName() );
-        category.setDescription( categoryDto.getDescription() );
-        category.setArchived( categoryDto.getArchived() );
-
-        return category;
-    }
-
-    public static CategoryDto transform( Category category ) {
-
-        if( category == null ) {
-            return null;
-        }
-
-        CategoryDto categoryDto = new CategoryDto();
-
-        categoryDto.setId( category.getId() );
-        categoryDto.setName( category.getName() );
-        categoryDto.setDescription( category.getDescription() );
-        categoryDto.setArchived( category.getArchived() );
-
-        return categoryDto;
-    }
+		return categoryDto;
+	}
 }

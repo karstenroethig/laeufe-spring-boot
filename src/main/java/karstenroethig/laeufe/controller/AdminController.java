@@ -12,25 +12,24 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-
 @ComponentScan
 @Controller
 @RequestMapping( UrlMappings.CONTROLLER_ADMIN )
-public class AdminController {
+public class AdminController
+{
+	@Autowired
+	ServerInfoService serverInfoService;
 
-    @Autowired
-    ServerInfoService serverInfoService;
+	@RequestMapping(
+		value = "/server-info",
+		method = RequestMethod.GET
+	)
+	public String serverInfo( Model model )
+	{
+		ServerInfoDto serverInfo = serverInfoService.getInfo();
 
-    @RequestMapping(
-        value = "/server-info",
-        method = RequestMethod.GET
-    )
-    public String serverInfo( Model model ) {
-    	
-    	ServerInfoDto serverInfo = serverInfoService.getInfo();
+		model.addAttribute( "serverInfo", serverInfo );
 
-        model.addAttribute( "serverInfo", serverInfo );
-
-        return ViewEnum.ADMIN_SERVER_INFO.getViewName();
-    }
+		return ViewEnum.ADMIN_SERVER_INFO.getViewName();
+	}
 }

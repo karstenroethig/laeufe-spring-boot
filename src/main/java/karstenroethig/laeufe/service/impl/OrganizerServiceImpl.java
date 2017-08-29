@@ -19,108 +19,116 @@ import karstenroethig.laeufe.repository.OrganizerRepository;
 import karstenroethig.laeufe.service.OrganizerService;
 import karstenroethig.laeufe.service.exceptions.OrganizerAlreadyExistsException;
 
-
 @Service
 @Transactional
-public class OrganizerServiceImpl implements OrganizerService {
+public class OrganizerServiceImpl implements OrganizerService
+{
+	@Autowired
+	protected OrganizerRepository organizerRepository;
 
-    @Autowired
-    protected OrganizerRepository organizerRepository;
+	@Override
+	public OrganizerDto newOrganizer()
+	{
+		OrganizerDto organizerDto = new OrganizerDto();
 
-    @Override
-    public OrganizerDto newOrganizer() {
+		organizerDto.setArchived( Boolean.FALSE );
 
-        OrganizerDto organizerDto = new OrganizerDto();
+		return organizerDto;
+	}
 
-        organizerDto.setArchived( Boolean.FALSE );
+	@Override
+	public OrganizerDto saveOrganizer( OrganizerDto organizerDto ) throws OrganizerAlreadyExistsException
+	{
+		List<Organizer> existingOrganizers = organizerRepository.findByNameIgnoreCase(
+			StringUtils.trim( organizerDto.getName() ) );
 
-        return organizerDto;
-    }
+		if ( existingOrganizers != null && existingOrganizers.isEmpty() == false )
+		{
+			throw new OrganizerAlreadyExistsException();
+		}
 
-    @Override
-    public OrganizerDto saveOrganizer( OrganizerDto organizerDto ) throws OrganizerAlreadyExistsException {
+		Organizer organizer = new Organizer();
 
-        List<Organizer> existingOrganizers = organizerRepository.findByNameIgnoreCase(
-                StringUtils.trim( organizerDto.getName() ) );
+		organizer = DtoTransformer.merge( organizer, organizerDto );
 
-        if( existingOrganizers != null && existingOrganizers.isEmpty() == false ) {
-            throw new OrganizerAlreadyExistsException();
-        }
+		return DtoTransformer.transform( organizerRepository.save( organizer ) );
+	}
 
-        Organizer organizer = new Organizer();
+	@Override
+	public Boolean deleteOrganizer( Long organizerId )
+	{
+		Organizer temp = organizerRepository.findOne( organizerId );
 
-        organizer = DtoTransformer.merge( organizer, organizerDto );
+		if ( temp != null )
+		{
+			organizerRepository.delete( temp );
 
-        return DtoTransformer.transform( organizerRepository.save( organizer ) );
-    }
+			return true;
+		}
 
-    @Override
-    public Boolean deleteOrganizer( Long organizerId ) {
+		return false;
+	}
 
-        Organizer temp = organizerRepository.findOne( organizerId );
+	@Override
+	public OrganizerDto editOrganizer( OrganizerDto organizerDto ) throws OrganizerAlreadyExistsException
+	{
+		List<Organizer> existingOrganizers = organizerRepository.findByNameIgnoreCase(
+			StringUtils.trim( organizerDto.getName() ) );
 
-        if( temp != null ) {
-            organizerRepository.delete( temp );
+		if ( existingOrganizers != null && existingOrganizers.isEmpty() == false
+			&& existingOrganizers.get( 0 ).getId().equals( organizerDto.getId() ) == false )
+		{
+			throw new OrganizerAlreadyExistsException();
+		}
 
-            return true;
-        }
+		Organizer organizer = organizerRepository.findOne( organizerDto.getId() );
 
-        return false;
-    }
+		organizer = DtoTransformer.merge( organizer, organizerDto );
 
-    @Override
-    public OrganizerDto editOrganizer( OrganizerDto organizerDto ) throws OrganizerAlreadyExistsException {
+		return DtoTransformer.transform( organizerRepository.save( organizer ) );
+	}
 
-        List<Organizer> existingOrganizers = organizerRepository.findByNameIgnoreCase(
-                StringUtils.trim( organizerDto.getName() ) );
+	@Override
+	public OrganizerDto findOrganizer( Long organizerId )
+	{
+		return DtoTransformer.transform( organizerRepository.findOne( organizerId ) );
+	}
 
-        if( existingOrganizers != null && existingOrganizers.isEmpty() == false
-                && existingOrganizers.get( 0 ).getId().equals( organizerDto.getId() ) == false ) {
-            throw new OrganizerAlreadyExistsException();
-        }
+	@Override
+	public List<OrganizerDto> getAllOrganizers()
+	{
+		return transformOrganizers( organizerRepository.findAll() );
+	}
 
-        Organizer organizer = organizerRepository.findOne( organizerDto.getId() );
+	@Override
+	public List<OrganizerDto> getAllArchivedOrganizers()
+	{
+		return transformOrganizers( organizerRepository.findByArchived( true ) );
+	}
 
-        organizer = DtoTransformer.merge( organizer, organizerDto );
+	@Override
+	public List<OrganizerDto> getAllUnarchivedOrganizers()
+	{
+		return transformOrganizers( organizerRepository.findByArchived( false ) );
+	}
 
-        return DtoTransformer.transform( organizerRepository.save( organizer ) );
-    }
+	private List<OrganizerDto> transformOrganizers( List<Organizer> organizers )
+	{
+		return transformOrganizers( organizers.stream() );
+	}
 
-    @Override
-    public OrganizerDto findOrganizer( Long organizerId ) {
-        return DtoTransformer.transform( organizerRepository.findOne( organizerId ) );
-    }
+	private List<OrganizerDto> transformOrganizers( Iterable<Organizer> organizers )
+	{
+		return transformOrganizers( StreamSupport.stream( organizers.spliterator(), false ) );
+	}
 
-    @Override
-    public List<OrganizerDto> getAllOrganizers() {
-        return transformOrganizers( organizerRepository.findAll() );
-    }
+	private List<OrganizerDto> transformOrganizers( Stream<Organizer> organizersStream )
+	{
+		List<OrganizerDto> transformedOrganizers = organizersStream
+			.map( DtoTransformer::transform )
+			.sorted( Comparator.comparing( OrganizerDto::getName ) )
+			.collect( Collectors.toList() );
 
-    @Override
-    public List<OrganizerDto> getAllArchivedOrganizers() {
-        return transformOrganizers( organizerRepository.findByArchived( true ) );
-    }
-
-    @Override
-    public List<OrganizerDto> getAllUnarchivedOrganizers() {
-        return transformOrganizers( organizerRepository.findByArchived( false ) );
-    }
-
-    private List<OrganizerDto> transformOrganizers( List<Organizer> organizers ) {
-        return transformOrganizers( organizers.stream() );
-    }
-
-    private List<OrganizerDto> transformOrganizers( Iterable<Organizer> organizers ) {
-        return transformOrganizers( StreamSupport.stream( organizers.spliterator(), false ) );
-    }
-
-    private List<OrganizerDto> transformOrganizers( Stream<Organizer> organizersStream ) {
-
-        List<OrganizerDto> transformedOrganizers = organizersStream
-            .map( DtoTransformer::transform )
-            .sorted( Comparator.comparing( OrganizerDto::getName ) )
-            .collect( Collectors.toList() );
-
-        return transformedOrganizers;
-    }
+		return transformedOrganizers;
+	}
 }

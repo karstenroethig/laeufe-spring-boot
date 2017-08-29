@@ -19,108 +19,116 @@ import karstenroethig.laeufe.repository.CountryRepository;
 import karstenroethig.laeufe.service.CountryService;
 import karstenroethig.laeufe.service.exceptions.CountryAlreadyExistsException;
 
-
 @Service
 @Transactional
-public class CountryServiceImpl implements CountryService {
+public class CountryServiceImpl implements CountryService
+{
+	@Autowired
+	protected CountryRepository countryRepository;
 
-    @Autowired
-    protected CountryRepository countryRepository;
+	@Override
+	public CountryDto newCountry()
+	{
+		CountryDto countryDto = new CountryDto();
 
-    @Override
-    public CountryDto newCountry() {
+		countryDto.setArchived( Boolean.FALSE );
 
-        CountryDto countryDto = new CountryDto();
+		return countryDto;
+	}
 
-        countryDto.setArchived( Boolean.FALSE );
+	@Override
+	public CountryDto saveCountry( CountryDto countryDto ) throws CountryAlreadyExistsException
+	{
+		List<Country> existingCountries = countryRepository.findByNameIgnoreCase(
+			StringUtils.trim( countryDto.getName() ) );
 
-        return countryDto;
-    }
+		if ( existingCountries != null && existingCountries.isEmpty() == false )
+		{
+			throw new CountryAlreadyExistsException();
+		}
 
-    @Override
-    public CountryDto saveCountry( CountryDto countryDto ) throws CountryAlreadyExistsException {
+		Country country = new Country();
 
-        List<Country> existingCountries = countryRepository.findByNameIgnoreCase(
-                StringUtils.trim( countryDto.getName() ) );
+		country = DtoTransformer.merge( country, countryDto );
 
-        if( existingCountries != null && existingCountries.isEmpty() == false ) {
-            throw new CountryAlreadyExistsException();
-        }
+		return DtoTransformer.transform( countryRepository.save( country ) );
+	}
 
-        Country country = new Country();
+	@Override
+	public Boolean deleteCountry( Long countryId )
+	{
+		Country temp = countryRepository.findOne( countryId );
 
-        country = DtoTransformer.merge( country, countryDto );
+		if ( temp != null )
+		{
+			countryRepository.delete( temp );
 
-        return DtoTransformer.transform( countryRepository.save( country ) );
-    }
+			return true;
+		}
 
-    @Override
-    public Boolean deleteCountry( Long countryId ) {
+		return false;
+	}
 
-        Country temp = countryRepository.findOne( countryId );
+	@Override
+	public CountryDto editCountry( CountryDto countryDto ) throws CountryAlreadyExistsException
+	{
+		List<Country> existingCountries = countryRepository.findByNameIgnoreCase(
+			StringUtils.trim( countryDto.getName() ) );
 
-        if( temp != null ) {
-            countryRepository.delete( temp );
+		if ( existingCountries != null && existingCountries.isEmpty() == false
+			&& existingCountries.get( 0 ).getId().equals( countryDto.getId() ) == false )
+		{
+			throw new CountryAlreadyExistsException();
+		}
 
-            return true;
-        }
+		Country country = countryRepository.findOne( countryDto.getId() );
 
-        return false;
-    }
+		country = DtoTransformer.merge( country, countryDto );
 
-    @Override
-    public CountryDto editCountry( CountryDto countryDto ) throws CountryAlreadyExistsException {
+		return DtoTransformer.transform( countryRepository.save( country ) );
+	}
 
-        List<Country> existingCountries = countryRepository.findByNameIgnoreCase(
-                StringUtils.trim( countryDto.getName() ) );
+	@Override
+	public CountryDto findCountry( Long countryId )
+	{
+		return DtoTransformer.transform( countryRepository.findOne( countryId ) );
+	}
 
-        if( existingCountries != null && existingCountries.isEmpty() == false
-                && existingCountries.get( 0 ).getId().equals( countryDto.getId() ) == false ) {
-            throw new CountryAlreadyExistsException();
-        }
+	@Override
+	public List<CountryDto> getAllCountries()
+	{
+		return transformCountries( countryRepository.findAll() );
+	}
 
-        Country country = countryRepository.findOne( countryDto.getId() );
+	@Override
+	public List<CountryDto> getAllArchivedCountries()
+	{
+		return transformCountries( countryRepository.findByArchived( true ) );
+	}
 
-        country = DtoTransformer.merge( country, countryDto );
+	@Override
+	public List<CountryDto> getAllUnarchivedCountries()
+	{
+		return transformCountries( countryRepository.findByArchived( false ) );
+	}
 
-        return DtoTransformer.transform( countryRepository.save( country ) );
-    }
+	private List<CountryDto> transformCountries( List<Country> countrys )
+	{
+		return transformCountries( countrys.stream() );
+	}
 
-    @Override
-    public CountryDto findCountry( Long countryId ) {
-        return DtoTransformer.transform( countryRepository.findOne( countryId ) );
-    }
+	private List<CountryDto> transformCountries( Iterable<Country> countrys )
+	{
+		return transformCountries( StreamSupport.stream( countrys.spliterator(), false ) );
+	}
 
-    @Override
-    public List<CountryDto> getAllCountries() {
-        return transformCountries( countryRepository.findAll() );
-    }
+	private List<CountryDto> transformCountries( Stream<Country> countrysStream )
+	{
+		List<CountryDto> transformedCountries = countrysStream
+			.map( DtoTransformer::transform )
+			.sorted( Comparator.comparing( CountryDto::getName ) )
+			.collect( Collectors.toList() );
 
-    @Override
-    public List<CountryDto> getAllArchivedCountries() {
-        return transformCountries( countryRepository.findByArchived( true ) );
-    }
-
-    @Override
-    public List<CountryDto> getAllUnarchivedCountries() {
-        return transformCountries( countryRepository.findByArchived( false ) );
-    }
-
-    private List<CountryDto> transformCountries( List<Country> countrys ) {
-        return transformCountries( countrys.stream() );
-    }
-
-    private List<CountryDto> transformCountries( Iterable<Country> countrys ) {
-        return transformCountries( StreamSupport.stream( countrys.spliterator(), false ) );
-    }
-
-    private List<CountryDto> transformCountries( Stream<Country> countrysStream ) {
-
-        List<CountryDto> transformedCountries = countrysStream
-            .map( DtoTransformer::transform )
-            .sorted( Comparator.comparing( CountryDto::getName ) )
-            .collect( Collectors.toList() );
-
-        return transformedCountries;
-    }
+		return transformedCountries;
+	}
 }
