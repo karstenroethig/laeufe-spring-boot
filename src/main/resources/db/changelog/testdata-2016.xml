@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+	                    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+	<property name="2016-mud-masters-haarlemmermeer" value="Mud Masters - Haarlemmermeer"/>
+	<property name="2016-spartan-race-sprint-muenchen" value="Spartan Race - München (Sprint)"/>
+	<property name="2016-7-seen-wanderung" value="7-Seen-Wanderung"/>
+	<property name="2016-xletix-berlin" value="XLETIX Challenge - Berlin"/>
+	<property name="2016-spartan-race-super-kouty" value="Spartan Race - Kouty (Super)"/>
+	<property name="2016-xletix-mitten-in-deutschland" value="XLETIX Challenge - Mitten in Deutschland"/>
+	<property name="2016-tough-mudder-norddeutschland" value="Tough Mudder - Norddeutschland"/>
+	<property name="2016-xletix-sueddeutschland" value="XLETIX Challenge - Süddeutschland"/>
+	<property name="2016-spartan-race-beast-tirol" value="Spartan Race - Tirol (Beast)"/>
+	<property name="2016-cross-de-luxe" value="7. CROSS DE LUXE"/>
+	<property name="2016-toughest-copenhagen" value="Toughest - Copenhagen"/>
+	<property name="2016-halbmarathon-leipzig" value="Halbmarathon Leipzig"/>
+	<property name="2016-king-of-cross" value="KING OF CROSS"/>
+
+	<!-- =========== -->
+	<!-- insert data -->
+	<!-- =========== -->
+	<changeSet id="2016" author="roethig">
+
+		<!-- ==================== -->
+		<!-- Table "Event" (2016) -->
+		<!-- ==================== -->
+		<insert tableName="Event">
+			<column name="organizer_id" valueNumeric="select id from Organizer where name = '${organizer-mud-masters}'"/>
+			<column name="name" value="${2016-mud-masters-haarlemmermeer}"/>
+			<column name="start_date" value="2016-03-05"/>
+			<column name="end_date" value="2016-03-06"/>
+			<column name="location_name" value="Expo Haarlemmermeer, Vijfhuizen"/>
+			<column name="location_country_id" valueNumeric="select id from Country where name = '${country-netherlands}'"/>
+			<column name="distance" value="42"/>
+			<column name="racetime" value="06:52:36"/>
+			<column name="costs" value="71,95"/>
+			<column name="status" value="2"/>
+		</insert>
+		<insert tableName="Race">
+			<column name="event_id" valueNumeric="select id from Event where name = '${2016-mud-masters-haarlemmermeer}'"/>
+			<column name="category_id" valueNumeric="select id from Category where name = '${category-hindernislauf}'"/>
+			<column name="start_number" value="14057"/>
+			<column name="start_time" valueDate="2016-03-05T09:30:00"/>
+			<column name="distance" value="42000"/>
+			<column name="racetime" value="06:52:36"/>
+			<column name="note" value="Platz 35 von 79 Marathon-Finishern; schnellste Zeit: 05:02:55; getragene Nummer: M108"/>
+			<column name="status" value="2"/>
+		</insert>
+
+		<insert tableName="Event">
+			<column name="organizer_id" valueNumeric="select id from Organizer where name = '${organizer-spartan-race}'"/>
+			<column name="name" value="${2016-spartan-race-sprint-muenchen}"/>
+			<column name="start_date" value="2016-04-16"/>
+			<column name="location_name" value="Olympiapark, München"/>
+			<column name="location_country_id" valueNumeric="select id from Country where name = '${country-germany}'"/>
+			<column name="distance" value="5+"/>
+			<column name="racetime" value="01:17:09"/>
+			<column name="costs" value="82,21"/>
+			<column name="status" value="2"/>
+		</insert>
+		<insert tableName="Race">
+			<column name="event_id" valueNumeric="select id from Event where name = '${2016-spartan-race-sprint-muenchen}' and start_date = '2016-04-16'"/>
+			<column name="category_id" valueNumeric="select id from Category where name = '${category-hindernislauf}'"/>
+			<column name="start_number" value="33464"/>
+			<column name="start_time" valueDate="2016-04-16T09:30:00"/>
+			<column name="distance" value="8000"/>
+			<column name="racetime" value="01:17:09"/>
+			<column name="note" value="3 x 30 Burpees Strafe für nicht geschaffte Hindernisse (Spreewurf, Slackline, Monkey Bars)"/>
+			<column name="status" value="2"/>
+		</insert>
+
+		<insert tableName="Event">
+			<column name="organizer_id" valueNumeric="select id from Organizer where name = '${organizer-7-seen-wanderung}'"/>
+			<column name="name" value="${2016-7-seen-wanderung}"/>
+			<column name="start_date" value="2016-05-06"/>
+			<column name="end_date" value="2016-05-08"/>
+			<column name="location_name" value="Rathaus Markkleeberg"/>
+			<column name="location_country_id" valueNumeric="select id from Country where name = '${country-germany}'"/>
+			<column name="distance" value="108"/>
+			<column name="costs" value="27,00"/>
+			<column name="status" value="3"/>
+		</insert>
+		<insert tableName="Race">
+			<column name="event_id" valueNumeric="select id from Event where name = '${2016-7-seen-wanderung}'"/>
+			<column name="category_id" valueNumeric="select id from Category where name = '${category-wanderung}'"/>
+			<column name="start_time" valueDate="2016-05-06T18:00:00"/>
+			<column name="note" value="Nicht gestartet wegen Verletzung"/>
+			<column name="status" value="3"/>
+		</insert>
+
+		<insert tableName="Event">
+			<column name="organizer_id" valueNumeric="select id from Organizer where name = '${organizer-xletix}'"/>
+			<column name="name" value="${2016-xletix-berlin}"/>
+			<column name="start_date" value="2016-05-21"/>
+			<column name="end_date" value="2016-05-22"/>
+			<column name="location_name" value="Offroad Park Berlin Berandenburg, Kallinchen"/>
+			<column name="location_country_id" valueNumeric="select id from Country where name = '${country-germany}'"/>
+			<column name="distance" value="18+"/>
+			<column name="costs" value="74,00"/>
+			<column name="status" value="3"/>
+		</insert>
+		<insert tableName="Race">
+			<column name="event_id" valueNumeric="select id from Event where name = '${2016-xletix-berlin}'"/>
+			<column name="category_id" valueNumeric="select id from Category where name = '${category-hindernislauf}'"/>
+			<column name="start_number" value=""/>
+			<column name="start_time" valueDate="2016-05-21T10:00:00"/>
+			<column name="note" value="Nicht gestartet wegen Verletzung"/>
+			<column name="status" value="3"/>
+		</insert>
+
+		<insert tableName="Event">
+			<column name="organizer_id" valueNumeric="select id from Organizer where name = '${organizer-spartan-race}'"/>
+			<column name="name" value="${2016-spartan-race-super-kouty}"/>
+			<column name="start_date" value="2016-05-28"/>
+			<column name="location_name" value="Ski Areal Kouty, Kouty nad Desnou"/>
+			<column name="location_country_id" valueNumeric="select id from Country where name = '${country-czech-republic}'"/>
+			<column name="distance" value="13+"/>
+			<column name="costs" value="56,30"/>
+			<column name="status" value="3"/>
+		</insert>
+		<insert tableName="Race">
+			<column name="event_id" valueNumeric="select id from Event where name = '${2016-spartan-race-super-kouty}'"/>
+			<column name="category_id" valueNumeric="select id from Category where name = '${category-hindernislauf}'"/>
+			<column name="start_time" valueDate="2016-05-28T10:00:00"/>
+			<column name="note" value="Nicht gestartet wegen Verletzung"/>
+			<column name="status" value="3"/>
+		</insert>
+
+		<insert tableName="Event">
+			<column name="organizer_id" valueNumeric="select id from Organizer where name = '${organizer-xletix}'"/>
+			<column name="name" value="${2016-xletix-mitten-in-deutschland}"/>
+			<column name="start_date" value="2016-06-18"/>
+			<column name="location_name" value="Offroad Park Mammut, Stadtoldendorf/Niedersachsen"/>
+			<column name="location_country_id" valueNumeric="select id from Country where name = '${country-germany}'"/>
+			<column name="distance" value="18+"/>
+			<column name="costs" value="74,00"/>
+			<column name="status" value="3"/>
+		</insert>
+		<insert tableName="Race">
+			<column name="event_id" valueNumeric="select id from Event where name = '${2016-xletix-mitten-in-deutschland}' and start_date = '2016-06-18'"/>
+			<column name="category_id" valueNumeric="select id from Category where name = '${category-hindernislauf}'"/>
+			<column name="start_time" valueDate="2016-06-18T10:00:00"/>
+			<column name="note" value="Nicht gestartet wegen Verletzung"/>
+			<column name="status" value="3"/>
+		</insert>
+
+		<insert tableName="Event">
+			<column name="organizer_id" valueNumeric="select id from Organizer where name = '${organizer-tough-mudder}'"/>
+			<column name="name" value="${2016-tough-mudder-norddeutschland}"/>
+			<column name="start_date" value="2016-07-16"/>
+			<column name="end_date" value="2016-07-17"/>
+			<column name="location_name" value="Reiter- und Ferienhof Severloh, Hermannsburg"/>
+			<column name="location_country_id" valueNumeric="select id from Country where name = '${country-germany}'"/>
+			<column name="distance" value="18+"/>
+			<column name="costs" value="174,00"/>
+			<column name="status" value="3"/>
+		</insert>
+		<insert tableName="Race">
+			<column name="event_id" valueNumeric="select id from Event where name = '${2016-tough-mudder-norddeutschland}' and start_date = '2016-07-16'"/>
+			<column name="category_id" valueNumeric="select id from Category where name = '${category-hindernislauf}'"/>
+			<column name="start_time" valueDate="2016-07-16T09:00:00"/>
+			<column name="note" value="Nicht gestartet wegen Verletzung"/>
+			<column name="status" value="3"/>
+		</insert>
+		<insert tableName="Race">
+			<column name="event_id" valueNumeric="select id from Event where name = '${2016-tough-mudder-norddeutschland}' and start_date = '2016-07-16'"/>
+			<column name="category_id" valueNumeric="select id from Category where name = '${category-hindernislauf}'"/>
+			<column name="start_time" valueDate="2016-07-17T09:00:00"/>
+			<column name="note" value="Nicht gestartet wegen Verletzung"/>
+			<column name="status" value="3"/>
+		</insert>
+
+		<insert tableName="Event">
+			<column name="organizer_id" valueNumeric="select id from Organizer where name = '${organizer-xletix}'"/>
+			<column name="name" value="${2016-xletix-sueddeutschland}"/>
+			<column name="start_date" value="2016-08-13"/>
+			<column name="location_name" value="Kieswerke und Wakeboardpark, Geisenfeld"/>
+			<column name="location_country_id" valueNumeric="select id from Country where name = '${country-germany}'"/>
+			<column name="distance" value="18+"/>
+			<column name="racetime" value="02:45:00"/>
+			<column name="costs" value="79,00"/>
+			<column name="status" value="2"/>
+		</insert>
+		<insert tableName="Race">
+			<column name="event_id" valueNumeric="select id from Event where name = '${2016-xletix-sueddeutschland}'"/>
+			<column name="category_id" valueNumeric="select id from Category where name = '${category-hindernislauf}'"/>
+			<column name="start_number" value="87050"/>
+			<column name="start_time" valueDate="2016-08-13T10:00:00"/>
+			<column name="distance" value="18000"/>
+			<column name="racetime" value="02:45:00"/>
+			<column name="status" value="2"/>
+		</insert>
+
+		<insert tableName="Event">
+			<column name="organizer_id" valueNumeric="select id from Organizer where name = '${organizer-spartan-race}'"/>
+			<column name="name" value="${2016-spartan-race-beast-tirol}"/>
+			<column name="start_date" value="2016-09-09"/>
+			<column name="end_date" value="2016-09-11"/>
+			<column name="location_name" value="Oberndorf in Tirol, Kitzbüheler Alpen"/>
+			<column name="location_country_id" valueNumeric="select id from Country where name = '${country-austria}'"/>
+			<column name="distance" value="20+"/>
+			<column name="racetime" value="05:50:41"/>
+			<column name="costs" value="112,74"/>
+			<column name="status" value="2"/>
+		</insert>
+		<insert tableName="Race">
+			<column name="event_id" valueNumeric="select id from Event where name = '${2016-spartan-race-beast-tirol}'"/>
+			<column name="category_id" valueNumeric="select id from Category where name = '${category-hindernislauf}'"/>
+			<column name="start_number" value=""/>
+			<column name="start_time" valueDate="2016-09-10T09:15:00"/>
+			<column name="distance" value="25000"/>
+			<column name="racetime" value="05:50:41"/>
+			<column name="note" value="4 x 30 Burpees Strafe für nicht geschaffte Hindernisse (Speer Throw #1, Speer Throw #2, Tarzan Swing, Monkey Bars)"/>
+			<column name="status" value="2"/>
+		</insert>
+
+		<insert tableName="Event">
+			<column name="organizer_id" valueNumeric="select id from Organizer where name = '${organizer-cross-de-luxe}'"/>
+			<column name="name" value="${2016-cross-de-luxe}"/>
+			<column name="start_date" value="2016-09-24"/>
+			<column name="end_date" value="2016-09-25"/>
+			<column name="location_name" value="Markkleeberger See"/>
+			<column name="location_country_id" valueNumeric="select id from Country where name = '${country-germany}'"/>
+			<column name="distance" value="2 x 8"/>
+			<column name="racetime" value="02:16:44"/>
+			<column name="costs" value="110,00"/>
+			<column name="status" value="2"/>
+		</insert>
+		<insert tableName="Race">
+			<column name="event_id" valueNumeric="select id from Event where name = '${2016-cross-de-luxe}'"/>
+			<column name="category_id" valueNumeric="select id from Category where name = '${category-hindernislauf}'"/>
+			<column name="start_number" value="1569"/>
+			<column name="start_time" valueDate="2016-09-24T13:00:00"/>
+			<column name="distance" value="16000"/>
+			<column name="racetime" value="02:16:44"/>
+			<column name="note" value="(66:15 / 70:29), Platz 65 in Staffel 1 über 16 km"/>
+			<column name="status" value="2"/>
+		</insert>
+		<insert tableName="Race">
+			<column name="event_id" valueNumeric="select id from Event where name = '${2016-cross-de-luxe}'"/>
+			<column name="category_id" valueNumeric="select id from Category where name = '${category-hindernislauf}'"/>
+			<column name="start_number" value="6623"/>
+			<column name="start_time" valueDate="2016-09-25T13:30:00"/>
+			<column name="distance" value="8000"/>
+			<column name="racetime" value="02:08:05"/>
+			<column name="team" value="Suppentopf"/>
+			<column name="note" value="Team-Lauf mit Andy, Denis, Karen, Marleen und Sören"/>
+			<column name="status" value="2"/>
+		</insert>
+
+		<insert tableName="Event">
+			<column name="organizer_id" valueNumeric="select id from Organizer where name = '${organizer-toughest}'"/>
+			<column name="name" value="${2016-toughest-copenhagen}"/>
+			<column name="start_date" value="2016-10-01"/>
+			<column name="location_name" value="Amager Strandpark, Copenhagen"/>
+			<column name="location_country_id" valueNumeric="select id from Country where name = '${country-denmark}'"/>
+			<column name="distance" value="8"/>
+			<column name="racetime" value="01:22:20"/>
+			<column name="costs" value="61,60"/>
+			<column name="status" value="2"/>
+		</insert>
+		<insert tableName="Race">
+			<column name="event_id" valueNumeric="select id from Event where name = '${2016-toughest-copenhagen}'"/>
+			<column name="category_id" valueNumeric="select id from Category where name = '${category-hindernislauf}'"/>
+			<column name="start_number" value="232"/>
+			<column name="start_time" valueDate="2016-10-01T11:00:00"/>
+			<column name="distance" value="8000"/>
+			<column name="racetime" value="01:22:20"/>
+			<column name="note" value="3 x Penalty Round für nicht geschaffte oder ausgelassene Hindernisse"/>
+			<column name="status" value="2"/>
+		</insert>
+
+		<insert tableName="Event">
+			<column name="organizer_id" valueNumeric="select id from Organizer where name = '${organizer-halbmarathon-leipzig}'"/>
+			<column name="name" value="${2016-halbmarathon-leipzig}"/>
+			<column name="start_date" value="2016-10-09"/>
+			<column name="location_name" value="Völkerschlachtdenkmal, Leipzig"/>
+			<column name="location_country_id" valueNumeric="select id from Country where name = '${country-germany}'"/>
+			<column name="distance" value="21,0975"/>
+			<column name="racetime" value="01:48:30"/>
+			<column name="costs" value="25,00"/>
+			<column name="status" value="2"/>
+		</insert>
+		<insert tableName="Race">
+			<column name="event_id" valueNumeric="select id from Event where name = '${2016-halbmarathon-leipzig}'"/>
+			<column name="category_id" valueNumeric="select id from Category where name = '${category-strassenlauf}'"/>
+			<column name="start_number" value="2264"/>
+			<column name="start_time" valueDate="2016-10-09T10:00:00"/>
+			<column name="distance" value="21098"/>
+			<column name="racetime" value="01:48:30"/>
+			<column name="note" value="Netto: 01:50:53, 10-km-Zwischenzeit: 00:51:19"/>
+			<column name="status" value="2"/>
+		</insert>
+
+		<insert tableName="Event">
+			<column name="organizer_id" valueNumeric="select id from Organizer where name = '${organizer-king-of-cross}'"/>
+			<column name="name" value="${2016-king-of-cross}"/>
+			<column name="start_date" value="2016-10-30"/>
+			<column name="location_name" value="Mühlberg, Thüringen"/>
+			<column name="location_country_id" valueNumeric="select id from Country where name = '${country-germany}'"/>
+			<column name="distance" value="16"/>
+			<column name="racetime" value="01:57:22"/>
+			<column name="costs" value="59,00"/>
+			<column name="status" value="2"/>
+		</insert>
+		<insert tableName="Race">
+			<column name="event_id" valueNumeric="select id from Event where name = '${2016-king-of-cross}'"/>
+			<column name="category_id" valueNumeric="select id from Category where name = '${category-crosslauf}'"/>
+			<column name="start_number" value="1562"/>
+			<column name="start_time" valueDate="2016-10-30T11:00:00"/>
+			<column name="distance" value="16000"/>
+			<column name="racetime" value="01:57:22"/>
+			<column name="status" value="2"/>
+		</insert>
+
+	</changeSet>
+
+</databaseChangeLog>
