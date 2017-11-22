@@ -26,13 +26,23 @@
 		<form class="form-horizontal" th:object="${country}" th:action="@{/country/update}" action="#" method="post">
 			<input type="hidden" th:field="*{id}"/>
 			<div class="form-group" th:classappend="${#fields.hasErrors('name')} ? has-error">
-				<label class="col-md-2 control-label" th:text="#{country.name.label}">
+				<label class="col-md-2 control-label">
 					<span class="required">*</span>
 					<span th:text="#{country.name.label}">Name</span>
 				</label>
 				<div class="col-md-10">
 					<input type="text" th:field="*{name}" class="form-control">
 					<small class="help-block" th:if="${#fields.hasErrors('name')}" th:each="err : ${#fields.errors('name')}" th:text="${err}">validation error</small>
+				</div>
+			</div>
+			<div class="form-group" th:classappend="${#fields.hasErrors('code')} ? has-error">
+				<label class="col-md-2 control-label">
+					<span class="required">*</span>
+					<span th:text="#{country.code.label}">Code</span>
+				</label>
+				<div class="col-md-10">
+					<input type="text" th:field="*{code}" class="form-control">
+					<small class="help-block" th:if="${#fields.hasErrors('code')}" th:each="err : ${#fields.errors('code')}" th:text="${err}">validation error</small>
 				</div>
 			</div>
 			<div class="form-group">

@@ -22,6 +22,13 @@ public class CountryDto
 		max = 255
 	)
 	private String name;
+	
+	@NotNull
+	@Size(
+		min = 2,
+		max = 2
+	)
+	private String code;
 
 	@NotNull
 	private Boolean archived;

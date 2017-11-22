@@ -61,6 +61,7 @@ public class DtoTransformer
 		}
 
 		country.setName( countryDto.getName() );
+		country.setCode( countryDto.getCode() );
 		country.setArchived( countryDto.getArchived() );
 
 		return country;
@@ -77,6 +78,7 @@ public class DtoTransformer
 
 		countryDto.setId( country.getId() );
 		countryDto.setName( country.getName() );
+		countryDto.setCode( country.getCode() );
 		countryDto.setArchived( country.getArchived() );
 
 		return countryDto;

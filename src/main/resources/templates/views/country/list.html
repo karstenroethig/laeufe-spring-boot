@@ -22,17 +22,19 @@
 				</tr>
 				<tr>
 					<th th:text="#{country.name.label}">Name</th>
+					<th th:text="#{country.code.label}">Code</th>
 					<th th:text="#{default.table.operations.label}">Actions</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr th:if="${#lists.isEmpty(allCountries)}">
-					<td colspan="2" align="center" th:text="#{default.table.empty.text}">Data can not be found.</td>
+					<td colspan="3" align="center" th:text="#{default.table.empty.text}">Data can not be found.</td>
 				</tr>
 				<tr th:each="country : ${allCountries}">
 					<td>
 						<span th:text="${country.name}">[name]</span>&nbsp;<span th:if="${country.archived}" class="badge" th:text="#{country.archived.label}">Archived</span>
 					</td>
+					<td th:text="${country.code}">[code]</td>
 					<td>
 						<a th:href="@{/country/edit/{id}(id=${country.id})}" th:text="#{default.button.edit.label}">Edit</a> |
 						<a href="" th:text="#{default.button.delete.label}" data-toggle="modal" data-target="#deleteModal" th:attr="data-id=${country.id}">Delete</a>

@@ -31,6 +31,16 @@
 					<small class="help-block" th:if="${#fields.hasErrors('name')}" th:each="err : ${#fields.errors('name')}" th:text="${err}">validation error</small>
 				</div>
 			</div>
+			<div class="form-group" th:classappend="${#fields.hasErrors('code')} ? has-error">
+				<label class="col-md-2 control-label">
+					<span class="required">*</span>
+					<span th:text="#{country.code.label}">Code</span>
+				</label>
+				<div class="col-md-10">
+					<input type="text" th:field="*{code}" class="form-control">
+					<small class="help-block" th:if="${#fields.hasErrors('code')}" th:each="err : ${#fields.errors('code')}" th:text="${err}">validation error</small>
+				</div>
+			</div>
 			<div class="form-group">
 				<div class="col-md-10 col-md-offset-2">
 					<input type="submit" class="btn btn-primary" th:value="#{default.button.save.label}">

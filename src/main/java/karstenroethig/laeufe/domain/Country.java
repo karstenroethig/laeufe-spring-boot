@@ -41,6 +41,12 @@ public class Country
 		nullable = false
 	)
 	private String name;
+	
+	@Column(
+			length = 2,
+			nullable = false
+			)
+	private String code;
 
 	@Column( nullable = false )
 	private Boolean archived;
