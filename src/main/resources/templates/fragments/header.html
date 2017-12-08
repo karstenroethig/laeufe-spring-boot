@@ -46,11 +46,8 @@
 				<li th:class="${#strings.equals(menu,'event')} ? active">
 					<a th:href="@{/event/list}" th:text="#{event.label.plural}">Events</a>
 				</li>
-				<li th:class="${#strings.equals(menu,'calendar')} ? active">
-					<a th:href="@{/calendar}" th:text="#{calendar.label}">Calendar</a>
-				</li>
 				<li th:class="${#strings.equals(menu,'map')} ? active">
-					<a href="map.html" th:text="#{map.label}">Map</a>
+					<a th:href="@{/map}" th:text="#{map.label}">Map</a>
 				</li>
 				<li th:class="${#strings.equals(menu,'admin')} ? active">
 					<a th:href="@{/organizer/list}" th:text="#{utility.admin.label}">Administration</a>

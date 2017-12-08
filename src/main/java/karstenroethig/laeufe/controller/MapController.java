@@ -13,14 +13,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @ComponentScan
 @Controller
-public class CalendarController
+public class MapController
 {
 	@RequestMapping(
-		value = UrlMappings.CALENDAR,
+		value = UrlMappings.MAP,
 		method = RequestMethod.GET
 	)
-	public String calendar( Model model )
+	public String map( Model model )
 	{
-		return "views/calendar";
+		return "views/map";
 	}
 }

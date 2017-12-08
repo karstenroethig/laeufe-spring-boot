@@ -6,7 +6,7 @@ public class UrlMappings
 
 	public static final String HOME = "/";
 	public static final String DASHBOARD = "/dashboard";
-	public static final String CALENDAR = "/calendar";
+	public static final String MAP = "/map";
 
 	public static final String CONTROLLER_ORGANIZER = "/organizer";
 	public static final String CONTROLLER_COUNTRY = "/country";

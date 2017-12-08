@@ -33,6 +33,7 @@
 		<webjars-patternfly.version>3.3.2</webjars-patternfly.version>
 		<webjars-bootstrap-datepicker.version>1.6.1</webjars-bootstrap-datepicker.version>
 		<webjars-bootstrap-switch.version>3.3.2</webjars-bootstrap-switch.version>
+		<webjars-ammap.version>3.20.19</webjars-ammap.version>
 	</properties>
 
 	<dependencyManagement>
@@ -200,6 +201,11 @@
 			<groupId>org.webjars</groupId>
 			<artifactId>bootstrap-switch</artifactId>
 			<version>${webjars-bootstrap-switch.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.webjars.bower</groupId>
+			<artifactId>ammap3</artifactId>
+			<version>${webjars-ammap.version}</version>
 		</dependency>
 
 		<!-- some Commons-Libs -->
