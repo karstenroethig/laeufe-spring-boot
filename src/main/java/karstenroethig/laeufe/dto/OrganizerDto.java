@@ -26,6 +26,9 @@ public class OrganizerDto
 	@Size( max = 1024 )
 	private String description;
 
+	@Size( max = 255 )
+	private String logoFile;
+
 	@NotNull
 	private Boolean archived;
 }

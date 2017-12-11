@@ -11,16 +11,19 @@
 
 	<property name="organizer-7-seen-wanderung" value="7-Seen-Wanderung"/>
 	<property name="organizer-ammelshainer-schlosslauf" value="Ammelshainer Schlosslauf"/>
+	<property name="organizer-amper-challenge" value="Amper Challenge"/>
 	<property name="organizer-cross-de-luxe" value="CROSS DE LUXE"/>
 	<property name="organizer-strongmanrun" value="Fisherman''s Friend StrongmanRun"/>
-	<property name="organizer-fockeberglauf" value="Fockeberglauf"/>
 	<property name="organizer-getting-tough" value="Getting Tough"/>
 	<property name="organizer-halbmarathon-leipzig" value="Halbmaraton Leipzig"/>
 	<property name="organizer-king-of-cross" value="KING OF CROSS"/>
 	<property name="organizer-leipziger-firmenlauf" value="Leipziger Firmenlauf"/>
+	<property name="organizer-leipziger-triathlon" value="Leipziger Triathlon"/>
 	<property name="organizer-mud-masters" value="Mud Masters"/>
 	<property name="organizer-neuseen-hero" value="neuseenHERO"/>
+	<property name="organizer-ragnar" value="Ragnar"/>
 	<property name="organizer-rat-race" value="Rat Race"/>
+	<property name="organizer-red-bull-400" value="Red Bull 400"/>
 	<property name="organizer-seelauf-markkleeberg" value="Seelauf Markkleeberg"/>
 	<property name="organizer-spartan-race" value="Spartan Race"/>
 	<property name="organizer-strong-viking" value="Strong Viking"/>

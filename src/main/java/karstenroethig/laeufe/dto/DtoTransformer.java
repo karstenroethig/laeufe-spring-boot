@@ -25,6 +25,7 @@ public class DtoTransformer
 
 		organizer.setName( organizerDto.getName() );
 		organizer.setDescription( StringUtils.trimToNull( organizerDto.getDescription() ) );
+		organizer.setLogoFile( StringUtils.trimToNull( organizerDto.getLogoFile() ) );
 		organizer.setArchived( organizerDto.getArchived() );
 
 		return organizer;
@@ -42,6 +43,7 @@ public class DtoTransformer
 		organizerDto.setId( organizer.getId() );
 		organizerDto.setName( organizer.getName() );
 		organizerDto.setDescription( StringUtils.trimToNull( organizer.getDescription() ) );
+		organizerDto.setLogoFile( StringUtils.trimToNull( organizer.getLogoFile() ) );
 		organizerDto.setArchived( organizer.getArchived() );
 
 		return organizerDto;

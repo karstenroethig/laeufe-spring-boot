@@ -48,6 +48,13 @@ public class Organizer
 	)
 	private String description;
 
+	@Column(
+		name = "logo_file",
+		length = 255,
+		nullable = true
+	)
+	private String logoFile;
+
 	@Column( nullable = false )
 	private Boolean archived;
 }
