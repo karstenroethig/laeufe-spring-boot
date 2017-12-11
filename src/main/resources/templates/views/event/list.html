@@ -41,7 +41,8 @@
 				</div>
 				<div class="list-view-pf-main-info">
 					<div class="list-view-pf-left">
-						<span th:class="${event.status.icon+' list-view-pf-icon-lg'}" th:title="${#messages.msg('event.status.'+event.status.name()+'.label')}"></span>
+						<img th:src="@{/images/logos/{file}(file=${event.organizer.logoFile})}" alt="${event.organizer.name}" height="60" width="60" th:if="${!#strings.isEmpty(event.organizer.logoFile)}"/>
+						<img th:src="@{/images/logos/default.jpg}" height="60" width="60" th:if="${#strings.isEmpty(event.organizer.logoFile)}"/>
 					</div>
 					<div class="list-view-pf-body">
 						<div class="list-view-pf-description">
@@ -55,17 +56,20 @@
 							</div>
 						</div>
 						<div class="list-view-pf-additional-info">
+							<div class="list-view-pf-left">
+								<span th:class="${event.status.icon+' list-view-pf-icon-lg'}" th:title="${#messages.msg('event.status.'+event.status.name()+'.label')}"></span>
+							</div>
 							<div class="list-view-pf-additional-info-item">
 								<span class="fa fa-long-arrow-right"></span>
 								<strong th:text="${event.distance}">[distance]</strong> km
 							</div>
-							<div class="list-view-pf-additional-info-item" th:if="${!#strings.isEmpty(event.racetime)}">
-								<span class="fa fa-clock-o"></span>
-								<strong th:text="${event.racetime}">[racetime]</strong>
-							</div>
 							<div class="list-view-pf-additional-info-item" th:if="${!#strings.isEmpty(event.costs)}">
 								<span class="fa fa-money"></span>
 								<strong th:text="${event.costs}">[costs]</strong> &euro;
+							</div>
+							<div class="list-view-pf-additional-info-item" th:if="${!#strings.isEmpty(event.racetime)}">
+								<span class="fa fa-clock-o"></span>
+								<strong th:text="${event.racetime}">[racetime]</strong>
 							</div>
 						</div>
 					</div>

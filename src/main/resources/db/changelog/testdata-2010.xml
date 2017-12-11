@@ -22,6 +22,8 @@
 			<column name="start_date" value="2010-06-09"/>
 			<column name="location_name" value="Sportforum, Leipzig"/>
 			<column name="location_country_id" valueNumeric="select id from Country where name = '${country-germany}'"/>
+			<column name="location_latitude" value="51.34631"/>
+			<column name="location_longitude" value="12.35065"/>
 			<column name="distance" value="5"/>
 			<column name="racetime" value="00:22:53"/>
 			<column name="costs" value="0,00"/>

@@ -25,6 +25,8 @@
 			<column name="start_date" value="2013-07-10"/>
 			<column name="location_name" value="Sportforum, Leipzig"/>
 			<column name="location_country_id" valueNumeric="select id from Country where name = '${country-germany}'"/>
+			<column name="location_latitude" value="51.34631"/>
+			<column name="location_longitude" value="12.35065"/>
 			<column name="distance" value="4,8"/>
 			<column name="racetime" value="00:19:29"/>
 			<column name="costs" value="0,00"/>
@@ -48,6 +50,8 @@
 			<column name="end_date" value="2013-07-14"/>
 			<column name="location_name" value="Fursten Forest, Fürstenau"/>
 			<column name="location_country_id" valueNumeric="select id from Country where name = '${country-germany}'"/>
+			<column name="location_latitude" value="52.53311"/>
+			<column name="location_longitude" value="7.65893"/>
 			<column name="distance" value="18+"/>
 			<column name="racetime" value="02:10:00"/>
 			<column name="costs" value="192,77"/>
@@ -69,6 +73,8 @@
 			<column name="start_date" value="2013-09-28"/>
 			<column name="location_name" value="Markkleeberger See"/>
 			<column name="location_country_id" valueNumeric="select id from Country where name = '${country-germany}'"/>
+			<column name="location_latitude" value="51.25534"/>
+			<column name="location_longitude" value="12.42442"/>
 			<column name="distance" value="2 x 8,65"/>
 			<column name="racetime" value="01:49:16"/>
 			<column name="costs" value="56,90"/>
@@ -91,6 +97,8 @@
 			<column name="end_date" value="2013-10-20"/>
 			<column name="location_name" value="Lausitzring, Klettwitz"/>
 			<column name="location_country_id" valueNumeric="select id from Country where name = '${country-germany}'"/>
+			<column name="location_latitude" value="51.53698"/>
+			<column name="location_longitude" value="13.92824"/>
 			<column name="distance" value="18+"/>
 			<column name="costs" value="172,77"/>
 			<column name="status" value="2"/>

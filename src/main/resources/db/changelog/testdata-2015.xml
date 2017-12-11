@@ -38,6 +38,8 @@
 			<column name="end_date" value="2015-05-03"/>
 			<column name="location_name" value="Culden Faw, Fawley"/>
 			<column name="location_country_id" valueNumeric="select id from Country where name = '${country-united-kingdom}'"/>
+			<column name="location_latitude" value="51.562231"/>
+			<column name="location_longitude" value="-0.894241"/>
 			<column name="distance" value="18+"/>
 			<column name="racetime" value="02:28:27"/>
 			<column name="costs" value="24,91"/>
@@ -60,6 +62,8 @@
 			<column name="end_date" value="2015-05-24"/>
 			<column name="location_name" value="Jagdschloss Herdringen, Arnsberg"/>
 			<column name="location_country_id" valueNumeric="select id from Country where name = '${country-germany}'"/>
+			<column name="location_latitude" value="51.42115"/>
+			<column name="location_longitude" value="7.96941"/>
 			<column name="distance" value="18+"/>
 			<column name="racetime" value="02:10:20"/>
 			<column name="costs" value="35,00"/>
@@ -83,6 +87,8 @@
 			<column name="end_date" value="2015-05-31"/>
 			<column name="location_name" value="Boughton House, Kettering"/>
 			<column name="location_country_id" valueNumeric="select id from Country where name = '${country-united-kingdom}'"/>
+			<column name="location_latitude" value="52.4048609"/>
+			<column name="location_longitude" value="-0.6648779"/>
 			<column name="distance" value="18+"/>
 			<column name="racetime" value="02:08:16"/>
 			<column name="costs" value="43,22"/>
@@ -113,6 +119,8 @@
 			<column name="start_date" value="2015-06-03"/>
 			<column name="location_name" value="Kleinmesse am Cottaweg, Leipzig"/>
 			<column name="location_country_id" valueNumeric="select id from Country where name = '${country-germany}'"/>
+			<column name="location_latitude" value="51.33944"/>
+			<column name="location_longitude" value="12.34275"/>
 			<column name="distance" value="5"/>
 			<column name="racetime" value="00:20:57"/>
 			<column name="costs" value="0,00"/>
@@ -137,6 +145,8 @@
 			<column name="end_date" value="2015-06-21"/>
 			<column name="location_name" value="Drumlanrig Castle, Thornhill"/>
 			<column name="location_country_id" valueNumeric="select id from Country where name = '${country-united-kingdom}'"/>
+			<column name="location_latitude" value="55.27341"/>
+			<column name="location_longitude" value="-3.8064312"/>
 			<column name="distance" value="18+"/>
 			<column name="racetime" value="02:10:00"/>
 			<column name="costs" value="44,00"/>
@@ -169,6 +179,8 @@
 			<column name="start_date" value="2015-06-26"/>
 			<column name="location_name" value="Ammelshainer Schloss, Ammelshain"/>
 			<column name="location_country_id" valueNumeric="select id from Country where name = '${country-germany}'"/>
+			<column name="location_latitude" value="51.294884"/>
+			<column name="location_longitude" value="12.636619"/>
 			<column name="distance" value="8,5"/>
 			<column name="costs" value="5,00"/>
 			<column name="status" value="3"/>
@@ -188,6 +200,8 @@
 			<column name="end_date" value="2015-07-12"/>
 			<column name="location_name" value="Reiter- und Ferienhof Severloh, Hermannsburg"/>
 			<column name="location_country_id" valueNumeric="select id from Country where name = '${country-germany}'"/>
+			<column name="location_latitude" value="52.767945"/>
+			<column name="location_longitude" value="10.118963"/>
 			<column name="distance" value="18+"/>
 			<column name="racetime" value="01:40:00"/>
 			<column name="costs" value="35,00"/>
@@ -218,6 +232,8 @@
 			<column name="start_date" value="2015-08-15"/>
 			<column name="location_name" value="Ferropolis, Gräfenhainichen"/>
 			<column name="location_country_id" valueNumeric="select id from Country where name = '${country-germany}'"/>
+			<column name="location_latitude" value="51.758284"/>
+			<column name="location_longitude" value="12.447138"/>
 			<column name="distance" value="2 x 12"/>
 			<column name="racetime" value="01:43:57"/>
 			<column name="costs" value="79,00"/>
@@ -240,6 +256,8 @@
 			<column name="start_date" value="2015-09-05"/>
 			<column name="location_name" value="St. Leonhard bei Salzburg"/>
 			<column name="location_country_id" valueNumeric="select id from Country where name = '${country-austria}'"/>
+			<column name="location_latitude" value="47.7224695"/>
+			<column name="location_longitude" value="13.0550638"/>
 			<column name="distance" value="4 x 5"/>
 			<column name="racetime" value="03:58:56"/>
 			<column name="costs" value="57,00"/>
@@ -262,6 +280,8 @@
 			<column name="end_date" value="2015-09-13"/>
 			<column name="location_name" value="Wassertrüdingen am Oettinger Forst"/>
 			<column name="location_country_id" valueNumeric="select id from Country where name = '${country-germany}'"/>
+			<column name="location_latitude" value="49.0376213"/>
+			<column name="location_longitude" value="10.5981058"/>
 			<column name="distance" value="18+"/>
 			<column name="racetime" value="02:10:00"/>
 			<column name="costs" value="43,26"/>
@@ -294,6 +314,8 @@
 			<column name="start_date" value="2015-09-26"/>
 			<column name="location_name" value="Markkleeberger See"/>
 			<column name="location_country_id" valueNumeric="select id from Country where name = '${country-germany}'"/>
+			<column name="location_latitude" value="51.25534"/>
+			<column name="location_longitude" value="12.42442"/>
 			<column name="distance" value="2 x 8"/>
 			<column name="racetime" value="01:57:12"/>
 			<column name="costs" value="54,99"/>
@@ -316,6 +338,8 @@
 			<column name="start_date" value="2015-10-11"/>
 			<column name="location_name" value="Ski Areal Kouty, Kouty nad Desnou"/>
 			<column name="location_country_id" valueNumeric="select id from Country where name = '${country-czech-republic}'"/>
+			<column name="location_latitude" value="50.099103"/>
+			<column name="location_longitude" value="17.119918"/>
 			<column name="distance" value="20+"/>
 			<column name="racetime" value="04:20:17"/>
 			<column name="costs" value="62,50"/>
@@ -338,6 +362,8 @@
 			<column name="start_date" value="2015-10-17"/>
 			<column name="location_name" value="Trabrennbahn Karlshorst, Berlin"/>
 			<column name="location_country_id" valueNumeric="select id from Country where name = '${country-germany}'"/>
+			<column name="location_latitude" value="52.4751809"/>
+			<column name="location_longitude" value="13.5268016"/>
 			<column name="distance" value="12+"/>
 			<column name="racetime" value="01:30:00"/>
 			<column name="costs" value="84,00"/>
@@ -356,11 +382,13 @@
 		</insert>
 
 		<insert tableName="Event">
-			<column name="organizer_id" valueNumeric="select id from Organizer where name = '${organizer-fockeberglauf}'"/>
+			<column name="organizer_id" valueNumeric="select id from Organizer where name = '${organizer-leipziger-triathlon}'"/>
 			<column name="name" value="${2015-fockeberglauf}"/>
 			<column name="start_date" value="2015-11-07"/>
 			<column name="location_name" value="Fockeberg, Leipzig"/>
 			<column name="location_country_id" valueNumeric="select id from Country where name = '${country-germany}'"/>
+			<column name="location_latitude" value="51.3187"/>
+			<column name="location_longitude" value="12.3655"/>
 			<column name="distance" value="6 x 2"/>
 			<column name="racetime" value="01:00:14"/>
 			<column name="costs" value="5,00"/>
@@ -382,6 +410,8 @@
 			<column name="start_date" value="2015-12-05"/>
 			<column name="location_name" value="Festwiese Röntgenstraße, Rudolstadt"/>
 			<column name="location_country_id" valueNumeric="select id from Country where name = '${country-germany}'"/>
+			<column name="location_latitude" value="50.7181048"/>
+			<column name="location_longitude" value="11.3534061"/>
 			<column name="distance" value="24"/>
 			<column name="costs" value="72,00"/>
 			<column name="status" value="3"/>

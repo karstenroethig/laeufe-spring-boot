@@ -1,21 +1,24 @@
-name;description;archived
-7-Seen-Wanderung;NULL;true
-Ammelshainer Schlosslauf;NULL;true
-CROSS DE LUXE;NULL;false
-Fisherman\'s Friend StrongmanRun;NULL;true
-Fockeberglauf;NULL;false
-Getting Tough;NULL;true
-Halbmaraton Leipzig;NULL;true
-KING OF CROSS;NULL;true
-Leipziger Firmenlauf;NULL;true
-Mud Masters;NULL;false
-neuseenHERO;NULL;false
-Rat Race;NULL;true
-Seelauf Markkleeberg;NULL;true
-Spartan Race;NULL;false
-Strong Viking;NULL;true
-Survival Run;NULL;true
-Tough Mudder;NULL;false
-Toughest;NULL;false
-Wildsau Dirt Run;NULL;false
-XLETIX Challenge;NULL;false
+name;description;logo_file;archived
+7-Seen-Wanderung;NULL;7-seen-wanderung.png;true
+Ammelshainer Schlosslauf;NULL;ammelshainer-schlosslauf.png;true
+Amper Challenge;NULL;amper-challenge.jpg;false
+CROSS DE LUXE;NULL;cross-de-luxe.png;false
+Fisherman\'s Friend StrongmanRun;NULL;strongmanrun.png;true
+Getting Tough;NULL;getting-tough.png;true
+Halbmaraton Leipzig;NULL;halbmarathon-leipzig.jpg;true
+KING OF CROSS;NULL;king-of-cross.png;true
+Leipziger Firmenlauf;NULL;leipziger-firmenlauf.png;true
+Leipziger Triathlon;NULL;leipziger-triathlon.png;false
+Mud Masters;NULL;mud-masters.jpg;false
+neuseenHERO;NULL;neuseen-hero.png;false
+Ragnar;NULL;ragnar.png;true
+Rat Race;NULL;rat-race.png;true
+Red Bull 400;NULL;red-bull-400.jpg;true
+Seelauf Markkleeberg;NULL;seelauf-markkleeberg.png;true
+Spartan Race;NULL;spartan-race.jpeg;false
+Strong Viking;NULL;strong-viking.jpg;true
+Survival Run;NULL;survival-run.png;true
+Tough Mudder;NULL;tough-mudder.jpeg;false
+Toughest;NULL;toughest.jpg;false
+Wildsau Dirt Run;NULL;wildsau.png;false
+XLETIX Challenge;NULL;xletix.png;false

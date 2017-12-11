@@ -28,6 +28,8 @@
 			<column name="start_date" value="2018-03-03"/>
 			<column name="location_name" value="Base Jaime II, Palma de Mallorca"/>
 			<column name="location_country_id" valueNumeric="select id from Country where name = '${country-spain}'"/>
+			<column name="location_latitude" value="39.5741732"/>
+			<column name="location_longitude" value="2.6036588"/>
 			<column name="distance" value="13+"/>
 			<!--column name="racetime" value=""/-->
 			<column name="costs" value="86,51"/>
@@ -50,6 +52,8 @@
 			<column name="start_date" value="2018-04-14"/>
 			<column name="location_name" value="Olympiapark, München"/>
 			<column name="location_country_id" valueNumeric="select id from Country where name = '${country-germany}'"/>
+			<column name="location_latitude" value="48.1729"/>
+			<column name="location_longitude" value="11.5438"/>
 			<column name="distance" value="5+"/>
 			<!--column name="racetime" value=""/-->
 			<column name="costs" value="75,56"/>
@@ -73,6 +77,8 @@
 			<column name="end_date" value="2018-06-10"/>
 			<column name="location_name" value="Heritage Ranch, Red Deer, Alberta"/>
 			<column name="location_country_id" valueNumeric="select id from Country where name = '${country-canada}'"/>
+			<column name="location_latitude" value="52.2618357"/>
+			<column name="location_longitude" value="-113.8535232"/>
 			<column name="distance" value="13+"/>
 			<!--column name="racetime" value=""/-->
 			<column name="costs" value="99,22"/>
@@ -95,6 +101,8 @@
 			<column name="start_date" value="2018-06-30"/>
 			<column name="location_name" value="Messegelände Riem, München"/>
 			<column name="location_country_id" valueNumeric="select id from Country where name = '${country-germany}'"/>
+			<column name="location_latitude" value="48.1349684"/>
+			<column name="location_longitude" value="11.6531557"/>
 			<column name="distance" value="12+"/>
 			<column name="costs" value="54,00"/>
 			<column name="status" value="1"/>
@@ -114,8 +122,10 @@
 			<column name="organizer_id" valueNumeric="select id from Organizer where name = '${organizer-xletix}'"/>
 			<column name="name" value="${2018-xletix-tirol}"/>
 			<column name="start_date" value="2018-07-21"/>
-			<column name="location_name" value="Weltcuport Kühtai, Tirol, Österreich"/>
+			<column name="location_name" value="Weltcuport Kühtai, Tirol"/>
 			<column name="location_country_id" valueNumeric="select id from Country where name = '${country-austria}'"/>
+			<column name="location_latitude" value="47.2117896"/>
+			<column name="location_longitude" value="11.0148107"/>
 			<column name="distance" value="12+"/>
 			<column name="costs" value="64,00"/>
 			<column name="status" value="1"/>
@@ -138,6 +148,8 @@
 			<column name="end_date" value="2018-09-02"/>
 			<column name="location_name" value="Lausitzring, Klettwitz"/>
 			<column name="location_country_id" valueNumeric="select id from Country where name = '${country-germany}'"/>
+			<column name="location_latitude" value="51.53698"/>
+			<column name="location_longitude" value="13.92824"/>
 			<column name="distance" value="18+"/>
 			<column name="costs" value="79,00"/>
 			<column name="status" value="1"/>
@@ -170,6 +182,8 @@
 			<column name="end_date" value="2018-09-30"/>
 			<column name="location_name" value="Markkleeberger See"/>
 			<column name="location_country_id" valueNumeric="select id from Country where name = '${country-germany}'"/>
+			<column name="location_latitude" value="51.25534"/>
+			<column name="location_longitude" value="12.42442"/>
 			<column name="distance" value="2 x 9"/>
 			<column name="costs" value="49,99"/>
 			<column name="status" value="1"/>

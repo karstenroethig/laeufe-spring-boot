@@ -32,7 +32,11 @@
 				</tr>
 				<tr th:each="organizer : ${allOrganizers}">
 					<td>
-						<span th:text="${organizer.name}">[name]</span>&nbsp;<span th:if="${organizer.archived}" class="badge" th:text="#{organizer.archived.label}">Archived</span>
+						<span th:text="${organizer.name}">[name]</span>
+						<span class="fa fa-image" th:if="${!#strings.isEmpty(organizer.logoFile)}"
+							data-toggle="tooltip" data-placement="right" data-html="true"
+							th:title="'<img src=\''+@{/images/logos/{file}(file=${organizer.logoFile})}+'\' height=\'150\' width=\'150\' style=\'background-color: white;\'/>'"></span>
+						<span th:if="${organizer.archived}" class="badge" th:text="#{organizer.archived.label}">Archived</span>
 					</td>
 					<td th:text="${organizer.description}">[description]</td>
 					<td>
