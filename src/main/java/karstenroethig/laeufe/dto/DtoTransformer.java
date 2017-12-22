@@ -5,6 +5,7 @@ import org.apache.commons.lang3.StringUtils;
 import karstenroethig.laeufe.domain.Category;
 import karstenroethig.laeufe.domain.Country;
 import karstenroethig.laeufe.domain.Organizer;
+import karstenroethig.laeufe.dto.api.CountryApiDto;
 
 public class DtoTransformer
 {
@@ -82,6 +83,20 @@ public class DtoTransformer
 		countryDto.setName( country.getName() );
 		countryDto.setCode( country.getCode() );
 		countryDto.setArchived( country.getArchived() );
+
+		return countryDto;
+	}
+
+	public static CountryApiDto transformApi( Country country )
+	{
+		if ( country == null )
+		{
+			return null;
+		}
+
+		CountryApiDto countryDto = new CountryApiDto();
+
+		countryDto.setCode( country.getCode() );
 
 		return countryDto;
 	}

@@ -4,12 +4,15 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -28,6 +31,8 @@ import karstenroethig.laeufe.dto.DtoTransformer;
 import karstenroethig.laeufe.dto.EventFullDto;
 import karstenroethig.laeufe.dto.EventListDto;
 import karstenroethig.laeufe.dto.RaceDto;
+import karstenroethig.laeufe.dto.api.CountryApiDto;
+import karstenroethig.laeufe.dto.api.LocationApiDto;
 import karstenroethig.laeufe.dto.info.DashboardInfoDto;
 import karstenroethig.laeufe.repository.CategoryRepository;
 import karstenroethig.laeufe.repository.CountryRepository;
@@ -332,5 +337,63 @@ public class EventServiceImpl implements EventService
 		}
 
 		return 0;
+	}
+
+	public Collection<LocationApiDto> findEventLocations()
+	{
+		Map<String, LocationApiDto> locations = new TreeMap<>();
+
+		Iterator<Event> itr = eventRepository.findAll().iterator();
+
+		while ( itr.hasNext() )
+		{
+			Event event = itr.next();
+
+			String locationName = event.getLocationName() + ", " + event.getLocationCountry().getName();
+			LocationApiDto location;
+			
+			if( locations.containsKey( locationName ) )
+			{
+				location = locations.get( locationName );
+			}
+			else
+			{
+				location = new LocationApiDto();
+				location.setName( locationName );
+				location.setLatitude( event.getLocationLatitude() );
+				location.setLongitude( event.getLocationLongitude() );
+				
+				locations.put( locationName, location );
+			}
+			
+			location.addEvent( event.getName() + " (" + event.getStartDate().getYear() + ")");
+		}
+
+		return locations.values();
+	}
+
+	public Collection<CountryApiDto> findEventLocationCountries()
+	{
+		Set<CountryApiDto> countries = new HashSet<>();
+
+		Iterator<Event> itr = eventRepository.findAll().iterator();
+
+		while ( itr.hasNext() )
+		{
+			Event event = itr.next();
+
+			for ( Race race : event.getRaces() )
+			{
+				RaceStatusEnum raceStatus = race.getStatusEnum();
+
+				if ( raceStatus == RaceStatusEnum.COMPLETED )
+				{
+					countries.add( DtoTransformer.transformApi( event.getLocationCountry() ) );
+					break;
+				}
+			}
+		}
+
+		return countries;
 	}
 }

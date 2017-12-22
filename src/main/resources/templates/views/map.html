@@ -23,74 +23,151 @@
 	<div layout:fragment="additionalFooter">
 
 		<script>
+			$( document ).ready( function() {
+
+				var mapAreas;
+				var mapImages;
+
+				$.when(
+
+					$.ajax( {
+						url: '/api/1.0/eventLocationCountries',
+						dataType: 'json',
+						cache: false
+					}).done( function( data ) {
+						mapAreas = convertCountriesToMapAreas( data );
+					}).fail( function( jqXHR, textStatus, errorThrown ) {
+						alert( jqXHR.responseText );
+					}),
+
+					$.ajax( {
+						url: '/api/1.0/eventLocations',
+						dataType: 'json',
+						cache: false
+					}).done( function( data ) {
+						mapImages = convertLocationsToMapImages( data );
+					}).fail( function( jqXHR, textStatus, errorThrown ) {
+						alert( jqXHR.responseText );
+					})
+
+				).then( function() {
+					createMap( mapAreas, mapImages );
+				});
+
+			});
+
 			/**
-			 * Define SVG path for target icon
+			 * countries example: [{"code":"CZ"},{"code":"DK"},{"code":"GB"},{"code":"NL"},{"code":"DE"},{"code":"SE"},{"code":"AT"}]
 			 */
-			var icon = "M9,0C4.029,0,0,4.029,0,9s4.029,9,9,9s9-4.029,9-9S13.971,0,9,0z M9,15.93 c-3.83,0-6.93-3.1-6.93-6.93S5.17,2.07,9,2.07s6.93,3.1,6.93,6.93S12.83,15.93,9,15.93 M12.5,9c0,1.933-1.567,3.5-3.5,3.5S5.5,10.933,5.5,9S7.067,5.5,9,5.5 S12.5,7.067,12.5,9z";
+			function convertCountriesToMapAreas( countries )
+			{
+				var areas = [];
 
-			AmCharts.makeChart( "mapdiv", {
-				/**
-				 * this tells amCharts it's a map
+				for( var index in countries )
+				{
+					areas.push( { "id": countries[index].code, "color": "#FFCC00" } );
+				}
+
+				return areas;
+			}
+
+			/**
+			 * locations example:
+			 * [{"name":"Amager Strandpark, Copenhagen, Dänemark","latitude":55.655356,"longitude":12.644577,"events":["Toughest - Copenhagen (2016)"]},
+			 *  {"name":"Ammelshainer Schloss, Ammelshain, Deutschland","latitude":51.294884,"longitude":12.636619,"events":["8. Ammelshainer Schlosslauf (2014)","9. Ammelshainer Schlosslauf (2015)"]}]
+			 */
+			function convertLocationsToMapImages( locations )
+			{
+				 /**
+				 * Define SVG path for target icon
 				 */
-				"type": "map",
+				var icon = "M9,0C4.029,0,0,4.029,0,9s4.029,9,9,9s9-4.029,9-9S13.971,0,9,0z M9,15.93 c-3.83,0-6.93-3.1-6.93-6.93S5.17,2.07,9,2.07s6.93,3.1,6.93,6.93S12.83,15.93,9,15.93 M12.5,9c0,1.933-1.567,3.5-3.5,3.5S5.5,10.933,5.5,9S7.067,5.5,9,5.5 S12.5,7.067,12.5,9z";
 
-				/**
-		     * create data provider object
-		     * map property is usually the same as the name of the map file.
-		     * getAreasFromMap indicates that amMap should read all the areas available
-		     * in the map data and treat them as they are included in your data provider.
-		     * in case you don't set it to true, all the areas except listed in data
-		     * provider will be treated as unlisted.
-		     */
-		    "dataProvider": {
-		      "map": "worldLow",
-		      "linkToObject": "berlin",
-		      "getAreasFromMap": true,
-		      "areas": [
-		        { "id": "AT", "color": "#FFCC00" },
-		        { "id": "CZ", "color": "#FFCC00" },
-		        { "id": "DE", "color": "#FFCC00" },
-		        { "id": "DK", "color": "#FFCC00" },
-		        { "id": "GB", "color": "#FFCC00" },
-		        { "id": "NL", "color": "#FFCC00" },
-		        { "id": "SE", "color": "#FFCC00" }
-		      ],
-		      "images": [
-		        {
-		          "id": "berlin",
-		          //"svgPath": icon,
-		          "zoomLevel": 10,
-		          "scale": 0.7,
-		          "title": "Berlin",
-		          "latitude": 52.5235,
-		          "longitude": 13.4115
-		        },
-		        {
-		          "svgPath": icon,
-		          "scale": 0.5,
-		          "title": "Copenhagen",
-		          "latitude": 55.6763,
-		          "longitude": 12.5681,
-		          "description": "Test with <a href='#'>link</a>"
-		        }
-		      ]
-		    },
+				var images = [
+					{
+						"id": "berlin",
+						//"svgPath": icon,
+						"zoomLevel": 10,
+						"scale": 0.7,
+						"title": "Berlin",
+						"latitude": 52.5235,
+						"longitude": 13.4115
+					}
+				];
 
-		    /**
-		     * create areas settings
-		     * autoZoom set to true means that the map will zoom-in when clicked on the area
-		     * selectedColor indicates color of the clicked area.
-		     */
-		    "areasSettings": {
-		      "autoZoom": true,
-		      "color": "#DDDDDD"
-		    },
+				for( var index in locations )
+				{
+					var location = locations[index];
+					var description = "";
+					var hasOne = false;
 
-		    /**
-		     * let's say we want a small map to be displayed, so let's create it
-		     */
-		    "smallMap": {}
-		    } );
+					for( innerIndex in location.events )
+					{
+						if( hasOne )
+						{
+							description += "<br/>";
+						}
+						else
+						{
+							hasOne = true;
+						}
+
+						description += location.events[innerIndex];
+					}
+
+					images.push( {
+						"svgPath": icon,
+						"scale": 0.5,
+						"title": location.name,
+						"latitude": location.latitude,
+						"longitude": location.longitude,
+						"description": description //"Test with <a href='#'>link</a>"
+					} );
+				}
+
+				return images;
+			}
+
+			function createMap( areas, images )
+			{
+				AmCharts.makeChart( "mapdiv", {
+					/**
+					 * this tells amCharts it's a map
+					 */
+					"type": "map",
+
+					/**
+					 * create data provider object
+					 * map property is usually the same as the name of the map file.
+					 * getAreasFromMap indicates that amMap should read all the areas available
+					 * in the map data and treat them as they are included in your data provider.
+					 * in case you don't set it to true, all the areas except listed in data
+					 * provider will be treated as unlisted.
+					 */
+					"dataProvider": {
+						"map": "worldLow",
+						"linkToObject": "berlin",
+						"getAreasFromMap": true,
+						"areas": areas,
+						"images": images
+					},
+
+					/**
+					 * create areas settings
+					 * autoZoom set to true means that the map will zoom-in when clicked on the area
+					 * selectedColor indicates color of the clicked area.
+					 */
+					"areasSettings": {
+						"autoZoom": true,
+						"color": "#DDDDDD"
+					},
+
+					/**
+					 * let's say we want a small map to be displayed, so let's create it
+					 */
+					"smallMap": {}
+				} );
+			}
 
 		</script>
 
