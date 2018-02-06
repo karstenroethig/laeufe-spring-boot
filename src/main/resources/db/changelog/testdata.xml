@@ -30,6 +30,7 @@
 	<property name="organizer-survival-run" value="Survival Run"/>
 	<property name="organizer-tough-mudder" value="Tough Mudder"/>
 	<property name="organizer-toughest" value="Toughest"/>
+	<property name="organizer-tsv-erling-andechs" value="TSV Erling-Andechs e.V."/>
 	<property name="organizer-wildsau" value="Wildsau Dirt Run"/>
 	<property name="organizer-xletix" value="XLETIX Challenge"/>
 

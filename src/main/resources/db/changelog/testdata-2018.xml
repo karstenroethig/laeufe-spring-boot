@@ -8,6 +8,7 @@
 
 	<property name="2018-spartan-race-super-mallorca" value="Spartan Race - Mallorca (Super)"/>
 	<property name="2018-spartan-race-sprint-muenchen" value="Spartan Race - München (Sprint)"/>
+	<property name="2018-andechs-trail" value="Andechs Trail"/>
 	<property name="2018-spartan-race-super-alberta-canada" value="Spartan Race - Alberta/Canada (Super)"/>
 	<property name="2018-xletix-muenchen" value="XLETIX Challenge - München"/>
 	<property name="2018-xletix-tirol" value="XLETIX Challenge - Tirol"/>
@@ -68,6 +69,30 @@
 			<!--column name="distance" value="8000"/-->
 			<!--column name="racetime" value=""/-->
 			<!--column name="note" value=""/-->
+			<column name="status" value="1"/>
+		</insert>
+
+		<insert tableName="Event">
+			<column name="organizer_id" valueNumeric="select id from Organizer where name = '${organizer-tsv-erling-andechs}'"/>
+			<column name="name" value="${2018-andechs-trail}"/>
+			<column name="start_date" value="2018-04-21"/>
+			<column name="location_name" value="Kloster Andechs"/>
+			<column name="location_country_id" valueNumeric="select id from Country where name = '${country-germany}'"/>
+			<column name="location_latitude" value="47.97448"/>
+			<column name="location_longitude" value="11.1806284"/>
+			<column name="distance" value="15"/>
+			<!--column name="racetime" value=""/-->
+			<column name="costs" value="17,00"/>
+			<column name="status" value="1"/>
+		</insert>
+		<insert tableName="Race">
+			<column name="event_id" valueNumeric="select id from Event where name = '${2018-andechs-trail}' and start_date = '2018-04-21'"/>
+			<column name="category_id" valueNumeric="select id from Category where name = '${category-crosslauf}'"/>
+			<column name="start_number" value="560"/>
+			<column name="start_time" valueDate="2018-04-21T10:00:00"/>
+			<column name="distance" value="15000"/>
+			<!--column name="racetime" value=""/-->
+			<column name="note" value="Expert Trail, ca. 285 m Höhendifferenz"/>
 			<column name="status" value="1"/>
 		</insert>
 
