@@ -29,7 +29,7 @@
 			<column name="location_longitude" value="12.35065"/>
 			<column name="distance" value="4,8"/>
 			<column name="racetime" value="00:19:29"/>
-			<column name="costs" value="0,00"/>
+			<column name="costs" value="0.00"/>
 			<column name="status" value="2"/>
 		</insert>
 		<insert tableName="Race">
@@ -54,7 +54,7 @@
 			<column name="location_longitude" value="7.65893"/>
 			<column name="distance" value="18+"/>
 			<column name="racetime" value="02:10:00"/>
-			<column name="costs" value="192,77"/>
+			<column name="costs" value="192.77"/>
 			<column name="status" value="2"/>
 		</insert>
 		<insert tableName="Race">
@@ -77,7 +77,7 @@
 			<column name="location_longitude" value="12.42442"/>
 			<column name="distance" value="2 x 8,65"/>
 			<column name="racetime" value="01:49:16"/>
-			<column name="costs" value="56,90"/>
+			<column name="costs" value="56.90"/>
 			<column name="status" value="2"/>
 		</insert>
 		<insert tableName="Race">
@@ -100,7 +100,7 @@
 			<column name="location_latitude" value="51.53698"/>
 			<column name="location_longitude" value="13.92824"/>
 			<column name="distance" value="18+"/>
-			<column name="costs" value="172,77"/>
+			<column name="costs" value="172.77"/>
 			<column name="status" value="2"/>
 		</insert>
 		<insert tableName="Race">

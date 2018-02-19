@@ -1,18 +1,17 @@
 package karstenroethig.laeufe.dto;
 
-import karstenroethig.laeufe.domain.enums.EventStatusEnum;
-
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
-
 import java.math.BigDecimal;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import karstenroethig.laeufe.domain.enums.EventStatusEnum;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 @NoArgsConstructor
 @Getter
@@ -68,8 +67,12 @@ public class EventListDto
 	@Size( max = 25 )
 	private String racetime;
 
-	@Size( max = 25 )
-	private String costs;
+	@NotNull
+	@Digits(
+		integer = 10,
+		fraction = 2
+	)
+	private BigDecimal costs;
 
 	@NotNull
 	private EventStatusEnum status;

@@ -65,7 +65,7 @@
 							</div>
 							<div class="list-view-pf-additional-info-item" th:if="${!#strings.isEmpty(event.costs)}">
 								<span class="fa fa-money"></span>
-								<strong th:text="${event.costs}">[costs]</strong> &euro;
+								<strong th:text="${#numbers.formatDecimal(event.costs,1,'POINT',2,'COMMA')}">[costs]</strong> &euro;
 							</div>
 							<div class="list-view-pf-additional-info-item" th:if="${!#strings.isEmpty(event.racetime)}">
 								<span class="fa fa-clock-o"></span>

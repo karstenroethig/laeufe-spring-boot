@@ -26,7 +26,7 @@
 			<column name="location_longitude" value="12.35065"/>
 			<column name="distance" value="5"/>
 			<column name="racetime" value="00:22:53"/>
-			<column name="costs" value="0,00"/>
+			<column name="costs" value="0.00"/>
 			<column name="status" value="2"/>
 		</insert>
 		<insert tableName="Race">

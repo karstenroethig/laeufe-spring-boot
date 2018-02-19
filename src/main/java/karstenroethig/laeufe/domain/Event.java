@@ -58,7 +58,7 @@ public class Event
 		cascade = CascadeType.ALL,
 		mappedBy = "event"
 	)
-	private List<Race> races = new ArrayList<Race>();
+	private List<Race> races = new ArrayList<>();
 
 	@Column(
 		length = 255,
@@ -110,8 +110,8 @@ public class Event
 	@Column( length = 25 )
 	private String racetime;
 
-	@Column( length = 25 )
-	private String costs;
+	@Column(nullable = false)
+	private BigDecimal costs;
 
 	@Column( nullable = false )
 	private Integer status;

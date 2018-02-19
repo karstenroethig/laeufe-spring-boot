@@ -132,7 +132,10 @@
 				</div>
 			</div>
 			<div class="form-group" th:classappend="${#fields.hasErrors('costs')} ? has-error">
-				<label class="col-md-2 control-label" th:text="#{event.costs.label}">Costs</label>
+				<label class="col-md-2 control-label">
+					<span class="required">*</span>
+					<span th:text="#{event.costs.label}">Costs</span>
+				</label>
 				<div class="col-md-10">
 					<input type="text" th:field="*{costs}" class="form-control">
 					<small class="help-block" th:if="${#fields.hasErrors('costs')}" th:each="err : ${#fields.errors('costs')}" th:text="${err}">validation error</small>

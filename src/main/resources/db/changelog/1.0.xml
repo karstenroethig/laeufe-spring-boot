@@ -108,7 +108,7 @@
 			<column name="racetime" type="varchar(25)">
 				<constraints nullable="true"/>
 			</column>
-			<column name="costs" type="varchar(25)">
+			<column name="costs" type="decimal(10,2)">
 				<constraints nullable="true"/>
 			</column>
 			<column name="status" type="int">
