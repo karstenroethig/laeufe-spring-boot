@@ -242,6 +242,22 @@ public class EventServiceImpl implements EventService
 		return raceDto;
 	}
 
+	private LocationApiDto transformLocation(Event event)
+	{
+		if (event == null)
+		{
+			return null;
+		}
+
+		LocationApiDto locationDto = new LocationApiDto();
+
+		locationDto.setName(event.getLocationName());
+		locationDto.setLatitude(event.getLocationLatitude());
+		locationDto.setLongitude(event.getLocationLongitude());
+
+		return locationDto;
+	}
+
 	@Override
 	public DashboardInfoDto createDashboradStatistics()
 	{
@@ -339,39 +355,37 @@ public class EventServiceImpl implements EventService
 		return 0;
 	}
 
+	@Override
 	public Collection<LocationApiDto> findEventLocations()
 	{
 		Map<String, LocationApiDto> locations = new TreeMap<>();
 
 		Iterator<Event> itr = eventRepository.findAll().iterator();
 
-		while ( itr.hasNext() )
+		while (itr.hasNext())
 		{
 			Event event = itr.next();
 
 			String locationName = event.getLocationName() + ", " + event.getLocationCountry().getName();
 			LocationApiDto location;
-			
-			if( locations.containsKey( locationName ) )
+
+			if (locations.containsKey(locationName))
 			{
-				location = locations.get( locationName );
+				location = locations.get(locationName);
 			}
 			else
 			{
-				location = new LocationApiDto();
-				location.setName( locationName );
-				location.setLatitude( event.getLocationLatitude() );
-				location.setLongitude( event.getLocationLongitude() );
-				
-				locations.put( locationName, location );
+				location = transformLocation(event);
+				locations.put(locationName, location);
 			}
-			
-			location.addEvent( event.getName() + " (" + event.getStartDate().getYear() + ")");
+
+			location.addEvent(event.getName() + " (" + event.getStartDate().getYear() + ")");
 		}
 
 		return locations.values();
 	}
 
+	@Override
 	public Collection<CountryApiDto> findEventLocationCountries()
 	{
 		Set<CountryApiDto> countries = new HashSet<>();
@@ -395,5 +409,11 @@ public class EventServiceImpl implements EventService
 		}
 
 		return countries;
+	}
+
+	@Override
+	public LocationApiDto findEventLocation(Long eventId)
+	{
+		return transformLocation(eventRepository.findOne(eventId));
 	}
 }

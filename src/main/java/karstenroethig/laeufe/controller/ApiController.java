@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,7 +28,7 @@ public class ApiController {
 	{
 		Collection<LocationApiDto> locations = eventService.findEventLocations();
 
-		return new ResponseEntity<Collection<LocationApiDto>>( locations, HttpStatus.OK );
+		return new ResponseEntity<>( locations, HttpStatus.OK );
 	}
 
 	@RequestMapping(value = "/eventLocationCountries", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -35,6 +36,14 @@ public class ApiController {
 	{
 		Collection<CountryApiDto> countries = eventService.findEventLocationCountries();
 
-		return new ResponseEntity<Collection<CountryApiDto>>( countries, HttpStatus.OK );
+		return new ResponseEntity<>( countries, HttpStatus.OK );
+	}
+
+	@RequestMapping(value = "/eventLocation/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<LocationApiDto> eventLocationForEvent(@PathVariable("id") Long eventId)
+	{
+		LocationApiDto location = eventService.findEventLocation(eventId);
+
+		return new ResponseEntity<>(location, HttpStatus.OK);
 	}
 }

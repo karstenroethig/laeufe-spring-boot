@@ -70,7 +70,7 @@ public class EventController
 		value = UrlMappings.ACTION_SHOW,
 		method = RequestMethod.GET
 	)
-	public String show( @PathVariable( "id" ) Long eventId, Model model )
+	public String show(@PathVariable("id") Long eventId, Model model)
 	{
 		EventFullDto event = eventService.findEvent( eventId );
 

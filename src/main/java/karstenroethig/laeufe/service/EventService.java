@@ -12,13 +12,13 @@ public interface EventService
 {
 	public EventFullDto newEvent();
 
-	public EventFullDto saveEvent( EventFullDto eventDto );
+	public EventFullDto saveEvent(EventFullDto eventDto);
 
-	public Boolean deleteEvent( Long eventId );
+	public Boolean deleteEvent(Long eventId);
 
-	public EventFullDto editEvent( EventFullDto eventDto );
+	public EventFullDto editEvent(EventFullDto eventDto);
 
-	public EventFullDto findEvent( Long eventId );
+	public EventFullDto findEvent(Long eventId);
 
 	public Collection<EventListDto> getAllEvents();
 
@@ -27,4 +27,6 @@ public interface EventService
 	public Collection<LocationApiDto> findEventLocations();
 
 	public Collection<CountryApiDto> findEventLocationCountries();
+
+	public LocationApiDto findEventLocation(Long eventid);
 }

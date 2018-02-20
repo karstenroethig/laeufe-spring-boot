@@ -2,6 +2,13 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout">
 <head>
 	<title th:text="#{event.label.plural}+' - '+${event.name}"></title>
+
+	<!-- amMap -->
+	<script th:src="@{'/webjars/ammap3/'+#{application.dependency.ammap}+'/ammap/ammap.js'}"></script>
+	<link rel="stylesheet" th:href="@{'/webjars/ammap3/'+#{application.dependency.ammap}+'/ammap/ammap.css'}"/>
+
+	<!-- amMap - the map -->
+	<script th:src="@{'/webjars/ammap3/'+#{application.dependency.ammap}+'/ammap/maps/js/worldLow.js'}"></script>
 </head>
 <body th:with="menu='event'">
 
@@ -59,6 +66,11 @@
 					</tr>
 				</tbody>
 			</table>
+		</fieldset>
+		
+		<fieldset>
+			<legend>Karte</legend>
+			<div id="mapdiv" style="width: 100%; height: 350px;"></div>
 		</fieldset>
 
 		<fieldset>
@@ -159,6 +171,105 @@
 			<p>Der Verein Sportfreunde Neuseenland e.V. bedankt sich bei allen Partnern, Sponsoren, Feuerwehren und den 100 Helfern, ohne die ein solches Event nicht möglich wäre.</p>
 			<p>Schon jetzt lohnt es sich, den Termin für kommendes Jahr zu notieren, denn das Starterfeld ist wieder auf 2.000 Teilnehmer limitiert. Als Teil der Sparkassen-Challenge findet der 7. Sparkassen-CrossDeLuxe am 24.09.2016 statt. Die Anmeldeportale öffnen traditionell am 01.01.2016.</p>
 		</fieldset>
+
+		<form action="#" method="post">
+			<input type="hidden" id="eventId" th:value="${event.id}"/>
+		</form>
+	</div>
+
+	<div layout:fragment="additionalFooter">
+
+		<script>
+			$( document ).ready( function() {
+
+				var mapImages;
+				var eventId = $('#eventId').attr('value');
+
+				$.when(
+
+					$.ajax( {
+						url: '/api/1.0/eventLocation/' + eventId,
+						dataType: 'json',
+						cache: false
+					}).done( function( data ) {
+						mapImages = convertLocationToMapImage( data );
+					}).fail( function( jqXHR, textStatus, errorThrown ) {
+						alert( jqXHR.responseText );
+					})
+
+				).then( function() {
+					createMap(mapImages);
+				});
+
+			});
+
+			/**
+			 * location example:
+			 * {"name":"Amager Strandpark, Copenhagen, Dänemark","latitude":55.655356,"longitude":12.644577,"events":[]}
+			 */
+			function convertLocationToMapImage(location)
+			{
+				 /**
+				 * Define SVG path for target icon
+				 */
+				var icon = "M9,0C4.029,0,0,4.029,0,9s4.029,9,9,9s9-4.029,9-9S13.971,0,9,0z M9,15.93 c-3.83,0-6.93-3.1-6.93-6.93S5.17,2.07,9,2.07s6.93,3.1,6.93,6.93S12.83,15.93,9,15.93 M12.5,9c0,1.933-1.567,3.5-3.5,3.5S5.5,10.933,5.5,9S7.067,5.5,9,5.5 S12.5,7.067,12.5,9z";
+
+				var images = [
+					{
+						"id": "theLocation",
+						"svgPath": icon,
+						"zoomLevel": 10,
+						"scale": 0.7,
+						"title": location.name,
+						"latitude": location.latitude,
+						"longitude": location.longitude
+					}
+				];
+
+				return images;
+			}
+
+			function createMap(images)
+			{
+				AmCharts.makeChart( "mapdiv", {
+					/**
+					 * this tells amCharts it's a map
+					 */
+					"type": "map",
+
+					/**
+					 * create data provider object
+					 * map property is usually the same as the name of the map file.
+					 * getAreasFromMap indicates that amMap should read all the areas available
+					 * in the map data and treat them as they are included in your data provider.
+					 * in case you don't set it to true, all the areas except listed in data
+					 * provider will be treated as unlisted.
+					 */
+					"dataProvider": {
+						"map": "worldLow",
+						"linkToObject": "theLocation",
+						"getAreasFromMap": true,
+						"images": images
+					},
+
+					/**
+					 * create areas settings
+					 * autoZoom set to true means that the map will zoom-in when clicked on the area
+					 * selectedColor indicates color of the clicked area.
+					 */
+					"areasSettings": {
+						"autoZoom": true,
+						"color": "#DDDDDD"
+					},
+
+					/**
+					 * let's say we want a small map to be displayed, so let's create it
+					 */
+					"smallMap": {}
+				} );
+			}
+
+		</script>
 
 	</div>
 
