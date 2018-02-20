@@ -1,5 +1,6 @@
 package karstenroethig.laeufe.dto;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,8 +17,26 @@ public class EventFullDto extends EventListDto
 {
 	private List<RaceDto> races = new ArrayList<>();
 
-	public void addRace( RaceDto race )
+	private List<CostPointDto> costPoints = new ArrayList<>();
+	private CostPointDto costPointsTotal = new CostPointDto();
+
+	public void addRace(RaceDto race)
 	{
-		races.add( race );
+		races.add(race);
+	}
+
+	public void addCostPoint(CostPointDto costPoint)
+	{
+		costPoints.add(costPoint);
+
+		if (costPoint.getAmount() != null)
+		{
+			if (costPointsTotal.getAmount() == null)
+			{
+				costPointsTotal.setAmount(new BigDecimal(0.0));
+			}
+
+			costPointsTotal.setAmount(costPointsTotal.getAmount().add(costPoint.getAmount()));
+		}
 	}
 }

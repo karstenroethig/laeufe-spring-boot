@@ -79,40 +79,31 @@
 				<thead>
 					<tr>
 						<th>Bezeichnung</th>
-						<th class="text-right">Betrag (GBP)</th>
+						<th class="text-right">Betrag (Fremdw&auml;hrung)</th>
 						<th class="text-right">Betrag (&euro;)</th>
 					<tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td>Teinahmegebühr über European Season Pass 2015</td>
-						<td class="text-right">0,00</td>
-						<td class="text-right">0,00</td>
+					<tr th:if="${#lists.isEmpty(event.costPoints)}">
+						<td colspan="3" align="center" th:text="#{default.table.empty.text}">Data can not be found.</td>
 					</tr>
-					<tr>
-						<td>General Parking Pass (Saturday)</td>
-						<td class="text-right">11,48</td>
-						<td class="text-right">17,52</td>
+					<tr th:each="costPoint : ${event.costPoints}">
+						<td th:text="${costPoint.description}">[description]</td>
+						<td class="text-right">
+							<span th:if="${costPoint.amountForeignCurrency!=null}">
+								<span th:text="${#numbers.formatDecimal(costPoint.amountForeignCurrency,1, 'POINT', 2, 'COMMA')}">[amountForeignCurrency]</span> <span th:text="${costPoint.foreignCurrency}">[foreignCurrency]</span>
+							</span>
+						</td>
+						<td class="text-right">
+							<span th:if="${costPoint.amount!=null}" th:text="${#numbers.formatDecimal(costPoint.amount,1, 'POINT', 2, 'COMMA')}">[amount]</span>
+						</td>
 					</tr>
-					<tr>
-						<td>General Parking Pass (Sunday)</td>
-						<td class="text-right">11,48</td>
-						<td class="text-right">17,52</td>
-					</tr>
-					<tr>
-						<td>Bag Drop (Saturday)</td>
-						<td class="text-right">3,00</td>
-						<td class="text-right">4,09</td>
-					</tr>
-					<tr>
-						<td>Bag Drop (Sunday)</td>
-						<td class="text-right">3,00</td>
-						<td class="text-right">4,09</td>
-					</tr>
-					<tr>
+					<tr th:if="${#lists.isEmpty(event.costPoints)==false}">
 						<td><strong>Gesamt</strong></td>
-						<td class="text-right"><strong>28,96</strong></td>
-						<td class="text-right"><strong>43,22</strong></td>
+						<td>&nbsp;</td>
+						<td class="text-right">
+							<strong th:if="${event.costPointsTotal.amount!=null}" th:text="${#numbers.formatDecimal(event.costPointsTotal.amount,1, 'POINT', 2, 'COMMA')}">[amount]</strong>
+						</td>
 					</tr>
 				</tbody>
 			</table>

@@ -54,6 +54,30 @@
 			<column name="racetime" value="02:28:27"/>
 			<column name="status" value="2"/>
 		</insert>
+		<insert tableName="Cost_Point">
+			<column name="event_id" valueNumeric="select id from Event where name = '${2015-tough-mudder-london-west}'"/>
+			<column name="sequence" value="1"/>
+			<column name="description" value="Teilnahmegebühr über European Season Pass 2015"/>
+			<column name="amount" value="0.00"/>
+			<column name="amount_foreign_currency" value="0.00"/>
+			<column name="foreign_currency" value="GBP"/>
+		</insert>
+		<insert tableName="Cost_Point">
+			<column name="event_id" valueNumeric="select id from Event where name = '${2015-tough-mudder-london-west}'"/>
+			<column name="sequence" value="2"/>
+			<column name="description" value="Standard Parking Pass"/>
+			<column name="amount" value="20.85"/>
+			<column name="amount_foreign_currency" value="15.00"/>
+			<column name="foreign_currency" value="GBP"/>
+		</insert>
+		<insert tableName="Cost_Point">
+			<column name="event_id" valueNumeric="select id from Event where name = '${2015-tough-mudder-london-west}'"/>
+			<column name="sequence" value="3"/>
+			<column name="description" value="Bag Drop"/>
+			<column name="amount" value="4.06"/>
+			<column name="amount_foreign_currency" value="3.00"/>
+			<column name="foreign_currency" value="GBP"/>
+		</insert>
 
 		<insert tableName="Event">
 			<column name="organizer_id" valueNumeric="select id from Organizer where name = '${organizer-tough-mudder}'"/>

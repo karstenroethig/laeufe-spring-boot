@@ -109,7 +109,7 @@
 				<constraints nullable="true"/>
 			</column>
 			<column name="costs" type="decimal(10,2)">
-				<constraints nullable="true"/>
+				<constraints nullable="false"/>
 			</column>
 			<column name="status" type="int">
 				<constraints nullable="false"/>
@@ -149,6 +149,33 @@
 			</column>
 			<column name="status" type="int">
 				<constraints nullable="false"/>
+			</column>
+		</createTable>
+
+		<!-- ================== -->
+		<!-- Table "Cost_Point" -->
+		<!-- ================== -->
+		<createTable tableName="Cost_Point">
+			<column name="id" type="${type.id}" autoIncrement="true">
+				<constraints primaryKey="true" nullable="false"/>
+			</column>
+			<column name="event_id" type="${type.idRef}">
+				<constraints nullable="false"/>
+			</column>
+			<column name="sequence" type="int">
+				<constraints nullable="false"/>
+			</column>
+			<column name="description" type="varchar(255)">
+				<constraints nullable="true"/>
+			</column>
+			<column name="amount" type="decimal(10,2)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="amount_foreign_currency" type="decimal(10,2)">
+				<constraints nullable="true"/>
+			</column>
+			<column name="foreign_currency" type="varchar(20)">
+				<constraints nullable="true"/>
 			</column>
 		</createTable>
 

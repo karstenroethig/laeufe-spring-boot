@@ -22,11 +22,13 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import karstenroethig.laeufe.domain.CostPoint;
 import karstenroethig.laeufe.domain.Country;
 import karstenroethig.laeufe.domain.Event;
 import karstenroethig.laeufe.domain.Race;
 import karstenroethig.laeufe.domain.enums.EventStatusEnum;
 import karstenroethig.laeufe.domain.enums.RaceStatusEnum;
+import karstenroethig.laeufe.dto.CostPointDto;
 import karstenroethig.laeufe.dto.DtoTransformer;
 import karstenroethig.laeufe.dto.EventFullDto;
 import karstenroethig.laeufe.dto.EventListDto;
@@ -204,42 +206,71 @@ public class EventServiceImpl implements EventService
 
 		List<Race> races = event.getRaces();
 
-		if ( races != null && races.isEmpty() == false )
+		if (races != null && races.isEmpty() == false)
 		{
-			for ( Race race : races )
+			for (Race race : races)
 			{
-				eventDto.addRace( transform( race ) );
+				eventDto.addRace(transform(race));
+			}
+		}
+
+		List<CostPoint> costPoints = event.getCostPoints();
+
+		if (costPoints != null && costPoints.isEmpty() == false)
+		{
+			for (CostPoint costPoint : costPoints)
+			{
+				eventDto.addCostPoint(transform(costPoint));
 			}
 		}
 
 		return eventDto;
 	}
 
-	private RaceDto transform( Race race )
+	private RaceDto transform(Race race)
 	{
-		if ( race == null )
+		if (race == null)
 		{
 			return null;
 		}
 
 		RaceDto raceDto = new RaceDto();
 
-		raceDto.setId( race.getId() );
-		raceDto.setCategory( DtoTransformer.transform( race.getCategory() ) );
-		raceDto.setStartNumber( race.getStartNumber() );
-		raceDto.setStartTime( race.getStartTime() );
+		raceDto.setId(race.getId());
+		raceDto.setCategory(DtoTransformer.transform(race.getCategory()));
+		raceDto.setStartNumber(race.getStartNumber());
+		raceDto.setStartTime(race.getStartTime());
 
-		if ( race.getDistance() != null )
+		if (race.getDistance() != null)
 		{
-			raceDto.setDistance( new BigDecimal( race.getDistance() ).divide( DISTANCE_DIVISOR ) );
+			raceDto.setDistance(new BigDecimal(race.getDistance()).divide(DISTANCE_DIVISOR));
 		}
 
-		raceDto.setRacetime( race.getRacetime() );
-		raceDto.setTeam( race.getTeam() );
-		raceDto.setNote( race.getNote() );
-		raceDto.setStatus( race.getStatusEnum() );
+		raceDto.setRacetime(race.getRacetime());
+		raceDto.setTeam(race.getTeam());
+		raceDto.setNote(race.getNote());
+		raceDto.setStatus(race.getStatusEnum());
 
 		return raceDto;
+	}
+
+	private CostPointDto transform(CostPoint costPoint)
+	{
+		if (costPoint == null)
+		{
+			return null;
+		}
+
+		CostPointDto costPointDto = new CostPointDto();
+
+		costPointDto.setId(costPoint.getId());
+		costPointDto.setSequence(costPoint.getSequence());
+		costPointDto.setDescription(costPoint.getDescription());
+		costPointDto.setAmount(costPoint.getAmount());
+		costPointDto.setAmountForeignCurrency(costPoint.getAmountForeignCurrency());
+		costPointDto.setForeignCurrency(costPoint.getForeignCurrency());
+
+		return costPointDto;
 	}
 
 	private LocationApiDto transformLocation(Event event)
