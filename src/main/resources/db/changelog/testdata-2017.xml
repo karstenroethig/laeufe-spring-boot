@@ -46,6 +46,14 @@
 			<column name="racetime" value="01:33:57"/>
 			<column name="status" value="2"/>
 		</insert>
+		<insert tableName="Cost_Point">
+			<column name="event_id" valueNumeric="select id from Event where name = '${2017-neuseen-trailrun}'"/>
+			<column name="sequence" value="1"/>
+			<column name="description" value="TODO"/>
+			<column name="amount" value="0.00"/>
+			<!--column name="amount_foreign_currency" value="0.00"/-->
+			<!--column name="foreign_currency" value=""/-->
+		</insert>
 
 		<insert tableName="Event">
 			<column name="organizer_id" valueNumeric="select id from Organizer where name = '${organizer-spartan-race}'"/>
@@ -70,6 +78,14 @@
 			<column name="note" value="2 x 30 Burpees Strafe für nicht geschaffte Hindernisse (Speerwurf, Kletterwand mit Ketten und Löcher)"/>
 			<column name="status" value="2"/>
 		</insert>
+		<insert tableName="Cost_Point">
+			<column name="event_id" valueNumeric="select id from Event where name = '${2017-spartan-race-sprint-muenchen}' and start_date = '2017-04-08'"/>
+			<column name="sequence" value="1"/>
+			<column name="description" value="TODO"/>
+			<column name="amount" value="0.00"/>
+			<!--column name="amount_foreign_currency" value="0.00"/-->
+			<!--column name="foreign_currency" value=""/-->
+		</insert>
 
 		<insert tableName="Event">
 			<column name="organizer_id" valueNumeric="select id from Organizer where name = '${organizer-toughest}'"/>
@@ -93,6 +109,14 @@
 			<column name="racetime" value="01:35:38"/>
 			<column name="note" value="2 x Penalty Round für nicht geschaffte Hindernisse (Rings und Platinum Rig)"/>
 			<column name="status" value="2"/>
+		</insert>
+		<insert tableName="Cost_Point">
+			<column name="event_id" valueNumeric="select id from Event where name = '${2017-toughest-malmoe}'"/>
+			<column name="sequence" value="1"/>
+			<column name="description" value="TODO"/>
+			<column name="amount" value="0.00"/>
+			<!--column name="amount_foreign_currency" value="0.00"/-->
+			<!--column name="foreign_currency" value=""/-->
 		</insert>
 
 		<insert tableName="Event">
@@ -127,6 +151,14 @@
 			<column name="note" value="M-Distanz"/>
 			<column name="status" value="2"/>
 		</insert>
+		<insert tableName="Cost_Point">
+			<column name="event_id" valueNumeric="select id from Event where name = '${2017-xletix-berlin}' and start_date = '2017-05-26'"/>
+			<column name="sequence" value="1"/>
+			<column name="description" value="TODO"/>
+			<column name="amount" value="0.00"/>
+			<!--column name="amount_foreign_currency" value="0.00"/-->
+			<!--column name="foreign_currency" value=""/-->
+		</insert>
 
 		<insert tableName="Event">
 			<column name="organizer_id" valueNumeric="select id from Organizer where name = '${organizer-seelauf-markkleeberg}'"/>
@@ -150,6 +182,14 @@
 			<column name="racetime" value="00:43:16"/>
 			<column name="status" value="2"/>
 		</insert>
+		<insert tableName="Cost_Point">
+			<column name="event_id" valueNumeric="select id from Event where name = '${2017-seelauf-markkleeberg}'"/>
+			<column name="sequence" value="1"/>
+			<column name="description" value="TODO"/>
+			<column name="amount" value="0.00"/>
+			<!--column name="amount_foreign_currency" value="0.00"/-->
+			<!--column name="foreign_currency" value=""/-->
+		</insert>
 
 		<insert tableName="Event">
 			<column name="organizer_id" valueNumeric="select id from Organizer where name = '${organizer-tough-mudder}'"/>
@@ -170,6 +210,14 @@
 			<column name="start_time" valueDate="2017-07-15T08:00:00"/>
 			<column name="note" value="Nicht gestartet"/>
 			<column name="status" value="3"/>
+		</insert>
+		<insert tableName="Cost_Point">
+			<column name="event_id" valueNumeric="select id from Event where name = '${2017-tough-mudder-norddeutschland}' and start_date = '2017-07-15'"/>
+			<column name="sequence" value="1"/>
+			<column name="description" value="TODO"/>
+			<column name="amount" value="0.00"/>
+			<!--column name="amount_foreign_currency" value="0.00"/-->
+			<!--column name="foreign_currency" value=""/-->
 		</insert>
 
 		<insert tableName="Event">
@@ -195,6 +243,14 @@
 			<column name="note" value="M-Distanz, gemeinsam mit Denise gelaufen"/>
 			<column name="status" value="2"/>
 		</insert>
+		<insert tableName="Cost_Point">
+			<column name="event_id" valueNumeric="select id from Event where name = '${2017-xletix-mitten-in-deutschland}' and start_date = '2017-08-19'"/>
+			<column name="sequence" value="1"/>
+			<column name="description" value="TODO"/>
+			<column name="amount" value="0.00"/>
+			<!--column name="amount_foreign_currency" value="0.00"/-->
+			<!--column name="foreign_currency" value=""/-->
+		</insert>
 
 		<insert tableName="Event">
 			<column name="organizer_id" valueNumeric="select id from Organizer where name = '${organizer-tough-mudder}'"/>
@@ -219,6 +275,14 @@
 			<column name="racetime" value="01:55:00"/>
 			<column name="status" value="2"/>
 		</insert>
+		<insert tableName="Cost_Point">
+			<column name="event_id" valueNumeric="select id from Event where name = '${2017-tough-mudder-berlin-brandenburg}' and start_date = '2017-09-09'"/>
+			<column name="sequence" value="1"/>
+			<column name="description" value="TODO"/>
+			<column name="amount" value="0.00"/>
+			<!--column name="amount_foreign_currency" value="0.00"/-->
+			<!--column name="foreign_currency" value=""/-->
+		</insert>
 
 		<insert tableName="Event">
 			<column name="organizer_id" valueNumeric="select id from Organizer where name = '${organizer-cross-de-luxe}'"/>
@@ -242,6 +306,14 @@
 			<column name="distance" value="18.0"/>
 			<column name="racetime" value="02:14:29"/>
 			<column name="status" value="2"/>
+		</insert>
+		<insert tableName="Cost_Point">
+			<column name="event_id" valueNumeric="select id from Event where name = '${2017-cross-de-luxe}'"/>
+			<column name="sequence" value="1"/>
+			<column name="description" value="TODO"/>
+			<column name="amount" value="0.00"/>
+			<!--column name="amount_foreign_currency" value="0.00"/-->
+			<!--column name="foreign_currency" value=""/-->
 		</insert>
 
 	</changeSet>

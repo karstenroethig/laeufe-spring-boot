@@ -39,6 +39,14 @@
 			<column name="note" value="Zeitmessung hat nicht funktioniert"/>
 			<column name="status" value="2"/>
 		</insert>
+		<insert tableName="Cost_Point">
+			<column name="event_id" valueNumeric="select id from Event where name = '${2012-firmenlauf-leipzig}'"/>
+			<column name="sequence" value="1"/>
+			<column name="description" value="TODO"/>
+			<column name="amount" value="0.00"/>
+			<!--column name="amount_foreign_currency" value="0.00"/-->
+			<!--column name="foreign_currency" value=""/-->
+		</insert>
 
 		<insert tableName="Event">
 			<column name="organizer_id" valueNumeric="select id from Organizer where name = '${organizer-cross-de-luxe}'"/>
@@ -61,6 +69,14 @@
 			<column name="distance" value="16.0"/>
 			<column name="racetime" value="01:59:34"/>
 			<column name="status" value="2"/>
+		</insert>
+		<insert tableName="Cost_Point">
+			<column name="event_id" valueNumeric="select id from Event where name = '${2012-cross-de-luxe}'"/>
+			<column name="sequence" value="1"/>
+			<column name="description" value="TODO"/>
+			<column name="amount" value="0.00"/>
+			<!--column name="amount_foreign_currency" value="0.00"/-->
+			<!--column name="foreign_currency" value=""/-->
 		</insert>
 
 	</changeSet>

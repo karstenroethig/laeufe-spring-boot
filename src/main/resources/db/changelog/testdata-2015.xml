@@ -103,6 +103,14 @@
 			<column name="note" value="Top 10 in erster Startwelle"/>
 			<column name="status" value="2"/>
 		</insert>
+		<insert tableName="Cost_Point">
+			<column name="event_id" valueNumeric="select id from Event where name = '${2015-tough-mudder-nrw}'"/>
+			<column name="sequence" value="1"/>
+			<column name="description" value="TODO"/>
+			<column name="amount" value="0.00"/>
+			<!--column name="amount_foreign_currency" value="0.00"/-->
+			<!--column name="foreign_currency" value=""/-->
+		</insert>
 
 		<insert tableName="Event">
 			<column name="organizer_id" valueNumeric="select id from Organizer where name = '${organizer-tough-mudder}'"/>
@@ -136,6 +144,14 @@
 			<column name="racetime" value="02:08:16"/>
 			<column name="status" value="2"/>
 		</insert>
+		<insert tableName="Cost_Point">
+			<column name="event_id" valueNumeric="select id from Event where name = '${2015-tough-mudder-midlands}'"/>
+			<column name="sequence" value="1"/>
+			<column name="description" value="TODO"/>
+			<column name="amount" value="0.00"/>
+			<!--column name="amount_foreign_currency" value="0.00"/-->
+			<!--column name="foreign_currency" value=""/-->
+		</insert>
 
 		<insert tableName="Event">
 			<column name="organizer_id" valueNumeric="select id from Organizer where name = '${organizer-leipziger-firmenlauf}'"/>
@@ -160,6 +176,14 @@
 			<column name="team" value="Run As Java Application"/>
 			<column name="note" value="Platz 438 von 12.022 Startern"/>
 			<column name="status" value="2"/>
+		</insert>
+		<insert tableName="Cost_Point">
+			<column name="event_id" valueNumeric="select id from Event where name = '${2015-firmenlauf-leipzig}'"/>
+			<column name="sequence" value="1"/>
+			<column name="description" value="TODO"/>
+			<column name="amount" value="0.00"/>
+			<!--column name="amount_foreign_currency" value="0.00"/-->
+			<!--column name="foreign_currency" value=""/-->
 		</insert>
 
 		<insert tableName="Event">
@@ -196,6 +220,14 @@
 			<column name="note" value="GPS Track POD verloren"/>
 			<column name="status" value="2"/>
 		</insert>
+		<insert tableName="Cost_Point">
+			<column name="event_id" valueNumeric="select id from Event where name = '${2015-tough-mudder-scotland}'"/>
+			<column name="sequence" value="1"/>
+			<column name="description" value="TODO"/>
+			<column name="amount" value="0.00"/>
+			<!--column name="amount_foreign_currency" value="0.00"/-->
+			<!--column name="foreign_currency" value=""/-->
+		</insert>
 
 		<insert tableName="Event">
 			<column name="organizer_id" valueNumeric="select id from Organizer where name = '${organizer-ammelshainer-schlosslauf}'"/>
@@ -215,6 +247,14 @@
 			<column name="start_time" valueDate="2015-06-26T19:00:00"/>
 			<column name="note" value="Nicht teilgenommen wegen Krankheit im Schottland-Urlaub"/>
 			<column name="status" value="3"/>
+		</insert>
+		<insert tableName="Cost_Point">
+			<column name="event_id" valueNumeric="select id from Event where name = '${2015-ammelshainer-schlosslauf}'"/>
+			<column name="sequence" value="1"/>
+			<column name="description" value="TODO"/>
+			<column name="amount" value="0.00"/>
+			<!--column name="amount_foreign_currency" value="0.00"/-->
+			<!--column name="foreign_currency" value=""/-->
 		</insert>
 
 		<insert tableName="Event">
@@ -249,6 +289,14 @@
 			<column name="racetime" value="01:40:00"/>
 			<column name="status" value="2"/>
 		</insert>
+		<insert tableName="Cost_Point">
+			<column name="event_id" valueNumeric="select id from Event where name = '${2015-tough-mudder-norddeutschland}'"/>
+			<column name="sequence" value="1"/>
+			<column name="description" value="TODO"/>
+			<column name="amount" value="0.00"/>
+			<!--column name="amount_foreign_currency" value="0.00"/-->
+			<!--column name="foreign_currency" value=""/-->
+		</insert>
 
 		<insert tableName="Event">
 			<column name="organizer_id" valueNumeric="select id from Organizer where name = '${organizer-strongmanrun}'"/>
@@ -273,6 +321,14 @@
 			<column name="note" value="1:43:57 (Netto), 1:45:55 (Brutto), Platz 219 von 1686 Startern (Männer), Platz 230 von 2040 Startern (Gesamt)"/>
 			<column name="status" value="2"/>
 		</insert>
+		<insert tableName="Cost_Point">
+			<column name="event_id" valueNumeric="select id from Event where name = '${2015-fishermans-friend-strongmanrun-ferropolis-where}'"/>
+			<column name="sequence" value="1"/>
+			<column name="description" value="TODO"/>
+			<column name="amount" value="0.00"/>
+			<!--column name="amount_foreign_currency" value="0.00"/-->
+			<!--column name="foreign_currency" value=""/-->
+		</insert>
 
 		<insert tableName="Event">
 			<column name="organizer_id" valueNumeric="select id from Organizer where name = '${organizer-wildsau}'"/>
@@ -295,6 +351,14 @@
 			<column name="distance" value="23.8"/>
 			<column name="racetime" value="03:58:56"/>
 			<column name="status" value="2"/>
+		</insert>
+		<insert tableName="Cost_Point">
+			<column name="event_id" valueNumeric="select id from Event where name = '${2015-wildsau-salzburg}'"/>
+			<column name="sequence" value="1"/>
+			<column name="description" value="TODO"/>
+			<column name="amount" value="0.00"/>
+			<!--column name="amount_foreign_currency" value="0.00"/-->
+			<!--column name="foreign_currency" value=""/-->
 		</insert>
 
 		<insert tableName="Event">
@@ -331,6 +395,14 @@
 			<column name="note" value="Top 20 aus erster Startwelle"/>
 			<column name="status" value="2"/>
 		</insert>
+		<insert tableName="Cost_Point">
+			<column name="event_id" valueNumeric="select id from Event where name = '${2015-tough-mudder-sueddeutschland}'"/>
+			<column name="sequence" value="1"/>
+			<column name="description" value="TODO"/>
+			<column name="amount" value="0.00"/>
+			<!--column name="amount_foreign_currency" value="0.00"/-->
+			<!--column name="foreign_currency" value=""/-->
+		</insert>
 
 		<insert tableName="Event">
 			<column name="organizer_id" valueNumeric="select id from Organizer where name = '${organizer-cross-de-luxe}'"/>
@@ -355,6 +427,14 @@
 			<column name="note" value="Platz 47 von 469 männlichen 16-km-Läufern (Platz 23 in Staffel 1)"/>
 			<column name="status" value="2"/>
 		</insert>
+		<insert tableName="Cost_Point">
+			<column name="event_id" valueNumeric="select id from Event where name = '${2015-cross-de-luxe}'"/>
+			<column name="sequence" value="1"/>
+			<column name="description" value="TODO"/>
+			<column name="amount" value="0.00"/>
+			<!--column name="amount_foreign_currency" value="0.00"/-->
+			<!--column name="foreign_currency" value=""/-->
+		</insert>
 
 		<insert tableName="Event">
 			<column name="organizer_id" valueNumeric="select id from Organizer where name = '${organizer-spartan-race}'"/>
@@ -378,6 +458,14 @@
 			<column name="racetime" value="04:20:17"/>
 			<column name="note" value="6 x 30 Burpees als Strafe für nicht geschaffte oder ausgelassene Hindernisse"/>
 			<column name="status" value="2"/>
+		</insert>
+		<insert tableName="Cost_Point">
+			<column name="event_id" valueNumeric="select id from Event where name = '${2015-spartan-race-beast-kouty}'"/>
+			<column name="sequence" value="1"/>
+			<column name="description" value="TODO"/>
+			<column name="amount" value="0.00"/>
+			<!--column name="amount_foreign_currency" value="0.00"/-->
+			<!--column name="foreign_currency" value=""/-->
 		</insert>
 
 		<insert tableName="Event">
@@ -404,6 +492,14 @@
 			<column name="note" value="M-Distanz, 15 Burpees für ausgelassenes Hindernis, Top 10 in erster Startwelle"/>
 			<column name="status" value="2"/>
 		</insert>
+		<insert tableName="Cost_Point">
+			<column name="event_id" valueNumeric="select id from Event where name = '${2015-xletix-berlin-city}'"/>
+			<column name="sequence" value="1"/>
+			<column name="description" value="TODO"/>
+			<column name="amount" value="0.00"/>
+			<!--column name="amount_foreign_currency" value="0.00"/-->
+			<!--column name="foreign_currency" value=""/-->
+		</insert>
 
 		<insert tableName="Event">
 			<column name="organizer_id" valueNumeric="select id from Organizer where name = '${organizer-leipziger-triathlon}'"/>
@@ -427,6 +523,14 @@
 			<column name="racetime" value="01:00:14"/>
 			<column name="status" value="2"/>
 		</insert>
+		<insert tableName="Cost_Point">
+			<column name="event_id" valueNumeric="select id from Event where name = '${2015-fockeberglauf}'"/>
+			<column name="sequence" value="1"/>
+			<column name="description" value="TODO"/>
+			<column name="amount" value="0.00"/>
+			<!--column name="amount_foreign_currency" value="0.00"/-->
+			<!--column name="foreign_currency" value=""/-->
+		</insert>
 
 		<insert tableName="Event">
 			<column name="organizer_id" valueNumeric="select id from Organizer where name = '${organizer-getting-tough}'"/>
@@ -448,6 +552,14 @@
 			<column name="distance" value="22.0"/>
 			<column name="note" value="Aufgabe wegen Wadenkrämpfen nach 22 km"/>
 			<column name="status" value="3"/>
+		</insert>
+		<insert tableName="Cost_Point">
+			<column name="event_id" valueNumeric="select id from Event where name = '${2015-getting-tough-race}'"/>
+			<column name="sequence" value="1"/>
+			<column name="description" value="TODO"/>
+			<column name="amount" value="0.00"/>
+			<!--column name="amount_foreign_currency" value="0.00"/-->
+			<!--column name="foreign_currency" value=""/-->
 		</insert>
 
 	</changeSet>

@@ -42,6 +42,14 @@
 			<column name="team" value="Run As Java Application"/>
 			<column name="status" value="2"/>
 		</insert>
+		<insert tableName="Cost_Point">
+			<column name="event_id" valueNumeric="select id from Event where name = '${2013-firmenlauf-leipzig}'"/>
+			<column name="sequence" value="1"/>
+			<column name="description" value="TODO"/>
+			<column name="amount" value="0.00"/>
+			<!--column name="amount_foreign_currency" value="0.00"/-->
+			<!--column name="foreign_currency" value=""/-->
+		</insert>
 
 		<insert tableName="Event">
 			<column name="organizer_id" valueNumeric="select id from Organizer where name = '${organizer-tough-mudder}'"/>
@@ -66,6 +74,14 @@
 			<column name="racetime" value="02:10:00"/>
 			<column name="status" value="2"/>
 		</insert>
+		<insert tableName="Cost_Point">
+			<column name="event_id" valueNumeric="select id from Event where name = '${2013-tough-mudder-nordwestdeutschland}'"/>
+			<column name="sequence" value="1"/>
+			<column name="description" value="TODO"/>
+			<column name="amount" value="0.00"/>
+			<!--column name="amount_foreign_currency" value="0.00"/-->
+			<!--column name="foreign_currency" value=""/-->
+		</insert>
 
 		<insert tableName="Event">
 			<column name="organizer_id" valueNumeric="select id from Organizer where name = '${organizer-cross-de-luxe}'"/>
@@ -88,6 +104,14 @@
 			<column name="distance" value="17.3"/>
 			<column name="racetime" value="01:49:16"/>
 			<column name="status" value="2"/>
+		</insert>
+		<insert tableName="Cost_Point">
+			<column name="event_id" valueNumeric="select id from Event where name = '${2013-cross-de-luxe}'"/>
+			<column name="sequence" value="1"/>
+			<column name="description" value="TODO"/>
+			<column name="amount" value="0.00"/>
+			<!--column name="amount_foreign_currency" value="0.00"/-->
+			<!--column name="foreign_currency" value=""/-->
 		</insert>
 
 		<insert tableName="Event">
@@ -112,6 +136,14 @@
 			<column name="team" value="Beavis and Mud-Head"/>
 			<column name="note" value="Uhr vergessen"/>
 			<column name="status" value="2"/>
+		</insert>
+		<insert tableName="Cost_Point">
+			<column name="event_id" valueNumeric="select id from Event where name = '${2013-tough-mudder-berlin-brandenburg}'"/>
+			<column name="sequence" value="1"/>
+			<column name="description" value="TODO"/>
+			<column name="amount" value="0.00"/>
+			<!--column name="amount_foreign_currency" value="0.00"/-->
+			<!--column name="foreign_currency" value=""/-->
 		</insert>
 
 	</changeSet>
