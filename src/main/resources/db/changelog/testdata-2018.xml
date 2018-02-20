@@ -42,7 +42,7 @@
 			<column name="category_id" valueNumeric="select id from Category where name = '${category-hindernislauf}'"/>
 			<!--column name="start_number" value=""/-->
 			<column name="start_time" valueDate="2018-03-03T11:45:00"/>
-			<!--column name="distance" value="15000"/-->
+			<!--column name="distance" value="15.0"/-->
 			<!--column name="racetime" value=""/-->
 			<!--column name="note" value=""/-->
 			<column name="status" value="1"/>
@@ -66,7 +66,7 @@
 			<column name="category_id" valueNumeric="select id from Category where name = '${category-hindernislauf}'"/>
 			<!--column name="start_number" value=""/-->
 			<column name="start_time" valueDate="2018-04-14T10:45:00"/>
-			<!--column name="distance" value="8000"/-->
+			<!--column name="distance" value="8.0"/-->
 			<!--column name="racetime" value=""/-->
 			<!--column name="note" value=""/-->
 			<column name="status" value="1"/>
@@ -90,7 +90,7 @@
 			<column name="category_id" valueNumeric="select id from Category where name = '${category-crosslauf}'"/>
 			<column name="start_number" value="560"/>
 			<column name="start_time" valueDate="2018-04-21T10:00:00"/>
-			<column name="distance" value="15000"/>
+			<column name="distance" value="15.0"/>
 			<!--column name="racetime" value=""/-->
 			<column name="note" value="Expert Trail, ca. 285 m Höhendifferenz"/>
 			<column name="status" value="1"/>
@@ -115,7 +115,7 @@
 			<column name="category_id" valueNumeric="select id from Category where name = '${category-hindernislauf}'"/>
 			<!--column name="start_number" value=""/-->
 			<column name="start_time" valueDate="2018-06-10T11:45:00"/>
-			<!--column name="distance" value="15000"/-->
+			<!--column name="distance" value="15.0"/-->
 			<!--column name="racetime" value=""/-->
 			<!--column name="note" value=""/-->
 			<column name="status" value="1"/>
@@ -217,7 +217,11 @@
 		<insert tableName="Race">
 			<column name="event_id" valueNumeric="select id from Event where name = '${2018-cross-de-luxe}'"/>
 			<column name="category_id" valueNumeric="select id from Category where name = '${category-hindernislauf}'"/>
+			<!--column name="start_number" value=""/-->
 			<column name="start_time" valueDate="2018-09-29T12:00:00"/>
+			<!--column name="distance" value=""/-->
+			<!--column name="racetime" value=""/-->
+			<!--column name="note" value=""/-->
 			<column name="status" value="1"/>
 		</insert>
 

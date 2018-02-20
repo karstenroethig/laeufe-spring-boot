@@ -33,7 +33,7 @@
 			<column name="event_id" valueNumeric="select id from Event where name = '${2011-firmenlauf-leipzig}'"/>
 			<column name="category_id" valueNumeric="select id from Category where name = '${category-strassenlauf}'"/>
 			<column name="start_time" valueDate="2011-06-07T19:00:00"/>
-			<column name="distance" value="5200"/>
+			<column name="distance" value="5.2"/>
 			<column name="racetime" value="00:24:07"/>
 			<column name="status" value="2"/>
 		</insert>

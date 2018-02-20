@@ -119,7 +119,11 @@ public class Event
 	@Column( length = 25 )
 	private String racetime;
 
-	@Column(nullable = false)
+	@Column(
+		nullable = false,
+		precision = 10,
+		scale = 2
+	)
 	private BigDecimal costs;
 
 	@Column( nullable = false )

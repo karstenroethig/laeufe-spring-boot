@@ -135,7 +135,7 @@
 			<column name="start_time" type="datetime">
 				<constraints nullable="true"/>
 			</column>
-			<column name="distance" type="int">
+			<column name="distance" type="decimal(10,3)">
 				<constraints nullable="true"/>
 			</column>
 			<column name="racetime" type="varchar(25)">

@@ -46,8 +46,6 @@ import karstenroethig.laeufe.service.EventService;
 @Transactional
 public class EventServiceImpl implements EventService
 {
-	private static final BigDecimal DISTANCE_DIVISOR = new BigDecimal( 1000 );
-
 	@Autowired
 	protected EventRepository eventRepository;
 
@@ -240,12 +238,7 @@ public class EventServiceImpl implements EventService
 		raceDto.setCategory(DtoTransformer.transform(race.getCategory()));
 		raceDto.setStartNumber(race.getStartNumber());
 		raceDto.setStartTime(race.getStartTime());
-
-		if (race.getDistance() != null)
-		{
-			raceDto.setDistance(new BigDecimal(race.getDistance()).divide(DISTANCE_DIVISOR));
-		}
-
+		raceDto.setDistance(race.getDistance());
 		raceDto.setRacetime(race.getRacetime());
 		raceDto.setTeam(race.getTeam());
 		raceDto.setNote(race.getNote());
@@ -298,80 +291,80 @@ public class EventServiceImpl implements EventService
 		int totalRacesToughMudder = 0;
 		int totalRacesXletix = 0;
 		Set<Country> countries = new HashSet<>();
-		int longestDistance = 0;
-		int totalDistance = 0;
+		BigDecimal longestDistance = new BigDecimal(0.0);
+		BigDecimal totalDistance = new BigDecimal(0.0);
 
 		List<EventListDto> upcomingEvents = new ArrayList<>();
 
 		Iterator<Event> itr = eventRepository.findAll().iterator();
 
-		while ( itr.hasNext() )
+		while (itr.hasNext())
 		{
 			Event event = itr.next();
 			EventStatusEnum eventStatus = event.getStatusEnum();
 
-			if ( eventStatus == EventStatusEnum.PLANED || eventStatus == EventStatusEnum.REGISTERED )
+			if (eventStatus == EventStatusEnum.PLANED || eventStatus == EventStatusEnum.REGISTERED)
 			{
-				upcomingEvents.add( transformList( event ) );
+				upcomingEvents.add(transformList(event));
 			}
 
-			for ( Race race : event.getRaces() )
+			for (Race race : event.getRaces())
 			{
 				RaceStatusEnum raceStatus = race.getStatusEnum();
 
-				if ( raceStatus != RaceStatusEnum.COMPLETED && raceStatus != RaceStatusEnum.FAILED )
+				if (raceStatus != RaceStatusEnum.COMPLETED && raceStatus != RaceStatusEnum.FAILED)
 				{
 					continue;
 				}
 
 				totalRaces++;
 
-				int raceDistance = ( race.getDistance() != null ? race.getDistance() : 0 );
+				BigDecimal raceDistance = (race.getDistance() != null ? race.getDistance() : BigDecimal.ZERO);
 
-				if ( raceDistance > longestDistance )
+				if (raceDistance.compareTo(longestDistance) > 0)
 				{
 					longestDistance = raceDistance;
 				}
 
-				totalDistance += raceDistance;
+				totalDistance = totalDistance.add(raceDistance);
 
-				if ( raceStatus == RaceStatusEnum.COMPLETED )
+				if (raceStatus == RaceStatusEnum.COMPLETED)
 				{
 					totalRacesSuccess++;
 
 					String organizerName = event.getOrganizer().getName();
 
-					if ( StringUtils.equals( organizerName, "Tough Mudder" ) )
+					if (StringUtils.equals(organizerName, "Tough Mudder"))
 					{
 						totalRacesToughMudder++;
 					}
-					else if ( StringUtils.equals( organizerName, "XLETIX Challenge" ) )
+					else if (StringUtils.equals(organizerName, "XLETIX Challenge"))
 					{
 						totalRacesXletix++;
 					}
 
-					countries.add( event.getLocationCountry() );
+					countries.add(event.getLocationCountry());
 				}
-				else if ( raceStatus == RaceStatusEnum.FAILED )
+				else if (raceStatus == RaceStatusEnum.FAILED)
 				{
 					totalRacesFailed++;
 				}
 			}
 		}
 
-		Collections.sort( upcomingEvents, Comparator.comparing( EventListDto::getEventPeriod ) );
+		Collections.sort(upcomingEvents, Comparator.comparing(EventListDto::getEventPeriod));
 
 		DashboardInfoDto stats = new DashboardInfoDto();
 
-		stats.setTotalRaces( totalRaces );
-		stats.setTotalRacesSuccess( totalRacesSuccess );
-		stats.setTotalRacesFailed( totalRacesFailed );
-		stats.setTotalRacesToughMudder( totalRacesToughMudder );
-		stats.setTotalRacesXletix( totalRacesXletix );
-		stats.setTotalCountries( countries.size() );
-		stats.setLongestDistance( new BigDecimal( longestDistance ).divide( DISTANCE_DIVISOR ) );
-		stats.setTotalDistance( new BigDecimal( totalDistance ).divide( DISTANCE_DIVISOR ) );
-		stats.setUpcomingEvents( upcomingEvents );
+		stats.setTotalRaces(totalRaces);
+		stats.setTotalRacesSuccess(totalRacesSuccess);
+		stats.setTotalRacesFailed(totalRacesFailed);
+		stats.setTotalRacesToughMudder(totalRacesToughMudder);
+		stats.setTotalRacesXletix(totalRacesXletix);
+		stats.setTotalCountries(countries.size());
+		stats.setLongestDistance(longestDistance);
+		stats.setTotalDistance(totalDistance);
+		stats.setUpcomingEvents(upcomingEvents);
 
 		return stats;
 	}

@@ -50,7 +50,7 @@
 			<column name="category_id" valueNumeric="select id from Category where name = '${category-hindernislauf}'"/>
 			<column name="start_number" value="1057"/>
 			<column name="start_time" valueDate="2015-05-02T09:00:00"/>
-			<column name="distance" value="18350"/>
+			<column name="distance" value="18.35"/>
 			<column name="racetime" value="02:28:27"/>
 			<column name="status" value="2"/>
 		</insert>
@@ -98,7 +98,7 @@
 			<column name="category_id" valueNumeric="select id from Category where name = '${category-hindernislauf}'"/>
 			<column name="start_number" value="29025"/>
 			<column name="start_time" valueDate="2015-05-23T08:00:00"/>
-			<column name="distance" value="15420"/>
+			<column name="distance" value="15.42"/>
 			<column name="racetime" value="02:10:20"/>
 			<column name="note" value="Top 10 in erster Startwelle"/>
 			<column name="status" value="2"/>
@@ -123,7 +123,7 @@
 			<column name="category_id" valueNumeric="select id from Category where name = '${category-hindernislauf}'"/>
 			<column name="start_number" value="49822"/>
 			<column name="start_time" valueDate="2015-05-30T08:20:00"/>
-			<column name="distance" value="18010"/>
+			<column name="distance" value="18.01"/>
 			<column name="racetime" value="02:13:15"/>
 			<column name="status" value="2"/>
 		</insert>
@@ -132,7 +132,7 @@
 			<column name="category_id" valueNumeric="select id from Category where name = '${category-hindernislauf}'"/>
 			<column name="start_number" value="30707"/>
 			<column name="start_time" valueDate="2015-05-31T09:00:00"/>
-			<column name="distance" value="17920"/>
+			<column name="distance" value="17.92"/>
 			<column name="racetime" value="02:08:16"/>
 			<column name="status" value="2"/>
 		</insert>
@@ -155,7 +155,7 @@
 			<column name="category_id" valueNumeric="select id from Category where name = '${category-strassenlauf}'"/>
 			<column name="start_number" value="7323"/>
 			<column name="start_time" valueDate="2015-06-03T19:00:00"/>
-			<column name="distance" value="5000"/>
+			<column name="distance" value="5.0"/>
 			<column name="racetime" value="00:20:57"/>
 			<column name="team" value="Run As Java Application"/>
 			<column name="note" value="Platz 438 von 12.022 Startern"/>
@@ -181,7 +181,7 @@
 			<column name="category_id" valueNumeric="select id from Category where name = '${category-hindernislauf}'"/>
 			<column name="start_number" value="44621"/>
 			<column name="start_time" valueDate="2015-06-20T08:00:00"/>
-			<column name="distance" value="17380"/>
+			<column name="distance" value="17.38"/>
 			<column name="racetime" value="00::"/>
 			<column name="team" value="02:10:00"/>
 			<column name="status" value="2"/>
@@ -191,7 +191,7 @@
 			<column name="category_id" valueNumeric="select id from Category where name = '${category-hindernislauf}'"/>
 			<column name="start_number" value="32124"/>
 			<column name="start_time" valueDate="2015-06-21T19:00:00"/>
-			<column name="distance" value="17380"/>
+			<column name="distance" value="17.38"/>
 			<column name="racetime" value="02:10:00"/>
 			<column name="note" value="GPS Track POD verloren"/>
 			<column name="status" value="2"/>
@@ -236,7 +236,7 @@
 			<column name="category_id" valueNumeric="select id from Category where name = '${category-hindernislauf}'"/>
 			<column name="start_number" value="1703"/>
 			<column name="start_time" valueDate="2015-07-11T08:00:00"/>
-			<column name="distance" value="16000"/>
+			<column name="distance" value="16.0"/>
 			<column name="racetime" value="01:40:00"/>
 			<column name="status" value="2"/>
 		</insert>
@@ -245,7 +245,7 @@
 			<column name="category_id" valueNumeric="select id from Category where name = '${category-hindernislauf}'"/>
 			<column name="start_number" value="9607"/>
 			<column name="start_time" valueDate="2015-07-12T09:00:00"/>
-			<column name="distance" value="16000"/>
+			<column name="distance" value="16.0"/>
 			<column name="racetime" value="01:40:00"/>
 			<column name="status" value="2"/>
 		</insert>
@@ -268,7 +268,7 @@
 			<column name="category_id" valueNumeric="select id from Category where name = '${category-hindernislauf}'"/>
 			<column name="start_number" value="1312"/>
 			<column name="start_time" valueDate="2015-08-15T22:00:00"/>
-			<column name="distance" value="18400"/>
+			<column name="distance" value="18.4"/>
 			<column name="racetime" value="01:43:57"/>
 			<column name="note" value="1:43:57 (Netto), 1:45:55 (Brutto), Platz 219 von 1686 Startern (Männer), Platz 230 von 2040 Startern (Gesamt)"/>
 			<column name="status" value="2"/>
@@ -292,7 +292,7 @@
 			<column name="category_id" valueNumeric="select id from Category where name = '${category-hindernislauf}'"/>
 			<column name="start_number" value="162"/>
 			<column name="start_time" valueDate="2015-09-05T12:45:00"/>
-			<column name="distance" value="23800"/>
+			<column name="distance" value="23.8"/>
 			<column name="racetime" value="03:58:56"/>
 			<column name="status" value="2"/>
 		</insert>
@@ -316,7 +316,7 @@
 			<column name="category_id" valueNumeric="select id from Category where name = '${category-hindernislauf}'"/>
 			<column name="start_number" value="22090"/>
 			<column name="start_time" valueDate="2015-09-12T10:00:00"/>
-			<column name="distance" value="18000"/>
+			<column name="distance" value="18.0"/>
 			<column name="racetime" value="02:10:00"/>
 			<column name="note" value="Uhr verloren, Top 8 aus erster Startwelle"/>
 			<column name="status" value="2"/>
@@ -326,7 +326,7 @@
 			<column name="category_id" valueNumeric="select id from Category where name = '${category-hindernislauf}'"/>
 			<column name="start_number" value="37323"/>
 			<column name="start_time" valueDate="2015-09-13T10:00:00"/>
-			<column name="distance" value="18000"/>
+			<column name="distance" value="18.0"/>
 			<column name="racetime" value="02:10:00"/>
 			<column name="note" value="Top 20 aus erster Startwelle"/>
 			<column name="status" value="2"/>
@@ -350,7 +350,7 @@
 			<column name="category_id" valueNumeric="select id from Category where name = '${category-hindernislauf}'"/>
 			<column name="start_number" value="5366"/>
 			<column name="start_time" valueDate="2015-09-26T12:00:00"/>
-			<column name="distance" value="16000"/>
+			<column name="distance" value="16.0"/>
 			<column name="racetime" value="01:57:12"/>
 			<column name="note" value="Platz 47 von 469 männlichen 16-km-Läufern (Platz 23 in Staffel 1)"/>
 			<column name="status" value="2"/>
@@ -374,7 +374,7 @@
 			<column name="category_id" valueNumeric="select id from Category where name = '${category-hindernislauf}'"/>
 			<column name="start_number" value="7281"/>
 			<column name="start_time" valueDate="2015-10-11T09:30:00"/>
-			<column name="distance" value="25000"/>
+			<column name="distance" value="25.0"/>
 			<column name="racetime" value="04:20:17"/>
 			<column name="note" value="6 x 30 Burpees als Strafe für nicht geschaffte oder ausgelassene Hindernisse"/>
 			<column name="status" value="2"/>
@@ -398,7 +398,7 @@
 			<column name="category_id" valueNumeric="select id from Category where name = '${category-hindernislauf}'"/>
 			<column name="start_number" value="44056"/>
 			<column name="start_time" valueDate="2015-10-17T11:00:00"/>
-			<column name="distance" value="12000"/>
+			<column name="distance" value="12.0"/>
 			<column name="racetime" value="01:30:00"/>
 			<column name="team" value="Beavis and Mud-Head"/>
 			<column name="note" value="M-Distanz, 15 Burpees für ausgelassenes Hindernis, Top 10 in erster Startwelle"/>
@@ -423,7 +423,7 @@
 			<column name="category_id" valueNumeric="select id from Category where name = '${category-crosslauf}'"/>
 			<column name="start_number" value="189"/>
 			<column name="start_time" valueDate="2015-11-07T10:00:00"/>
-			<column name="distance" value="12000"/>
+			<column name="distance" value="12.0"/>
 			<column name="racetime" value="01:00:14"/>
 			<column name="status" value="2"/>
 		</insert>
@@ -445,7 +445,7 @@
 			<column name="category_id" valueNumeric="select id from Category where name = '${category-hindernislauf}'"/>
 			<column name="start_number" value="1972"/>
 			<column name="start_time" valueDate="2015-12-05T10:00:00"/>
-			<column name="distance" value="22000"/>
+			<column name="distance" value="22.0"/>
 			<column name="note" value="Aufgabe wegen Wadenkrämpfen nach 22 km"/>
 			<column name="status" value="3"/>
 		</insert>

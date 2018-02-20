@@ -46,7 +46,7 @@
 			<column name="category_id" valueNumeric="select id from Category where name = '${category-hindernislauf}'"/>
 			<column name="start_number" value="4203"/>
 			<column name="start_time" valueDate="2014-04-12T10:45:00"/>
-			<column name="distance" value="8000"/>
+			<column name="distance" value="8.0"/>
 			<column name="racetime" value="&lt; 01:15:41"/>
 			<column name="team" value="Beavis and Mud-Head"/>
 			<column name="note" value="Zeit von Jens, da mein Zeit-Chip nicht funktioniert hat"/>
@@ -71,7 +71,7 @@
 			<column name="category_id" valueNumeric="select id from Category where name = '${category-hindernislauf}'"/>
 			<column name="start_number" value="1610"/>
 			<column name="start_time" valueDate="2014-05-10T13:00:00"/>
-			<column name="distance" value="24000"/>
+			<column name="distance" value="24.0"/>
 			<column name="racetime" value="03:13:39"/>
 			<column name="status" value="2"/>
 		</insert>
@@ -94,7 +94,7 @@
 			<column name="category_id" valueNumeric="select id from Category where name = '${category-strassenlauf}'"/>
 			<column name="start_number" value="5887"/>
 			<column name="start_time" valueDate="2014-06-04T19:00:00"/>
-			<column name="distance" value="4800"/>
+			<column name="distance" value="4.8"/>
 			<column name="racetime" value="00:18:14"/>
 			<column name="team" value="Run As Java Application"/>
 			<column name="status" value="2"/>
@@ -118,7 +118,7 @@
 			<column name="category_id" valueNumeric="select id from Category where name = '${category-strassenlauf}'"/>
 			<column name="start_number" value="85"/>
 			<column name="start_time" valueDate="2014-06-20T19:00:00"/>
-			<column name="distance" value="8500"/>
+			<column name="distance" value="8.5"/>
 			<column name="racetime" value="00:36:19"/>
 			<column name="status" value="2"/>
 		</insert>
@@ -141,7 +141,7 @@
 			<column name="category_id" valueNumeric="select id from Category where name = '${category-hindernislauf}'"/>
 			<column name="start_number" value="13633"/>
 			<column name="start_time" valueDate="2014-06-28T10:30:00"/>
-			<column name="distance" value="13000"/>
+			<column name="distance" value="13.0"/>
 			<column name="racetime" value="01:39:20"/>
 			<column name="team" value="Beavis and Mud-Head"/>
 			<column name="status" value="2"/>
@@ -166,7 +166,7 @@
 			<column name="category_id" valueNumeric="select id from Category where name = '${category-hindernislauf}'"/>
 			<column name="start_number" value="5134"/>
 			<column name="start_time" valueDate="2014-07-27T11:20:00"/>
-			<column name="distance" value="18000"/>
+			<column name="distance" value="18.0"/>
 			<column name="racetime" value="02:15:00"/>
 			<column name="team" value="Beavis and Mud-Head"/>
 			<column name="status" value="2"/>
@@ -191,7 +191,7 @@
 			<column name="category_id" valueNumeric="select id from Category where name = '${category-hindernislauf}'"/>
 			<column name="start_number" value="8868"/>
 			<column name="start_time" valueDate="2014-08-10T10:00:00"/>
-			<column name="distance" value="18000"/>
+			<column name="distance" value="18.0"/>
 			<column name="racetime" value="02:00:00"/>
 			<column name="team" value="Beavis and Mud-Head"/>
 			<column name="note" value="2. Platz in der Startwelle"/>
@@ -216,7 +216,7 @@
 			<column name="category_id" valueNumeric="select id from Category where name = '${category-hindernislauf}'"/>
 			<column name="start_number" value="2900"/>
 			<column name="start_time" valueDate="2014-09-13T13:00:00"/>
-			<column name="distance" value="16000"/>
+			<column name="distance" value="16.0"/>
 			<column name="racetime" value="01:29:59"/>
 			<column name="note" value="Platz 57 von 739 16-km-Läufern (Platz 56 in männlicher Wertung)"/>
 			<column name="status" value="2"/>
@@ -240,7 +240,7 @@
 			<column name="category_id" valueNumeric="select id from Category where name = '${category-hindernislauf}'"/>
 			<column name="start_number" value="5422"/>
 			<column name="start_time" valueDate="2014-09-27T12:00:00"/>
-			<column name="distance" value="16000"/>
+			<column name="distance" value="16.0"/>
 			<column name="racetime" value="01:48:42"/>
 			<column name="note" value="Platz 44 von 453 16-km-Läufern (Platz 15 in Staffel 1)"/>
 			<column name="status" value="2"/>
@@ -264,7 +264,7 @@
 			<column name="category_id" valueNumeric="select id from Category where name = '${category-hindernislauf}'"/>
 			<column name="start_number" value="1718"/>
 			<column name="start_time" valueDate="2014-10-11T11:30:00"/>
-			<column name="distance" value="25000"/>
+			<column name="distance" value="25.0"/>
 			<column name="racetime" value="02:53:01"/>
 			<column name="note" value="Platz 304 von 2674 Finishern (schnellste Zeit: 01:44:56)"/>
 			<column name="status" value="2"/>
@@ -288,7 +288,7 @@
 			<column name="category_id" valueNumeric="select id from Category where name = '${category-crosslauf}'"/>
 			<column name="start_number" value="807"/>
 			<column name="start_time" valueDate="2014-11-01T10:00:00"/>
-			<column name="distance" value="12000"/>
+			<column name="distance" value="12.0"/>
 			<column name="racetime" value="01:00:50"/>
 			<column name="status" value="2"/>
 		</insert>
@@ -310,7 +310,7 @@
 			<column name="category_id" valueNumeric="select id from Category where name = '${category-hindernislauf}'"/>
 			<column name="start_number" value="1315"/>
 			<column name="start_time" valueDate="2014-12-06T10:30:00"/>
-			<column name="distance" value="22000"/>
+			<column name="distance" value="22.0"/>
 			<column name="note" value="Aufgabe wegen Wadenkrämpfen nach 22 km"/>
 			<column name="status" value="3"/>
 		</insert>

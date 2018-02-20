@@ -1,5 +1,6 @@
 package karstenroethig.laeufe.domain;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
@@ -61,8 +62,12 @@ public class Race
 	@Type( type = "org.hibernate.type.LocalDateTimeType" )
 	private LocalDateTime startTime;
 
-	/** Distance of the race in meters. */
-	private Integer distance;
+	@Column(
+		nullable = true,
+		precision = 10,
+		scale = 3
+	)
+	private BigDecimal distance;
 
 	@Column( length = 25 )
 	private String racetime;

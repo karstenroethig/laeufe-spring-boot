@@ -34,7 +34,7 @@
 			<column name="event_id" valueNumeric="select id from Event where name = '${2012-firmenlauf-leipzig}'"/>
 			<column name="category_id" valueNumeric="select id from Category where name = '${category-strassenlauf}'"/>
 			<column name="start_time" valueDate="2012-06-20T19:30:00"/>
-			<column name="distance" value="5000"/>
+			<column name="distance" value="5.0"/>
 			<column name="racetime" value="ca. 00:20:00"/>
 			<column name="note" value="Zeitmessung hat nicht funktioniert"/>
 			<column name="status" value="2"/>
@@ -58,7 +58,7 @@
 			<column name="category_id" valueNumeric="select id from Category where name = '${category-hindernislauf}'"/>
 			<column name="start_number" value="2"/>
 			<column name="start_time" valueDate="2012-09-30T12:00:00"/>
-			<column name="distance" value="16000"/>
+			<column name="distance" value="16.0"/>
 			<column name="racetime" value="01:59:34"/>
 			<column name="status" value="2"/>
 		</insert>

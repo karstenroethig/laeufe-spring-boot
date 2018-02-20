@@ -37,7 +37,7 @@
 			<column name="category_id" valueNumeric="select id from Category where name = '${category-strassenlauf}'"/>
 			<column name="start_number" value="5439"/>
 			<column name="start_time" valueDate="2013-07-10T19:00:00"/>
-			<column name="distance" value="4800"/>
+			<column name="distance" value="4.8"/>
 			<column name="racetime" value="00:19:29"/>
 			<column name="team" value="Run As Java Application"/>
 			<column name="status" value="2"/>
@@ -62,7 +62,7 @@
 			<column name="category_id" valueNumeric="select id from Category where name = '${category-hindernislauf}'"/>
 			<column name="start_number" value="2750"/>
 			<column name="start_time" valueDate="2013-07-13T12:00:00"/>
-			<column name="distance" value="18000"/>
+			<column name="distance" value="18.0"/>
 			<column name="racetime" value="02:10:00"/>
 			<column name="status" value="2"/>
 		</insert>
@@ -85,7 +85,7 @@
 			<column name="category_id" valueNumeric="select id from Category where name = '${category-hindernislauf}'"/>
 			<column name="start_number" value="7"/>
 			<column name="start_time" valueDate="2013-09-28T12:00:00"/>
-			<column name="distance" value="17300"/>
+			<column name="distance" value="17.3"/>
 			<column name="racetime" value="01:49:16"/>
 			<column name="status" value="2"/>
 		</insert>
@@ -108,7 +108,7 @@
 			<column name="category_id" valueNumeric="select id from Category where name = '${category-hindernislauf}'"/>
 			<column name="start_number" value="3834"/>
 			<column name="start_time" valueDate="2013-10-19T12:40:00"/>
-			<column name="distance" value="18000"/>
+			<column name="distance" value="18.0"/>
 			<column name="team" value="Beavis and Mud-Head"/>
 			<column name="note" value="Uhr vergessen"/>
 			<column name="status" value="2"/>

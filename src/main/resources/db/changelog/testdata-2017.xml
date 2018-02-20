@@ -42,7 +42,7 @@
 			<column name="category_id" valueNumeric="select id from Category where name = '${category-crosslauf}'"/>
 			<column name="start_number" value="1011"/>
 			<column name="start_time" valueDate="2017-04-01T11:00:00"/>
-			<column name="distance" value="15600"/>
+			<column name="distance" value="15.6"/>
 			<column name="racetime" value="01:33:57"/>
 			<column name="status" value="2"/>
 		</insert>
@@ -65,7 +65,7 @@
 			<column name="category_id" valueNumeric="select id from Category where name = '${category-hindernislauf}'"/>
 			<column name="start_number" value="44019"/>
 			<column name="start_time" valueDate="2017-04-08T10:00:00"/>
-			<column name="distance" value="8000"/>
+			<column name="distance" value="8.0"/>
 			<column name="racetime" value="01:21:15"/>
 			<column name="note" value="2 x 30 Burpees Strafe für nicht geschaffte Hindernisse (Speerwurf, Kletterwand mit Ketten und Löcher)"/>
 			<column name="status" value="2"/>
@@ -89,7 +89,7 @@
 			<column name="category_id" valueNumeric="select id from Category where name = '${category-hindernislauf}'"/>
 			<column name="start_number" value="3092"/>
 			<column name="start_time" valueDate="2017-06-05T12:55:00"/>
-			<column name="distance" value="8000"/>
+			<column name="distance" value="8.0"/>
 			<column name="racetime" value="01:35:38"/>
 			<column name="note" value="2 x Penalty Round für nicht geschaffte Hindernisse (Rings und Platinum Rig)"/>
 			<column name="status" value="2"/>
@@ -113,7 +113,7 @@
 			<column name="category_id" valueNumeric="select id from Category where name = '${category-hindernislauf}'"/>
 			<column name="start_number" value="75006"/>
 			<column name="start_time" valueDate="2017-05-27T10:20:00"/>
-			<column name="distance" value="20000"/>
+			<column name="distance" value="20.0"/>
 			<column name="racetime" value="02:50:00"/>
 			<column name="note" value="L-Distanz"/>
 			<column name="status" value="2"/>
@@ -123,7 +123,7 @@
 			<column name="category_id" valueNumeric="select id from Category where name = '${category-hindernislauf}'"/>
 			<column name="start_number" value="38118"/>
 			<column name="start_time" valueDate="2017-05-28T10:20:00"/>
-			<column name="distance" value="14000"/>
+			<column name="distance" value="14.0"/>
 			<column name="note" value="M-Distanz"/>
 			<column name="status" value="2"/>
 		</insert>
@@ -146,7 +146,7 @@
 			<column name="category_id" valueNumeric="select id from Category where name = '${category-crosslauf}'"/>
 			<column name="start_number" value="400"/>
 			<column name="start_time" valueDate="2017-06-11T10:15:00"/>
-			<column name="distance" value="9000"/>
+			<column name="distance" value="9.0"/>
 			<column name="racetime" value="00:43:16"/>
 			<column name="status" value="2"/>
 		</insert>
@@ -190,7 +190,7 @@
 			<column name="category_id" valueNumeric="select id from Category where name = '${category-hindernislauf}'"/>
 			<column name="start_number" value="47784"/>
 			<column name="start_time" valueDate="2017-08-19T10:20:00"/>
-			<column name="distance" value="14000"/>
+			<column name="distance" value="14.0"/>
 			<column name="racetime" value="01:40:00"/>
 			<column name="note" value="M-Distanz, gemeinsam mit Denise gelaufen"/>
 			<column name="status" value="2"/>
@@ -215,7 +215,7 @@
 			<column name="category_id" valueNumeric="select id from Category where name = '${category-hindernislauf}'"/>
 			<column name="start_number" value="23805"/>
 			<column name="start_time" valueDate="2017-09-09T09:00:00"/>
-			<column name="distance" value="17500"/>
+			<column name="distance" value="17.5"/>
 			<column name="racetime" value="01:55:00"/>
 			<column name="status" value="2"/>
 		</insert>
@@ -239,7 +239,7 @@
 			<column name="category_id" valueNumeric="select id from Category where name = '${category-hindernislauf}'"/>
 			<column name="start_number" value="1554"/>
 			<column name="start_time" valueDate="2017-09-23T12:00:00"/>
-			<column name="distance" value="18000"/>
+			<column name="distance" value="18.0"/>
 			<column name="racetime" value="02:14:29"/>
 			<column name="status" value="2"/>
 		</insert>
