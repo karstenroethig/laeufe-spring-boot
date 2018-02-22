@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+	                    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+	<property name="2018-spartan-race-super-alberta-canada_name" value="Spartan Race - Alberta/Canada (Super)"/>
+	<property name="2018-spartan-race-super-alberta-canada_start_date" value="2018-06-09"/>
+
+	<changeSet id="2018-spartan-race-super-alberta-canada" author="roethig">
+
+		<!-- ============= -->
+		<!-- Table "Event" -->
+		<!-- ============= -->
+		<insert tableName="Event">
+			<column name="organizer_id" valueNumeric="select id from Organizer where name='${organizer-spartan-race}'"/>
+			<column name="name" value="${2018-spartan-race-super-alberta-canada_name}"/>
+			<column name="start_date" value="${2018-spartan-race-super-alberta-canada_start_date}"/>
+			<column name="end_date" value="2018-06-10"/>
+			<column name="location_name" value="Heritage Ranch, Red Deer, Alberta"/>
+			<column name="location_country_id" valueNumeric="select id from Country where name='${country-canada}'"/>
+			<column name="location_latitude" value="52.2618357"/>
+			<column name="location_longitude" value="-113.8535232"/>
+			<column name="distance" value="13+"/>
+			<!--column name="racetime" value=""/-->
+			<column name="costs" value="99.22"/>
+			<column name="status" value="1"/>
+		</insert>
+
+		<!-- ============ -->
+		<!-- Table "Race" -->
+		<!-- ============ -->
+		<insert tableName="Race">
+			<column name="event_id" valueNumeric="select id from Event where name='${2018-spartan-race-super-alberta-canada_name}' and start_date='${2018-spartan-race-super-alberta-canada_start_date}'"/>
+			<column name="category_id" valueNumeric="select id from Category where name='${category-hindernislauf}'"/>
+			<!--column name="start_number" value=""/-->
+			<column name="start_time" valueDate="2018-06-10T11:45:00"/>
+			<!--column name="distance" value="15.0"/-->
+			<!--column name="racetime" value=""/-->
+			<!--column name="team" value=""/-->
+			<!--column name="note" value=""/-->
+			<column name="status" value="1"/>
+		</insert>
+
+		<!-- ================== -->
+		<!-- Table "Cost_Point" -->
+		<!-- ================== -->
+		<insert tableName="Cost_Point">
+			<column name="event_id" valueNumeric="select id from Event where name='${2018-spartan-race-super-alberta-canada_name}' and start_date='${2018-spartan-race-super-alberta-canada_start_date}'"/>
+			<column name="sequence" value="1"/>
+			<column name="description" value="TODO"/>
+			<column name="amount" value="0.00"/>
+			<!--column name="amount_foreign_currency" value="0.00"/-->
+			<!--column name="foreign_currency" value=""/-->
+		</insert>
+
+	</changeSet>
+
+</databaseChangeLog>

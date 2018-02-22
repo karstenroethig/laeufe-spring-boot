@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+	                    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+	<property name="2017-seelauf-markkleeberg_name" value="7. Seelauf Markkleeberg"/>
+	<property name="2017-seelauf-markkleeberg_start_date" value="2017-06-11"/>
+
+	<changeSet id="2017-seelauf-markkleeberg" author="roethig">
+
+		<!-- ============= -->
+		<!-- Table "Event" -->
+		<!-- ============= -->
+		<insert tableName="Event">
+			<column name="organizer_id" valueNumeric="select id from Organizer where name='${organizer-seelauf-markkleeberg}'"/>
+			<column name="name" value="${2017-seelauf-markkleeberg_name}"/>
+			<column name="start_date" value="${2017-seelauf-markkleeberg_start_date}"/>
+			<!--column name="end_date" value=""/-->
+			<column name="location_name" value="Markkleeberger See"/>
+			<column name="location_country_id" valueNumeric="select id from Country where name='${country-germany}'"/>
+			<column name="location_latitude" value="51.25534"/>
+			<column name="location_longitude" value="12.42442"/>
+			<column name="distance" value="9"/>
+			<column name="racetime" value="00:43:16"/>
+			<column name="costs" value="13.00"/>
+			<column name="status" value="2"/>
+		</insert>
+
+		<!-- ============ -->
+		<!-- Table "Race" -->
+		<!-- ============ -->
+		<insert tableName="Race">
+			<column name="event_id" valueNumeric="select id from Event where name='${2017-seelauf-markkleeberg_name}' and start_date='${2017-seelauf-markkleeberg_start_date}'"/>
+			<column name="category_id" valueNumeric="select id from Category where name='${category-crosslauf}'"/>
+			<column name="start_number" value="400"/>
+			<column name="start_time" valueDate="2017-06-11T10:15:00"/>
+			<column name="distance" value="9.0"/>
+			<column name="racetime" value="00:43:16"/>
+			<!--column name="team" value=""/-->
+			<!--column name="note" value=""/-->
+			<column name="status" value="2"/>
+		</insert>
+
+		<!-- ================== -->
+		<!-- Table "Cost_Point" -->
+		<!-- ================== -->
+		<insert tableName="Cost_Point">
+			<column name="event_id" valueNumeric="select id from Event where name='${2017-seelauf-markkleeberg_name}' and start_date='${2017-seelauf-markkleeberg_start_date}'"/>
+			<column name="sequence" value="1"/>
+			<column name="description" value="TODO"/>
+			<column name="amount" value="0.00"/>
+			<!--column name="amount_foreign_currency" value="0.00"/-->
+			<!--column name="foreign_currency" value=""/-->
+		</insert>
+
+	</changeSet>
+
+</databaseChangeLog>

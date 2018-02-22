@@ -12,20 +12,14 @@
 	<property name="type.idRef" value="decimal(18,0)" dbms="mssql,h2"/>
 	<property name="type.idRef" value="bigint" dbms="postgresql"/>
 
+	<property name="now" value="getDate()" dbms="mssql"/>
+	<property name="now" value="now()" dbms="postgresql,h2"/>
+
 	<preConditions onFail="WARN">
 		<dbms type="h2" />
 	</preConditions>
 
 	<include file="db/changelog/1.0.xml"/>
-	<include file="db/changelog/testdata.xml"/>
-	<include file="db/changelog/testdata-2010.xml"/>
-	<include file="db/changelog/testdata-2011.xml"/>
-	<include file="db/changelog/testdata-2012.xml"/>
-	<include file="db/changelog/testdata-2013.xml"/>
-	<include file="db/changelog/testdata-2014.xml"/>
-	<include file="db/changelog/testdata-2015.xml"/>
-	<include file="db/changelog/testdata-2016.xml"/>
-	<include file="db/changelog/testdata-2017.xml"/>
-	<include file="db/changelog/testdata-2018.xml"/>
+	<include file="db/data/testdata.xml"/>
 
 </databaseChangeLog>

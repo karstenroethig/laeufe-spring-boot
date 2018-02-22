@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+	                    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+	<changeSet id="testdata-common" author="roethig">
+
+		<!-- ================= -->
+		<!-- Table "Organizer" -->
+		<!-- ================= -->
+		<loadData
+			tableName="Organizer"
+			file="db/data/organizers.csv"
+			separator=";">
+		</loadData>
+
+		<!-- ================ -->
+		<!-- Table "Category" -->
+		<!-- ================ -->
+		<loadData
+			tableName="Category"
+			file="db/data/categories.csv"
+			separator=";">
+		</loadData>
+
+		<!-- =============== -->
+		<!-- Table "Country" -->
+		<!-- =============== -->
+		<loadData
+			tableName="Country"
+			file="db/data/countries.csv"
+			separator=";">
+		</loadData>
+
+	</changeSet>
+
+</databaseChangeLog>

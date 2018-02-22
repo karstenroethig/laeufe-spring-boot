@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+	                    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+	<include file="db/data/testdata-properties.xml"/>
+	<include file="db/data/testdata-common.xml"/>
+
+	<!-- 2010 -->
+	<include file="db/data/events/2010-firmenlauf-leipzig.xml"/>
+
+	<!-- 2011 -->
+	<include file="db/data/events/2011-firmenlauf-leipzig.xml"/>
+
+	<!-- 2012 -->
+	<include file="db/data/events/2012-firmenlauf-leipzig.xml"/>
+	<include file="db/data/events/2012-cross-de-luxe.xml"/>
+
+	<!-- 2013 -->
+	<include file="db/data/events/2013-firmenlauf-leipzig.xml"/>
+	<include file="db/data/events/2013-tough-mudder-nordwestdeutschland.xml"/>
+	<include file="db/data/events/2013-cross-de-luxe.xml"/>
+	<include file="db/data/events/2013-tough-mudder-berlin-brandenburg.xml"/>
+
+	<!-- 2014 -->
+	<include file="db/data/events/2014-spartan-race-sprint-muenchen.xml"/>
+	<include file="db/data/events/2014-fishermans-friend-strongmanrun-nuerburgring.xml"/>
+	<include file="db/data/events/2014-firmenlauf-leipzig.xml"/>
+	<include file="db/data/events/2014-ammelshainer-schlosslauf.xml"/>
+	<include file="db/data/events/2014-spartan-race-super-koeln.xml"/>
+	<include file="db/data/events/2014-tough-mudder-berlin-brandenburg.xml"/>
+	<include file="db/data/events/2014-tough-mudder-rhein-main.xml"/>
+	<include file="db/data/events/2014-survival-run.xml"/>
+	<include file="db/data/events/2014-cross-de-luxe.xml"/>
+	<include file="db/data/events/2014-spartan-race-beast-south-london.xml"/>
+	<include file="db/data/events/2014-fockeberglauf.xml"/>
+	<include file="db/data/events/2014-getting-tough-race.xml"/>
+
+	<!-- 2015 -->
+	<include file="db/data/events/2015-tough-mudder-london-west.xml"/>
+	<include file="db/data/events/2015-tough-mudder-nrw.xml"/>
+	<include file="db/data/events/2015-tough-mudder-midlands.xml"/>
+	<include file="db/data/events/2015-firmenlauf-leipzig.xml"/>
+	<include file="db/data/events/2015-tough-mudder-scotland.xml"/>
+	<include file="db/data/events/2015-ammelshainer-schlosslauf.xml"/>
+	<include file="db/data/events/2015-tough-mudder-norddeutschland.xml"/>
+	<include file="db/data/events/2015-fishermans-friend-strongmanrun-ferropolis.xml"/>
+	<include file="db/data/events/2015-wildsau-salzburg.xml"/>
+	<include file="db/data/events/2015-tough-mudder-sueddeutschland.xml"/>
+	<include file="db/data/events/2015-cross-de-luxe.xml"/>
+	<include file="db/data/events/2015-spartan-race-beast-kouty.xml"/>
+	<include file="db/data/events/2015-xletix-berlin-city.xml"/>
+	<include file="db/data/events/2015-fockeberglauf.xml"/>
+	<include file="db/data/events/2015-getting-tough-race.xml"/>
+
+	<!-- 2016 -->
+	<include file="db/data/events/2016-mud-masters-haarlemmermeer.xml"/>
+	<include file="db/data/events/2016-spartan-race-sprint-muenchen.xml"/>
+	<include file="db/data/events/2016-7-seen-wanderung.xml"/>
+	<include file="db/data/events/2016-xletix-berlin.xml"/>
+	<include file="db/data/events/2016-spartan-race-super-kouty.xml"/>
+	<include file="db/data/events/2016-xletix-mitten-in-deutschland.xml"/>
+	<include file="db/data/events/2016-tough-mudder-norddeutschland.xml"/>
+	<include file="db/data/events/2016-xletix-sueddeutschland.xml"/>
+	<include file="db/data/events/2016-spartan-race-beast-tirol.xml"/>
+	<include file="db/data/events/2016-cross-de-luxe.xml"/>
+	<include file="db/data/events/2016-toughest-copenhagen.xml"/>
+	<include file="db/data/events/2016-halbmarathon-leipzig.xml"/>
+	<include file="db/data/events/2016-king-of-cross.xml"/>
+
+	<!-- 2017 -->
+	<include file="db/data/events/2017-neuseen-trailrun.xml"/>
+	<include file="db/data/events/2017-spartan-race-sprint-muenchen.xml"/>
+	<include file="db/data/events/2017-toughest-malmoe.xml"/>
+	<include file="db/data/events/2017-xletix-berlin.xml"/>
+	<include file="db/data/events/2017-seelauf-markkleeberg.xml"/>
+	<include file="db/data/events/2017-tough-mudder-norddeutschland.xml"/>
+	<include file="db/data/events/2017-xletix-mitten-in-deutschland.xml"/>
+	<include file="db/data/events/2017-tough-mudder-berlin-brandenburg.xml"/>
+	<include file="db/data/events/2017-cross-de-luxe.xml"/>
+
+	<!-- 2018 -->
+	<include file="db/data/events/2018-spartan-race-super-mallorca.xml"/>
+	<include file="db/data/events/2018-spartan-race-sprint-muenchen.xml"/>
+	<include file="db/data/events/2018-andechs-trail.xml"/>
+	<include file="db/data/events/2018-spartan-race-super-alberta-canada.xml"/>
+	<include file="db/data/events/2018-xletix-muenchen.xml"/>
+	<include file="db/data/events/2018-xletix-tirol.xml"/>
+	<include file="db/data/events/2018-tough-mudder-berlin-brandenburg.xml"/>
+	<include file="db/data/events/2018-cross-de-luxe.xml"/>
+	<include file="db/data/events/2018-tough-mudder-5k-muenchen.xml"/>
+
+</databaseChangeLog>

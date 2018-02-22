@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+	                    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+	<property name="2015-firmenlauf-leipzig_name" value="8. Commerzbank Firmenlauf"/>
+	<property name="2015-firmenlauf-leipzig_start_date" value="2015-06-03"/>
+
+	<changeSet id="2015-firmenlauf-leipzig" author="roethig">
+
+		<!-- ============= -->
+		<!-- Table "Event" -->
+		<!-- ============= -->
+		<insert tableName="Event">
+			<column name="organizer_id" valueNumeric="select id from Organizer where name='${organizer-leipziger-firmenlauf}'"/>
+			<column name="name" value="${2015-firmenlauf-leipzig_name}"/>
+			<column name="start_date" value="${2015-firmenlauf-leipzig_start_date}"/>
+			<!--column name="end_date" value=""/-->
+			<column name="location_name" value="Kleinmesse am Cottaweg, Leipzig"/>
+			<column name="location_country_id" valueNumeric="select id from Country where name='${country-germany}'"/>
+			<column name="location_latitude" value="51.33944"/>
+			<column name="location_longitude" value="12.34275"/>
+			<column name="distance" value="5"/>
+			<column name="racetime" value="00:20:57"/>
+			<column name="costs" value="0.00"/>
+			<column name="status" value="2"/>
+		</insert>
+
+		<!-- ============ -->
+		<!-- Table "Race" -->
+		<!-- ============ -->
+		<insert tableName="Race">
+			<column name="event_id" valueNumeric="select id from Event where name='${2015-firmenlauf-leipzig_name}' and start_date='${2015-firmenlauf-leipzig_start_date}'"/>
+			<column name="category_id" valueNumeric="select id from Category where name='${category-strassenlauf}'"/>
+			<column name="start_number" value="7323"/>
+			<column name="start_time" valueDate="2015-06-03T19:00:00"/>
+			<column name="distance" value="5.0"/>
+			<column name="racetime" value="00:20:57"/>
+			<column name="team" value="Run As Java Application"/>
+			<column name="note" value="Platz 438 von 12.022 Startern"/>
+			<column name="status" value="2"/>
+		</insert>
+
+		<!-- ================== -->
+		<!-- Table "Cost_Point" -->
+		<!-- ================== -->
+		<insert tableName="Cost_Point">
+			<column name="event_id" valueNumeric="select id from Event where name='${2015-firmenlauf-leipzig_name}' and start_date='${2015-firmenlauf-leipzig_start_date}'"/>
+			<column name="sequence" value="1"/>
+			<column name="description" value="TODO"/>
+			<column name="amount" value="0.00"/>
+			<!--column name="amount_foreign_currency" value="0.00"/-->
+			<!--column name="foreign_currency" value=""/-->
+		</insert>
+
+	</changeSet>
+
+</databaseChangeLog>

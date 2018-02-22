@@ -6,9 +6,6 @@
 	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
 	                    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
 
-	<property name="now" value="getDate()" dbms="mssql"/>
-	<property name="now" value="now()" dbms="postgresql,h2"/>
-
 	<property name="organizer-7-seen-wanderung" value="7-Seen-Wanderung"/>
 	<property name="organizer-ammelshainer-schlosslauf" value="Ammelshainer Schlosslauf"/>
 	<property name="organizer-amper-challenge" value="Amper Challenge"/>
@@ -51,39 +48,5 @@
 	<property name="country-spain" value="Spanien"/>
 	<property name="country-czech-republic" value="Tschechien"/>
 	<property name="country-united-kingdom" value="Vereinigtes Königreich"/>
-
-	<!-- =========== -->
-	<!-- insert data -->
-	<!-- =========== -->
-	<changeSet id="1" author="roethig">
-
-		<!-- ================= -->
-		<!-- Table "Organizer" -->
-		<!-- ================= -->
-		<loadData
-			tableName="Organizer"
-			file="db/data/organizers.csv"
-			separator=";">
-		</loadData>
-
-		<!-- ================ -->
-		<!-- Table "Category" -->
-		<!-- ================ -->
-		<loadData
-			tableName="Category"
-			file="db/data/categories.csv"
-			separator=";">
-		</loadData>
-
-		<!-- =============== -->
-		<!-- Table "Country" -->
-		<!-- =============== -->
-		<loadData
-			tableName="Country"
-			file="db/data/countries.csv"
-			separator=";">
-		</loadData>
-
-	</changeSet>
 
 </databaseChangeLog>
