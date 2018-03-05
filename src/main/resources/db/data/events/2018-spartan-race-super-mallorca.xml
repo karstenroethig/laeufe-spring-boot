@@ -24,9 +24,9 @@
 			<column name="location_latitude" value="39.5741732"/>
 			<column name="location_longitude" value="2.6036588"/>
 			<column name="distance" value="13+"/>
-			<!--column name="racetime" value=""/-->
+			<column name="racetime" value="02:55:28"/>
 			<column name="costs" value="86.51"/>
-			<column name="status" value="1"/>
+			<column name="status" value="2"/>
 		</insert>
 
 		<!-- ============ -->
@@ -35,13 +35,13 @@
 		<insert tableName="Race">
 			<column name="event_id" valueNumeric="select id from Event where name='${2018-spartan-race-super-mallorca_name}' and start_date='${2018-spartan-race-super-mallorca_start_date}'"/>
 			<column name="category_id" valueNumeric="select id from Category where name='${category-hindernislauf}'"/>
-			<!--column name="start_number" value=""/-->
-			<column name="start_time" valueDate="2018-03-03T11:45:00"/>
-			<!--column name="distance" value="15.0"/-->
-			<!--column name="racetime" value=""/-->
+			<column name="start_number" value="22314"/>
+			<column name="start_time" valueDate="2018-03-03T10:45:00"/>
+			<column name="distance" value="16.0"/>
+			<column name="racetime" value="02:55:28"/>
 			<!--column name="team" value=""/-->
-			<!--column name="note" value=""/-->
-			<column name="status" value="1"/>
+			<column name="note" value="Platz 246 (233 nur männliche Wertung) von 1.642 Läufern; 2 x 30 + 1 x 15 Burpees Strafe für nicht geschaffte Hindernisse (Speerwurf, Sandsack tragen mit Balancieren, Slackline)"/>
+			<column name="status" value="2"/>
 		</insert>
 
 		<!-- ================== -->
@@ -50,8 +50,16 @@
 		<insert tableName="Cost_Point">
 			<column name="event_id" valueNumeric="select id from Event where name='${2018-spartan-race-super-mallorca_name}' and start_date='${2018-spartan-race-super-mallorca_start_date}'"/>
 			<column name="sequence" value="1"/>
-			<column name="description" value="TODO"/>
-			<column name="amount" value="0.00"/>
+			<column name="description" value="Teilnahmegebühr (Open)"/>
+			<column name="amount" value="79.00"/>
+			<!--column name="amount_foreign_currency" value="0.00"/-->
+			<!--column name="foreign_currency" value=""/-->
+		</insert>
+		<insert tableName="Cost_Point">
+			<column name="event_id" valueNumeric="select id from Event where name='${2018-spartan-race-super-mallorca_name}' and start_date='${2018-spartan-race-super-mallorca_start_date}'"/>
+			<column name="sequence" value="2"/>
+			<column name="description" value="Verarbeitungsgebühr"/>
+			<column name="amount" value="7.51"/>
 			<!--column name="amount_foreign_currency" value="0.00"/-->
 			<!--column name="foreign_currency" value=""/-->
 		</insert>
