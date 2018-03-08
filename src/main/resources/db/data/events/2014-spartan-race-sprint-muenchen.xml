@@ -25,7 +25,7 @@
 			<column name="location_longitude" value="11.5438"/>
 			<column name="distance" value="6+"/>
 			<column name="racetime" value="&lt; 01:15:41"/>
-			<column name="costs" value="47.00"/>
+			<column name="costs" value="54.00"/>
 			<column name="status" value="2"/>
 		</insert>
 
@@ -50,8 +50,24 @@
 		<insert tableName="Cost_Point">
 			<column name="event_id" valueNumeric="select id from Event where name='${2014-spartan-race-sprint-muenchen_name}' and start_date='${2014-spartan-race-sprint-muenchen_start_date}'"/>
 			<column name="sequence" value="1"/>
-			<column name="description" value="TODO"/>
-			<column name="amount" value="0.00"/>
+			<column name="description" value="Teilnahmegebühr"/>
+			<column name="amount" value="44.00"/>
+			<!--column name="amount_foreign_currency" value="0.00"/-->
+			<!--column name="foreign_currency" value=""/-->
+		</insert>
+		<insert tableName="Cost_Point">
+			<column name="event_id" valueNumeric="select id from Event where name='${2014-spartan-race-sprint-muenchen_name}' and start_date='${2014-spartan-race-sprint-muenchen_start_date}'"/>
+			<column name="sequence" value="2"/>
+			<column name="description" value="Transaktionsbearbeitungsgebühr"/>
+			<column name="amount" value="3.00"/>
+			<!--column name="amount_foreign_currency" value="0.00"/-->
+			<!--column name="foreign_currency" value=""/-->
+		</insert>
+		<insert tableName="Cost_Point">
+			<column name="event_id" valueNumeric="select id from Event where name='${2014-spartan-race-sprint-muenchen_name}' and start_date='${2014-spartan-race-sprint-muenchen_start_date}'"/>
+			<column name="sequence" value="3"/>
+			<column name="description" value="Parken"/>
+			<column name="amount" value="7.00"/>
 			<!--column name="amount_foreign_currency" value="0.00"/-->
 			<!--column name="foreign_currency" value=""/-->
 		</insert>

@@ -50,10 +50,42 @@
 		<insert tableName="Cost_Point">
 			<column name="event_id" valueNumeric="select id from Event where name='${2014-spartan-race-beast-south-london_name}' and start_date='${2014-spartan-race-beast-south-london_start_date}'"/>
 			<column name="sequence" value="1"/>
-			<column name="description" value="TODO"/>
-			<column name="amount" value="0.00"/>
-			<!--column name="amount_foreign_currency" value="0.00"/-->
-			<!--column name="foreign_currency" value=""/-->
+			<column name="description" value="Teilnahmegebühr"/>
+			<column name="amount" value="62.89"/>
+			<column name="amount_foreign_currency" value="50.00"/>
+			<column name="foreign_currency" value="GBP"/>
+		</insert>
+		<insert tableName="Cost_Point">
+			<column name="event_id" valueNumeric="select id from Event where name='${2014-spartan-race-beast-south-london_name}' and start_date='${2014-spartan-race-beast-south-london_start_date}'"/>
+			<column name="sequence" value="2"/>
+			<column name="description" value="VAT"/>
+			<column name="amount" value="12.58"/>
+			<column name="amount_foreign_currency" value="10.00"/>
+			<column name="foreign_currency" value="GBP"/>
+		</insert>
+		<insert tableName="Cost_Point">
+			<column name="event_id" valueNumeric="select id from Event where name='${2014-spartan-race-beast-south-london_name}' and start_date='${2014-spartan-race-beast-south-london_start_date}'"/>
+			<column name="sequence" value="3"/>
+			<column name="description" value="processing fee"/>
+			<column name="amount" value="3.77"/>
+			<column name="amount_foreign_currency" value="3.00"/>
+			<column name="foreign_currency" value="GBP"/>
+		</insert>
+		<insert tableName="Cost_Point">
+			<column name="event_id" valueNumeric="select id from Event where name='${2014-spartan-race-beast-south-london_name}' and start_date='${2014-spartan-race-beast-south-london_start_date}'"/>
+			<column name="sequence" value="4"/>
+			<column name="description" value="parking"/>
+			<column name="amount" value="6.29"/>
+			<column name="amount_foreign_currency" value="5.00"/>
+			<column name="foreign_currency" value="GBP"/>
+		</insert>
+		<insert tableName="Cost_Point">
+			<column name="event_id" valueNumeric="select id from Event where name='${2014-spartan-race-beast-south-london_name}' and start_date='${2014-spartan-race-beast-south-london_start_date}'"/>
+			<column name="sequence" value="5"/>
+			<column name="description" value="bag drop"/>
+			<column name="amount" value="1.26"/>
+			<column name="amount_foreign_currency" value="1.00"/>
+			<column name="foreign_currency" value="GBP"/>
 		</insert>
 
 	</changeSet>

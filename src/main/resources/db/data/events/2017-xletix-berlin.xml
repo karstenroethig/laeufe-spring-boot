@@ -61,8 +61,32 @@
 		<insert tableName="Cost_Point">
 			<column name="event_id" valueNumeric="select id from Event where name='${2017-xletix-berlin_name}' and start_date='${2017-xletix-berlin_start_date}'"/>
 			<column name="sequence" value="1"/>
-			<column name="description" value="TODO"/>
-			<column name="amount" value="0.00"/>
+			<column name="description" value="Teilnahmegebühr (Sa., L-Distanz)"/>
+			<column name="amount" value="59.00"/>
+			<!--column name="amount_foreign_currency" value="0.00"/-->
+			<!--column name="foreign_currency" value=""/-->
+		</insert>
+		<insert tableName="Cost_Point">
+			<column name="event_id" valueNumeric="select id from Event where name='${2017-xletix-berlin_name}' and start_date='${2017-xletix-berlin_start_date}'"/>
+			<column name="sequence" value="2"/>
+			<column name="description" value="Teilnahmegebühr (So., M-Distanz)"/>
+			<column name="amount" value="69.00"/>
+			<!--column name="amount_foreign_currency" value="0.00"/-->
+			<!--column name="foreign_currency" value=""/-->
+		</insert>
+		<insert tableName="Cost_Point">
+			<column name="event_id" valueNumeric="select id from Event where name='${2017-xletix-berlin_name}' and start_date='${2017-xletix-berlin_start_date}'"/>
+			<column name="sequence" value="3"/>
+			<column name="description" value="Rückerstattung für Sa. wegen Volunteer-Einsatz am Do."/>
+			<column name="amount" value="-44.00"/>
+			<!--column name="amount_foreign_currency" value="0.00"/-->
+			<!--column name="foreign_currency" value=""/-->
+		</insert>
+		<insert tableName="Cost_Point">
+			<column name="event_id" valueNumeric="select id from Event where name='${2017-xletix-berlin_name}' and start_date='${2017-xletix-berlin_start_date}'"/>
+			<column name="sequence" value="4"/>
+			<column name="description" value="Rückerstattung für So. wegen Volunteer-Einsatz am Fr."/>
+			<column name="amount" value="-54.00"/>
 			<!--column name="amount_foreign_currency" value="0.00"/-->
 			<!--column name="foreign_currency" value=""/-->
 		</insert>

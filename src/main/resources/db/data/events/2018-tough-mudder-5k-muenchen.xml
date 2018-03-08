@@ -49,8 +49,16 @@
 		<insert tableName="Cost_Point">
 			<column name="event_id" valueNumeric="select id from Event where name='${2018-tough-mudder-5k-muenchen_name}' and start_date='${2018-tough-mudder-5k-muenchen_start_date}'"/>
 			<column name="sequence" value="1"/>
-			<column name="description" value="TODO"/>
-			<column name="amount" value="0.00"/>
+			<column name="description" value="Teilnahmegebühr"/>
+			<column name="amount" value="35.00"/>
+			<!--column name="amount_foreign_currency" value="0.00"/-->
+			<!--column name="foreign_currency" value=""/-->
+		</insert>
+		<insert tableName="Cost_Point">
+			<column name="event_id" valueNumeric="select id from Event where name='${2018-tough-mudder-5k-muenchen_name}' and start_date='${2018-tough-mudder-5k-muenchen_start_date}'"/>
+			<column name="sequence" value="2"/>
+			<column name="description" value="5K Legionärsrabatt"/>
+			<column name="amount" value="-6.00"/>
 			<!--column name="amount_foreign_currency" value="0.00"/-->
 			<!--column name="foreign_currency" value=""/-->
 		</insert>

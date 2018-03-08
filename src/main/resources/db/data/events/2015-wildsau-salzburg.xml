@@ -50,8 +50,40 @@
 		<insert tableName="Cost_Point">
 			<column name="event_id" valueNumeric="select id from Event where name='${2015-wildsau-salzburg_name}' and start_date='${2015-wildsau-salzburg_start_date}'"/>
 			<column name="sequence" value="1"/>
-			<column name="description" value="TODO"/>
-			<column name="amount" value="0.00"/>
+			<column name="description" value="Teilnahmegebühr"/>
+			<column name="amount" value="49.00"/>
+			<!--column name="amount_foreign_currency" value="0.00"/-->
+			<!--column name="foreign_currency" value=""/-->
+		</insert>
+		<insert tableName="Cost_Point">
+			<column name="event_id" valueNumeric="select id from Event where name='${2015-wildsau-salzburg_name}' and start_date='${2015-wildsau-salzburg_start_date}'"/>
+			<column name="sequence" value="2"/>
+			<column name="description" value="Transaktionsbearbeitungsgebühr"/>
+			<column name="amount" value="1.00"/>
+			<!--column name="amount_foreign_currency" value="0.00"/-->
+			<!--column name="foreign_currency" value=""/-->
+		</insert>
+		<insert tableName="Cost_Point">
+			<column name="event_id" valueNumeric="select id from Event where name='${2015-wildsau-salzburg_name}' and start_date='${2015-wildsau-salzburg_start_date}'"/>
+			<column name="sequence" value="3"/>
+			<column name="description" value="Parken"/>
+			<column name="amount" value="2.00"/>
+			<!--column name="amount_foreign_currency" value="0.00"/-->
+			<!--column name="foreign_currency" value=""/-->
+		</insert>
+		<insert tableName="Cost_Point">
+			<column name="event_id" valueNumeric="select id from Event where name='${2015-wildsau-salzburg_name}' and start_date='${2015-wildsau-salzburg_start_date}'"/>
+			<column name="sequence" value="4"/>
+			<column name="description" value="Chip zur Zeitmessung"/>
+			<column name="amount" value="25.00"/>
+			<!--column name="amount_foreign_currency" value="0.00"/-->
+			<!--column name="foreign_currency" value=""/-->
+		</insert>
+		<insert tableName="Cost_Point">
+			<column name="event_id" valueNumeric="select id from Event where name='${2015-wildsau-salzburg_name}' and start_date='${2015-wildsau-salzburg_start_date}'"/>
+			<column name="sequence" value="5"/>
+			<column name="description" value="Erstattung für Rückgabe des Chips"/>
+			<column name="amount" value="-20.00"/>
 			<!--column name="amount_foreign_currency" value="0.00"/-->
 			<!--column name="foreign_currency" value=""/-->
 		</insert>

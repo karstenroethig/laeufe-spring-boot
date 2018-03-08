@@ -51,8 +51,64 @@
 		<insert tableName="Cost_Point">
 			<column name="event_id" valueNumeric="select id from Event where name='${2014-fishermans-friend-strongmanrun-nuerburgring_name-where}' and start_date='${2014-fishermans-friend-strongmanrun-nuerburgring_start_date}'"/>
 			<column name="sequence" value="1"/>
-			<column name="description" value="TODO"/>
+			<column name="description" value="Startgeld (Starter 1 - 3.000)"/>
+			<column name="amount" value="79.00"/>
+			<!--column name="amount_foreign_currency" value="0.00"/-->
+			<!--column name="foreign_currency" value=""/-->
+		</insert>
+		<insert tableName="Cost_Point">
+			<column name="event_id" valueNumeric="select id from Event where name='${2014-fishermans-friend-strongmanrun-nuerburgring_name-where}' and start_date='${2014-fishermans-friend-strongmanrun-nuerburgring_start_date}'"/>
+			<column name="sequence" value="2"/>
+			<column name="description" value="Aufdruck auf der Startnummer"/>
+			<column name="amount" value="1.00"/>
+			<!--column name="amount_foreign_currency" value="0.00"/-->
+			<!--column name="foreign_currency" value=""/-->
+		</insert>
+		<insert tableName="Cost_Point">
+			<column name="event_id" valueNumeric="select id from Event where name='${2014-fishermans-friend-strongmanrun-nuerburgring_name-where}' and start_date='${2014-fishermans-friend-strongmanrun-nuerburgring_start_date}'"/>
+			<column name="sequence" value="3"/>
+			<column name="description" value="Vorabversand der Startunterlagen"/>
+			<column name="amount" value="8.90"/>
+			<!--column name="amount_foreign_currency" value="0.00"/-->
+			<!--column name="foreign_currency" value=""/-->
+		</insert>
+		<insert tableName="Cost_Point">
+			<column name="event_id" valueNumeric="select id from Event where name='${2014-fishermans-friend-strongmanrun-nuerburgring_name-where}' and start_date='${2014-fishermans-friend-strongmanrun-nuerburgring_start_date}'"/>
+			<column name="sequence" value="4"/>
+			<column name="description" value="Chip zur Zeitmessung"/>
+			<column name="amount" value="31.00"/>
+			<!--column name="amount_foreign_currency" value="0.00"/-->
+			<!--column name="foreign_currency" value=""/-->
+		</insert>
+		<insert tableName="Cost_Point">
+			<column name="event_id" valueNumeric="select id from Event where name='${2014-fishermans-friend-strongmanrun-nuerburgring_name-where}' and start_date='${2014-fishermans-friend-strongmanrun-nuerburgring_start_date}'"/>
+			<column name="sequence" value="5"/>
+			<column name="description" value="Erstattung für Rückgabe des Chips"/>
+			<column name="amount" value="-25.00"/>
+			<!--column name="amount_foreign_currency" value="0.00"/-->
+			<!--column name="foreign_currency" value=""/-->
+		</insert>
+		<insert tableName="Cost_Point">
+			<column name="event_id" valueNumeric="select id from Event where name='${2014-fishermans-friend-strongmanrun-nuerburgring_name-where}' and start_date='${2014-fishermans-friend-strongmanrun-nuerburgring_start_date}'"/>
+			<column name="sequence" value="6"/>
+			<column name="description" value="Parken"/>
 			<column name="amount" value="0.00"/>
+			<!--column name="amount_foreign_currency" value="0.00"/-->
+			<!--column name="foreign_currency" value=""/-->
+		</insert>
+		<insert tableName="Cost_Point">
+			<column name="event_id" valueNumeric="select id from Event where name='${2014-fishermans-friend-strongmanrun-nuerburgring_name-where}' and start_date='${2014-fishermans-friend-strongmanrun-nuerburgring_start_date}'"/>
+			<column name="sequence" value="7"/>
+			<column name="description" value="Camping am Nürburgring"/>
+			<column name="amount" value="29.00"/>
+			<!--column name="amount_foreign_currency" value="0.00"/-->
+			<!--column name="foreign_currency" value=""/-->
+		</insert>
+		<insert tableName="Cost_Point">
+			<column name="event_id" valueNumeric="select id from Event where name='${2014-fishermans-friend-strongmanrun-nuerburgring_name-where}' and start_date='${2014-fishermans-friend-strongmanrun-nuerburgring_start_date}'"/>
+			<column name="sequence" value="8"/>
+			<column name="description" value="Fotos"/>
+			<column name="amount" value="19.99"/>
 			<!--column name="amount_foreign_currency" value="0.00"/-->
 			<!--column name="foreign_currency" value=""/-->
 		</insert>

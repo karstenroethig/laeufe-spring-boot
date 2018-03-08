@@ -25,7 +25,7 @@
 			<column name="location_longitude" value="-0.6648779"/>
 			<column name="distance" value="18+"/>
 			<column name="racetime" value="02:08:16"/>
-			<column name="costs" value="43.22"/>
+			<column name="costs" value="126.40"/>
 			<column name="status" value="2"/>
 		</insert>
 
@@ -61,10 +61,42 @@
 		<insert tableName="Cost_Point">
 			<column name="event_id" valueNumeric="select id from Event where name='${2015-tough-mudder-midlands_name}' and start_date='${2015-tough-mudder-midlands_start_date}'"/>
 			<column name="sequence" value="1"/>
-			<column name="description" value="TODO"/>
-			<column name="amount" value="0.00"/>
-			<!--column name="amount_foreign_currency" value="0.00"/-->
-			<!--column name="foreign_currency" value=""/-->
+			<column name="description" value="Teilnahmegebühr anteilig über European Season Pass 2015"/>
+			<column name="amount" value="83.18"/>
+			<column name="amount_foreign_currency" value="64.24"/>
+			<column name="foreign_currency" value="GBP"/>
+		</insert>
+		<insert tableName="Cost_Point">
+			<column name="event_id" valueNumeric="select id from Event where name='${2015-tough-mudder-midlands_name}' and start_date='${2015-tough-mudder-midlands_start_date}'"/>
+			<column name="sequence" value="2"/>
+			<column name="description" value="General Parking Pass (Sat.)"/>
+			<column name="amount" value="17.52"/>
+			<column name="amount_foreign_currency" value="11.48"/>
+			<column name="foreign_currency" value="GBP"/>
+		</insert>
+		<insert tableName="Cost_Point">
+			<column name="event_id" valueNumeric="select id from Event where name='${2015-tough-mudder-midlands_name}' and start_date='${2015-tough-mudder-midlands_start_date}'"/>
+			<column name="sequence" value="3"/>
+			<column name="description" value="General Parking Pass (Sun.)"/>
+			<column name="amount" value="17.52"/>
+			<column name="amount_foreign_currency" value="11.48"/>
+			<column name="foreign_currency" value="GBP"/>
+		</insert>
+		<insert tableName="Cost_Point">
+			<column name="event_id" valueNumeric="select id from Event where name='${2015-tough-mudder-midlands_name}' and start_date='${2015-tough-mudder-midlands_start_date}'"/>
+			<column name="sequence" value="4"/>
+			<column name="description" value="Bag Drop (Sat.)"/>
+			<column name="amount" value="4.09"/>
+			<column name="amount_foreign_currency" value="3.00"/>
+			<column name="foreign_currency" value="GBP"/>
+		</insert>
+		<insert tableName="Cost_Point">
+			<column name="event_id" valueNumeric="select id from Event where name='${2015-tough-mudder-midlands_name}' and start_date='${2015-tough-mudder-midlands_start_date}'"/>
+			<column name="sequence" value="5"/>
+			<column name="description" value="Bag Drop (Sun.)"/>
+			<column name="amount" value="4.09"/>
+			<column name="amount_foreign_currency" value="3.00"/>
+			<column name="foreign_currency" value="GBP"/>
 		</insert>
 
 	</changeSet>

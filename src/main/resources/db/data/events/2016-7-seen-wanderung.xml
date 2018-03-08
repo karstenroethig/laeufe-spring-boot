@@ -49,8 +49,8 @@
 		<insert tableName="Cost_Point">
 			<column name="event_id" valueNumeric="select id from Event where name='${2016-7-seen-wanderung_name}' and start_date='${2016-7-seen-wanderung_start_date}'"/>
 			<column name="sequence" value="1"/>
-			<column name="description" value="TODO"/>
-			<column name="amount" value="0.00"/>
+			<column name="description" value="Teilnahmegebühr für Tour [Neuseenland XXL]"/>
+			<column name="amount" value="27.00"/>
 			<!--column name="amount_foreign_currency" value="0.00"/-->
 			<!--column name="foreign_currency" value=""/-->
 		</insert>

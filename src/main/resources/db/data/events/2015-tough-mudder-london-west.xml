@@ -25,7 +25,7 @@
 			<column name="location_longitude" value="-0.894241"/>
 			<column name="distance" value="18+"/>
 			<column name="racetime" value="02:28:27"/>
-			<column name="costs" value="24.91"/>
+			<column name="costs" value="66.50"/>
 			<column name="status" value="2"/>
 		</insert>
 
@@ -50,9 +50,9 @@
 		<insert tableName="Cost_Point">
 			<column name="event_id" valueNumeric="select id from Event where name='${2015-tough-mudder-london-west_name}' and start_date='${2015-tough-mudder-london-west_start_date}'"/>
 			<column name="sequence" value="1"/>
-			<column name="description" value="Teilnahmegebühr über European Season Pass 2015"/>
-			<column name="amount" value="0.00"/>
-			<column name="amount_foreign_currency" value="0.00"/>
+			<column name="description" value="Teilnahmegebühr anteilig über European Season Pass 2015"/>
+			<column name="amount" value="41.59"/>
+			<column name="amount_foreign_currency" value="32.12"/>
 			<column name="foreign_currency" value="GBP"/>
 		</insert>
 		<insert tableName="Cost_Point">

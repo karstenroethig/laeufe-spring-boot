@@ -50,8 +50,40 @@
 		<insert tableName="Cost_Point">
 			<column name="event_id" valueNumeric="select id from Event where name='${2014-tough-mudder-rhein-main_name}' and start_date='${2014-tough-mudder-rhein-main_start_date}'"/>
 			<column name="sequence" value="1"/>
-			<column name="description" value="TODO"/>
-			<column name="amount" value="0.00"/>
+			<column name="description" value="Ganztags-Volunteer Teilnehmer"/>
+			<column name="amount" value="15.00"/>
+			<!--column name="amount_foreign_currency" value="0.00"/-->
+			<!--column name="foreign_currency" value=""/-->
+		</insert>
+		<insert tableName="Cost_Point">
+			<column name="event_id" valueNumeric="select id from Event where name='${2014-tough-mudder-rhein-main_name}' and start_date='${2014-tough-mudder-rhein-main_start_date}'"/>
+			<column name="sequence" value="2"/>
+			<column name="description" value="Transaktionsbearbeitungsgebühr"/>
+			<column name="amount" value="1.97"/>
+			<!--column name="amount_foreign_currency" value="0.00"/-->
+			<!--column name="foreign_currency" value=""/-->
+		</insert>
+		<insert tableName="Cost_Point">
+			<column name="event_id" valueNumeric="select id from Event where name='${2014-tough-mudder-rhein-main_name}' and start_date='${2014-tough-mudder-rhein-main_start_date}'"/>
+			<column name="sequence" value="3"/>
+			<column name="description" value="Pension in Gedern (eine Nacht)"/>
+			<column name="amount" value="25.00"/>
+			<!--column name="amount_foreign_currency" value="0.00"/-->
+			<!--column name="foreign_currency" value=""/-->
+		</insert>
+		<insert tableName="Cost_Point">
+			<column name="event_id" valueNumeric="select id from Event where name='${2014-tough-mudder-rhein-main_name}' and start_date='${2014-tough-mudder-rhein-main_start_date}'"/>
+			<column name="sequence" value="4"/>
+			<column name="description" value="Shuttle"/>
+			<column name="amount" value="8.00"/>
+			<!--column name="amount_foreign_currency" value="0.00"/-->
+			<!--column name="foreign_currency" value=""/-->
+		</insert>
+		<insert tableName="Cost_Point">
+			<column name="event_id" valueNumeric="select id from Event where name='${2014-tough-mudder-rhein-main_name}' and start_date='${2014-tough-mudder-rhein-main_start_date}'"/>
+			<column name="sequence" value="5"/>
+			<column name="description" value="Garderobe"/>
+			<column name="amount" value="3.00"/>
 			<!--column name="amount_foreign_currency" value="0.00"/-->
 			<!--column name="foreign_currency" value=""/-->
 		</insert>

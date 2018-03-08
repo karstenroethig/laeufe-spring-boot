@@ -25,7 +25,7 @@
 			<column name="location_longitude" value="7.96941"/>
 			<column name="distance" value="18+"/>
 			<column name="racetime" value="02:10:20"/>
-			<column name="costs" value="35.00"/>
+			<column name="costs" value="76.59"/>
 			<column name="status" value="2"/>
 		</insert>
 
@@ -50,8 +50,16 @@
 		<insert tableName="Cost_Point">
 			<column name="event_id" valueNumeric="select id from Event where name='${2015-tough-mudder-nrw_name}' and start_date='${2015-tough-mudder-nrw_start_date}'"/>
 			<column name="sequence" value="1"/>
-			<column name="description" value="TODO"/>
-			<column name="amount" value="0.00"/>
+			<column name="description" value="Teilnahmegebühr anteilig über European Season Pass 2015"/>
+			<column name="amount" value="41.59"/>
+			<!--column name="amount_foreign_currency" value="0.00"/-->
+			<!--column name="foreign_currency" value=""/-->
+		</insert>
+		<insert tableName="Cost_Point">
+			<column name="event_id" valueNumeric="select id from Event where name='${2015-tough-mudder-nrw_name}' and start_date='${2015-tough-mudder-nrw_start_date}'"/>
+			<column name="sequence" value="2"/>
+			<column name="description" value="Wochenendticket Camping (inkl. Parkschein)"/>
+			<column name="amount" value="35.00"/>
 			<!--column name="amount_foreign_currency" value="0.00"/-->
 			<!--column name="foreign_currency" value=""/-->
 		</insert>

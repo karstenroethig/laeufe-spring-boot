@@ -50,8 +50,32 @@
 		<insert tableName="Cost_Point">
 			<column name="event_id" valueNumeric="select id from Event where name='${2016-spartan-race-beast-tirol_name}' and start_date='${2016-spartan-race-beast-tirol_start_date}'"/>
 			<column name="sequence" value="1"/>
-			<column name="description" value="TODO"/>
-			<column name="amount" value="0.00"/>
+			<column name="description" value="Teilnahmegebühr (ersten 300 Anmeldungen)"/>
+			<column name="amount" value="99.00"/>
+			<!--column name="amount_foreign_currency" value="0.00"/-->
+			<!--column name="foreign_currency" value=""/-->
+		</insert>
+		<insert tableName="Cost_Point">
+			<column name="event_id" valueNumeric="select id from Event where name='${2016-spartan-race-beast-tirol_name}' and start_date='${2016-spartan-race-beast-tirol_start_date}'"/>
+			<column name="sequence" value="2"/>
+			<column name="description" value="Bearbeitungsgebühr"/>
+			<column name="amount" value="4.10"/>
+			<!--column name="amount_foreign_currency" value="0.00"/-->
+			<!--column name="foreign_currency" value=""/-->
+		</insert>
+		<insert tableName="Cost_Point">
+			<column name="event_id" valueNumeric="select id from Event where name='${2016-spartan-race-beast-tirol_name}' and start_date='${2016-spartan-race-beast-tirol_start_date}'"/>
+			<column name="sequence" value="3"/>
+			<column name="description" value="Bearbeitungsgebühr Kartenzahlung"/>
+			<column name="amount" value="4.64"/>
+			<!--column name="amount_foreign_currency" value="0.00"/-->
+			<!--column name="foreign_currency" value=""/-->
+		</insert>
+		<insert tableName="Cost_Point">
+			<column name="event_id" valueNumeric="select id from Event where name='${2016-spartan-race-beast-tirol_name}' and start_date='${2016-spartan-race-beast-tirol_start_date}'"/>
+			<column name="sequence" value="4"/>
+			<column name="description" value="Parken"/>
+			<column name="amount" value="5.00"/>
 			<!--column name="amount_foreign_currency" value="0.00"/-->
 			<!--column name="foreign_currency" value=""/-->
 		</insert>

@@ -59,8 +59,16 @@
 		<insert tableName="Cost_Point">
 			<column name="event_id" valueNumeric="select id from Event where name='${2018-tough-mudder-berlin-brandenburg_name}' and start_date='${2018-tough-mudder-berlin-brandenburg_start_date}'"/>
 			<column name="sequence" value="1"/>
-			<column name="description" value="TODO"/>
-			<column name="amount" value="0.00"/>
+			<column name="description" value="Teilnahmegebühr (Sa.)"/>
+			<column name="amount" value="59.00"/>
+			<!--column name="amount_foreign_currency" value="0.00"/-->
+			<!--column name="foreign_currency" value=""/-->
+		</insert>
+		<insert tableName="Cost_Point">
+			<column name="event_id" valueNumeric="select id from Event where name='${2018-tough-mudder-berlin-brandenburg_name}' and start_date='${2018-tough-mudder-berlin-brandenburg_start_date}'"/>
+			<column name="sequence" value="2"/>
+			<column name="description" value="Teilnahmegebühr (So.), vergünstigt wegen Volunteer-Teilnahme im Vorjahr"/>
+			<column name="amount" value="20.00"/>
 			<!--column name="amount_foreign_currency" value="0.00"/-->
 			<!--column name="foreign_currency" value=""/-->
 		</insert>

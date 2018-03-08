@@ -50,8 +50,24 @@
 		<insert tableName="Cost_Point">
 			<column name="event_id" valueNumeric="select id from Event where name='${2016-mud-masters-haarlemmermeer_name}' and start_date='${2016-mud-masters-haarlemmermeer_start_date}'"/>
 			<column name="sequence" value="1"/>
-			<column name="description" value="TODO"/>
-			<column name="amount" value="0.00"/>
+			<column name="description" value="Teilnahmegebühr"/>
+			<column name="amount" value="62.50"/>
+			<!--column name="amount_foreign_currency" value="0.00"/-->
+			<!--column name="foreign_currency" value=""/-->
+		</insert>
+		<insert tableName="Cost_Point">
+			<column name="event_id" valueNumeric="select id from Event where name='${2016-mud-masters-haarlemmermeer_name}' and start_date='${2016-mud-masters-haarlemmermeer_start_date}'"/>
+			<column name="sequence" value="2"/>
+			<column name="description" value="Ticket-Gebühr je Anmeldung"/>
+			<column name="amount" value="1.45"/>
+			<!--column name="amount_foreign_currency" value="0.00"/-->
+			<!--column name="foreign_currency" value=""/-->
+		</insert>
+		<insert tableName="Cost_Point">
+			<column name="event_id" valueNumeric="select id from Event where name='${2016-mud-masters-haarlemmermeer_name}' and start_date='${2016-mud-masters-haarlemmermeer_start_date}'"/>
+			<column name="sequence" value="3"/>
+			<column name="description" value="Parken"/>
+			<column name="amount" value="8.00"/>
 			<!--column name="amount_foreign_currency" value="0.00"/-->
 			<!--column name="foreign_currency" value=""/-->
 		</insert>

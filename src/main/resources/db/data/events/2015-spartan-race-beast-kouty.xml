@@ -50,10 +50,26 @@
 		<insert tableName="Cost_Point">
 			<column name="event_id" valueNumeric="select id from Event where name='${2015-spartan-race-beast-kouty_name}' and start_date='${2015-spartan-race-beast-kouty_start_date}'"/>
 			<column name="sequence" value="1"/>
-			<column name="description" value="TODO"/>
-			<column name="amount" value="0.00"/>
+			<column name="description" value="Teilnahmegebühr"/>
+			<column name="amount" value="59.00"/>
 			<!--column name="amount_foreign_currency" value="0.00"/-->
 			<!--column name="foreign_currency" value=""/-->
+		</insert>
+		<insert tableName="Cost_Point">
+			<column name="event_id" valueNumeric="select id from Event where name='${2015-spartan-race-beast-kouty_name}' and start_date='${2015-spartan-race-beast-kouty_start_date}'"/>
+			<column name="sequence" value="2"/>
+			<column name="description" value="insurance"/>
+			<column name="amount" value="2.50"/>
+			<!--column name="amount_foreign_currency" value="0.00"/-->
+			<!--column name="foreign_currency" value=""/-->
+		</insert>
+		<insert tableName="Cost_Point">
+			<column name="event_id" valueNumeric="select id from Event where name='${2015-spartan-race-beast-kouty_name}' and start_date='${2015-spartan-race-beast-kouty_start_date}'"/>
+			<column name="sequence" value="3"/>
+			<column name="description" value="bag drop"/>
+			<column name="amount" value="1.00"/>
+			<column name="amount_foreign_currency" value="30.00"/>
+			<column name="foreign_currency" value="Kc"/>
 		</insert>
 
 	</changeSet>

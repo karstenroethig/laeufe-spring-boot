@@ -37,7 +37,7 @@
 			<column name="category_id" valueNumeric="select id from Category where name='${category-hindernislauf}'"/>
 			<column name="start_number" value="22314"/>
 			<column name="start_time" valueDate="2018-03-03T10:45:00"/>
-			<column name="distance" value="16.0"/>
+			<column name="distance" value="15.0"/>
 			<column name="racetime" value="02:55:28"/>
 			<!--column name="team" value=""/-->
 			<column name="note" value="Platz 246 (233 nur männliche Wertung) von 1.642 Läufern; 2 x 30 + 1 x 15 Burpees Strafe für nicht geschaffte Hindernisse (Speerwurf, Sandsack tragen mit Balancieren, Slackline)"/>

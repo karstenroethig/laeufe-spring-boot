@@ -50,8 +50,32 @@
 		<insert tableName="Cost_Point">
 			<column name="event_id" valueNumeric="select id from Event where name='${2015-cross-de-luxe_name}' and start_date='${2015-cross-de-luxe_start_date}'"/>
 			<column name="sequence" value="1"/>
-			<column name="description" value="TODO"/>
-			<column name="amount" value="0.00"/>
+			<column name="description" value="Teilnahmegebühr"/>
+			<column name="amount" value="40.00"/>
+			<!--column name="amount_foreign_currency" value="0.00"/-->
+			<!--column name="foreign_currency" value=""/-->
+		</insert>
+		<insert tableName="Cost_Point">
+			<column name="event_id" valueNumeric="select id from Event where name='${2015-cross-de-luxe_name}' and start_date='${2015-cross-de-luxe_start_date}'"/>
+			<column name="sequence" value="2"/>
+			<column name="description" value="Rabatt für SK-Konto (20%)"/>
+			<column name="amount" value="-8.00"/>
+			<!--column name="amount_foreign_currency" value="0.00"/-->
+			<!--column name="foreign_currency" value=""/-->
+		</insert>
+		<insert tableName="Cost_Point">
+			<column name="event_id" valueNumeric="select id from Event where name='${2015-cross-de-luxe_name}' and start_date='${2015-cross-de-luxe_start_date}'"/>
+			<column name="sequence" value="3"/>
+			<column name="description" value="Parken"/>
+			<column name="amount" value="3.00"/>
+			<!--column name="amount_foreign_currency" value="0.00"/-->
+			<!--column name="foreign_currency" value=""/-->
+		</insert>
+		<insert tableName="Cost_Point">
+			<column name="event_id" valueNumeric="select id from Event where name='${2015-cross-de-luxe_name}' and start_date='${2015-cross-de-luxe_start_date}'"/>
+			<column name="sequence" value="4"/>
+			<column name="description" value="Fotos"/>
+			<column name="amount" value="19.99"/>
 			<!--column name="amount_foreign_currency" value="0.00"/-->
 			<!--column name="foreign_currency" value=""/-->
 		</insert>

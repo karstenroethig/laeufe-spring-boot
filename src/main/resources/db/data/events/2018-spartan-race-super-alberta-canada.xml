@@ -50,10 +50,26 @@
 		<insert tableName="Cost_Point">
 			<column name="event_id" valueNumeric="select id from Event where name='${2018-spartan-race-super-alberta-canada_name}' and start_date='${2018-spartan-race-super-alberta-canada_start_date}'"/>
 			<column name="sequence" value="1"/>
-			<column name="description" value="TODO"/>
-			<column name="amount" value="0.00"/>
-			<!--column name="amount_foreign_currency" value="0.00"/-->
-			<!--column name="foreign_currency" value=""/-->
+			<column name="description" value="Teilnahmegebühr (Morning)"/>
+			<column name="amount" value="86.30"/>
+			<column name="amount_foreign_currency" value="129.00"/>
+			<column name="foreign_currency" value="$ CAD"/>
+		</insert>
+		<insert tableName="Cost_Point">
+			<column name="event_id" valueNumeric="select id from Event where name='${2018-spartan-race-super-alberta-canada_name}' and start_date='${2018-spartan-race-super-alberta-canada_start_date}'"/>
+			<column name="sequence" value="2"/>
+			<column name="description" value="GST"/>
+			<column name="amount" value="4.31"/>
+			<column name="amount_foreign_currency" value="6.45"/>
+			<column name="foreign_currency" value="$ CAD"/>
+		</insert>
+		<insert tableName="Cost_Point">
+			<column name="event_id" valueNumeric="select id from Event where name='${2018-spartan-race-super-alberta-canada_name}' and start_date='${2018-spartan-race-super-alberta-canada_start_date}'"/>
+			<column name="sequence" value="3"/>
+			<column name="description" value="Verarbeitungsgebühr"/>
+			<column name="amount" value="8.61"/>
+			<column name="amount_foreign_currency" value="12.87"/>
+			<column name="foreign_currency" value="$ CAD"/>
 		</insert>
 
 	</changeSet>

@@ -25,7 +25,7 @@
 			<column name="location_longitude" value="10.5981058"/>
 			<column name="distance" value="18+"/>
 			<column name="racetime" value="02:10:00"/>
-			<column name="costs" value="43.26"/>
+			<column name="costs" value="126.44"/>
 			<column name="status" value="2"/>
 		</insert>
 
@@ -61,8 +61,64 @@
 		<insert tableName="Cost_Point">
 			<column name="event_id" valueNumeric="select id from Event where name='${2015-tough-mudder-sueddeutschland_name}' and start_date='${2015-tough-mudder-sueddeutschland_start_date}'"/>
 			<column name="sequence" value="1"/>
-			<column name="description" value="TODO"/>
-			<column name="amount" value="0.00"/>
+			<column name="description" value="Teilnahmegebühr anteilig über European Season Pass 2015"/>
+			<column name="amount" value="83.18"/>
+			<!--column name="amount_foreign_currency" value="0.00"/-->
+			<!--column name="foreign_currency" value=""/-->
+		</insert>
+		<insert tableName="Cost_Point">
+			<column name="event_id" valueNumeric="select id from Event where name='${2015-tough-mudder-sueddeutschland_name}' and start_date='${2015-tough-mudder-sueddeutschland_start_date}'"/>
+			<column name="sequence" value="2"/>
+			<column name="description" value="Wochenendticket Camping (inkl. Parkschein)"/>
+			<column name="amount" value="35.00"/>
+			<!--column name="amount_foreign_currency" value="0.00"/-->
+			<!--column name="foreign_currency" value=""/-->
+		</insert>
+		<insert tableName="Cost_Point">
+			<column name="event_id" valueNumeric="select id from Event where name='${2015-tough-mudder-sueddeutschland_name}' and start_date='${2015-tough-mudder-sueddeutschland_start_date}'"/>
+			<column name="sequence" value="3"/>
+			<column name="description" value="Rückerstattung wegen Absage für offizielles Camping"/>
+			<column name="amount" value="-35.00"/>
+			<!--column name="amount_foreign_currency" value="0.00"/-->
+			<!--column name="foreign_currency" value=""/-->
+		</insert>
+		<insert tableName="Cost_Point">
+			<column name="event_id" valueNumeric="select id from Event where name='${2015-tough-mudder-sueddeutschland_name}' and start_date='${2015-tough-mudder-sueddeutschland_start_date}'"/>
+			<column name="sequence" value="4"/>
+			<column name="description" value="Inoffizieller Campingplatz (6,50 € pro Person pro Nacht)"/>
+			<column name="amount" value="13.00"/>
+			<!--column name="amount_foreign_currency" value="0.00"/-->
+			<!--column name="foreign_currency" value=""/-->
+		</insert>
+		<insert tableName="Cost_Point">
+			<column name="event_id" valueNumeric="select id from Event where name='${2015-tough-mudder-sueddeutschland_name}' and start_date='${2015-tough-mudder-sueddeutschland_start_date}'"/>
+			<column name="sequence" value="5"/>
+			<column name="description" value="Standard-Parkschein (Samstag)"/>
+			<column name="amount" value="12.13"/>
+			<!--column name="amount_foreign_currency" value="0.00"/-->
+			<!--column name="foreign_currency" value=""/-->
+		</insert>
+		<insert tableName="Cost_Point">
+			<column name="event_id" valueNumeric="select id from Event where name='${2015-tough-mudder-sueddeutschland_name}' and start_date='${2015-tough-mudder-sueddeutschland_start_date}'"/>
+			<column name="sequence" value="6"/>
+			<column name="description" value="Standard-Parkschein (Sonntag)"/>
+			<column name="amount" value="12.13"/>
+			<!--column name="amount_foreign_currency" value="0.00"/-->
+			<!--column name="foreign_currency" value=""/-->
+		</insert>
+		<insert tableName="Cost_Point">
+			<column name="event_id" valueNumeric="select id from Event where name='${2015-tough-mudder-sueddeutschland_name}' and start_date='${2015-tough-mudder-sueddeutschland_start_date}'"/>
+			<column name="sequence" value="7"/>
+			<column name="description" value="Garderobe (Samstag)"/>
+			<column name="amount" value="3.00"/>
+			<!--column name="amount_foreign_currency" value="0.00"/-->
+			<!--column name="foreign_currency" value=""/-->
+		</insert>
+		<insert tableName="Cost_Point">
+			<column name="event_id" valueNumeric="select id from Event where name='${2015-tough-mudder-sueddeutschland_name}' and start_date='${2015-tough-mudder-sueddeutschland_start_date}'"/>
+			<column name="sequence" value="8"/>
+			<column name="description" value="Garderobe (Sonntag)"/>
+			<column name="amount" value="3.00"/>
 			<!--column name="amount_foreign_currency" value="0.00"/-->
 			<!--column name="foreign_currency" value=""/-->
 		</insert>

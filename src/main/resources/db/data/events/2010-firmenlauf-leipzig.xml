@@ -50,7 +50,7 @@
 		<insert tableName="Cost_Point">
 			<column name="event_id" valueNumeric="select id from Event where name='${2010-firmenlauf-leipzig_name}' and start_date='${2010-firmenlauf-leipzig_start_date}'"/>
 			<column name="sequence" value="1"/>
-			<column name="description" value="TODO"/>
+			<column name="description" value="Teilnahmegebühr von Firma übernommen"/>
 			<column name="amount" value="0.00"/>
 			<!--column name="amount_foreign_currency" value="0.00"/-->
 			<!--column name="foreign_currency" value=""/-->
