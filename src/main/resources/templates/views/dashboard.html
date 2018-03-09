@@ -18,9 +18,29 @@
 
 		<div th:replace="fragments/js"></div>
 
-		<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery.matchHeight/0.6.0/jquery.matchHeight-min.js"></script>
-		<script src="http://cdnjs.cloudflare.com/ajax/libs/c3/0.4.10/c3.min.js"></script>
-		<script src="http://cdnjs.cloudflare.com/ajax/libs/d3/3.5.0/d3.min.js"></script>
+		<style>
+			.amcharts-pie-slice {
+				transform: scale(1);
+				transform-origin: 50% 50%;
+				transition-duration: 0.3s;
+				transition: all .3s ease-out;
+				-webkit-transition: all .3s ease-out;
+				-moz-transition: all .3s ease-out;
+				-o-transition: all .3s ease-out;
+				cursor: pointer;
+				box-shadow: 0 0 30px 0 #000;
+			}
+			
+			.amcharts-pie-slice:hover {
+				transform: scale(1.1);
+				filter: url(#shadow);
+			}
+		</style>
+
+		<script th:src="@{'/webjars/amcharts/'+#{application.dependency.amcharts}+'/amcharts.js'}"></script>
+		<script th:src="@{'/webjars/amcharts/'+#{application.dependency.amcharts}+'/serial.js'}"></script>
+		<script th:src="@{'/webjars/amcharts/'+#{application.dependency.amcharts}+'/pie.js'}"></script>
+		<script th:src="@{'/webjars/amcharts/'+#{application.dependency.amcharts}+'/themes/light.js'}"></script>
 
 	</head>
 
@@ -152,79 +172,264 @@
 						</div>
 					</div>
 				</div>
+				
 				<div class="col-xs-12 col-sm-6 col-md-6">
 					<div class="card-pf card-pf-utilization">
-						<h2 class="card-pf-title">Beliebte Veranstalter</h2>
+						<h2 class="card-pf-title">Beliebte Kategorien</h2>
 						<div class="card-pf-body">
-							<div id="donut-set-of-values-to-a-whole"></div>
+							<div id="chartdiv_serial" style="width: 100%; height: 300px; font-size: 11px;"></div>
 							<script>
-								var c3ChartDefaults = $().c3ChartDefaults();
-								
-								var donutData = {
-										type : 'donut',
-										colors: {
-											'7-Seen-Wanderung': $.pfPaletteColors.lightGreen,
-											'Ammelhainer Schlosslauf': $.pfPaletteColors.purple,
-											'CROSS DE LUXE': $.pfPaletteColors.green,
-											'Firmenlauf Leipzig': Math.floor(Math.random()*16777215).toString(16),
-											'Fishermans Friend StrongmanRun': $.pfPaletteColors.purple,
-											'Fockeberglauf': $.pfPaletteColors.red,
-											'Getting Tough': $.pfPaletteColors.gold,
-											'Halbmarathon Leipzig': $.pfPaletteColors.lightBlue,
-											'Mud Masters': $.pfPaletteColors.gold,
-											'Spartan Race': $.pfPaletteColors.red,
-											'Survival Run': 'white',
-											'Tough Mudder': $.pfPaletteColors.orange,
-											'Thougest': $.pfPaletteColors.green,
-											'Wildsau Dirt Race': $.pfPaletteColors.cyan,
-											'Xletix': $.pfPaletteColors.black
+								var chart = AmCharts.makeChart("chartdiv_serial", {
+									"type": "serial",
+									"theme": "light",
+									"marginRight":30,
+									"legend": {
+										"equalWidths": false,
+										"position": "top",
+										"valueAlign": "left",
+										"valueWidth": 80
+									},
+									"dataProvider": [
+										{
+											"year": 2010,
+											"strassenlauf": 0,
+											"crosslauf": 2,
+											"hindernislauf": 12,
+											"wanderung": 1
 										},
-										columns: [
-											//['7-Seen-Wanderung', 1],
-											//['Ammelhainer Schlosslauf', 2],
-											['CROSS DE LUXE', 6],
-											//['Firmenlauf Leipzig', 6],
-											//['Fishermans Friend StrongmanRun', 2],
-											['Fockeberglauf', 2],
-											//['Getting Tough', 2],
-											//['Halbmarathon Leipzig', 1],
-											['Mud Masters', 1],
-											['Spartan Race', 7],
-											//['Survival Run', 1],
-											['Tough Mudder', 16],
-											//['Toughest', 1],
-											//['Wildsau Dirt Run', 1],
-											['Xletix', 4]
-										],
-										onclick: function (d, i) { console.log("onclick", d, i); },
-										onmouseover: function (d, i) { console.log("onmouseover", d, i); },
-										onmouseout: function (d, i) { console.log("onmouseout", d, i); }
-									};
-								
-								var donutChartBottomConfig = c3ChartDefaults.getDefaultDonutConfig();
-
-								donutChartBottomConfig.bindto = '#donut-set-of-values-to-a-whole';
-								donutChartBottomConfig.tooltip = {show: true};
-								donutChartBottomConfig.data = donutData;
-								donutChartBottomConfig.legend = {
-										show: true,
-										position: 'right'
-									};
-								donutChartBottomConfig.size = {
-										width: 271,
-										height: 191
-									};
-								donutChartBottomConfig.tooltip = {
-										contents: $().pfDonutTooltipContents
-									};
-								
-								var donutChartBottomLegend = c3.generate(donutChartBottomConfig);
-
-								$().pfSetDonutChartTitle("#donut-set-of-values-to-a-whole", "54", "Races");
+										{
+											"year": 2011,
+											"strassenlauf": 0,
+											"crosslauf": 2,
+											"hindernislauf": 2,
+											"wanderung": 1
+										},
+										{
+											"year": 2012,
+											"strassenlauf": 0,
+											"crosslauf": 12,
+											"hindernislauf": 12,
+											"wanderung": 1
+										},
+										{
+											"year": 2013,
+											"strassenlauf": 3,
+											"crosslauf": 2,
+											"hindernislauf": 12,
+											"wanderung": 1
+										},
+										{
+											"year": 2014,
+											"strassenlauf": 5,
+											"crosslauf": 2,
+											"hindernislauf": 12,
+											"wanderung": 1
+										},
+										{
+											"year": 2015,
+											"strassenlauf": 5,
+											"crosslauf": 2,
+											"hindernislauf": 12,
+											"wanderung": 1
+										},
+										{
+											"year": 2016,
+											"strassenlauf": 5,
+											"crosslauf": 2,
+											"hindernislauf": 12,
+											"wanderung": 1
+										},
+										{
+											"year": 2017,
+											"strassenlauf": 5,
+											"crosslauf": 2,
+											"hindernislauf": 12,
+											"wanderung": 1
+										},
+										{
+											"year": 2018,
+											"strassenlauf": 5,
+											"crosslauf": 2,
+											"hindernislauf": 12,
+											"wanderung": 1
+										}
+									],
+									"valueAxes": [{
+										"stackType": "regular",
+										"gridAlpha": 0.07,
+										"position": "left",
+										"title": "Läufe"
+									}],
+									"graphs": [{
+										"balloonText": "[[title]]: [[value]] ([[category]])",
+										"fillAlphas": 0.6,
+										"lineAlpha": 0.4,
+										"title": "Straßenlauf",
+										"valueField": "strassenlauf"
+									}, {
+										"balloonText": "[[title]]: [[value]] ([[category]])",
+										"fillAlphas": 0.6,
+										"lineAlpha": 0.4,
+										"title": "Cross-Lauf",
+										"valueField": "crosslauf"
+									}, {
+										"balloonText": "[[title]]: [[value]] ([[category]])",
+										"fillAlphas": 0.6,
+										"lineAlpha": 0.4,
+										"title": "Hindernislauf",
+										"valueField": "hindernislauf"
+									}, {
+										"balloonText": "[[title]]: [[value]] ([[category]])",
+										"fillAlphas": 0.6,
+										"lineAlpha": 0.4,
+										"title": "Wanderung",
+										"valueField": "wanderung"
+									}],
+									"plotAreaBorderAlpha": 0,
+									"marginTop": 10,
+									"marginLeft": 0,
+									"marginBottom": 0,
+									"chartScrollbar": {},
+									"chartCursor": {
+										"cursorAlpha": 0
+									},
+									"categoryField": "year",
+									"categoryAxis": {
+										"startOnAxis": true,
+										"axisColor": "#DADADA",
+										"gridAlpha": 0.07,
+										"title": "Jahr"
+									}
+								});
 							</script>
 						</div>
 					</div>
 				</div>
+				
+				<div class="col-xs-12 col-sm-12 col-md-12">
+					<div class="card-pf card-pf-utilization">
+						<h2 class="card-pf-title">Beliebte Veranstalter</h2>
+						<div class="card-pf-body">
+							<div id="chartdiv_pie" style="width: 100%; height: 500px; font-size: 11px;"></div>
+							<script>
+								var chart = AmCharts.makeChart("chartdiv_pie", {
+									"type": "pie",
+									"startDuration": 0,
+									"theme": "light",
+									"addClassNames": true,
+									"legend":{
+										"position":"right",
+										"marginRight":100,
+										"autoMargins":false
+									},
+									"innerRadius": "30%",
+									"defs": {
+										"filter": [{
+											"id": "shadow",
+											"width": "200%",
+											"height": "200%",
+											"feOffset": {
+												"result": "offOut",
+												"in": "SourceAlpha",
+												"dx": 0,
+												"dy": 0
+											},
+											"feGaussianBlur": {
+												"result": "blurOut",
+												"in": "offOut",
+												"stdDeviation": 5
+											},
+											"feBlend": {
+												"in": "SourceGraphic",
+												"in2": "blurOut",
+												"mode": "normal"
+											}
+										}]
+									},
+									"dataProvider": [{
+										"organizer": "7-Seen-Wanderung",
+										"races": 1
+									},
+									{
+										"organizer": "Ammelhainer Schlosslauf",
+										"races": 2
+									},
+									{
+										"organizer": "CROSS DE LUXE",
+										"races": 6
+									},
+									{
+										"organizer": "Firmenlauf Leipzig",
+										"races": 6
+									},
+									{
+										"organizer": "Fisherman's Friend StrongmanRun",
+										"races": 2
+									},
+									{
+										"organizer": "Fockeberglauf",
+										"races": 2
+									},
+									{
+										"organizer": "Getting Tough",
+										"races": 2
+									},
+									{
+										"organizer": "Halbmarathon Leipzig",
+										"races": 1
+									},
+									{
+										"organizer": "Mud Masters",
+										"races": 1
+									},
+									{
+										"organizer": "Spartan Race",
+										"races": 6
+									},
+									{
+										"organizer": "Survival Run",
+										"races": 1
+									},
+									{
+										"organizer": "Tough Mudder",
+										"races": 16
+									},
+									{
+										"organizer": "Toughest",
+										"races": 2
+									},
+									{
+										"organizer": "Wildsau Dirt Run",
+										"races": 1
+									},
+									{
+										"organizer": "Xletix",
+										"races": 5
+									}],
+									"valueField": "races",
+									"titleField": "organizer"
+								});
+								
+								chart.addListener("init", handleInit);
+								
+								chart.addListener("rollOverSlice", function(e) {
+									handleRollOver(e);
+								});
+								
+								function handleInit(){
+									chart.legend.addListener("rollOverItem", handleRollOver);
+								}
+								
+								function handleRollOver(e){
+									var wedge = e.dataItem.wedge.node;
+									wedge.parentNode.appendChild(wedge);
+								}
+							</script>
+							
+						</div>
+					</div>
+				</div>
+				
 			</div>
 			
 		</div>
