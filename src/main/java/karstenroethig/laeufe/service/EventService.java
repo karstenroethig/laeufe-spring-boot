@@ -4,8 +4,10 @@ import java.util.Collection;
 
 import karstenroethig.laeufe.dto.EventFullDto;
 import karstenroethig.laeufe.dto.EventListDto;
+import karstenroethig.laeufe.dto.api.CategorySpreadingForYearApiDto;
 import karstenroethig.laeufe.dto.api.CountryApiDto;
 import karstenroethig.laeufe.dto.api.LocationApiDto;
+import karstenroethig.laeufe.dto.api.OrganizerPreferenceApiDto;
 import karstenroethig.laeufe.dto.info.DashboardInfoDto;
 
 public interface EventService
@@ -29,4 +31,8 @@ public interface EventService
 	public Collection<CountryApiDto> findEventLocationCountries();
 
 	public LocationApiDto findEventLocation(Long eventid);
+
+	public Collection<OrganizerPreferenceApiDto> findOrganizerPreferences();
+
+	public Collection<CategorySpreadingForYearApiDto> findCategorySpreadingPerYear();
 }

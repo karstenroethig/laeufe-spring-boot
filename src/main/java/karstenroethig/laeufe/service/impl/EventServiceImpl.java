@@ -22,9 +22,11 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import karstenroethig.laeufe.domain.Category;
 import karstenroethig.laeufe.domain.CostPoint;
 import karstenroethig.laeufe.domain.Country;
 import karstenroethig.laeufe.domain.Event;
+import karstenroethig.laeufe.domain.Organizer;
 import karstenroethig.laeufe.domain.Race;
 import karstenroethig.laeufe.domain.enums.EventStatusEnum;
 import karstenroethig.laeufe.domain.enums.RaceStatusEnum;
@@ -33,8 +35,10 @@ import karstenroethig.laeufe.dto.DtoTransformer;
 import karstenroethig.laeufe.dto.EventFullDto;
 import karstenroethig.laeufe.dto.EventListDto;
 import karstenroethig.laeufe.dto.RaceDto;
+import karstenroethig.laeufe.dto.api.CategorySpreadingForYearApiDto;
 import karstenroethig.laeufe.dto.api.CountryApiDto;
 import karstenroethig.laeufe.dto.api.LocationApiDto;
+import karstenroethig.laeufe.dto.api.OrganizerPreferenceApiDto;
 import karstenroethig.laeufe.dto.info.DashboardInfoDto;
 import karstenroethig.laeufe.repository.CategoryRepository;
 import karstenroethig.laeufe.repository.CountryRepository;
@@ -439,5 +443,99 @@ public class EventServiceImpl implements EventService
 	public LocationApiDto findEventLocation(Long eventId)
 	{
 		return transformLocation(eventRepository.findOne(eventId));
+	}
+
+	@Override
+	public Collection<OrganizerPreferenceApiDto> findOrganizerPreferences()
+	{
+		Map<Long, OrganizerPreferenceApiDto> organizerPreferences = new TreeMap<>();
+
+		Iterator<Event> itr = eventRepository.findAll().iterator();
+
+		while ( itr.hasNext() )
+		{
+			Event event = itr.next();
+
+			if (event.getStatusEnum() != EventStatusEnum.COMPLETED )
+			{
+				continue;
+			}
+
+			Organizer organizer = event.getOrganizer();
+			OrganizerPreferenceApiDto organizerPreference;
+
+			if (organizerPreferences.containsKey(organizer.getId()))
+			{
+				organizerPreference = organizerPreferences.get(organizer.getId());
+			}
+			else
+			{
+				organizerPreference = new OrganizerPreferenceApiDto();
+				organizerPreference.setOrganizer(organizer.getName());
+				organizerPreferences.put(organizer.getId(), organizerPreference);
+			}
+
+			for ( Race race : event.getRaces() )
+			{
+				RaceStatusEnum raceStatus = race.getStatusEnum();
+
+				if ( raceStatus == RaceStatusEnum.COMPLETED )
+				{
+					organizerPreference.incrementRaces();
+				}
+			}
+		}
+
+		return organizerPreferences.values();
+	}
+
+	@Override
+	public Collection<CategorySpreadingForYearApiDto> findCategorySpreadingPerYear()
+	{
+		Map<Integer, CategorySpreadingForYearApiDto> categorySpreadingPerYearMap = new TreeMap<>();
+
+		Iterator<Event> itr = eventRepository.findAll().iterator();
+
+		while ( itr.hasNext() )
+		{
+			Event event = itr.next();
+
+			if (event.getStatusEnum() != EventStatusEnum.COMPLETED )
+			{
+				continue;
+			}
+
+			Integer year = event.getStartDate().getYear();
+			CategorySpreadingForYearApiDto categorySpreadingForYear;
+
+			if (categorySpreadingPerYearMap.containsKey(year))
+			{
+				categorySpreadingForYear = categorySpreadingPerYearMap.get(year);
+			}
+			else
+			{
+				categorySpreadingForYear = new CategorySpreadingForYearApiDto();
+				categorySpreadingForYear.setYear(year);
+
+				for (Category category : categoryRepository.findAll())
+				{
+					categorySpreadingForYear.setUpCategory(category.getName());
+				}
+
+				categorySpreadingPerYearMap.put(year, categorySpreadingForYear);
+			}
+
+			for ( Race race : event.getRaces() )
+			{
+				RaceStatusEnum raceStatus = race.getStatusEnum();
+
+				if ( raceStatus == RaceStatusEnum.COMPLETED )
+				{
+					categorySpreadingForYear.incrementAmount(race.getCategory().getName());
+				}
+			}
+		}
+
+		return categorySpreadingPerYearMap.values();
 	}
 }
