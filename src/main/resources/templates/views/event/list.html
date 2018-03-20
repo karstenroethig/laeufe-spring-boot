@@ -16,6 +16,57 @@
 				<a th:href="@{/event/create}" class="btn btn-default" th:text="#{default.button.create.label}">Create</a>
 			</div>
 		</div>
+	
+		<div class="panel-group" id="search_accordion" aria-multiselectable="true">
+			<div class="panel panel-default">
+				<div class="panel-heading" role="tab" id="headingSearch">
+					<h4 class="panel-title">
+						<a role="button" data-toggle="collapse" data-parent="#search_accordion" href="#collapseSearch" aria-expanded="true" aria-controls="collapseSearch">Anzeige einschr&auml;nken</a>
+						&nbsp;
+						<small id="searchParametersHint"></small>
+					</h4>
+				</div>
+				<div id="collapseSearch" class="panel-collapse collapse" aria-labelledby="headingSearch">
+					<div class="panel-body">
+						<form class="form-horizontal" th:action="@{/event/search}" action="#" method="post">
+							<div class="form-group">
+								<label class="col-md-2 control-label" th:text="#{organizer.label}">Race Organizer</label>
+								<div class="col-md-10">
+									<select class="form-control" id="search_param_organizer">
+										<option value=""></option>
+										<option th:each="org : ${allUnarchivedOrganizers}" th:value="${{org}}" th:text="${org.name}"></option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-2 control-label" th:text="#{event.name.label}">Name</label>
+								<div class="col-md-10">
+									<input type="text" class="form-control" id="search_param_name">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-2 control-label" th:text="#{event.eventPeriod.label}">Event Period</label>
+								<div class="col-md-5">
+									<div class="input-group date">
+										<input type="text" class="form-control bootstrap-datepicker" id="search_param_period_from" readonly><span class="input-group-addon"><span class="fa fa-calendar"></span></span>
+									</div>
+								</div>
+								<div class="col-md-5">
+									<div class="input-group date">
+										<input type="text" class="form-control bootstrap-datepicker" id="search_param_period_to" readonly><span class="input-group-addon"><span class="fa fa-calendar"></span></span>
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-offset-2 col-sm-10">
+									<input type="submit" class="btn btn-primary" th:value="#{default.button.search.label}" value="Suchen"/>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
 		
 		<div class="blank-slate-pf" th:if="${#lists.isEmpty(allEvents)}">
 			<h1 th:text="#{default.table.empty.text}">Data can not be found.</h1>
@@ -97,6 +148,10 @@
 			</div>
 		</div>
 
+	</div>
+	
+	<div layout:fragment="additionalFooter">
+		<script th:src="@{/js/list.js}"></script>
 	</div>
 
 </body>

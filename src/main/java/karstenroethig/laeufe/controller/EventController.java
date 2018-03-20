@@ -49,6 +49,7 @@ public class EventController
 	public String list( Model model )
 	{
 		model.addAttribute( "allEvents", eventService.getAllEvents() );
+		model.addAttribute( "allUnarchivedOrganizers", organizerService.getAllUnarchivedOrganizers() );
 
 		return ViewEnum.EVENT_LIST.getViewName();
 	}
