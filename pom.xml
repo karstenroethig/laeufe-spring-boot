@@ -26,11 +26,11 @@
 		<project.build.outputEncoding>UTF-8</project.build.outputEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-		<spring.boot.version>1.4.1.RELEASE</spring.boot.version>
+		<spring.boot.version>1.5.10.RELEASE</spring.boot.version>
 
-		<webjars-bootstrap.version>3.3.5</webjars-bootstrap.version>
-		<webjars-jquery.version>2.1.4</webjars-jquery.version>
-		<webjars-patternfly.version>3.3.2</webjars-patternfly.version>
+		<webjars-jquery.version>3.3.1</webjars-jquery.version>
+		<webjars-bootstrap.version>3.3.7</webjars-bootstrap.version>
+		<webjars-patternfly.version>3.40.0</webjars-patternfly.version>
 		<webjars-bootstrap-datepicker.version>1.6.1</webjars-bootstrap-datepicker.version>
 		<webjars-bootstrap-switch.version>3.3.2</webjars-bootstrap-switch.version>
 		<webjars-ammap.version>3.20.19</webjars-ammap.version>
@@ -110,86 +110,30 @@
 		<!-- WebJARs -->
 		<dependency>
 			<groupId>org.webjars</groupId>
-			<artifactId>bootstrap</artifactId>
-			<version>${webjars-bootstrap.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.webjars</groupId>
 			<artifactId>jquery</artifactId>
 			<version>${webjars-jquery.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.webjars.bower</groupId>
+			<groupId>org.webjars</groupId>
+			<artifactId>bootstrap</artifactId>
+			<version>${webjars-bootstrap.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.webjars.npm</groupId>
 			<artifactId>patternfly</artifactId>
 			<version>${webjars-patternfly.version}</version>
 			<exclusions>
 				<exclusion>
-					<groupId>org.webjars.bower</groupId>
-					<artifactId>bootstrap-select</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>org.webjars.bower</groupId>
-					<artifactId>c3</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>org.webjars.bower</groupId>
-					<artifactId>datatables-colreorder</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>org.webjars.bower</groupId>
-					<artifactId>google-code-prettify</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>org.webjars.bower</groupId>
-					<artifactId>datatables-colvis</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>org.webjars.bower</groupId>
-					<artifactId>datatables</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>org.webjars.bower</groupId>
-					<artifactId>bootstrap-treeview</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>org.webjars.bower</groupId>
-					<artifactId>bootstrap-datepicker</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>org.webjars.bower</groupId>
-					<artifactId>bootstrap-touchspin</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>org.webjars.bower</groupId>
-					<artifactId>eonasdan-bootstrap-datetimepicker</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>org.webjars.bower</groupId>
-					<artifactId>bootstrap-switch</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>org.webjars.bower</groupId>
-					<artifactId>font-awesome</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>org.webjars.bower</groupId>
-					<artifactId>moment</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>org.webjars.bower</groupId>
-					<artifactId>bootstrap-combobox</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>org.webjars.bower</groupId>
+					<groupId>org.webjars.npm</groupId>
 					<artifactId>jquery</artifactId>
 				</exclusion>
 				<exclusion>
-					<groupId>org.webjars.bower</groupId>
-					<artifactId>matchHeight</artifactId>
+					<groupId>org.webjars.npm</groupId>
+					<artifactId>bootstrap</artifactId>
 				</exclusion>
 				<exclusion>
-					<groupId>org.webjars.bower</groupId>
-					<artifactId>bootstrap</artifactId>
+					<groupId>org.webjars.npm</groupId>
+					<artifactId>font-awesome</artifactId>
 				</exclusion>
 			</exclusions>
 		</dependency>

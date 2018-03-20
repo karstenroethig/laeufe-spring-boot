@@ -21,7 +21,7 @@
 			<h1 th:text="#{default.table.empty.text}">Data can not be found.</h1>
 		</div>
 		
-		<div class="list-group list-view-pf" th:if="${!#lists.isEmpty(allEvents)}">
+		<div class="list-group list-view-pf list-view-pf-view" th:if="${!#lists.isEmpty(allEvents)}">
 			<div th:each="event : ${allEvents}" class="list-group-item list-view-pf-stacked">
 				<div class="list-view-pf-actions">
 					<a th:href="@{/event/show/{id}(id=${event.id})}" th:text="#{default.button.show.label}" class="btn btn-default">Show</a>
