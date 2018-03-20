@@ -154,6 +154,11 @@
 			</div>
 			<div class="form-group">
 				<div class="col-md-10 col-md-offset-2">
+					<span class="required">*</span> <span th:text="#{default.form.required}">required</span>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-md-10 col-md-offset-2">
 					<input type="submit" class="btn btn-primary" th:value="#{default.button.save.label}">
 					<a th:href="@{/event/list}" class="btn btn-default" th:text="#{default.button.cancel.label}">Cancel</a>
 				</div>
