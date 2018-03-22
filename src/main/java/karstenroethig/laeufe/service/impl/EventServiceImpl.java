@@ -123,7 +123,7 @@ public class EventServiceImpl implements EventService
 		return transformFull( eventRepository.findOne( eventId ) );
 	}
 
-	private Event merge( Event event, EventListDto eventDto )
+	private Event merge( Event event, EventFullDto eventDto )
 	{
 		if ( ( event == null ) || ( eventDto == null ) )
 		{
