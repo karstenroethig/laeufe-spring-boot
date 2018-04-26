@@ -26,7 +26,7 @@
 			<column name="distance" value="15"/>
 			<!--column name="racetime" value=""/-->
 			<column name="costs" value="17.00"/>
-			<column name="status" value="1"/>
+			<column name="status" value="3"/>
 		</insert>
 
 		<!-- ============ -->
@@ -37,11 +37,11 @@
 			<column name="category_id" valueNumeric="select id from Category where name='${category-crosslauf}'"/>
 			<column name="start_number" value="560"/>
 			<column name="start_time" valueDate="2018-04-21T10:00:00"/>
-			<column name="distance" value="15.0"/>
+			<!--column name="distance" value="15.0"/-->
 			<!--column name="racetime" value=""/-->
 			<!--column name="team" value=""/-->
-			<column name="note" value="Expert Trail, ca. 285 m Höhendifferenz"/>
-			<column name="status" value="1"/>
+			<column name="note" value="Expert Trail, ca. 285 m Höhendifferenz; nicht teilgenommen wegen Mobility-Kurs in Zürich"/>
+			<column name="status" value="3"/>
 		</insert>
 
 		<!-- ================== -->
