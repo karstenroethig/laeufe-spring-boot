@@ -292,8 +292,9 @@ public class EventServiceImpl implements EventService
 		int totalRaces = 0;
 		int totalRacesSuccess = 0;
 		int totalRacesFailed = 0;
-		int totalRacesToughMudder = 0;
-		int totalRacesXletix = 0;
+		int totalObstacleRaces = 0;
+		int totalObstacleRacesSuccess = 0;
+		int totalObstacleRacesFailed = 0;
 		Set<Country> countries = new HashSet<>();
 		BigDecimal longestDistance = new BigDecimal(0.0);
 		BigDecimal totalDistance = new BigDecimal(0.0);
@@ -323,6 +324,9 @@ public class EventServiceImpl implements EventService
 
 				totalRaces++;
 
+				if (StringUtils.equals(race.getCategory().getName(), "Hindernislauf"))
+					totalObstacleRaces++;
+
 				BigDecimal raceDistance = (race.getDistance() != null ? race.getDistance() : BigDecimal.ZERO);
 
 				if (raceDistance.compareTo(longestDistance) > 0)
@@ -336,22 +340,17 @@ public class EventServiceImpl implements EventService
 				{
 					totalRacesSuccess++;
 
-					String organizerName = event.getOrganizer().getName();
-
-					if (StringUtils.equals(organizerName, "Tough Mudder"))
-					{
-						totalRacesToughMudder++;
-					}
-					else if (StringUtils.equals(organizerName, "XLETIX Challenge"))
-					{
-						totalRacesXletix++;
-					}
+					if (StringUtils.equals(race.getCategory().getName(), "Hindernislauf"))
+						totalObstacleRacesSuccess++;
 
 					countries.add(event.getLocationCountry());
 				}
 				else if (raceStatus == RaceStatusEnum.FAILED)
 				{
 					totalRacesFailed++;
+
+					if (StringUtils.equals(race.getCategory().getName(), "Hindernislauf"))
+						totalObstacleRacesFailed++;
 				}
 			}
 		}
@@ -363,8 +362,9 @@ public class EventServiceImpl implements EventService
 		stats.setTotalRaces(totalRaces);
 		stats.setTotalRacesSuccess(totalRacesSuccess);
 		stats.setTotalRacesFailed(totalRacesFailed);
-		stats.setTotalRacesToughMudder(totalRacesToughMudder);
-		stats.setTotalRacesXletix(totalRacesXletix);
+		stats.setTotalObstacleRaces(totalObstacleRaces);
+		stats.setTotalObstacleRacesSuccess(totalObstacleRacesSuccess);
+		stats.setTotalObstacleRacesFailed(totalObstacleRacesFailed);
 		stats.setTotalCountries(countries.size());
 		stats.setLongestDistance(longestDistance);
 		stats.setTotalDistance(totalDistance);
