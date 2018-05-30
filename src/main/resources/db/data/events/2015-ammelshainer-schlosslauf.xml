@@ -25,7 +25,7 @@
 			<column name="location_longitude" value="12.636619"/>
 			<column name="distance" value="8,5"/>
 			<column name="costs" value="5.00"/>
-			<column name="status" value="3"/>
+			<column name="status" value="4"/>
 		</insert>
 
 		<!-- ============ -->
@@ -40,7 +40,7 @@
 			<!--column name="racetime" value=""/-->
 			<!--column name="team" value=""/-->
 			<column name="note" value="Nicht teilgenommen wegen Krankheit im Schottland-Urlaub"/>
-			<column name="status" value="3"/>
+			<column name="status" value="4"/>
 		</insert>
 
 		<!-- ================== -->

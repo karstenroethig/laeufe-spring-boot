@@ -292,9 +292,11 @@ public class EventServiceImpl implements EventService
 		int totalRaces = 0;
 		int totalRacesSuccess = 0;
 		int totalRacesFailed = 0;
+		int totalRacesDnp = 0;
 		int totalObstacleRaces = 0;
 		int totalObstacleRacesSuccess = 0;
 		int totalObstacleRacesFailed = 0;
+		int totalObstacleRacesDnp = 0;
 		Set<Country> countries = new HashSet<>();
 		BigDecimal longestDistance = new BigDecimal(0.0);
 		BigDecimal totalDistance = new BigDecimal(0.0);
@@ -317,7 +319,9 @@ public class EventServiceImpl implements EventService
 			{
 				RaceStatusEnum raceStatus = race.getStatusEnum();
 
-				if (raceStatus != RaceStatusEnum.COMPLETED && raceStatus != RaceStatusEnum.FAILED)
+				if (raceStatus != RaceStatusEnum.COMPLETED
+						&& raceStatus != RaceStatusEnum.FAILED
+						&& raceStatus != RaceStatusEnum.DNP)
 				{
 					continue;
 				}
@@ -352,6 +356,13 @@ public class EventServiceImpl implements EventService
 					if (StringUtils.equals(race.getCategory().getName(), "Hindernislauf"))
 						totalObstacleRacesFailed++;
 				}
+				else if (raceStatus == RaceStatusEnum.DNP)
+				{
+					totalRacesDnp++;
+
+					if (StringUtils.equals(race.getCategory().getName(), "Hindernislauf"))
+						totalObstacleRacesDnp++;
+				}
 			}
 		}
 
@@ -362,9 +373,11 @@ public class EventServiceImpl implements EventService
 		stats.setTotalRaces(totalRaces);
 		stats.setTotalRacesSuccess(totalRacesSuccess);
 		stats.setTotalRacesFailed(totalRacesFailed);
+		stats.setTotalRacesDnp(totalRacesDnp);
 		stats.setTotalObstacleRaces(totalObstacleRaces);
 		stats.setTotalObstacleRacesSuccess(totalObstacleRacesSuccess);
 		stats.setTotalObstacleRacesFailed(totalObstacleRacesFailed);
+		stats.setTotalObstacleRacesDnp(totalObstacleRacesDnp);
 		stats.setTotalCountries(countries.size());
 		stats.setLongestDistance(longestDistance);
 		stats.setTotalDistance(totalDistance);

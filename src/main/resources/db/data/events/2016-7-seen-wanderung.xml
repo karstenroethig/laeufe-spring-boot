@@ -25,7 +25,7 @@
 			<column name="location_longitude" value="12.3750767"/>
 			<column name="distance" value="108"/>
 			<column name="costs" value="27.00"/>
-			<column name="status" value="3"/>
+			<column name="status" value="4"/>
 		</insert>
 
 		<!-- ============ -->
@@ -40,7 +40,7 @@
 			<!--column name="racetime" value=""/-->
 			<!--column name="team" value=""/-->
 			<column name="note" value="Nicht gestartet wegen Verletzung"/>
-			<column name="status" value="3"/>
+			<column name="status" value="4"/>
 		</insert>
 
 		<!-- ================== -->
