@@ -89,6 +89,7 @@
 	<include file="db/data/events/2018-spartan-race-super-alberta-canada.xml"/>
 	<include file="db/data/events/2018-xletix-muenchen.xml"/>
 	<include file="db/data/events/2018-xletix-tirol.xml"/>
+	<include file="db/data/events/2018-xletix-mitten-in-deutschland.xml"/>
 	<include file="db/data/events/2018-tough-mudder-berlin-brandenburg.xml"/>
 	<include file="db/data/events/2018-cross-de-luxe.xml"/>
 	<include file="db/data/events/2018-tough-mudder-5k-muenchen.xml"/>

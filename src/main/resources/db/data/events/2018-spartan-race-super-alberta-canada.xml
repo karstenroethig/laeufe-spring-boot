@@ -26,7 +26,7 @@
 			<column name="distance" value="13+"/>
 			<!--column name="racetime" value=""/-->
 			<column name="costs" value="99.22"/>
-			<column name="status" value="1"/>
+			<column name="status" value="3"/>
 		</insert>
 
 		<!-- ============ -->
@@ -40,8 +40,8 @@
 			<!--column name="distance" value="15.0"/-->
 			<!--column name="racetime" value=""/-->
 			<!--column name="team" value=""/-->
-			<!--column name="note" value=""/-->
-			<column name="status" value="1"/>
+			<column name="note" value="nicht teilgenommen wegen Ausfall der Kanada-Reise"/>
+			<column name="status" value="3"/>
 		</insert>
 
 		<!-- ================== -->

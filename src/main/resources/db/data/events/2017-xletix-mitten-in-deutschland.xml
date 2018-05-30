@@ -23,7 +23,7 @@
 			<column name="location_country_id" valueNumeric="select id from Country where name='${country-germany}'"/>
 			<column name="location_latitude" value="51.876209"/>
 			<column name="location_longitude" value="9.645745"/>
-			<column name="distance" value="18+"/>
+			<column name="distance" value="12+"/>
 			<column name="racetime" value="01:40:00"/>
 			<column name="costs" value="84.00"/>
 			<column name="status" value="2"/>
