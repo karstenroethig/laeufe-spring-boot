@@ -24,8 +24,9 @@
 			<column name="location_latitude" value="48.1349684"/>
 			<column name="location_longitude" value="11.6531557"/>
 			<column name="distance" value="12+"/>
+			<column name="racetime" value="01:50:00"/>
 			<column name="costs" value="54.00"/>
-			<column name="status" value="1"/>
+			<column name="status" value="2"/>
 		</insert>
 
 		<!-- ============ -->
@@ -36,11 +37,11 @@
 			<column name="category_id" valueNumeric="select id from Category where name='${category-hindernislauf}'"/>
 			<!--column name="start_number" value=""/-->
 			<column name="start_time" valueDate="2018-06-30T10:00:00"/>
-			<!--column name="distance" value=""/-->
-			<!--column name="racetime" value=""/-->
+			<column name="distance" value="12.0"/>
+			<column name="racetime" value="01:50:00"/>
 			<!--column name="team" value=""/-->
 			<column name="note" value="M-Distanz"/>
-			<column name="status" value="1"/>
+			<column name="status" value="2"/>
 		</insert>
 
 		<!-- ================== -->
