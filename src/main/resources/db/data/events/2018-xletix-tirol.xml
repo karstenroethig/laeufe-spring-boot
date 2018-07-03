@@ -18,13 +18,13 @@
 			<column name="organizer_id" valueNumeric="select id from Organizer where name='${organizer-xletix}'"/>
 			<column name="name" value="${2018-xletix-tirol_name}"/>
 			<column name="start_date" value="${2018-xletix-tirol_start_date}"/>
-			<!--column name="end_date" value=""/-->
+			<column name="end_date" value="2018-07-22"/>
 			<column name="location_name" value="Weltcuport Kühtai, Tirol"/>
 			<column name="location_country_id" valueNumeric="select id from Country where name='${country-austria}'"/>
 			<column name="location_latitude" value="47.2117896"/>
 			<column name="location_longitude" value="11.0148107"/>
 			<column name="distance" value="12+"/>
-			<column name="costs" value="64.00"/>
+			<column name="costs" value="59.00"/>
 			<column name="status" value="1"/>
 		</insert>
 
@@ -59,6 +59,14 @@
 			<column name="sequence" value="2"/>
 			<column name="description" value="Parkplatz"/>
 			<column name="amount" value="5.00"/>
+			<!--column name="amount_foreign_currency" value="0.00"/-->
+			<!--column name="foreign_currency" value=""/-->
+		</insert>
+		<insert tableName="Cost_Point">
+			<column name="event_id" valueNumeric="select id from Event where name='${2018-xletix-tirol_name}' and start_date='${2018-xletix-tirol_start_date}'"/>
+			<column name="sequence" value="3"/>
+			<column name="description" value="Rückerstattung Parkgebühren wegen kostenfreien Parkplatz"/>
+			<column name="amount" value="-5.00"/>
 			<!--column name="amount_foreign_currency" value="0.00"/-->
 			<!--column name="foreign_currency" value=""/-->
 		</insert>
