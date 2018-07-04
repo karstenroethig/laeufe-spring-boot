@@ -35,7 +35,7 @@
 		<insert tableName="Race">
 			<column name="event_id" valueNumeric="select id from Event where name='${2018-xletix-muenchen_name}' and start_date='${2018-xletix-muenchen_start_date}'"/>
 			<column name="category_id" valueNumeric="select id from Category where name='${category-hindernislauf}'"/>
-			<!--column name="start_number" value=""/-->
+			<column name="start_number" value="33797"/>
 			<column name="start_time" valueDate="2018-06-30T10:00:00"/>
 			<column name="distance" value="12.0"/>
 			<column name="racetime" value="01:50:00"/>
