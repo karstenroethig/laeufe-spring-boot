@@ -24,8 +24,9 @@
 			<column name="location_latitude" value="47.2117896"/>
 			<column name="location_longitude" value="11.0148107"/>
 			<column name="distance" value="12+"/>
+			<column name="racetime" value="03:00:00"/>
 			<column name="costs" value="59.00"/>
-			<column name="status" value="1"/>
+			<column name="status" value="2"/>
 		</insert>
 
 		<!-- ============ -->
@@ -34,13 +35,13 @@
 		<insert tableName="Race">
 			<column name="event_id" valueNumeric="select id from Event where name='${2018-xletix-tirol_name}' and start_date='${2018-xletix-tirol_start_date}'"/>
 			<column name="category_id" valueNumeric="select id from Category where name='${category-hindernislauf}'"/>
-			<!--column name="start_number" value=""/-->
+			<column name="start_number" value="55483"/>
 			<column name="start_time" valueDate="2018-07-21T10:00:00"/>
-			<!--column name="distance" value=""/-->
-			<!--column name="racetime" value=""/-->
+			<column name="distance" value="15.0"/>
+			<column name="racetime" value="03:00:00"/>
 			<!--column name="team" value=""/-->
-			<column name="note" value="M-Distanz"/>
-			<column name="status" value="1"/>
+			<column name="note" value="M-Distanz; 8x 15 Burpees für ausgelassene Wasser-Hindernisse; höchster Punkt auf 2.334 Höhenmetern"/>
+			<column name="status" value="2"/>
 		</insert>
 
 		<!-- ================== -->
