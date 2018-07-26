@@ -94,4 +94,8 @@
 	<include file="db/data/events/2018-cross-de-luxe.xml"/>
 	<include file="db/data/events/2018-tough-mudder-5k-muenchen.xml"/>
 
+	<!-- 2019 -->
+	<include file="db/data/events/2019-spartan-race-sprint-muenchen.xml"/>
+	<include file="db/data/events/2019-xletix-berlin.xml"/>
+
 </databaseChangeLog>

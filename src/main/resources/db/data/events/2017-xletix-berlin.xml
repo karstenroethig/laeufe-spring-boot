@@ -24,6 +24,7 @@
 			<column name="location_latitude" value="52.208583"/>
 			<column name="location_longitude" value="13.5354137"/>
 			<column name="distance" value="18+"/>
+			<column name="racetime" value="02:50:00"/>
 			<column name="costs" value="30.00"/>
 			<column name="status" value="2"/>
 		</insert>
