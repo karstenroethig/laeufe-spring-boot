@@ -91,11 +91,13 @@
 	<include file="db/data/events/2018-xletix-tirol.xml"/>
 	<include file="db/data/events/2018-xletix-mitten-in-deutschland.xml"/>
 	<include file="db/data/events/2018-tough-mudder-berlin-brandenburg.xml"/>
+	<include file="db/data/events/2018-karlsfelder-seelauf.xml"/>
 	<include file="db/data/events/2018-cross-de-luxe.xml"/>
 	<include file="db/data/events/2018-tough-mudder-5k-muenchen.xml"/>
 
 	<!-- 2019 -->
 	<include file="db/data/events/2019-spartan-race-sprint-muenchen.xml"/>
 	<include file="db/data/events/2019-xletix-berlin.xml"/>
+	<include file="db/data/events/2019-xletix-tirol.xml"/>
 
 </databaseChangeLog>
