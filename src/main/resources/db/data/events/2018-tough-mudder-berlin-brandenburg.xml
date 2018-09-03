@@ -24,8 +24,9 @@
 			<column name="location_latitude" value="51.53698"/>
 			<column name="location_longitude" value="13.92824"/>
 			<column name="distance" value="18+"/>
+			<column name="racetime" value="01:40:00"/>
 			<column name="costs" value="79.00"/>
-			<column name="status" value="1"/>
+			<column name="status" value="2"/>
 		</insert>
 
 		<!-- ============ -->
@@ -34,23 +35,24 @@
 		<insert tableName="Race">
 			<column name="event_id" valueNumeric="select id from Event where name='${2018-tough-mudder-berlin-brandenburg_name}' and start_date='${2018-tough-mudder-berlin-brandenburg_start_date}'"/>
 			<column name="category_id" valueNumeric="select id from Category where name='${category-hindernislauf}'"/>
-			<!--column name="start_number" value=""/-->
-			<column name="start_time" valueDate="2018-09-01T09:00:00"/>
-			<!--column name="distance" value=""/-->
-			<!--column name="racetime" value=""/-->
+			<column name="start_number" value="500969"/>
+			<column name="start_time" valueDate="2018-09-01T10:00:00"/>
+			<column name="distance" value="15.0"/>
+			<column name="racetime" value="02:10:00"/>
 			<!--column name="team" value=""/-->
-			<column name="note" value="Half-Distanz"/>
-			<column name="status" value="1"/>
+			<column name="note" value="teilweise lange Wartezeiten; 3 Wasser-Hindernisse ausgelassen; Full-Distanz trotz Anmeldung für Half-Distanz"/>
+			<column name="status" value="2"/>
 		</insert>
 		<insert tableName="Race">
 			<column name="event_id" valueNumeric="select id from Event where name='${2018-tough-mudder-berlin-brandenburg_name}' and start_date='${2018-tough-mudder-berlin-brandenburg_start_date}'"/>
 			<column name="category_id" valueNumeric="select id from Category where name='${category-hindernislauf}'"/>
-			<!--column name="start_number" value=""/-->
-			<column name="start_time" valueDate="2018-09-02T09:00:00"/>
-			<!--column name="distance" value=""/-->
-			<!--column name="racetime" value=""/-->
-			<column name="note" value="Full-Distanz"/>
-			<column name="status" value="1"/>
+			<column name="start_number" value="25369"/>
+			<column name="start_time" valueDate="2018-09-02T11:00:00"/>
+			<column name="distance" value="15.0"/>
+			<column name="racetime" value="01:40:00"/>
+			<!--column name="team" value=""/-->
+			<column name="note" value="Full-Distanz; 3 Wasser-Hindernisse ausgelassen"/>
+			<column name="status" value="2"/>
 		</insert>
 
 		<!-- ================== -->
@@ -59,7 +61,7 @@
 		<insert tableName="Cost_Point">
 			<column name="event_id" valueNumeric="select id from Event where name='${2018-tough-mudder-berlin-brandenburg_name}' and start_date='${2018-tough-mudder-berlin-brandenburg_start_date}'"/>
 			<column name="sequence" value="1"/>
-			<column name="description" value="Teilnahmegebühr (Sa.)"/>
+			<column name="description" value="Teilnahmegebühr (Sa., Half-Distanz)"/>
 			<column name="amount" value="59.00"/>
 			<!--column name="amount_foreign_currency" value="0.00"/-->
 			<!--column name="foreign_currency" value=""/-->
@@ -67,7 +69,7 @@
 		<insert tableName="Cost_Point">
 			<column name="event_id" valueNumeric="select id from Event where name='${2018-tough-mudder-berlin-brandenburg_name}' and start_date='${2018-tough-mudder-berlin-brandenburg_start_date}'"/>
 			<column name="sequence" value="2"/>
-			<column name="description" value="Teilnahmegebühr (So.), vergünstigt wegen Volunteer-Teilnahme im Vorjahr"/>
+			<column name="description" value="Teilnahmegebühr (So., Full-Distanz), vergünstigt wegen Volunteer-Teilnahme im Vorjahr"/>
 			<column name="amount" value="20.00"/>
 			<!--column name="amount_foreign_currency" value="0.00"/-->
 			<!--column name="foreign_currency" value=""/-->
