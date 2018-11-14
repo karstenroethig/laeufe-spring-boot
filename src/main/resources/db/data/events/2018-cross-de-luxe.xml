@@ -25,7 +25,7 @@
 			<column name="location_longitude" value="12.42442"/>
 			<column name="distance" value="2 x 9"/>
 			<column name="costs" value="49.99"/>
-			<column name="status" value="1"/>
+			<column name="status" value="4"/>
 		</insert>
 
 		<!-- ============ -->
@@ -39,8 +39,8 @@
 			<!--column name="distance" value=""/-->
 			<!--column name="racetime" value=""/-->
 			<!--column name="team" value=""/-->
-			<!--column name="note" value=""/-->
-			<column name="status" value="1"/>
+			<column name="note" value="Nicht gestartet wegen Erkältung und schlechtem Wetter"/>
+			<column name="status" value="4"/>
 		</insert>
 
 		<!-- ================== -->
