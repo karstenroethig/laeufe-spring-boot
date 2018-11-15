@@ -34,7 +34,7 @@
 		<insert tableName="Race">
 			<column name="event_id" valueNumeric="select id from Event where name='${2018-cross-de-luxe_name}' and start_date='${2018-cross-de-luxe_start_date}'"/>
 			<column name="category_id" valueNumeric="select id from Category where name='${category-hindernislauf}'"/>
-			<!--column name="start_number" value=""/-->
+			<column name="start_number" value="1419"/>
 			<column name="start_time" valueDate="2018-09-29T14:00:00"/>
 			<!--column name="distance" value=""/-->
 			<!--column name="racetime" value=""/-->
