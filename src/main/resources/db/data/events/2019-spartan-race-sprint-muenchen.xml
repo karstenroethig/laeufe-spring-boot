@@ -24,9 +24,9 @@
 			<column name="location_latitude" value="48.1729"/>
 			<column name="location_longitude" value="11.5438"/>
 			<column name="distance" value="5+"/>
-			<!--column name="racetime" value=""/-->
+			<column name="racetime" value="01:18:27"/>
 			<column name="costs" value="86.51"/>
-			<column name="status" value="1"/>
+			<column name="status" value="2"/>
 		</insert>
 
 		<!-- ============ -->
@@ -35,13 +35,13 @@
 		<insert tableName="Race">
 			<column name="event_id" valueNumeric="select id from Event where name='${2019-spartan-race-sprint-muenchen_name}' and start_date='${2019-spartan-race-sprint-muenchen_start_date}'"/>
 			<column name="category_id" valueNumeric="select id from Category where name='${category-hindernislauf}'"/>
-			<!--column name="start_number" value=""/-->
+			<column name="start_number" value="89286"/>
 			<column name="start_time" valueDate="2019-04-13T10:45:00"/>
-			<!--column name="distance" value=""/-->
-			<!--column name="racetime" value=""/-->
+			<column name="distance" value="5.0"/>
+			<column name="racetime" value="01:18:27"/>
 			<column name="team" value="Suppentopf"/>
-			<!--column name="note" value=""/-->
-			<column name="status" value="1"/>
+			<column name="note" value="1 x 50 + 3 x 30 Burpees Strafe für nicht geschaffte oder ausgelassene Hindernisse (Flussquerung, Speerwurf,Seilklettern überm Wasser, Spinnennetz überm Wasser)"/>
+			<column name="status" value="2"/>
 		</insert>
 
 		<!-- ================== -->
