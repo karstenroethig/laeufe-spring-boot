@@ -98,6 +98,7 @@
 	<!-- 2019 -->
 	<include file="db/data/events/2019-spartan-race-sprint-muenchen.xml"/>
 	<include file="db/data/events/2019-xletix-berlin.xml"/>
+	<include file="db/data/events/2019-karlsfelder-triathlon.xml"/>
 	<include file="db/data/events/2019-xletix-tirol.xml"/>
 
 </databaseChangeLog>
