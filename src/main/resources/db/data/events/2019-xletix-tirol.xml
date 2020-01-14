@@ -25,8 +25,8 @@
 			<column name="location_longitude" value="11.0148107"/>
 			<column name="distance" value="12+"/>
 			<!--column name="racetime" value=""/-->
-			<column name="costs" value="10.00"/>
-			<column name="status" value="1"/>
+			<column name="costs" value="-79.00"/>
+			<column name="status" value="5"/>
 		</insert>
 
 		<!-- ============ -->
@@ -41,7 +41,7 @@
 			<!--column name="racetime" value=""/-->
 			<!--column name="team" value=""/-->
 			<column name="note" value="M-Distanz"/>
-			<column name="status" value="1"/>
+			<column name="status" value="5"/>
 		</insert>
 
 		<!-- ================== -->
@@ -50,8 +50,16 @@
 		<insert tableName="Cost_Point">
 			<column name="event_id" valueNumeric="select id from Event where name='${2019-xletix-tirol_name}' and start_date='${2019-xletix-tirol_start_date}'"/>
 			<column name="sequence" value="1"/>
-			<column name="description" value="Gebühr für Umbuchung von XLETIX Challenge 2018 - Norddeutschland"/>
+			<column name="description" value="Gebühr für Umbuchung von XLETIX Challenge 2018 - Mitten in Deutschland"/>
 			<column name="amount" value="10.00"/>
+			<!--column name="amount_foreign_currency" value="0.00"/-->
+			<!--column name="foreign_currency" value=""/-->
+		</insert>
+		<insert tableName="Cost_Point">
+			<column name="event_id" valueNumeric="select id from Event where name='${2019-xletix-tirol_name}' and start_date='${2019-xletix-tirol_start_date}'"/>
+			<column name="sequence" value="2"/>
+			<column name="description" value="Rückerstattung"/>
+			<column name="amount" value="-89.00"/>
 			<!--column name="amount_foreign_currency" value="0.00"/-->
 			<!--column name="foreign_currency" value=""/-->
 		</insert>

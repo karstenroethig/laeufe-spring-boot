@@ -101,4 +101,7 @@
 	<include file="db/data/events/2019-karlsfelder-triathlon.xml"/>
 	<include file="db/data/events/2019-xletix-tirol.xml"/>
 
+	<!-- 2020 -->
+	<include file="db/data/events/2020-xletix-muenchen.xml"/>
+
 </databaseChangeLog>
